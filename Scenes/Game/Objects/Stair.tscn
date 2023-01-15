@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp824bwq2pcht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dor"]
+size = Vector2(40, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23jh4"]
+size = Vector2(40, 10)
+
+[node name="Stair" type="Area2D"]
+position = Vector2(-500, -460)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_g1dor")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_23jh4")

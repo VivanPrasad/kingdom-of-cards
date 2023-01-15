@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxtcig140w6k4"]
+
+[ext_resource type="Script" path="res://Data/Game/Time.gd" id="1_0fj23"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tnc71"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_nmtap"]
+font_size = 24
+
+[node name="Time" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0fj23")
+
+[node name="MarginContainer" type="VBoxContainer" parent="."]
+offset_left = 40.0
+offset_top = 39.0
+offset_right = 237.0
+offset_bottom = 221.0
+metadata/_edit_group_ = true
+
+[node name="Day" type="Label" parent="MarginContainer"]
+offset_right = 197.0
+offset_bottom = 39.0
+text = "Day 1"
+label_settings = SubResource("LabelSettings_tnc71")
+
+[node name="Hour" type="Label" parent="MarginContainer"]
+offset_top = 43.0
+offset_right = 197.0
+offset_bottom = 73.0
+text = "6 am"
+label_settings = SubResource("LabelSettings_nmtap")

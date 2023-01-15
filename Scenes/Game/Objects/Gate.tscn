@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpovtw43hu6q3"]
+
+[ext_resource type="Texture2D" uid="uid://dnbkpmws1jmbb" path="res://Assets/Game/Objects/gate.png" id="1_aa3ms"]
+
+[sub_resource type="Animation" id="Animation_davq6"]
+resource_name = "Gate Open"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_tdbx5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fdvug"]
+_data = {
+"Gate Open": SubResource("Animation_davq6"),
+"RESET": SubResource("Animation_tdbx5")
+}
+
+[node name="Gate" type="Sprite2D"]
+texture = ExtResource("1_aa3ms")
+offset = Vector2(0, -4)
+hframes = 13
+frame = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fdvug")
+}

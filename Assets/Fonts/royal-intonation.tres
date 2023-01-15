@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://diqtfxvgb4nnc"]
+
+[ext_resource type="FontFile" uid="uid://ce0hax8sasknc" path="res://Assets/Fonts/royal-intonation.ttf" id="1_4srad"]
+
+[resource]
+base_font = ExtResource("1_4srad")

@@ -1,0 +1,200 @@
+[gd_scene load_steps=22 format=3 uid="uid://r07843x5idwo"]
+
+[ext_resource type="Texture2D" uid="uid://bhgmleinj4te5" path="res://Assets/UI/Menu/background.png" id="1_cdwcq"]
+[ext_resource type="Texture2D" uid="uid://s34yq2oa1unl" path="res://Assets/UI/Menu/title.png" id="1_rvk4s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dg25"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04vea"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nldk7"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5sa8"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kovdw"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(2560, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63ymb"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(3200, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p85sv"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(3840, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6evr7"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(4480, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ucr4"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(5120, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1lh5"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(5760, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw557"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(6400, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4fji"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(7040, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmyj4"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(7680, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6frr"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(8320, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i58c"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(8960, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u2j3"]
+atlas = ExtResource("1_cdwcq")
+region = Rect2(9600, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0bmp"]
+animations = [{
+"frames": [SubResource("AtlasTexture_0dg25"), SubResource("AtlasTexture_04vea"), SubResource("AtlasTexture_nldk7"), SubResource("AtlasTexture_w5sa8"), SubResource("AtlasTexture_kovdw"), SubResource("AtlasTexture_63ymb"), SubResource("AtlasTexture_p85sv"), SubResource("AtlasTexture_6evr7"), SubResource("AtlasTexture_1ucr4"), SubResource("AtlasTexture_j1lh5"), SubResource("AtlasTexture_vw557"), SubResource("AtlasTexture_w4fji"), SubResource("AtlasTexture_lmyj4"), SubResource("AtlasTexture_n6frr"), SubResource("AtlasTexture_6i58c"), SubResource("AtlasTexture_5u2j3")],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eykds"]
+font_size = 40
+font_color = Color(0.796078, 0.74902, 0.87451, 1)
+outline_size = 28
+outline_color = Color(0.196078, 0.101961, 0.172549, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u66ke"]
+font_size = 32
+font_color = Color(0.596078, 0.654902, 0.686275, 1)
+shadow_size = 8
+
+[node name="Title" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.25, 2.002)
+frames = SubResource("SpriteFrames_e0bmp")
+playing = true
+centered = false
+
+[node name="Tint" type="ColorRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.980392)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.0784314, 0.160784, 1)
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 50.0
+offset_right = 110.0
+offset_bottom = 101.0
+grow_horizontal = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(110, 0)
+texture = ExtResource("1_rvk4s")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 365.0
+offset_right = 269.0
+offset_bottom = 617.0
+theme_override_constants/separation = 20
+
+[node name="Play" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+offset_right = 170.0
+offset_bottom = 48.0
+
+[node name="Label" type="Label" parent="VBox/Play"]
+layout_mode = 2
+offset_right = 70.0
+offset_bottom = 48.0
+mouse_filter = 0
+text = "Play"
+label_settings = SubResource("LabelSettings_eykds")
+
+[node name="Settings" type="VBoxContainer" parent="VBox"]
+layout_direction = 1
+layout_mode = 2
+offset_top = 68.0
+offset_right = 170.0
+offset_bottom = 116.0
+
+[node name="Label" type="Label" parent="VBox/Settings"]
+layout_mode = 2
+offset_right = 170.0
+offset_bottom = 48.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_eykds")
+
+[node name="Collection" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+offset_top = 136.0
+offset_right = 170.0
+offset_bottom = 184.0
+
+[node name="Label" type="Label" parent="VBox/Collection"]
+layout_mode = 2
+offset_right = 170.0
+offset_bottom = 48.0
+text = "Collection"
+label_settings = SubResource("LabelSettings_eykds")
+
+[node name="Exit" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+offset_top = 204.0
+offset_right = 170.0
+offset_bottom = 252.0
+
+[node name="Label" type="Label" parent="VBox/Exit"]
+layout_mode = 2
+offset_right = 170.0
+offset_bottom = 48.0
+text = "Exit"
+label_settings = SubResource("LabelSettings_eykds")
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1253.0
+offset_top = 619.0
+offset_right = 1371.0
+offset_bottom = 658.0
+size_flags_horizontal = 10
+size_flags_vertical = 8
+text = "proto_1"
+label_settings = SubResource("LabelSettings_u66ke")
