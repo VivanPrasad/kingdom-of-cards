@@ -69,7 +69,55 @@ region = Rect2(9600, 0, 640, 360)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e0bmp"]
 animations = [{
-"frames": [SubResource("AtlasTexture_0dg25"), SubResource("AtlasTexture_04vea"), SubResource("AtlasTexture_nldk7"), SubResource("AtlasTexture_w5sa8"), SubResource("AtlasTexture_kovdw"), SubResource("AtlasTexture_63ymb"), SubResource("AtlasTexture_p85sv"), SubResource("AtlasTexture_6evr7"), SubResource("AtlasTexture_1ucr4"), SubResource("AtlasTexture_j1lh5"), SubResource("AtlasTexture_vw557"), SubResource("AtlasTexture_w4fji"), SubResource("AtlasTexture_lmyj4"), SubResource("AtlasTexture_n6frr"), SubResource("AtlasTexture_6i58c"), SubResource("AtlasTexture_5u2j3")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dg25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04vea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nldk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5sa8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kovdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63ymb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p85sv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6evr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ucr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1lh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vw557")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4fji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmyj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6frr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i58c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u2j3")
+}],
 "loop": true,
 "name": &"default",
 "speed": 30.0
@@ -100,8 +148,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.25, 2.002)
-frames = SubResource("SpriteFrames_e0bmp")
-playing = true
+sprite_frames = SubResource("SpriteFrames_e0bmp")
 centered = false
 
 [node name="Tint" type="ColorRect" parent="Background"]
@@ -137,13 +184,9 @@ theme_override_constants/separation = 20
 
 [node name="Play" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
-offset_right = 170.0
-offset_bottom = 48.0
 
 [node name="Label" type="Label" parent="VBox/Play"]
 layout_mode = 2
-offset_right = 70.0
-offset_bottom = 48.0
 mouse_filter = 0
 text = "Play"
 label_settings = SubResource("LabelSettings_eykds")
@@ -151,40 +194,25 @@ label_settings = SubResource("LabelSettings_eykds")
 [node name="Settings" type="VBoxContainer" parent="VBox"]
 layout_direction = 1
 layout_mode = 2
-offset_top = 68.0
-offset_right = 170.0
-offset_bottom = 116.0
 
 [node name="Label" type="Label" parent="VBox/Settings"]
 layout_mode = 2
-offset_right = 170.0
-offset_bottom = 48.0
 text = "Settings"
 label_settings = SubResource("LabelSettings_eykds")
 
 [node name="Collection" type="VBoxContainer" parent="VBox"]
 layout_mode = 2
-offset_top = 136.0
-offset_right = 170.0
-offset_bottom = 184.0
 
 [node name="Label" type="Label" parent="VBox/Collection"]
 layout_mode = 2
-offset_right = 170.0
-offset_bottom = 48.0
 text = "Collection"
 label_settings = SubResource("LabelSettings_eykds")
 
 [node name="Exit" type="VBoxContainer" parent="VBox"]
 layout_mode = 2
-offset_top = 204.0
-offset_right = 170.0
-offset_bottom = 252.0
 
 [node name="Label" type="Label" parent="VBox/Exit"]
 layout_mode = 2
-offset_right = 170.0
-offset_bottom = 48.0
 text = "Exit"
 label_settings = SubResource("LabelSettings_eykds")
 

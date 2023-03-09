@@ -22,6 +22,8 @@ func _process(delta):
 			speed = 700#11pm to 5am; 7 hours in 1 minute
 		#day = 4 minutes
 		#night = 1 minute
+	if hour == 23:
+		day_processed = false
 	second += int(floor(delta*speed))
 	minute = int(second / 60.0) % 60
 	hour = int(second / 3600.0) % 24

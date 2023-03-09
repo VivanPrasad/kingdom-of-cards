@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cnm86s83rvooj"]
+
+[ext_resource type="Script" path="res://Data/Cards/Card.gd" id="1_3vctd"]
+
+[resource]
+script = ExtResource("1_3vctd")
+name = "Bread"
+desc = "Gain +1 Life"
+type = 0
+properties = {
+"drop": {},
+"hold": {},
+"use": {
+"gain_life": 3
+}
+}

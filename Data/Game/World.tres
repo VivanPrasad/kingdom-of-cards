@@ -1014,6 +1014,7 @@ texture_region_size = Vector2i(8, 8)
 11:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 11:2/0/physics_layer_1/angular_velocity = 0.0
 0:3/0 = 0
+0:3/0/z_index = 1
 0:3/0/terrain_set = 1
 0:3/0/terrain = 2
 0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1793,7 +1794,6 @@ texture_region_size = Vector2i(8, 8)
 4:11/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 4:11/0/physics_layer_1/angular_velocity = 0.0
 0:12/0 = 0
-0:12/0/texture_offset = Vector2i(0, -4)
 0:12/0/y_sort_origin = 4
 0:12/0/terrain_set = 1
 0:12/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1803,7 +1803,7 @@ texture_region_size = Vector2i(8, 8)
 0:12/0/physics_layer_1/angular_velocity = 0.0
 1:12/size_in_atlas = Vector2i(1, 2)
 1:12/0 = 0
-1:12/0/texture_offset = Vector2i(0, -4)
+1:12/0/texture_origin = Vector2i(0, -4)
 1:12/0/y_sort_origin = 4
 1:12/0/terrain_set = 1
 1:12/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1871,7 +1871,7 @@ texture_region_size = Vector2i(8, 8)
 13:13/0/physics_layer_1/angular_velocity = 0.0
 0:14/size_in_atlas = Vector2i(1, 2)
 0:14/0 = 0
-0:14/0/texture_offset = Vector2i(0, -4)
+0:14/0/texture_origin = Vector2i(0, -4)
 0:14/0/y_sort_origin = 4
 0:14/0/terrain_set = 1
 0:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1881,7 +1881,7 @@ texture_region_size = Vector2i(8, 8)
 0:14/0/physics_layer_1/angular_velocity = 0.0
 1:14/size_in_atlas = Vector2i(1, 2)
 1:14/0 = 0
-1:14/0/texture_offset = Vector2i(0, -4)
+1:14/0/texture_origin = Vector2i(0, -4)
 1:14/0/y_sort_origin = 4
 1:14/0/terrain_set = 1
 1:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1891,7 +1891,7 @@ texture_region_size = Vector2i(8, 8)
 1:14/0/physics_layer_1/angular_velocity = 0.0
 2:14/size_in_atlas = Vector2i(1, 2)
 2:14/0 = 0
-2:14/0/texture_offset = Vector2i(0, -4)
+2:14/0/texture_origin = Vector2i(0, -4)
 2:14/0/y_sort_origin = 4
 2:14/0/terrain_set = 1
 2:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1971,7 +1971,7 @@ texture_region_size = Vector2i(8, 8)
 12:15/0/physics_layer_1/angular_velocity = 0.0
 5:12/size_in_atlas = Vector2i(3, 2)
 5:12/0 = 0
-5:12/0/texture_offset = Vector2i(0, -4)
+5:12/0/texture_origin = Vector2i(0, -4)
 5:12/0/y_sort_origin = 8
 5:12/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:12/0/physics_layer_0/angular_velocity = 0.0
@@ -2029,7 +2029,7 @@ texture_region_size = Vector2i(8, 8)
 7:0/0/physics_layer_1/angular_velocity = 0.0
 8:0/size_in_atlas = Vector2i(1, 2)
 8:0/0 = 0
-8:0/0/texture_offset = Vector2i(0, 4)
+8:0/0/texture_origin = Vector2i(0, 4)
 8:0/0/y_sort_origin = 4
 8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:0/0/physics_layer_0/angular_velocity = 0.0
@@ -2038,7 +2038,7 @@ texture_region_size = Vector2i(8, 8)
 8:0/0/physics_layer_1/angular_velocity = 0.0
 9:0/size_in_atlas = Vector2i(1, 2)
 9:0/0 = 0
-9:0/0/texture_offset = Vector2i(0, 4)
+9:0/0/texture_origin = Vector2i(0, 4)
 9:0/0/y_sort_origin = 4
 9:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:0/0/physics_layer_0/angular_velocity = 0.0
@@ -2047,7 +2047,7 @@ texture_region_size = Vector2i(8, 8)
 9:0/0/physics_layer_1/angular_velocity = 0.0
 10:0/size_in_atlas = Vector2i(1, 2)
 10:0/0 = 0
-10:0/0/texture_offset = Vector2i(0, 4)
+10:0/0/texture_origin = Vector2i(0, 4)
 10:0/0/y_sort_origin = 4
 10:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:0/0/physics_layer_0/angular_velocity = 0.0
@@ -2056,7 +2056,7 @@ texture_region_size = Vector2i(8, 8)
 10:0/0/physics_layer_1/angular_velocity = 0.0
 11:0/size_in_atlas = Vector2i(1, 2)
 11:0/0 = 0
-11:0/0/texture_offset = Vector2i(0, 4)
+11:0/0/texture_origin = Vector2i(0, 4)
 11:0/0/y_sort_origin = 4
 11:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 11:0/0/physics_layer_0/angular_velocity = 0.0
@@ -2065,7 +2065,7 @@ texture_region_size = Vector2i(8, 8)
 11:0/0/physics_layer_1/angular_velocity = 0.0
 12:0/size_in_atlas = Vector2i(1, 2)
 12:0/0 = 0
-12:0/0/texture_offset = Vector2i(0, 4)
+12:0/0/texture_origin = Vector2i(0, 4)
 12:0/0/y_sort_origin = 4
 12:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:0/0/physics_layer_0/angular_velocity = 0.0
@@ -2074,7 +2074,7 @@ texture_region_size = Vector2i(8, 8)
 12:0/0/physics_layer_1/angular_velocity = 0.0
 13:0/size_in_atlas = Vector2i(2, 2)
 13:0/0 = 0
-13:0/0/texture_offset = Vector2i(0, 4)
+13:0/0/texture_origin = Vector2i(0, 4)
 13:0/0/y_sort_origin = 4
 13:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 13:0/0/physics_layer_0/angular_velocity = 0.0
@@ -2296,7 +2296,7 @@ texture_region_size = Vector2i(8, 8)
 10:5/0/physics_layer_1/angular_velocity = 0.0
 4:6/size_in_atlas = Vector2i(2, 2)
 4:6/0 = 0
-4:6/0/texture_offset = Vector2i(-4, -4)
+4:6/0/texture_origin = Vector2i(-4, -4)
 4:6/0/y_sort_origin = 10
 4:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:6/0/physics_layer_0/angular_velocity = 0.0
@@ -2305,7 +2305,7 @@ texture_region_size = Vector2i(8, 8)
 4:6/0/physics_layer_1/angular_velocity = 0.0
 7:3/size_in_atlas = Vector2i(1, 2)
 7:3/0 = 0
-7:3/0/texture_offset = Vector2i(0, -4)
+7:3/0/texture_origin = Vector2i(0, -4)
 7:3/0/z_index = 1
 7:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:3/0/physics_layer_0/angular_velocity = 0.0
@@ -2318,7 +2318,7 @@ texture_region_size = Vector2i(8, 8)
 1:3/0/physics_layer_1/angular_velocity = 0.0
 8:3/size_in_atlas = Vector2i(1, 2)
 8:3/0 = 0
-8:3/0/texture_offset = Vector2i(0, -4)
+8:3/0/texture_origin = Vector2i(0, -4)
 8:3/0/z_index = 1
 8:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:3/0/physics_layer_0/angular_velocity = 0.0
@@ -2326,7 +2326,7 @@ texture_region_size = Vector2i(8, 8)
 8:3/0/physics_layer_1/angular_velocity = 0.0
 9:3/size_in_atlas = Vector2i(1, 2)
 9:3/0 = 0
-9:3/0/texture_offset = Vector2i(0, -4)
+9:3/0/texture_origin = Vector2i(0, -4)
 9:3/0/z_index = 1
 9:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:3/0/physics_layer_0/angular_velocity = 0.0
@@ -2334,54 +2334,16 @@ texture_region_size = Vector2i(8, 8)
 9:3/0/physics_layer_1/angular_velocity = 0.0
 10:2/size_in_atlas = Vector2i(1, 2)
 10:2/0 = 0
-10:2/0/texture_offset = Vector2i(0, 4)
+10:2/0/texture_origin = Vector2i(0, 4)
 10:2/0/y_sort_origin = 4
 10:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:2/0/physics_layer_0/angular_velocity = 0.0
 10:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -1, 3, -1, 3, 4, -3, 4)
 10:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 10:2/0/physics_layer_1/angular_velocity = 0.0
-11:2/size_in_atlas = Vector2i(1, 2)
-11:2/0 = 0
-11:2/0/texture_offset = Vector2i(0, 4)
-11:2/0/y_sort_origin = 4
-11:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-11:2/0/physics_layer_0/angular_velocity = 0.0
-11:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -1, 3, -1, 3, 4, -3, 4)
-11:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-11:2/0/physics_layer_1/angular_velocity = 0.0
-12:2/size_in_atlas = Vector2i(1, 2)
-12:2/0 = 0
-12:2/0/texture_offset = Vector2i(0, 4)
-12:2/0/modulate = Color(1, 1, 1, 0.996078)
-12:2/0/y_sort_origin = 4
-12:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-12:2/0/physics_layer_0/angular_velocity = 0.0
-12:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -1, 3, -1, 3, 4, -3, 4)
-12:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-12:2/0/physics_layer_1/angular_velocity = 0.0
-13:2/size_in_atlas = Vector2i(1, 2)
-13:2/0 = 0
-13:2/0/texture_offset = Vector2i(0, 4)
-13:2/0/y_sort_origin = 4
-13:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-13:2/0/physics_layer_0/angular_velocity = 0.0
-13:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -1, 3, -1, 3, 4, -3, 4)
-13:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-13:2/0/physics_layer_1/angular_velocity = 0.0
-14:2/size_in_atlas = Vector2i(1, 2)
-14:2/0 = 0
-14:2/0/texture_offset = Vector2i(0, 4)
-14:2/0/modulate = Color(1, 1, 1, 0.996078)
-14:2/0/y_sort_origin = 4
-14:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-14:2/0/physics_layer_0/angular_velocity = 0.0
-14:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -1, 3, -1, 3, 4, -3, 4)
-14:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
-14:2/0/physics_layer_1/angular_velocity = 0.0
 14:4/size_in_atlas = Vector2i(1, 2)
 14:4/0 = 0
-14:4/0/texture_offset = Vector2i(0, 4)
+14:4/0/texture_origin = Vector2i(0, 4)
 14:4/0/modulate = Color(1, 1, 1, 0.996078)
 14:4/0/y_sort_origin = 4
 14:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -2391,7 +2353,7 @@ texture_region_size = Vector2i(8, 8)
 14:4/0/physics_layer_1/angular_velocity = 0.0
 13:4/size_in_atlas = Vector2i(1, 2)
 13:4/0 = 0
-13:4/0/texture_offset = Vector2i(0, 4)
+13:4/0/texture_origin = Vector2i(0, 4)
 13:4/0/y_sort_origin = 4
 13:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 13:4/0/physics_layer_0/angular_velocity = 0.0
@@ -2400,7 +2362,7 @@ texture_region_size = Vector2i(8, 8)
 13:4/0/physics_layer_1/angular_velocity = 0.0
 12:4/size_in_atlas = Vector2i(1, 2)
 12:4/0 = 0
-12:4/0/texture_offset = Vector2i(0, 4)
+12:4/0/texture_origin = Vector2i(0, 4)
 12:4/0/modulate = Color(1, 1, 1, 0.996078)
 12:4/0/y_sort_origin = 4
 12:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -2410,7 +2372,7 @@ texture_region_size = Vector2i(8, 8)
 12:4/0/physics_layer_1/angular_velocity = 0.0
 11:4/size_in_atlas = Vector2i(1, 2)
 11:4/0 = 0
-11:4/0/texture_offset = Vector2i(0, 4)
+11:4/0/texture_origin = Vector2i(0, 4)
 11:4/0/y_sort_origin = 4
 11:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 11:4/0/physics_layer_0/angular_velocity = 0.0
@@ -2419,7 +2381,7 @@ texture_region_size = Vector2i(8, 8)
 11:4/0/physics_layer_1/angular_velocity = 0.0
 4:3/size_in_atlas = Vector2i(2, 1)
 4:3/0 = 0
-4:3/0/texture_offset = Vector2i(-4, 0)
+4:3/0/texture_origin = Vector2i(-4, 0)
 4:3/0/y_sort_origin = 2
 4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:3/0/physics_layer_0/angular_velocity = 0.0
@@ -2428,7 +2390,7 @@ texture_region_size = Vector2i(8, 8)
 4:3/0/physics_layer_1/angular_velocity = 0.0
 4:4/size_in_atlas = Vector2i(2, 1)
 4:4/0 = 0
-4:4/0/texture_offset = Vector2i(-4, 0)
+4:4/0/texture_origin = Vector2i(-4, 0)
 4:4/0/y_sort_origin = 2
 4:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:4/0/physics_layer_0/angular_velocity = 0.0
@@ -2437,7 +2399,7 @@ texture_region_size = Vector2i(8, 8)
 4:4/0/physics_layer_1/angular_velocity = 0.0
 4:5/size_in_atlas = Vector2i(2, 1)
 4:5/0 = 0
-4:5/0/texture_offset = Vector2i(-4, 0)
+4:5/0/texture_origin = Vector2i(-4, 0)
 4:5/0/y_sort_origin = 2
 4:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:5/0/physics_layer_0/angular_velocity = 0.0
@@ -2446,7 +2408,7 @@ texture_region_size = Vector2i(8, 8)
 4:5/0/physics_layer_1/angular_velocity = 0.0
 1:6/size_in_atlas = Vector2i(2, 2)
 1:6/0 = 0
-1:6/0/texture_offset = Vector2i(-4, -4)
+1:6/0/texture_origin = Vector2i(-4, -4)
 1:6/0/y_sort_origin = 10
 1:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:6/0/physics_layer_0/angular_velocity = 0.0
@@ -2455,7 +2417,7 @@ texture_region_size = Vector2i(8, 8)
 1:6/0/physics_layer_1/angular_velocity = 0.0
 0:6/size_in_atlas = Vector2i(1, 2)
 0:6/0 = 0
-0:6/0/texture_offset = Vector2i(0, -4)
+0:6/0/texture_origin = Vector2i(0, -4)
 0:6/0/z_index = 1
 0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:6/0/physics_layer_0/angular_velocity = 0.0
@@ -2463,7 +2425,7 @@ texture_region_size = Vector2i(8, 8)
 0:6/0/physics_layer_1/angular_velocity = 0.0
 3:6/size_in_atlas = Vector2i(1, 2)
 3:6/0 = 0
-3:6/0/texture_offset = Vector2i(0, -4)
+3:6/0/texture_origin = Vector2i(0, -4)
 3:6/0/z_index = 1
 3:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:6/0/physics_layer_0/angular_velocity = 0.0
@@ -2479,7 +2441,7 @@ texture_region_size = Vector2i(8, 8)
 0:10/animation_frame_4/duration = 0.1
 0:10/animation_frame_5/duration = 0.1
 0:10/0 = 0
-0:10/0/texture_offset = Vector2i(4, 4)
+0:10/0/texture_origin = Vector2i(4, 4)
 0:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:10/0/physics_layer_0/angular_velocity = 0.0
 0:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -11, -12, 4, 4, 4, 4, -11)
@@ -2487,7 +2449,7 @@ texture_region_size = Vector2i(8, 8)
 0:10/0/physics_layer_1/angular_velocity = 0.0
 12:6/size_in_atlas = Vector2i(1, 2)
 12:6/0 = 0
-12:6/0/texture_offset = Vector2i(0, -4)
+12:6/0/texture_origin = Vector2i(0, -4)
 12:6/0/y_sort_origin = 8
 12:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:6/0/physics_layer_0/angular_velocity = 0.0
@@ -2496,7 +2458,7 @@ texture_region_size = Vector2i(8, 8)
 12:6/0/physics_layer_1/angular_velocity = 0.0
 13:6/size_in_atlas = Vector2i(1, 2)
 13:6/0 = 0
-13:6/0/texture_offset = Vector2i(0, -4)
+13:6/0/texture_origin = Vector2i(0, -4)
 13:6/0/y_sort_origin = 8
 13:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 13:6/0/physics_layer_0/angular_velocity = 0.0
@@ -2505,14 +2467,14 @@ texture_region_size = Vector2i(8, 8)
 13:6/0/physics_layer_1/angular_velocity = 0.0
 11:6/size_in_atlas = Vector2i(1, 2)
 11:6/0 = 0
-11:6/0/texture_offset = Vector2i(0, -4)
+11:6/0/texture_origin = Vector2i(0, -4)
 11:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 11:6/0/physics_layer_0/angular_velocity = 0.0
 11:6/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 11:6/0/physics_layer_1/angular_velocity = 0.0
 14:6/size_in_atlas = Vector2i(1, 2)
 14:6/0 = 0
-14:6/0/texture_offset = Vector2i(0, -4)
+14:6/0/texture_origin = Vector2i(0, -4)
 14:6/0/y_sort_origin = 8
 14:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 14:6/0/physics_layer_0/angular_velocity = 0.0
@@ -2521,7 +2483,7 @@ texture_region_size = Vector2i(8, 8)
 14:6/0/physics_layer_1/angular_velocity = 0.0
 9:6/size_in_atlas = Vector2i(2, 2)
 9:6/0 = 0
-9:6/0/texture_offset = Vector2i(-4, -4)
+9:6/0/texture_origin = Vector2i(-4, -4)
 9:6/0/y_sort_origin = 10
 9:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:6/0/physics_layer_0/angular_velocity = 0.0
@@ -2589,6 +2551,44 @@ texture_region_size = Vector2i(8, 8)
 0:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, -4, 4, 4, 4, 4, -4)
 0:9/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:9/0/physics_layer_1/angular_velocity = 0.0
+12:2/size_in_atlas = Vector2i(1, 2)
+12:2/0 = 0
+12:2/0/texture_origin = Vector2i(0, 4)
+12:2/0/modulate = Color(1, 1, 1, 0.996078)
+12:2/0/y_sort_origin = 4
+12:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+12:2/0/physics_layer_0/angular_velocity = 0.0
+12:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -1, 3, -1, 3, 4, -3, 4)
+12:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+12:2/0/physics_layer_1/angular_velocity = 0.0
+11:2/size_in_atlas = Vector2i(1, 2)
+11:2/0 = 0
+11:2/0/texture_origin = Vector2i(0, 4)
+11:2/0/y_sort_origin = 4
+11:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_0/angular_velocity = 0.0
+11:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -1, 3, -1, 3, 4, -3, 4)
+11:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_1/angular_velocity = 0.0
+14:2/size_in_atlas = Vector2i(1, 2)
+14:2/0 = 0
+14:2/0/texture_origin = Vector2i(0, 4)
+14:2/0/modulate = Color(1, 1, 1, 0.996078)
+14:2/0/y_sort_origin = 4
+14:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+14:2/0/physics_layer_0/angular_velocity = 0.0
+14:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -1, 3, -1, 3, 4, -3, 4)
+14:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+14:2/0/physics_layer_1/angular_velocity = 0.0
+13:2/size_in_atlas = Vector2i(1, 2)
+13:2/0 = 0
+13:2/0/texture_origin = Vector2i(0, 4)
+13:2/0/y_sort_origin = 4
+13:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+13:2/0/physics_layer_0/angular_velocity = 0.0
+13:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -1, 3, -1, 3, 4, -3, 4)
+13:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+13:2/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="Animation" id="Animation_ojedi"]
 resource_name = "Bank"
@@ -2752,7 +2752,7 @@ size = Vector2(12, 16)
 [sub_resource type="PackedScene" id="PackedScene_twpqi"]
 _bundled = {
 "conn_count": 2,
-"conns": PackedInt32Array(1073741828, 1073741827, 23, 22, 2, 0, 1073741830, 1073741829, 25, 24, 2, 0),
+"conns": PackedInt32Array(1073741828, 1073741827, 23, 22, 2, 0, 0, 1073741830, 1073741829, 25, 24, 2, 0, 0),
 "editable_instances": [],
 "names": PackedStringArray("Castle", "Sprite2D", "show_behind_parent", "use_parent_material", "position", "y_sort_enabled", "texture", "offset", "hframes", "vframes", "script", "AnimationPlayer", "AnimationPlayer", "playback_speed", "libraries", "Area2D", "Area2D", "collision_layer", "CollisionShape2D", "CollisionShape2D", "position", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
 "node_count": 4,
@@ -2761,13 +2761,13 @@ _bundled = {
 "variants": [true, true, Vector2(0, 2), true, ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), 1.5, {
 "": SubResource("AnimationLibrary_xt3vi")
 }, 2, Vector2(0, -1), SubResource("RectangleShape2D_svt55")],
-"version": 2
+"version": 3
 }
 
 [sub_resource type="PackedScene" id="PackedScene_lx1st"]
 _bundled = {
 "conn_count": 2,
-"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 2, 0, 21, 20, 2, 0),
+"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 0, 2, 0, 21, 20, 2, 0, 0),
 "editable_instances": [],
 "names": PackedStringArray("Bank", "show_behind_parent", "use_parent_material", "position", "y_sort_enabled", "texture", "offset", "hframes", "vframes", "script", "Sprite2D", "AnimationPlayer", "playback_speed", "libraries", "Area2D", "collision_layer", "CollisionShape2D", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
 "node_count": 4,
@@ -2776,13 +2776,13 @@ _bundled = {
 "variants": [true, Vector2(0, 2), ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), 1.5, {
 "": SubResource("AnimationLibrary_xt3vi")
 }, 2, Vector2(0, -1), SubResource("RectangleShape2D_svt55")],
-"version": 2
+"version": 3
 }
 
 [sub_resource type="PackedScene" id="PackedScene_bo3bh"]
 _bundled = {
 "conn_count": 2,
-"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 2, 0, 21, 20, 2, 0),
+"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 0, 2, 0, 21, 20, 2, 0, 0),
 "editable_instances": [],
 "names": PackedStringArray("Dungeon1", "show_behind_parent", "use_parent_material", "position", "y_sort_enabled", "texture", "offset", "hframes", "vframes", "script", "Sprite2D", "AnimationPlayer", "playback_speed", "libraries", "Area2D", "collision_layer", "CollisionShape2D", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
 "node_count": 4,
@@ -2791,13 +2791,13 @@ _bundled = {
 "variants": [true, Vector2(0, 2), ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), 1.5, {
 "": SubResource("AnimationLibrary_xt3vi")
 }, 2, Vector2(0, -1), SubResource("RectangleShape2D_svt55")],
-"version": 2
+"version": 3
 }
 
 [sub_resource type="PackedScene" id="PackedScene_likak"]
 _bundled = {
 "conn_count": 2,
-"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 2, 0, 21, 20, 2, 0),
+"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 0, 2, 0, 21, 20, 2, 0, 0),
 "editable_instances": [],
 "names": PackedStringArray("Dungeon2", "show_behind_parent", "use_parent_material", "position", "y_sort_enabled", "texture", "offset", "hframes", "vframes", "script", "Sprite2D", "AnimationPlayer", "playback_speed", "libraries", "Area2D", "collision_layer", "CollisionShape2D", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
 "node_count": 4,
@@ -2806,13 +2806,13 @@ _bundled = {
 "variants": [true, Vector2(0, 2), ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), 1.5, {
 "": SubResource("AnimationLibrary_xt3vi")
 }, 2, Vector2(0, -1), SubResource("RectangleShape2D_svt55")],
-"version": 2
+"version": 3
 }
 
 [sub_resource type="PackedScene" id="PackedScene_reaho"]
 _bundled = {
 "conn_count": 2,
-"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 2, 0, 21, 20, 2, 0),
+"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 0, 2, 0, 21, 20, 2, 0, 0),
 "editable_instances": [],
 "names": PackedStringArray("Tailor", "show_behind_parent", "use_parent_material", "position", "y_sort_enabled", "texture", "offset", "hframes", "vframes", "script", "Sprite2D", "AnimationPlayer", "playback_speed", "libraries", "Area2D", "collision_layer", "CollisionShape2D", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
 "node_count": 4,
@@ -2821,13 +2821,13 @@ _bundled = {
 "variants": [true, Vector2(0, 2), ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), 1.5, {
 "": SubResource("AnimationLibrary_xt3vi")
 }, 2, Vector2(0, -1), SubResource("RectangleShape2D_svt55")],
-"version": 2
+"version": 3
 }
 
 [sub_resource type="PackedScene" id="PackedScene_02a77"]
 _bundled = {
 "conn_count": 2,
-"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 2, 0, 21, 20, 2, 0),
+"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 0, 2, 0, 21, 20, 2, 0, 0),
 "editable_instances": [],
 "names": PackedStringArray("Blacksmith", "show_behind_parent", "use_parent_material", "position", "y_sort_enabled", "texture", "offset", "hframes", "vframes", "script", "Sprite2D", "AnimationPlayer", "playback_speed", "libraries", "Area2D", "collision_layer", "CollisionShape2D", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
 "node_count": 4,
@@ -2836,13 +2836,13 @@ _bundled = {
 "variants": [true, Vector2(0, 2), ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), 1.5, {
 "": SubResource("AnimationLibrary_xt3vi")
 }, 2, Vector2(0, -1), SubResource("RectangleShape2D_svt55")],
-"version": 2
+"version": 3
 }
 
 [sub_resource type="PackedScene" id="PackedScene_itcky"]
 _bundled = {
 "conn_count": 2,
-"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 2, 0, 21, 20, 2, 0),
+"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 0, 2, 0, 21, 20, 2, 0, 0),
 "editable_instances": [],
 "names": PackedStringArray("Cabin", "show_behind_parent", "use_parent_material", "position", "y_sort_enabled", "texture", "offset", "hframes", "vframes", "script", "Sprite2D", "AnimationPlayer", "playback_speed", "libraries", "Area2D", "collision_layer", "CollisionShape2D", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
 "node_count": 4,
@@ -2851,7 +2851,7 @@ _bundled = {
 "variants": [true, Vector2(0, 2), ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), 1.5, {
 "": SubResource("AnimationLibrary_xt3vi")
 }, 2, Vector2(0, -1), SubResource("RectangleShape2D_svt55")],
-"version": 2
+"version": 3
 }
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_h7xef"]
@@ -2897,6 +2897,10 @@ terrain_set_1/terrain_3/name = "Tailor"
 terrain_set_1/terrain_3/color = Color(1, 0.984314, 0.945098, 1)
 terrain_set_1/terrain_4/name = "Blacksmith"
 terrain_set_1/terrain_4/color = Color(0.176471, 0.172549, 0.235294, 1)
+custom_data_layer_0/name = "Light"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = ""
+custom_data_layer_1/type = 0
 sources/1 = SubResource("TileSetAtlasSource_kourm")
 sources/2 = SubResource("TileSetAtlasSource_aybre")
 sources/0 = SubResource("TileSetAtlasSource_76dtx")
