@@ -65,8 +65,13 @@ ui_down={
 [layer_names]
 
 2d_physics/layer_1="Player"
+2d_navigation/layer_1="Ground"
 2d_physics/layer_2="Objects"
 2d_physics/layer_3="Entities"
+
+[navigation]
+
+2d/default_edge_connection_margin=30
 
 [rendering]
 

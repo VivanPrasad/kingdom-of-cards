@@ -7,6 +7,7 @@ script = ExtResource("1_3vctd")
 name = "Bread"
 desc = "Gain +1 Life"
 type = 0
+base_cost = 0
 properties = {
 "drop": {},
 "hold": {},

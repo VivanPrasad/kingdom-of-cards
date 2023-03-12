@@ -3,8 +3,12 @@ class_name Card
 
 @export var name : String
 @export var icon : Texture
-@export var desc : String
-@export_enum("Food", "Item", "Golden", "Material", "Attire", "Role", "Tool", "Other") var type
+@export_multiline var desc : String
+@export_enum("Food", "Item", "Golden", "Material", "Attire", "Role", "Tool", "Other") var type : int
+
+@export_category("Properties")
+@export_range(0, 20) var base_cost : int
+@export_group("Usage","use_")
 
 @export var properties : Dictionary = {
 	"use":{},
@@ -18,7 +22,7 @@ func use():
 			print("You gain " + str(properties["use"][command]) + "health.")
 	
 func _init(hello = null) -> void:
-	print(hello)
+	#print(hello)
 	if "gain_life" in properties["use"].keys():
-		print("hi")
+		print("gain life from card")
 

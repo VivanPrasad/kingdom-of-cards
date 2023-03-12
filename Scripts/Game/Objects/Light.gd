@@ -3,20 +3,20 @@ extends PointLight2D
 var layer
 var type
 var disabled = false
-var hour
+var time
 
-func _ready():
+func _ready() -> void:
 	if layer == 1: enabled = false
-	hour = get_parent().get_parent().get_child(7).get_child(1).hour
+	time = $"/root/World/UI/Time"
 	await get_tree().create_timer(randf_range(0.01,2.00)).timeout
 	$AnimationPlayer.play("Flicker")
 
-func _process(_delta):
-	if hour == 8:
+func _process(_delta) -> void:
+	if time.hour == 8:
 		if layer == 0 and not disabled:
 			$AnimationPlayer.play("Fade")
 			disabled = true
-	elif hour == 18:
+	elif time.hour == 18:
 		if layer == 0 and disabled:
 			$AnimationPlayer.play_backwards("Fade")
 			disabled = false

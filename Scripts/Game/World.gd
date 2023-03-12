@@ -3,15 +3,16 @@ extends Node2D
 var in_dungeon : bool = false
 @onready var light = preload("res://Scenes/Game/Objects/Light.tscn")
 var lights = []
+var lights_pos = [] #positions of all lights
+var lights_on : bool = true
+var lights_processed : bool = true
 var doors = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	instance_lights()
-	var bread = preload("res://Data/Cards/Bread.tres")
-	print(bread.use())
-	Card.new("papa")
+	var bread = load("res://Data/Cards/Bread.tres")
+	print(bread.type)
 func instance_lights():
-	var cell_lights = []
 	var cell_data
 	for i in $Dungeon.get_layers_count():
 		$Dungeon.set_layer_enabled(i, true)
@@ -20,7 +21,8 @@ func instance_lights():
 		for cell in layer.get_used_cells(2): #all the cells in decoration layer
 			cell_data = layer.get_cell_tile_data(2, cell) #get the TileData of the cell
 			if cell_data != null and cell_data.modulate != Color(1.0,1.0,1.0,1.0): #the lights do not have white modulate
-				cell_lights.append(cell_data)
+				#layer.set_cell(2,)
+				lights_pos.append(cell)
 				var instance = light.instantiate()
 				instance.position = cell * 8 #position on grid is 8x scale
 				instance.layer = [$Surface,$Dungeon].find(layer) #surface = 0, dungeon = 1
@@ -37,6 +39,19 @@ func _process(_delta):
 	else:
 		$Shader/AnimationPlayer.seek(4) #the dungeon looks dark, so it infinitely seeks at time = 4am
 	
+func toggle_lights(is_on : bool):
+	var atlas_coords
+	if not is_on:
+		for pos in lights_pos:
+			atlas_coords = $Surface.get_cell_atlas_coords(2,pos)
+			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
+				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x-1,atlas_coords.y))
+	else:
+		for pos in lights_pos:
+			atlas_coords = $Surface.get_cell_atlas_coords(2,pos)
+			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
+				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x+1,atlas_coords.y))
+
 
 func dungeon(_layer): #flips state
 	in_dungeon = !in_dungeon
@@ -45,10 +60,6 @@ func dungeon(_layer): #flips state
 	
 func update_light(type):
 	for child in lights: child.update(type)
-	if type == 1: 
-		for child in doors: 
-			print(child.name)
-	elif type == 2: for child in doors: print(child.name)
 		#in the lights path array, each child is updated for the type of light desired
 		# 0 = overworld on, 1 = dungeon on, 2 = overworld off
 

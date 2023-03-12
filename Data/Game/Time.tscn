@@ -18,6 +18,7 @@ grow_vertical = 2
 script = ExtResource("1_0fj23")
 
 [node name="MarginContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 40.0
 offset_top = 39.0
 offset_right = 237.0
@@ -25,14 +26,11 @@ offset_bottom = 221.0
 metadata/_edit_group_ = true
 
 [node name="Day" type="Label" parent="MarginContainer"]
-offset_right = 197.0
-offset_bottom = 39.0
+layout_mode = 2
 text = "Day 1"
 label_settings = SubResource("LabelSettings_tnc71")
 
 [node name="Hour" type="Label" parent="MarginContainer"]
-offset_top = 43.0
-offset_right = 197.0
-offset_bottom = 73.0
+layout_mode = 2
 text = "6 am"
 label_settings = SubResource("LabelSettings_nmtap")

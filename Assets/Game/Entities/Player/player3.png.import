@@ -2,23 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsfcdqy357ixp"
-path="res://.godot/imported/player.png-e20e2a35599e05c3225b9e53b3f4f6ac.ctex"
+uid="uid://dtb1mjk23fxte"
+path="res://.godot/imported/player3.png-1a5610a9b28f9e0d082e56413f13b405.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Game/Entities/Player/player.png"
-dest_files=["res://.godot/imported/player.png-e20e2a35599e05c3225b9e53b3f4f6ac.ctex"]
+source_file="res://Assets/Game/Entities/Player/player3.png"
+dest_files=["res://.godot/imported/player3.png-1a5610a9b28f9e0d082e56413f13b405.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

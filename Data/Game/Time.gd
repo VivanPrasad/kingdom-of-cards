@@ -6,11 +6,10 @@ extends Node
 @export var day : int = 1
 
 var day_processed : bool = true
-var speed = 350 #100 = 1 irl second is 1 minute ig
+var lights_processed : bool = true
+var speed : int = 350 #100 = 1 irl second is 1 minute ig
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-	
+@onready var world = get_parent().get_parent()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if hour == 0 and day_processed == false and speed > 0:
@@ -24,11 +23,22 @@ func _process(delta):
 		#night = 1 minute
 	if hour == 23:
 		day_processed = false
+	
+	if (hour == 7 or hour == 17):
+		lights_processed = false
+	if (hour == 8 or hour == 18) and lights_processed == false:
+		lights_processed = true
+		update_lights()
 	second += int(floor(delta*speed))
 	minute = int(second / 60.0) % 60
 	hour = int(second / 3600.0) % 24
 	update_labels()
 
+func update_lights():
+	if hour == 8:
+		world.toggle_lights(false)
+	elif hour == 18:
+		world.toggle_lights(true)
 func update_labels():
 	$MarginContainer/Day.text = "Day " + str(day)
 	if hour < 12:
