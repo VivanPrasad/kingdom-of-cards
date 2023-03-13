@@ -30,14 +30,14 @@ static func getLineTerminators(includeNewlines:bool=false):
 #-hat it has to contain both KOCM references and executor references.
 static func getElements():
 	return {
-		"Player": ["$World/Entities/Player", {
+		"Player": ["[World]Entities/Player", {
 			"Visible": ["Boolean", "$.visible"],
 			"Scale": ["Vector", "$.scale"],
 			"Position": ["Vector", "$.position"],
 			"Rotation": ["Integer", "$.rotation"],
 			"ZIndex": ["Integer", "$.z_index"],
 			"LinkedScript": ["String", "$.get_script()"],
-			"Speed": ["Integer", "$.scale"]
+			"Speed": ["Integer", "$.£(\"Speed\")"] # £ is either SET or GET (executor handled)
 		}]
 	}
 	
@@ -49,10 +49,10 @@ static func escapeNewlines(string):
 	
 # This function returns a list of valid line starters.
 # This uses all previous get functions.
-static func getLineStarters():
+static func getLineStarters(suffix=""):
 	var final = []
-	for x in getDescriptors(): final.append(x)
-	for x in getElements(): final.append(x)
+	for x in getDescriptors(): final.append(x+str(suffix))
+	for x in getElements(): final.append(x+str(suffix))
 	return final
 	
 # Utility functions.
@@ -75,7 +75,6 @@ static func parse(pathToFile):
 	var modFile = FileAccess.open(pathToFile, FileAccess.READ)
 	var modFileName = str(pathToFile.split("/")[pathToFile.split("/").size()-1])
 	var modLines = trimNewlines(modFile.get_as_text()).split(";")
-	
 	var parserFormatValidationLine = 0
 	var hasErroredDuringParsing = false
 	for line in modFile.get_as_text().split("\n"):
@@ -92,8 +91,23 @@ static func parse(pathToFile):
 				print("Invalid line starter on Line "+str(parserFormatValidationLine)+" of Mod "+modFileName)
 				print("  - "+nline)
 				print("  - Started with an invalid line starter.")
-			
-	
+			else:
+				if beginsWithMultiple(line, getLineStarters(".")):
+					var lc = trimNewlines(line).replace(" = ","=").split("=")
+					var args = lc[0].split(".")
+					var fixedArg1 = args[1].replace(";", "")
+					if getElements().has(args[0]):
+						if getElements().get(args[0])[1].has(fixedArg1): pass # This is the furthest check you can do as of now.
+						else:
+							hasErroredDuringParsing = true
+							print("Invalid attribute for \""+str(args[0])+"\" on Line "+str(parserFormatValidationLine)+" of Mod "+modFileName)
+							print("  - "+nline)
+							print("  - Attempted to get/set an invalid attribute of an element.")
+					else:
+						hasErroredDuringParsing = true
+						print("Attempt to get/set attribute of non-element \""+str(args[0])+"\" on Line "+str(parserFormatValidationLine)+" of Mod "+modFileName)
+						print("  - "+nline)
+						print("  - Attempted to get/set attribute of a non-element object.")
 	if hasErroredDuringParsing:
 		print("Unable to load Mod "+modFileName+" due to parsing errors.")
 		return false
