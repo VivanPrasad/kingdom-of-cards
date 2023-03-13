@@ -1,22 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpovtw43hu6q3"]
+[gd_scene load_steps=6 format=3 uid="uid://cpovtw43hu6q3"]
 
 [ext_resource type="Texture2D" uid="uid://dnbkpmws1jmbb" path="res://Assets/Game/Objects/gate.png" id="1_aa3ms"]
 
 [sub_resource type="Animation" id="Animation_davq6"]
-resource_name = "Gate Open"
+resource_name = "Gate"
 length = 2.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath("Gate:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
 }
 
 [sub_resource type="Animation" id="Animation_tdbx5"]
@@ -24,29 +35,53 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath("Gate:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [12]
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fdvug"]
 _data = {
-"Gate Open": SubResource("Animation_davq6"),
+"Gate": SubResource("Animation_davq6"),
 "RESET": SubResource("Animation_tdbx5")
 }
 
-[node name="Gate" type="Sprite2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4uc6d"]
+size = Vector2(18, 5)
+
+[node name="Gate" type="StaticBody2D"]
+use_parent_material = true
+
+[node name="Gate" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("1_aa3ms")
 offset = Vector2(0, -4)
 hframes = 13
-frame = 12
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gate"]
+root_node = NodePath("../..")
+speed_scale = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_fdvug")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_4uc6d")

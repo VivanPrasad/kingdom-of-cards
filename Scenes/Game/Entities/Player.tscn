@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bxbor0a6xjb8k"]
+[gd_scene load_steps=31 format=3 uid="uid://bxbor0a6xjb8k"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Entities/Player.gd" id="1_pdfi5"]
 [ext_resource type="Texture2D" uid="uid://cg5ul4ok6hwpc" path="res://Assets/Game/Entities/Player/player2.png" id="2_j3dxq"]
@@ -230,10 +230,60 @@ graph_offset = Vector2(79, 2)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_kk704"]
 
+[sub_resource type="Animation" id="Animation_kkdni"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gx4c6"]
+resource_name = "Zoom Load"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(0.9, 0.9), Vector2(3, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8veyy"]
+_data = {
+"RESET": SubResource("Animation_kkdni"),
+"Zoom Load": SubResource("Animation_gx4c6")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qi5kr"]
+emission_shape = 3
+emission_box_extents = Vector3(300, 1, 1)
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angle_min = -90.0
+angle_max = 90.0
+scale_max = 5.0
+turbulence_noise_scale = 1.49
+
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
 use_parent_material = true
 scale = Vector2(2, 2)
+collision_layer = 3
 collision_mask = 2
 script = ExtResource("1_pdfi5")
 
@@ -243,12 +293,12 @@ shape = SubResource("RectangleShape2D_xuld3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1.2, 1.2, 1.2, 1)
+use_parent_material = true
 texture = ExtResource("2_j3dxq")
 offset = Vector2(-1, -1)
 hframes = 46
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
 limit_left = -2000
 limit_top = -2000
 limit_right = 2000
@@ -268,6 +318,23 @@ tree_root = SubResource("AnimationNodeStateMachine_ova3r")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_kk704")
-parameters/Idle/blend_position = Vector2(-0.00449437, -0.0393013)
+parameters/Idle/blend_position = Vector2(-0.00116688, 0.956332)
 parameters/Run/blend_position = Vector2(0.00224721, 0.00436687)
 parameters/Sleep/blend_position = Vector2(0, 0)
+
+[node name="Camera" type="AnimationPlayer" parent="."]
+autoplay = "Zoom Load"
+libraries = {
+"": SubResource("AnimationLibrary_8veyy")
+}
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(0, -132)
+emitting = false
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_qi5kr")
+lifetime = 3.0
+speed_scale = 0.5
+fixed_fps = 60

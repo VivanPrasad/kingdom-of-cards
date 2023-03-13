@@ -1,12 +1,20 @@
-[gd_resource type="TileSet" load_steps=56 format=3 uid="uid://14rpwtosamrg"]
+[gd_resource type="TileSet" load_steps=70 format=3 uid="uid://c0ndy3hw3jlqs"]
 
 [ext_resource type="Texture2D" uid="uid://8g7rk7e3wu6b" path="res://Assets/Game/Tileset/ground.png" id="1_hiyi0"]
 [ext_resource type="Texture2D" uid="uid://b52jw7mgm025" path="res://Assets/Game/Tileset/building.png" id="2_c8wq5"]
 [ext_resource type="Texture2D" uid="uid://c8aescd14087o" path="res://Assets/Game/Tileset/decoration.png" id="3_vn70q"]
+[ext_resource type="PackedScene" uid="uid://bkit43tirbeg8" path="res://Scenes/Game/Objects/Markets/FoodMarket.tscn" id="4_p3fqa"]
 [ext_resource type="PackedScene" uid="uid://evq6bnbmyoel" path="res://Scenes/Game/Objects/Door.tscn" id="4_urxy0"]
 [ext_resource type="Texture2D" uid="uid://bnj51xvqnb7lt" path="res://Assets/Game/Objects/door.png" id="5_j8kkv"]
+[ext_resource type="PackedScene" uid="uid://be6b75mcrotuj" path="res://Scenes/Game/Objects/Markets/ItemMarket.tscn" id="5_t354s"]
 [ext_resource type="PackedScene" uid="uid://cpovtw43hu6q3" path="res://Scenes/Game/Objects/Gate.tscn" id="5_u2hnt"]
+[ext_resource type="PackedScene" uid="uid://hfsfdnpe02d2" path="res://Scenes/Game/Objects/Markets/BankDesk.tscn" id="6_gk27f"]
 [ext_resource type="Script" path="res://Scripts/Game/Objects/Door.gd" id="6_hk20o"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_26eh4"]
+vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_r2nt0"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
@@ -43,6 +51,7 @@ texture_region_size = Vector2i(8, 8)
 1:0/0/terrain = 2
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 4, 4, 4, 4, -2, 2, -2, 2, -1, 0, -1, 0, 0, -2, 0, -2, 2, -4, 2)
 1:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_1/angular_velocity = 0.0
 1:0/0/terrains_peering_bit/right_side = 2
@@ -54,6 +63,7 @@ texture_region_size = Vector2i(8, 8)
 2:0/0/terrain = 2
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 4, 4, 4, 4, -2, -4, -2)
 2:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_1/angular_velocity = 0.0
 2:0/0/terrains_peering_bit/right_side = 2
@@ -65,6 +75,7 @@ texture_region_size = Vector2i(8, 8)
 3:0/0/terrain = 2
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, 4, -4, 4, -4, -2, -2, -2, -2, -1, 0, -1, 0, 0, 2, 0, 2, 2, 4, 2)
 3:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_1/angular_velocity = 0.0
 3:0/0/terrains_peering_bit/right_side = 3
@@ -77,6 +88,7 @@ texture_region_size = Vector2i(8, 8)
 4:0/0/probability = 0.1
 4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 4:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_1/angular_velocity = 0.0
 4:0/0/terrains_peering_bit/right_side = 2
@@ -88,6 +100,7 @@ texture_region_size = Vector2i(8, 8)
 0:1/0/terrain = 2
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 2, -4, 2)
 0:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_1/angular_velocity = 0.0
 0:1/0/terrains_peering_bit/right_side = 3
@@ -99,6 +112,7 @@ texture_region_size = Vector2i(8, 8)
 1:1/0/terrain = 2
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 1:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_1/angular_velocity = 0.0
 1:1/0/terrains_peering_bit/right_side = 2
@@ -109,6 +123,7 @@ texture_region_size = Vector2i(8, 8)
 2:1/0/terrain = 2
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 2:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_1/angular_velocity = 0.0
 2:1/0/terrains_peering_bit/right_side = 2
@@ -120,6 +135,7 @@ texture_region_size = Vector2i(8, 8)
 3:1/0/terrain = 2
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 3:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_1/angular_velocity = 0.0
 3:1/0/terrains_peering_bit/right_side = 3
@@ -132,6 +148,7 @@ texture_region_size = Vector2i(8, 8)
 4:1/0/probability = 0.1
 4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 4:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 4:1/0/physics_layer_1/angular_velocity = 0.0
 4:1/0/terrains_peering_bit/right_side = 2
@@ -143,6 +160,7 @@ texture_region_size = Vector2i(8, 8)
 1:2/0/terrain = 2
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 2, 2, 2, 2, 1, 0, 1, 0, 0, -2, 0, -2, -2, -4, -2)
 1:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_1/angular_velocity = 0.0
 1:2/0/terrains_peering_bit/right_side = 2
@@ -154,6 +172,7 @@ texture_region_size = Vector2i(8, 8)
 2:2/0/terrain = 2
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 2, -4, 2)
 2:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_1/angular_velocity = 0.0
 2:2/0/terrains_peering_bit/right_side = 2
@@ -165,6 +184,7 @@ texture_region_size = Vector2i(8, 8)
 3:2/0/terrain = 2
 3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -4, -4, -4, -4, 2, -2, 2, -2, 1, 0, 1, 0, 0, 2, 0, 2, -2, 4, -2)
 3:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_1/angular_velocity = 0.0
 3:2/0/terrains_peering_bit/right_side = 3
@@ -176,6 +196,7 @@ texture_region_size = Vector2i(8, 8)
 4:2/0/terrain = 2
 4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 4:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 4:2/0/physics_layer_1/angular_velocity = 0.0
 0:3/0 = 0
@@ -579,16 +600,21 @@ texture_region_size = Vector2i(8, 8)
 0:2/0/physics_layer_0/angular_velocity = 0.0
 0:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_1/angular_velocity = 0.0
+0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_26eh4")
+1:7/0 = 0
+1:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:7/0/physics_layer_0/angular_velocity = 0.0
+1:7/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:7/0/physics_layer_1/angular_velocity = 0.0
+1:8/0 = 0
+1:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:8/0/physics_layer_0/angular_velocity = 0.0
+1:8/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:8/0/physics_layer_1/angular_velocity = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_djdis"]
-vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_x2x04"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_brr1w"]
-vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_f535h"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2pni0"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
@@ -620,25 +646,13 @@ vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_81xxq"]
-vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8igf4"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_sguuf"]
-vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mdagn"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_jk6td"]
-vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rrib3"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_nf8t0"]
-vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_i5uk6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_65cni"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
@@ -1112,7 +1126,7 @@ texture_region_size = Vector2i(8, 8)
 3:2/0/physics_layer_0/angular_velocity = 0.0
 3:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_1/angular_velocity = 0.0
-3:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_sguuf")
+3:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_mdagn")
 4:2/0 = 0
 4:2/0/z_index = -1
 4:2/0/terrain_set = 1
@@ -1164,7 +1178,7 @@ texture_region_size = Vector2i(8, 8)
 10:2/0/physics_layer_0/angular_velocity = 0.0
 10:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 10:2/0/physics_layer_1/angular_velocity = 0.0
-10:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_djdis")
+10:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_x2x04")
 11:2/0 = 0
 11:2/0/z_index = -1
 11:2/0/terrain_set = 1
@@ -1492,7 +1506,7 @@ texture_region_size = Vector2i(8, 8)
 3:5/0/physics_layer_0/angular_velocity = 0.0
 3:5/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:5/0/physics_layer_1/angular_velocity = 0.0
-3:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jk6td")
+3:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_rrib3")
 4:5/0 = 0
 4:5/0/z_index = -1
 4:5/0/terrain_set = 1
@@ -1525,7 +1539,7 @@ texture_region_size = Vector2i(8, 8)
 10:5/0/physics_layer_0/angular_velocity = 0.0
 10:5/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 10:5/0/physics_layer_1/angular_velocity = 0.0
-10:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_brr1w")
+10:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_f535h")
 11:5/0 = 0
 11:5/0/z_index = -1
 11:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1766,7 +1780,7 @@ texture_region_size = Vector2i(8, 8)
 3:8/0/physics_layer_0/angular_velocity = 0.0
 3:8/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:8/0/physics_layer_1/angular_velocity = 0.0
-3:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nf8t0")
+3:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_i5uk6")
 4:8/0 = 0
 4:8/0/z_index = -1
 4:8/0/terrain_set = 1
@@ -1956,7 +1970,7 @@ texture_region_size = Vector2i(8, 8)
 3:11/0/physics_layer_0/angular_velocity = 0.0
 3:11/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:11/0/physics_layer_1/angular_velocity = 0.0
-3:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_81xxq")
+3:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_8igf4")
 4:11/0 = 0
 4:11/0/z_index = -1
 4:11/0/terrain_set = 1
@@ -2383,9 +2397,10 @@ texture_region_size = Vector2i(8, 8)
 3:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_1/angular_velocity = 0.0
 6:3/0 = 0
+6:3/0/y_sort_origin = 1
 6:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:3/0/physics_layer_0/angular_velocity = 0.0
-6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, 0, 3, 0, 3, 3, -3, 3)
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1, -2, 2, -2, 2, 2, -1, 2)
 6:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 6:3/0/physics_layer_1/angular_velocity = 0.0
 0:4/0 = 0
@@ -2409,7 +2424,6 @@ texture_region_size = Vector2i(8, 8)
 3:4/0 = 0
 3:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:4/0/physics_layer_0/angular_velocity = 0.0
-3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -1, 3, -1, 3, 4, -3, 4)
 3:4/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:4/0/physics_layer_1/angular_velocity = 0.0
 6:4/0 = 0
@@ -2614,7 +2628,6 @@ texture_region_size = Vector2i(8, 8)
 3:6/0/z_index = 1
 3:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:6/0/physics_layer_0/angular_velocity = 0.0
-3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, 2, 3, 2, 3, 11, -3, 11)
 3:6/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 3:6/0/physics_layer_1/angular_velocity = 0.0
 0:10/size_in_atlas = Vector2i(2, 2)
@@ -2777,6 +2790,216 @@ texture_region_size = Vector2i(8, 8)
 13:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 13:2/0/physics_layer_1/angular_velocity = 0.0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4ks18"]
+resource_name = "Markets"
+scenes/1/scene = ExtResource("4_p3fqa")
+scenes/2/scene = ExtResource("5_t354s")
+scenes/3/scene = ExtResource("6_gk27f")
+
+[sub_resource type="Animation" id="Animation_ojedi"]
+resource_name = "Bank"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19, 20]
+}
+
+[sub_resource type="Animation" id="Animation_kto1h"]
+resource_name = "Blacksmith"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [42, 43, 44, 45, 46, 47, 48]
+}
+
+[sub_resource type="Animation" id="Animation_lu82q"]
+resource_name = "Cabin"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [49, 50, 51, 52, 53, 54, 55]
+}
+
+[sub_resource type="Animation" id="Animation_3duld"]
+resource_name = "Castle"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_43cd5"]
+resource_name = "Door"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_8ikcd"]
+resource_name = "Dungeon1"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [21, 22, 23, 24, 25, 26, 27]
+}
+
+[sub_resource type="Animation" id="Animation_6ln5a"]
+resource_name = "Dungeon2"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [28, 29, 30, 31, 32, 33, 34]
+}
+
+[sub_resource type="Animation" id="Animation_ltsy6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8m3x7"]
+resource_name = "Tailor"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [35, 36, 37, 38, 39, 40, 41]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xt3vi"]
+_data = {
+"Bank": SubResource("Animation_ojedi"),
+"Blacksmith": SubResource("Animation_kto1h"),
+"Cabin": SubResource("Animation_lu82q"),
+"Castle": SubResource("Animation_3duld"),
+"Door": SubResource("Animation_43cd5"),
+"Dungeon1": SubResource("Animation_8ikcd"),
+"Dungeon2": SubResource("Animation_6ln5a"),
+"RESET": SubResource("Animation_ltsy6"),
+"Tailor": SubResource("Animation_8m3x7")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svt55"]
+size = Vector2(12, 16)
+
+[sub_resource type="PackedScene" id="PackedScene_nujpy"]
+_bundled = {
+"conn_count": 2,
+"conns": PackedInt32Array(2, 0, 21, 20, 2, 0, 0, 2, 0, 23, 22, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("Castle", "show_behind_parent", "y_sort_enabled", "texture_filter", "use_parent_material", "position", "texture", "offset", "hframes", "vframes", "script", "Sprite2D", "AnimationPlayer", "libraries", "Area2D", "collision_layer", "collision_mask", "monitorable", "CollisionShape2D", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
+"node_count": 4,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 11, 0, -1, 10, 1, 0, 2, 0, 3, 1, 4, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 0, 0, 0, 12, 12, -1, 1, 13, 8, 0, 0, 0, 14, 14, -1, 3, 15, 9, 16, 10, 17, 11, 0, 2, 0, 18, 18, -1, 2, 5, 12, 19, 13, 0),
+"variants": [true, 1, Vector2(0, 2), ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), {
+"": SubResource("AnimationLibrary_xt3vi")
+}, 2, 5, false, Vector2(0, -1), SubResource("RectangleShape2D_svt55")],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_8egto"]
+_bundled = {
+"conn_count": 2,
+"conns": PackedInt32Array(2, 0, 21, 20, 2, 0, 0, 2, 0, 23, 22, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("Bank", "show_behind_parent", "y_sort_enabled", "texture_filter", "use_parent_material", "position", "texture", "offset", "hframes", "vframes", "script", "Sprite2D", "AnimationPlayer", "libraries", "Area2D", "collision_layer", "collision_mask", "monitorable", "CollisionShape2D", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
+"node_count": 4,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 11, 0, -1, 10, 1, 0, 2, 0, 3, 1, 4, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 0, 0, 0, 12, 12, -1, 1, 13, 8, 0, 0, 0, 14, 14, -1, 3, 15, 9, 16, 10, 17, 11, 0, 2, 0, 18, 18, -1, 2, 5, 12, 19, 13, 0),
+"variants": [true, 1, Vector2(0, 2), ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), {
+"": SubResource("AnimationLibrary_xt3vi")
+}, 2, 5, false, Vector2(0, -1), SubResource("RectangleShape2D_svt55")],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_2ucpr"]
+_bundled = {
+"conn_count": 2,
+"conns": PackedInt32Array(2, 0, 21, 20, 2, 0, 0, 2, 0, 23, 22, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("Dungeon1", "show_behind_parent", "y_sort_enabled", "texture_filter", "use_parent_material", "position", "texture", "offset", "hframes", "vframes", "script", "Sprite2D", "AnimationPlayer", "libraries", "Area2D", "collision_layer", "collision_mask", "monitorable", "CollisionShape2D", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
+"node_count": 4,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 11, 0, -1, 10, 1, 0, 2, 0, 3, 1, 4, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 0, 0, 0, 12, 12, -1, 1, 13, 8, 0, 0, 0, 14, 14, -1, 3, 15, 9, 16, 10, 17, 11, 0, 2, 0, 18, 18, -1, 2, 5, 12, 19, 13, 0),
+"variants": [true, 1, Vector2(0, 2), ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), {
+"": SubResource("AnimationLibrary_xt3vi")
+}, 2, 5, false, Vector2(0, -1), SubResource("RectangleShape2D_svt55")],
+"version": 3
+}
+
 [sub_resource type="Animation" id="Animation_3l81o"]
 resource_name = "Bank"
 length = 0.8
@@ -2936,51 +3159,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6n122"]
 size = Vector2(12, 16)
 
-[sub_resource type="PackedScene" id="PackedScene_twpqi"]
-_bundled = {
-"conn_count": 2,
-"conns": PackedInt32Array(1073741828, 1073741827, 23, 22, 2, 0, 0, 1073741830, 1073741829, 25, 24, 2, 0, 0),
-"editable_instances": [],
-"names": PackedStringArray("Castle", "Sprite2D", "show_behind_parent", "use_parent_material", "position", "y_sort_enabled", "texture", "offset", "hframes", "vframes", "script", "AnimationPlayer", "AnimationPlayer", "playback_speed", "libraries", "Area2D", "Area2D", "collision_layer", "CollisionShape2D", "CollisionShape2D", "position", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
-"node_count": 4,
-"node_paths": [NodePath("."), NodePath("."), NodePath("./Area2D"), NodePath("."), NodePath("Area2D"), NodePath("."), NodePath("Area2D")],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 9, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 0, 1073741824, 0, 12, 11, -1, 2, 13, 9, 14, 10, 0, 1073741825, 0, 16, 15, -1, 1, 17, 11, 0, 1073741826, 0, 19, 18, -1, 2, 20, 12, 21, 13, 0),
-"variants": [true, true, Vector2(0, 2), true, ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), 1.5, {
-"": SubResource("AnimationLibrary_0oyed")
-}, 2, Vector2(0, -1), SubResource("RectangleShape2D_6n122")],
-"version": 3
-}
-
-[sub_resource type="PackedScene" id="PackedScene_lx1st"]
-_bundled = {
-"conn_count": 2,
-"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 0, 2, 0, 21, 20, 2, 0, 0),
-"editable_instances": [],
-"names": PackedStringArray("Bank", "show_behind_parent", "use_parent_material", "position", "y_sort_enabled", "texture", "offset", "hframes", "vframes", "script", "Sprite2D", "AnimationPlayer", "playback_speed", "libraries", "Area2D", "collision_layer", "CollisionShape2D", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
-"node_count": 4,
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 11, 11, -1, 2, 12, 7, 13, 8, 0, 0, 0, 14, 14, -1, 1, 15, 9, 0, 2, 0, 16, 16, -1, 2, 3, 10, 17, 11, 0),
-"variants": [true, Vector2(0, 2), ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), 1.5, {
-"": SubResource("AnimationLibrary_0oyed")
-}, 2, Vector2(0, -1), SubResource("RectangleShape2D_6n122")],
-"version": 3
-}
-
-[sub_resource type="PackedScene" id="PackedScene_bo3bh"]
-_bundled = {
-"conn_count": 2,
-"conns": PackedInt32Array(2, 0, 19, 18, 2, 0, 0, 2, 0, 21, 20, 2, 0, 0),
-"editable_instances": [],
-"names": PackedStringArray("Dungeon1", "show_behind_parent", "use_parent_material", "position", "y_sort_enabled", "texture", "offset", "hframes", "vframes", "script", "Sprite2D", "AnimationPlayer", "playback_speed", "libraries", "Area2D", "collision_layer", "CollisionShape2D", "shape", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
-"node_count": 4,
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 10, 0, -1, 9, 1, 0, 2, 0, 3, 1, 4, 0, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 0, 0, 0, 11, 11, -1, 2, 12, 7, 13, 8, 0, 0, 0, 14, 14, -1, 1, 15, 9, 0, 2, 0, 16, 16, -1, 2, 3, 10, 17, 11, 0),
-"variants": [true, Vector2(0, 2), ExtResource("5_j8kkv"), Vector2(0, -3), 7, 8, ExtResource("6_hk20o"), 1.5, {
-"": SubResource("AnimationLibrary_0oyed")
-}, 2, Vector2(0, -1), SubResource("RectangleShape2D_6n122")],
-"version": 3
-}
-
 [sub_resource type="PackedScene" id="PackedScene_likak"]
 _bundled = {
 "conn_count": 2,
@@ -3044,20 +3222,14 @@ _bundled = {
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_h7xef"]
 resource_name = "Doors"
 scenes/1/scene = ExtResource("4_urxy0")
-scenes/2/scene = SubResource("PackedScene_twpqi")
-scenes/3/scene = SubResource("PackedScene_lx1st")
-scenes/4/scene = SubResource("PackedScene_bo3bh")
+scenes/2/scene = SubResource("PackedScene_nujpy")
+scenes/3/scene = SubResource("PackedScene_8egto")
+scenes/4/scene = SubResource("PackedScene_2ucpr")
 scenes/5/scene = SubResource("PackedScene_likak")
 scenes/6/scene = SubResource("PackedScene_reaho")
 scenes/7/scene = SubResource("PackedScene_02a77")
 scenes/8/scene = SubResource("PackedScene_itcky")
 scenes/9/scene = ExtResource("5_u2hnt")
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_t7evs"]
-resource_name = "Lights"
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_fpffp"]
-resource_name = "Markets"
 
 [resource]
 tile_size = Vector2i(8, 8)
@@ -3093,5 +3265,4 @@ sources/1 = SubResource("TileSetAtlasSource_kourm")
 sources/2 = SubResource("TileSetAtlasSource_aybre")
 sources/0 = SubResource("TileSetAtlasSource_76dtx")
 sources/4 = SubResource("TileSetScenesCollectionSource_h7xef")
-sources/5 = SubResource("TileSetScenesCollectionSource_t7evs")
-sources/6 = SubResource("TileSetScenesCollectionSource_fpffp")
+sources/3 = SubResource("TileSetScenesCollectionSource_4ks18")

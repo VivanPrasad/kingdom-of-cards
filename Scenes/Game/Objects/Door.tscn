@@ -165,6 +165,7 @@ size = Vector2(12, 16)
 [node name="Door" type="Sprite2D"]
 show_behind_parent = true
 y_sort_enabled = true
+texture_filter = 1
 use_parent_material = true
 position = Vector2(0, 2)
 texture = ExtResource("1_i3cjq")
@@ -180,6 +181,8 @@ libraries = {
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
+collision_mask = 5
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1)

@@ -7,6 +7,7 @@ extends Node
 
 var day_processed : bool = true
 var lights_processed : bool = true
+
 var speed : int = 350 #100 = 1 irl second is 1 minute ig
 # Called when the node enters the scene tree for the first time.
 @onready var world = get_parent().get_parent()
@@ -18,7 +19,7 @@ func _process(delta):
 		if hour > 4 and hour < 22: 
 			speed = 425 #5am to 10pm; 17 hours in 4 minutes
 		else:
-			speed = 700#11pm to 5am; 7 hours in 1 minute
+			speed = 700 #11pm to 5am; 7 hours in 1 minute
 		#day = 4 minutes
 		#night = 1 minute
 	if hour == 23:

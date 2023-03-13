@@ -7,6 +7,7 @@ size = Vector2(40, 5)
 size = Vector2(40, 10)
 
 [node name="Stair" type="Area2D"]
+use_parent_material = true
 position = Vector2(-500, -460)
 collision_layer = 2
 

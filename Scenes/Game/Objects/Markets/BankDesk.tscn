@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://hfsfdnpe02d2"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Objects/Markets/Market.gd" id="1_e6ae4"]
+[ext_resource type="Texture2D" uid="uid://c8aescd14087o" path="res://Assets/Game/Tileset/decoration.png" id="2_46sn8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxsju"]
+size = Vector2(16, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6ogn"]
+size = Vector2(30, 11)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dewfb"]
+
+[node name="BankDesk" type="StaticBody2D"]
+texture_filter = 1
+script = ExtResource("1_e6ae4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_46sn8")
+offset = Vector2(4, 3.5)
+region_enabled = true
+region_rect = Rect2(32, 35, 16, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 1.5)
+shape = SubResource("RectangleShape2D_pxsju")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, 4.5)
+shape = SubResource("RectangleShape2D_l6ogn")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -1.25
+offset_top = -10.0
+offset_right = 112.75
+offset_bottom = 11.0
+scale = Vector2(0.1, 0.1)
+text = "Bank Desk [E]"
+label_settings = SubResource("LabelSettings_dewfb")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

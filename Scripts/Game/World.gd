@@ -5,13 +5,11 @@ var in_dungeon : bool = false
 var lights = []
 var lights_pos = [] #positions of all lights
 var lights_on : bool = true
-var lights_processed : bool = true
-var doors = []
+
+var market_locations = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	instance_lights()
-	var bread = load("res://Data/Cards/Bread.tres")
-	print(bread.type)
 func instance_lights():
 	var cell_data
 	for i in $Dungeon.get_layers_count():
@@ -51,13 +49,26 @@ func toggle_lights(is_on : bool):
 			atlas_coords = $Surface.get_cell_atlas_coords(2,pos)
 			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
 				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x+1,atlas_coords.y))
-
-
+	
+	#TEMP GATE STATES
+	for child in $Surface.get_children():
+		if str(child.name).contains("Gate"):
+			if $UI/Time.hour == 8:
+				child.get_child(0).get_child(0).play("Gate")
+			else:
+				child.get_child(0).get_child(0).play_backwards("Gate")
 func dungeon(_layer): #flips state
 	in_dungeon = !in_dungeon
 	if in_dungeon: $AnimationPlayer.play("Dungeon")
 	else: $AnimationPlayer.play_backwards("Dungeon")
-	
+
+func get_market_locations():
+	for child in $Surface.get_children():
+		print(child.name)
+		if str(child.name) in ["FoodMarket","BankDesk","ItemMarket"]: #THERE CAN ONLY BE ONE MARKET INSTANCE FOR EACH!!!!
+			market_locations[str(child.name)] = child.position
+	print(market_locations)
+
 func update_light(type):
 	for child in lights: child.update(type)
 		#in the lights path array, each child is updated for the type of light desired
@@ -66,3 +77,11 @@ func update_light(type):
 func _on_stair_body_entered(body):
 	if body.name == "Player": dungeon($Entities/Player.layer)
 	#causes dungeon transition if the body in the area is player
+'''
+func _input(event):
+	if event is InputEventMouseButton and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		$Surface.set_cell(0,Vector2i(get_global_mouse_position().floor() / 37),0,Vector2i(0,1))
+	if event is InputEventMouse:
+		print(Vector2i($Surface.get_global_mouse_position().floor() / 37))
+'''
+
