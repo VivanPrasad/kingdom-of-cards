@@ -1,0 +1,9 @@
+@echo off
+echo [force_pull.bat] Running force pull...
+git rev-parse HEAD > cmdinf.txt
+set /p comhash=<cmdinf.txt
+echo [force_pull.bat] Resetting to commit %comhash%...
+git reset %comhash% --hard
+echo [force_pull.bat] Pulling from current remote...
+git pull
+echo [force_pull.bat] Force pull complete.
