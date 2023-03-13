@@ -10,6 +10,8 @@ var market_locations = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	instance_lights()
+	var moddingScript = load("res://Scripts/Modding/Main.gd")
+	moddingScript.start()
 func instance_lights():
 	var cell_data
 	for i in $Dungeon.get_layers_count():
