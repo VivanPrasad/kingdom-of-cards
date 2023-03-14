@@ -37,6 +37,16 @@ static func start():
 		var successedMods = 0
 		for mod in mods:
 			var result = parser.parse("user://mods/"+mod)
-			if result: successedMods += 1
+			if result[0]: successedMods += 1
 		printf(str(successedMods)+"/"+str(mods.size())+" mods successfully loaded.")
 	else: "Found no mods."
+	
+static func getModsByRuntime(runtime):
+	var mods = list_files_in_directory("user://mods")
+	var rmods = []
+	if mods != null: 
+		var parser = load("res://Scripts/Modding/Parser.gd")
+		for mod in mods:
+			var result = parser.parse("user://mods/"+mod, true)
+			if result[1]["runtime"] == runtime: rmods.append(result[1])
+	return rmods

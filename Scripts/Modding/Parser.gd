@@ -78,10 +78,14 @@ static func isEmpty(string):
 		if string == x: 
 			empty = true;
 	return empty
+	
+# This function returns a KOCM mod file as line-terminator-separated lines.
+static func getLinesOfModFile(modFile, _silent=false):
+	return trimNewlines(FileAccess.open("user://mods/"+str(modFile), FileAccess.READ).get_as_text()).split(";")
 
 # This function handles parsing the entire KOCM mod file.
 # This is more complex, only touch if you know what you're doing
-static func parse(pathToFile):
+static func parse(pathToFile, silent=false):
 	var modFile = FileAccess.open(pathToFile, FileAccess.READ)
 	var modFileName = str(pathToFile.split("/")[pathToFile.split("/").size()-1])
 	var modLines = trimNewlines(modFile.get_as_text()).split(";")
@@ -93,37 +97,43 @@ static func parse(pathToFile):
 		if not isEmpty(line): # Prevent parsing empty lines.
 			if not endsWithMultiple(line, getLineTerminators()):
 				hasErroredDuringParsing = true
-				printf("Missing line terminator on Line "+str(parserFormatValidationLine)+" of Mod "+modFileName)
-				printf("  - "+nline)
-				printf("  - Ended with \""+escapeNewlines(line.split()[line.split().size()-1])+"\" instead of any allowed line terminator.")
+				if silent == false:
+					printf("Missing line terminator on Line "+str(parserFormatValidationLine)+" of Mod "+modFileName)
+					printf("  - "+nline)
+					printf("  - Ended with \""+escapeNewlines(line.split()[line.split().size()-1])+"\" instead of any allowed line terminator.")
 			if not beginsWithMultiple(line, getLineStarters()):
 				hasErroredDuringParsing = true
-				printf("Invalid line starter on Line "+str(parserFormatValidationLine)+" of Mod "+modFileName)
-				printf("  - "+nline)
-				printf("  - Started with an invalid line starter.")
+				if silent == false:
+					printf("Invalid line starter on Line "+str(parserFormatValidationLine)+" of Mod "+modFileName)
+					printf("  - "+nline)
+					printf("  - Started with an invalid line starter.")
 			else:
 				if beginsWithMultiple(line, getLineStarters(".")) and trimNewlines(line).replace(" = ","=").split("=")[0].split(".").size() > 1:
 					var lc = trimNewlines(line).replace(" = ","=").split("=")
 					var args = lc[0].split(".")
 					var telement = str(args[0]).split(" ")[str(args[0]).split(" ").size()-1]
-					var fixedArg1 = args[1].replace(";", "")
+					var fixedLastArg = args[args.size()-1].replace(";", "")
 					if getElements().has(telement):
-						if getElements().get(telement)[1].has(fixedArg1): pass # This is the furthest check you can do as of now.
-						else:
-							hasErroredDuringParsing = true
-							printf("Invalid attribute for \""+str(args[0])+"\" on Line "+str(parserFormatValidationLine)+" of Mod "+modFileName)
-							printf("  - "+nline)
-							printf("  - Attempted to get/set an invalid attribute of an element.")
+						pass
+#						if getElements().get(telement)[1].has(fixedLastArg): pass # This is the furthest check you can do as of now.
+#						else:
+#							hasErroredDuringParsing = true
+#							if silent == false:
+#								printf("Invalid attribute for \""+str(args[0])+"\" on Line "+str(parserFormatValidationLine)+" of Mod "+modFileName)
+#								printf("  - "+nline)
+#								printf("  - Attempted to get/set an invalid attribute of an element.")
 					else:
 						hasErroredDuringParsing = true
-						printf("Attempt to get/set attribute of non-element \""+telement+"\" on Line "+str(parserFormatValidationLine)+" of Mod "+modFileName)
-						printf("  - "+nline)
-						printf("  - Attempted to get/set attribute of a non-element object.")
+						if silent == false:
+							printf("Attempt to get/set attribute of non-element \""+telement+"\" on Line "+str(parserFormatValidationLine)+" of Mod "+modFileName)
+							printf("  - "+nline)
+							printf("  - Attempted to get/set attribute of a non-element object.")
 	if hasErroredDuringParsing:
-		printf("Unable to load Mod "+modFileName+" due to parsing errors.")
-		return false
+		if silent == false:
+			printf("Unable to load Mod "+modFileName+" due to parsing errors.")
+		return [false, null]
 	else:
-		var modInformation = {}
+		var modInformation = {"file": modFile.get_path().split("/")[modFile.get_path().split("/").size()-1]}
 		var miind = 0
 		for descriptor in getDescriptors(): 
 			modInformation.merge(
@@ -138,5 +148,6 @@ static func parse(pathToFile):
 					var tempmi = {descriptor.replace("@", ""): modLine.replace(descriptor+" ","")}
 					modInformation.merge(tempmi, true)
 			
-		printf("Parsed mod "+str(modInformation["name"])+" v"+str(modInformation["version"])+".")
-		return true
+		if silent == false:
+			printf("Parsed mod "+str(modInformation["name"])+" v"+str(modInformation["version"])+".")
+		return [true, modInformation]

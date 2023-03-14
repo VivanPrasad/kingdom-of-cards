@@ -351,7 +351,6 @@ y_sort_enabled = true
 position = Vector2(-72, 300)
 scale = Vector2(1.8, 1.8)
 collision_mask = 1
-Speed = 10000.0
 
 [node name="NPC" parent="Entities" instance=ExtResource("3_tdn0q")]
 position = Vector2(60, 20)
@@ -457,4 +456,5 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[connection signal="ready" from="." to="." method="_started"]
 [connection signal="body_entered" from="Objects/Stair" to="." method="_on_stair_body_entered"]
