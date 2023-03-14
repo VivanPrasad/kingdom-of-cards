@@ -7,6 +7,7 @@ var lights_pos = [] #positions of all lights
 var lights_on : bool = true
 
 var market_locations = {}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	instance_lights()

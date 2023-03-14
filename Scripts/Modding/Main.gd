@@ -6,6 +6,9 @@
 
 extends Node
 
+static func printf(st=""):
+	if st != "": print("[KOCM/Main] "+str(st))
+
 static func list_files_in_directory(path):
 	var files = []
 	var dir = DirAccess.open(path)
@@ -20,20 +23,20 @@ static func list_files_in_directory(path):
 		dir.list_dir_end()
 		return files
 	else:
-		print("Creating directory: "+path)
+		printf("Creating directory: "+path)
 		DirAccess.make_dir_recursive_absolute(path)
 		return list_files_in_directory(path)
 
 static func start():
-	print("Searching for mods...")
+	printf("Searching for mods...")
 	var mods = list_files_in_directory("user://mods")
 	if mods != null: 
-		print("Found: "+str(mods.size())+" mods.")
-		print("Beginning mod loading sequence... (Execute order 66)")
+		printf("Found: "+str(mods.size())+" mods.")
+		printf("Beginning mod loading sequence... (Execute order 66)")
 		var parser = load("res://Scripts/Modding/Parser.gd")
 		var successedMods = 0
 		for mod in mods:
 			var result = parser.parse("user://mods/"+mod)
 			if result: successedMods += 1
-		print(str(successedMods)+"/"+str(mods.size())+" mods successfully loaded.")
+		printf(str(successedMods)+"/"+str(mods.size())+" mods successfully loaded.")
 	else: "Found no mods."
