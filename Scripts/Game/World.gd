@@ -17,7 +17,7 @@ func _started(): # worldLoad mod hook
 	var ModExec = load("res://Scripts/Modding/Executor.gd")
 	for hm in hooked_mods:
 		if hooked_mods.get(hm) == "worldLoad":
-			ModExec.runMod(hm)
+			ModExec.runMod(hm, self)
 			
 func addMod(modInformation, hook):
 	print("[KOCM/ModLoader] Adding mod to World hook...")

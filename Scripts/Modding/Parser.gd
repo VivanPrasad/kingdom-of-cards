@@ -112,10 +112,10 @@ static func parse(pathToFile, silent=false):
 					var lc = trimNewlines(line).replace(" = ","=").split("=")
 					var args = lc[0].split(".")
 					var telement = str(args[0]).split(" ")[str(args[0]).split(" ").size()-1]
-					var fixedLastArg = args[args.size()-1].replace(";", "")
+					var _fixedLastArg = args[args.size()-1].replace(";", "")
 					if getElements().has(telement):
 						pass
-#						if getElements().get(telement)[1].has(fixedLastArg): pass # This is the furthest check you can do as of now.
+#						if getElements().get(telement)[1].has(_fixedLastArg): pass # This is the furthest check you can do as of now.
 #						else:
 #							hasErroredDuringParsing = true
 #							if silent == false:

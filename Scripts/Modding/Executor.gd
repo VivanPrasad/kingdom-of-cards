@@ -7,22 +7,25 @@
 # This is the most complex part of the entire Modding feature, considering it has
 # to hook into each class which has been given mod support (e.g. World) and hook
 # into the Parser to read code lines more accurately.
-#
-# If you try to do something and it doesn't work, add on to the counter below.
-# global_hours_wasted_here = 0
 
 extends Node
 
 static func printf(st=""):
 	if st != "": print("[KOCM/Executor] "+str(st))
 	
-static func evaluate(input):
+static func evaluate(input, targnode:Node2D):
 	var script = GDScript.new()
-	script.set_source_code("func eval():\n\treturn " + input)
+	var doReturn = true
+	input = input.replace("<>", "get_tree().get_current_scene()")
+	script.set_source_code("extends Node2D\nfunc exec():\n\treturn "+input)
+	if input.contains(".set("): 
+		script.set_source_code("extends Node2D\nfunc exec():\n\t"+input+"\n\treturn 0")
+		doReturn = false
+	var obj = Node2D.new()
+	targnode.add_child(obj)
 	script.reload()
-	var obj = RefCounted.new()
 	obj.set_script(script)
-	return obj.eval()
+	return obj.exec()
 	
 static func findModByFile(_modFileName):
 	var dir = DirAccess.open("user://mods")
@@ -39,7 +42,7 @@ static func findModByFile(_modFileName):
 
 static func printm(mod, st):
 		print("[KOCM/Mod/"+mod+"] "+st)
-static func runMod(modFileName):
+static func runMod(modFileName, targnode:Node2D):
 	var modData = findModByFile(modFileName)
 	var parser = load("res://Scripts/Modding/Parser.gd")
 	if modData[0] == true:
@@ -47,6 +50,15 @@ static func runMod(modFileName):
 		var lines = parser.getLinesOfModFile(modFileName)
 		for line in lines:
 			if not parser.beginsWithMultiple(line, parser.getDescriptors()):
+				var elements = parser.getElements()
+				if parser.beginsWithMultiple(line, elements):
+					var args = line.replace(" = ", "=").split("=")
+					var temp = elements.get(args[0].split(".")[0])[1].get(args[0].split(".")[1])[1].replace("£", "set")
+					var locator = elements.get(args[0].split(".")[0])[0]
+					var locargs = temp.replace("$", locator.split("]")[1]).split(".")
+					var setsect = locargs[1].replace(")", ", "+str(args[1])+")")
+					var code = '<>.get_node("'+locargs[0]+'").'+setsect
+					evaluate(code, targnode)
 				if parser.beginsWithMultiple(line, parser.getFunctions()):
 					var args = []
 					var i = 0
@@ -58,13 +70,12 @@ static func runMod(modFileName):
 						var printout = ""
 						for arg in args:
 							var executedArg = arg
-							var elements = parser.getElements()
 							if parser.beginsWithMultiple(arg, elements):
 								var temp = elements.get(arg.split(".")[0])[1].get(arg.split(".")[1])[1].replace("£", "get")
 								var locator = elements.get(arg.split(".")[0])[0]
 								var locargs = temp.replace("$", locator.split("]")[1]).split(".")
-								var code = 'load("res://Scenes/Game/'+locator.split("]")[0].replace("[","")+'.tscn").instantiate().get_node("'+locargs[0]+'").'+locargs[1]
-								executedArg=evaluate(code)
+								var code = '<>.get_node("'+locargs[0]+'").'+locargs[1]
+								executedArg=evaluate(code, targnode)
 							printout = str(printout)+str(executedArg)+" "
 						printm(modFileName, printout)
 	else:
