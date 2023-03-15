@@ -5,7 +5,9 @@ var speed : int = 100
 
 func _ready():
 	$Sprite2D.texture = load(str("res://Assets/Game/Entities/Player/player" + str(randi() % 4 + 1)+".png"))
-var inventory = []
+var inventory = [load("res://Data/Cards/Bread.tres"),load("res://Data/Cards/Bread.tres"),load("res://Data/Cards/Berry.tres"),Card.new("TJ",83,"Backrooms Map?")]
+
+
 func _physics_process(_delta):
 	# Get the input direction and handle the movement/deceleration.
 	var input_vector = Vector2(

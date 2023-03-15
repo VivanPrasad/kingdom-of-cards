@@ -1,0 +1,174 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmjmqu1d14ao3"]
+
+[ext_resource type="Texture2D" uid="uid://cjkysae687q5b" path="res://Assets/UI/Cards/cards.png" id="1_1lt4v"]
+[ext_resource type="FontVariation" uid="uid://diqtfxvgb4nnc" path="res://Assets/Fonts/royal-intonation.tres" id="2_m13qa"]
+[ext_resource type="Script" path="res://Scripts/UI/Menu/Instances/CardDisplay.gd" id="2_pu46m"]
+[ext_resource type="Texture2D" uid="uid://dj078j0fnqq5" path="res://Assets/UI/Cards/items.png" id="3_lolai"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ho3fq"]
+atlas = ExtResource("1_1lt4v")
+region = Rect2(0, 0, 18, 34)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o2pfi"]
+font = ExtResource("2_m13qa")
+shadow_size = 0
+shadow_color = Color(0.321569, 0.176471, 0.239216, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="Animation" id="Animation_cjo4a"]
+resource_name = "Flip"
+length = 0.6
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.275, 0.325, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture:region")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.325),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(18, 0, 18, 34), Rect2(0, 0, 18, 34)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Name:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.325),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Description:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.325),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_2ytqt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 18, 34)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Name:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Description:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r0roe"]
+_data = {
+"Flip": SubResource("Animation_cjo4a"),
+"RESET": SubResource("Animation_2ytqt")
+}
+
+[node name="CardDisplay" type="TextureRect"]
+texture_filter = 1
+custom_minimum_size = Vector2(144, 272)
+anchors_preset = -1
+anchor_right = 0.089
+anchor_bottom = 0.336
+offset_right = 15.84
+offset_bottom = 30.08
+pivot_offset = Vector2(64, 0)
+size_flags_horizontal = 4
+mouse_filter = 0
+texture = SubResource("AtlasTexture_ho3fq")
+stretch_mode = 4
+script = ExtResource("2_pu46m")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+offset_left = 53.0
+offset_top = 27.0
+offset_right = 93.0
+offset_bottom = 48.0
+text = "Bread"
+label_settings = SubResource("LabelSettings_o2pfi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 32.0
+offset_top = 168.0
+offset_right = 112.0
+offset_bottom = 224.0
+text = "+1 Life"
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(72, 112)
+scale = Vector2(8, 8)
+texture = ExtResource("3_lolai")
+hframes = 21
+vframes = 4
+frame = 83
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r0roe")
+}

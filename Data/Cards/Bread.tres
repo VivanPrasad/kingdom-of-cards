@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_3vctd")
 name = "Bread"
-desc = "Gain +1 Life"
+icon_id = 0
+desc = "+1 Hunger"
 type = 0
 base_cost = 0
 properties = {
