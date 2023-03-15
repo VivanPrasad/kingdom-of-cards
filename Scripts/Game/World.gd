@@ -2,6 +2,11 @@ extends Node2D
 
 var in_dungeon : bool = false
 @onready var light = preload("res://Scenes/Game/Objects/Light.tscn")
+
+# UI Menu Instancing
+@onready var inventory_menu = preload("res://Scenes/UI/Menu/InventoryMenu.tscn")
+
+
 var lights = []
 var lights_pos = [] #positions of all lights
 var lights_on : bool = true
@@ -98,11 +103,18 @@ func update_light(type):
 func _on_stair_body_entered(body):
 	if body.name == "Player": dungeon($Entities/Player.layer)
 	#causes dungeon transition if the body in the area is player
-'''
-func _input(event):
+
+func _input(_event):
+	if Input.is_action_just_released("interaction"): #Just inv menu for now... will need to make a handler later
+		if get_node_or_null("UI/InventoryMenu") == null:
+			$UI.add_child(inventory_menu.instantiate())
+		else:
+			$UI/InventoryMenu.queue_free()
+		
+	'''
 	if event is InputEventMouseButton and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		$Surface.set_cell(0,Vector2i(get_global_mouse_position().floor() / 37),0,Vector2i(0,1))
 	if event is InputEventMouse:
 		print(Vector2i($Surface.get_global_mouse_position().floor() / 37))
-'''
+	'''
 

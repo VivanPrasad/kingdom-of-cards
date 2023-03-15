@@ -13,7 +13,6 @@ var locations
 func _ready():
 	$Sprite2D.texture = load(str("res://Assets/Game/Entities/Player/player" + str(randi() % 4 + 1)+".png"))
 	
-	
 
 func _physics_process(_delta):
 	locations = world.market_locations.values()

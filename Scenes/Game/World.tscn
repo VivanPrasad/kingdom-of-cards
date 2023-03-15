@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5fumro6acm4h"]
+[gd_scene load_steps=20 format=3 uid="uid://dbkbqj5q3wmx7"]
 
 [ext_resource type="Script" path="res://Scripts/Game/World.gd" id="1_mc8iw"]
 [ext_resource type="PackedScene" uid="uid://bxbor0a6xjb8k" path="res://Scenes/Game/Entities/Player.tscn" id="1_wplso"]
@@ -6,12 +6,29 @@
 [ext_resource type="PackedScene" uid="uid://xwe5x0ju0lxh" path="res://Scenes/Game/Entities/NPC.tscn" id="3_tdn0q"]
 [ext_resource type="PackedScene" uid="uid://dp824bwq2pcht" path="res://Scenes/Game/Objects/Stair.tscn" id="4_ag6e7"]
 [ext_resource type="PackedScene" uid="uid://bxtcig140w6k4" path="res://Data/Game/Time.tscn" id="5_lmxy0"]
+[ext_resource type="PackedScene" uid="uid://bpnermutitk2r" path="res://Scenes/UI/HUD/Profile.tscn" id="7_8xrvm"]
+[ext_resource type="Shader" path="res://Data/Shaders/fog.gdshader" id="9_uywq0"]
+[ext_resource type="Texture2D" uid="uid://cyq2gmm1bnmty" path="res://icon.png" id="10_lj8eo"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_npd8f"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a1api"]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_npd8f")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7i3b"]
+shader = ExtResource("9_uywq0")
+shader_parameter/transparency = 0.0
+shader_parameter/scroll = Vector2(0.009, 0.009)
+shader_parameter/noise = SubResource("NoiseTexture2D_a1api")
 
 [sub_resource type="Animation" id="Animation_k1px0"]
 resource_name = "Cycle"
 length = 24.0
 loop_mode = 1
-step = 0.25
+step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -19,10 +36,22 @@ tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 4, 6, 9, 12, 14, 16, 18, 20, 23.5),
+"times": PackedFloat32Array(0, 4, 6, 9, 12, 15, 17, 19, 22, 24),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.243137, 0.192157, 0.615686, 1), Color(0.243137, 0.192157, 0.615686, 1), Color(0.796078, 0.388235, 0.168627, 1), Color(1, 0.682353, 0.439216, 1), Color(1, 0.847059, 0.521569, 1), Color(1, 0.847059, 0.521569, 1), Color(1, 0.682353, 0.439216, 1), Color(0.796078, 0.388235, 0.168627, 1), Color(0.243137, 0.192157, 0.615686, 1), Color(0.243137, 0.192157, 0.615686, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Cloud:material:shader_parameter/transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 6, 21, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.5, 0.5, 0.0, 0.0, 0.5]
 }
 
 [sub_resource type="Animation" id="Animation_7f2t8"]
@@ -38,6 +67,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.243137, 0.192157, 0.615686, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Cloud:material:shader_parameter/transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_khb2e"]
@@ -423,6 +464,13 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(-655369, 2, 8, -655365, 2, 8, -589832, 458754, 7, -589828, 393218, 7, -655360, 393218, 7, -327680, 524290, 7, -262148, 458754, 7, -262152, 524290, 7, -327689, 4, 327680, -327685, 4, 327680, -327681, 4, 327680, -458753, 4, 327680, -458757, 4, 327680, -458761, 4, 327680, -720894, 589826, 6, -720892, 720898, 6, -393229, 786434, 2, -655361, 2, 8, -131073, 2, 8, -131077, 2, 8, -131081, 2, 8, -655377, 2, 8, -720893, 2, 8, -458749, 786434, 4, -131089, 2, 8, -131085, 2, 8)
 
+[node name="Cloud" type="Sprite2D" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_q7i3b")
+position = Vector2(0, 20)
+scale = Vector2(62.5, 63.125)
+texture = ExtResource("10_lj8eo")
+
 [node name="Shader" type="CanvasModulate" parent="."]
 modulate = Color(1, 1, 1, 0)
 color = Color(0.243137, 0.192157, 0.615686, 1)
@@ -446,15 +494,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0)
 
 [node name="Time" parent="UI" instance=ExtResource("5_lmxy0")]
+mouse_filter = 1
 
-[node name="Health" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Profile" parent="UI" instance=ExtResource("7_8xrvm")]
+mouse_filter = 1
 
 [connection signal="ready" from="." to="." method="_started"]
 [connection signal="body_entered" from="Objects/Stair" to="." method="_on_stair_body_entered"]

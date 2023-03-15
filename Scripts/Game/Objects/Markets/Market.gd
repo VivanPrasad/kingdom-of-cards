@@ -7,7 +7,6 @@ var hovered : bool = false
 
 func _ready():
 	world.market_locations[str(name)] = (position + Vector2(0,6)) * 5
-	print(world.market_locations)
 func _physics_process(_delta):
 	if nearby and hovered:
 		modulate = Color(1.5,1.5,1.5,1)
