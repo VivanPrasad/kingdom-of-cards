@@ -503,4 +503,5 @@ mouse_filter = 1
 [node name="Profile" parent="UI" instance=ExtResource("7_8xrvm")]
 mouse_filter = 1
 
+[connection signal="ready" from="." to="." method="_started"]
 [connection signal="body_entered" from="Objects/Stair" to="." method="_on_stair_body_entered"]

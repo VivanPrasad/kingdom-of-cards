@@ -12,9 +12,30 @@ var lights_pos = [] #positions of all lights
 var lights_on : bool = true
 
 var market_locations = {}
+
+# Format:
+# mod: runtime (e.g. "testmod.kocm": "worldLoad"
+var hooked_mods = {}
+
+func _started(): # worldLoad mod hook
+	print("[KOCM/WorldLoadHook] Executing worldLoad mods...")
+	var ModExec = load("res://Scripts/Modding/Executor.gd")
+	for hm in hooked_mods:
+		if hooked_mods.get(hm) == "worldLoad":
+			ModExec.runMod(hm, self)
+			
+func addMod(modInformation, hook):
+	print("[KOCM/ModLoader] Adding mod to World hook...")
+	hooked_mods.merge({modInformation["file"]: hook})
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	instance_lights()
+	var moddingScript = load("res://Scripts/Modding/Main.gd")
+	moddingScript.start()
+	var wlm = moddingScript.getModsByRuntime("worldLoad")
+	for mod in wlm:
+		addMod(mod, "worldLoad")
 func instance_lights():
 	var cell_data
 	for i in $Dungeon.get_layers_count():

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var layer : int = 1
-var speed : int = 100
+var layer = 1
+@export var Speed = 1.0
 
 func _ready():
 	$Sprite2D.texture = load(str("res://Assets/Game/Entities/Player/player" + str(randi() % 4 + 1)+".png"))
@@ -21,5 +21,5 @@ func _physics_process(_delta):
 	else:
 		$AnimationTree.get("parameters/playback").travel("Idle")
 	
-	velocity = input_vector * speed
+	velocity = input_vector * (Speed*75)
 	move_and_slide()
