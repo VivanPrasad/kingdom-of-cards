@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dbkbqj5q3wmx7"]
+[gd_scene load_steps=21 format=3 uid="uid://5fumro6acm4h"]
 
 [ext_resource type="Script" path="res://Scripts/Game/World.gd" id="1_mc8iw"]
 [ext_resource type="PackedScene" uid="uid://bxbor0a6xjb8k" path="res://Scenes/Game/Entities/Player.tscn" id="1_wplso"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bxtcig140w6k4" path="res://Data/Game/Time.tscn" id="5_lmxy0"]
 [ext_resource type="PackedScene" uid="uid://bpnermutitk2r" path="res://Scenes/UI/HUD/Profile.tscn" id="7_8xrvm"]
 [ext_resource type="Shader" path="res://Data/Shaders/fog.gdshader" id="9_uywq0"]
+[ext_resource type="PackedScene" uid="uid://dhabhgi454nup" path="res://Scenes/UI/Chat.tscn" id="10_3n4ep"]
 [ext_resource type="Texture2D" uid="uid://cyq2gmm1bnmty" path="res://icon.png" id="10_lj8eo"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_npd8f"]
@@ -502,6 +503,8 @@ mouse_filter = 1
 
 [node name="Profile" parent="UI" instance=ExtResource("7_8xrvm")]
 mouse_filter = 1
+
+[node name="Chat" parent="UI" instance=ExtResource("10_3n4ep")]
 
 [connection signal="ready" from="." to="." method="_started"]
 [connection signal="body_entered" from="Objects/Stair" to="." method="_on_stair_body_entered"]

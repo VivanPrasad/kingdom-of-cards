@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhabhgi454nup"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Chat.gd" id="1_umdoa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wbyff"]
+line_spacing = 2.0
+font_size = 13
+
+[node name="Chat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_umdoa")
+
+[node name="ChatInput" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 674.0
+offset_right = 1420.0
+offset_bottom = 700.0
+placeholder_text = "Type '/help' for a list of commands."
+max_length = 256
+
+[node name="Templates" type="Container" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChatMessage" type="Panel" parent="Templates"]
+layout_mode = 2
+
+[node name="Sender" type="Label" parent="Templates/ChatMessage"]
+custom_minimum_size = Vector2(244, 26)
+layout_mode = 0
+offset_right = 244.0
+offset_bottom = 52.0
+text = "wwwwwwwwwwwwwwwwwwww:"
+
+[node name="Message" type="Label" parent="Templates/ChatMessage"]
+clip_contents = true
+custom_minimum_size = Vector2(401, 52)
+layout_mode = 0
+offset_left = 249.0
+offset_right = 493.0
+offset_bottom = 26.0
+text = "Did you know that the length of the username is exactly 20 'w' long? This means that you can have a 20 character long and the message is limited to 256 characters."
+label_settings = SubResource("LabelSettings_wbyff")
+autowrap_mode = 3
+clip_text = true
+
+[node name="ChatPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 720.0
+offset_bottom = 654.0
+
+[connection signal="mouse_entered" from="ChatInput" to="." method="_on_chat_input_mouse_entered"]
+[connection signal="mouse_exited" from="ChatInput" to="." method="_on_chat_input_mouse_exited"]
