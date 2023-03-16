@@ -22,15 +22,32 @@ func _input(event):
 		var entry = $ChatInput.text
 		var user = "Player" # change to be some get for multiplayer when added
 		var ChatMessage = $Templates/ChatMessage.duplicate()
-		if $ChatPanel.get_child_count() >= 10:
-			var removedChildren = removeOldMessages()
-			for child in $ChatPanel.get_children():
-				child.position.y = child.position.y - (52*removedChildren)
-		ChatMessage.get_node("Sender").text = user
-		ChatMessage.get_node("Message").text = entry
-		ChatMessage.position.y = 52+(52*(messages-1))
-		messages += 1
-		$ChatPanel.add_child(ChatMessage)
+		if $ChatInput.text.begins_with("/"):
+			var args = $ChatInput.text.split(" ")
+			var response = "Invalid command. Type '/help' for a list of all available commands."
+			if args[0] == "/help":
+				response = "The only available command as of now is '/help', which you are seeing right now."
+			# System response message
+			if $ChatPanel.get_child_count() >= 10:
+				var removedChildren = removeOldMessages()
+				for child in $ChatPanel.get_children():
+					child.position.y = child.position.y - (52*removedChildren)
+			ChatMessage.get_node("Sender").text = "System"
+			ChatMessage.get_node("Message").text = response
+			ChatMessage.position.y = 52+(52*(messages-1))
+			messages += 1
+			$ChatPanel.add_child(ChatMessage)
+		else:
+			# Player chatting message
+			if $ChatPanel.get_child_count() >= 10:
+				var removedChildren = removeOldMessages()
+				for child in $ChatPanel.get_children():
+					child.position.y = child.position.y - (52*removedChildren)
+			ChatMessage.get_node("Sender").text = user
+			ChatMessage.get_node("Message").text = entry
+			ChatMessage.position.y = 52+(52*(messages-1))
+			messages += 1
+			$ChatPanel.add_child(ChatMessage)
 		$ChatInput.text = ""
 
 func _on_chat_input_mouse_entered(): isInputActive = true
