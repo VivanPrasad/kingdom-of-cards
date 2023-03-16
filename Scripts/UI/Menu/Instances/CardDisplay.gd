@@ -1,7 +1,7 @@
 extends TextureRect
 
 var data : Card
-
+@onready var player = $"/root/World/Entities/Player"
 func _ready():
 	$Name.text = data.name
 	$Description.text = data.desc
@@ -26,3 +26,22 @@ func _input(event):
 			hovered = true
 		else:
 			hovered = false
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if get_global_rect().has_point(get_global_mouse_position()):
+			handle_use()
+
+func handle_use():
+	var object = $"/root/World/Entities".find_child(data.object_name)
+	
+	var key_index = 0
+	for var_string in data.object_variables.keys():
+		object.set(var_string,data.object_variables.values()[key_index])
+		key_index += 1
+	
+	key_index = 0
+	for func_string in data.object_functions.keys():
+		object.call(func_string,data.object_functions.values()[key_index])
+		key_index += 1
+	player.inventory.pop_at(get_index())
+	queue_free()
+	

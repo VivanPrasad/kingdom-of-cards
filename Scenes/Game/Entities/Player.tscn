@@ -338,3 +338,8 @@ process_material = SubResource("ParticleProcessMaterial_qi5kr")
 lifetime = 3.0
 speed_scale = 0.5
 fixed_fps = 60
+
+[node name="EffectTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="EffectTimer" to="." method="_on_timer_timeout"]

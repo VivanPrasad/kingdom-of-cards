@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmjmqu1d14ao3"]
+[gd_scene load_steps=12 format=3 uid="uid://dmjmqu1d14ao3"]
 
 [ext_resource type="Texture2D" uid="uid://cjkysae687q5b" path="res://Assets/UI/Cards/cards.png" id="1_1lt4v"]
 [ext_resource type="FontVariation" uid="uid://diqtfxvgb4nnc" path="res://Assets/Fonts/royal-intonation.tres" id="2_m13qa"]
@@ -14,6 +14,20 @@ font = ExtResource("2_m13qa")
 shadow_size = 0
 shadow_color = Color(0.321569, 0.176471, 0.239216, 1)
 shadow_offset = Vector2(0, 2)
+
+[sub_resource type="SystemFont" id="SystemFont_dewu4"]
+font_names = PackedStringArray("Royal Intonation")
+hinting = 2
+subpixel_positioning = 2
+oversampling = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kle8m"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="Animation" id="Animation_cjo4a"]
 resource_name = "Flip"
@@ -50,7 +64,7 @@ tracks/2/path = NodePath("Name:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.325),
+"times": PackedFloat32Array(0.3, 0.325),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -62,7 +76,19 @@ tracks/3/path = NodePath("Description:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.325),
+"times": PackedFloat32Array(0.3, 0.325),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Icon:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3, 0.325),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -118,6 +144,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Icon:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r0roe"]
 _data = {
@@ -146,18 +184,23 @@ offset_left = 53.0
 offset_top = 27.0
 offset_right = 93.0
 offset_bottom = 48.0
-text = "Bread"
+text = "Name
+"
 label_settings = SubResource("LabelSettings_o2pfi")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Description" type="RichTextLabel" parent="."]
 layout_mode = 2
-offset_left = 32.0
-offset_top = 168.0
-offset_right = 112.0
-offset_bottom = 224.0
-text = "+1 Life"
+offset_left = 24.0
+offset_top = 160.0
+offset_right = 120.0
+offset_bottom = 232.0
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/normal_font = SubResource("SystemFont_dewu4")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_kle8m")
+text = "Description"
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_repeat = 2

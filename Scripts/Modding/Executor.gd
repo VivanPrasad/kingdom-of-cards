@@ -15,6 +15,7 @@ static func printf(st=""):
 	
 static func evaluate(input, targnode:Node2D):
 	var script = GDScript.new()
+	@warning_ignore("unused_variable")
 	var doReturn = true
 	input = input.replace("<>", "get_tree().get_current_scene()")
 	script.set_source_code("extends Node2D\nfunc exec():\n\treturn "+input)

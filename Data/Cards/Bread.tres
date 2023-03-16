@@ -6,13 +6,17 @@
 script = ExtResource("1_3vctd")
 name = "Bread"
 icon_id = 0
-desc = "+1 Hunger"
 type = 0
+desc = ""
+clicked = "Use"
+object_name = "Player"
+object_variables = {}
+object_functions = {
+"eat": 1
+}
+role_enabled = false
+role_goal = ""
+role_level = 0
 base_cost = 0
-properties = {
-"drop": {},
-"hold": {},
-"use": {
-"gain_life": 3
-}
-}
+markets = 0
+rarity = 100
