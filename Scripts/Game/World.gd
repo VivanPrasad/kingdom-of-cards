@@ -105,13 +105,14 @@ func _on_stair_body_entered(body):
 	#causes dungeon transition if the body in the area is player
 
 func _input(_event):
-	if Input.is_action_just_released("interaction") and $UI/Chat.visible == false: #Just inv menu for now... will need to make a handler later
+	if Input.is_action_just_released("interaction") and $UI/Chat/ChatWindow.visible == false: #Just inv menu for now... will need to make a handler later
 		if get_node_or_null("UI/InventoryMenu") == null:
 			$UI.add_child(inventory_menu.instantiate())
 		else:
 			$UI/InventoryMenu.queue_free()
 	if Input.is_action_just_released("chat") and $UI/Chat.get("isInputActive") == false:
-		chat_screen.visible = !chat_screen.visible
+		chat_screen.get_node("ChatWindow").visible = !chat_screen.get_node("ChatWindow").visible
+		if chat_screen.get_node("UnreadNotifier").visible and chat_screen.get_node("ChatWindow").visible: chat_screen.get_node("UnreadNotifier").visible = false
 		if get_node_or_null("UI/InventoryMenu") != null: $UI/InventoryMenu.queue_free()
 		
 	'''

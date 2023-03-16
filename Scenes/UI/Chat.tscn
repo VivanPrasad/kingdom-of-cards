@@ -15,8 +15,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_umdoa")
 
-[node name="ChatInput" type="LineEdit" parent="."]
+[node name="UnreadNotifier" type="Label" parent="."]
 layout_mode = 0
+offset_top = 699.0
+offset_right = 379.0
+offset_bottom = 720.0
+text = "You have unread chat messages. Press [] to read them."
+
+[node name="ChatWindow" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1440.0
+offset_bottom = 720.0
+
+[node name="ChatInput" type="LineEdit" parent="ChatWindow"]
+layout_mode = 2
 offset_left = 20.0
 offset_top = 674.0
 offset_right = 1420.0
@@ -24,23 +36,23 @@ offset_bottom = 700.0
 placeholder_text = "Type '/help' for a list of commands."
 max_length = 256
 
-[node name="Templates" type="Container" parent="."]
+[node name="Templates" type="Container" parent="ChatWindow"]
 visible = false
-layout_mode = 0
+layout_mode = 2
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ChatMessage" type="Panel" parent="Templates"]
+[node name="ChatMessage" type="Panel" parent="ChatWindow/Templates"]
 layout_mode = 2
 
-[node name="Sender" type="Label" parent="Templates/ChatMessage"]
+[node name="Sender" type="Label" parent="ChatWindow/Templates/ChatMessage"]
 custom_minimum_size = Vector2(244, 26)
 layout_mode = 0
 offset_right = 244.0
 offset_bottom = 52.0
 text = "wwwwwwwwwwwwwwwwwwww:"
 
-[node name="Message" type="Label" parent="Templates/ChatMessage"]
+[node name="Message" type="Label" parent="ChatWindow/Templates/ChatMessage"]
 clip_contents = true
 custom_minimum_size = Vector2(401, 52)
 layout_mode = 0
@@ -52,12 +64,12 @@ label_settings = SubResource("LabelSettings_wbyff")
 autowrap_mode = 3
 clip_text = true
 
-[node name="ChatPanel" type="Panel" parent="."]
-layout_mode = 0
+[node name="ChatPanel" type="Panel" parent="ChatWindow"]
+layout_mode = 2
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 720.0
 offset_bottom = 654.0
 
-[connection signal="mouse_entered" from="ChatInput" to="." method="_on_chat_input_mouse_entered"]
-[connection signal="mouse_exited" from="ChatInput" to="." method="_on_chat_input_mouse_exited"]
+[connection signal="mouse_entered" from="ChatWindow/ChatInput" to="." method="_on_chat_input_mouse_entered"]
+[connection signal="mouse_exited" from="ChatWindow/ChatInput" to="." method="_on_chat_input_mouse_exited"]

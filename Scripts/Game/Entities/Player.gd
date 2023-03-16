@@ -10,7 +10,7 @@ var inventory = [load("res://Data/Cards/Bread.tres"),load("res://Data/Cards/Brea
 
 func _physics_process(_delta):
 	# Get the input direction and handle the movement/deceleration.
-	if $"../../UI/Chat".visible == false:
+	if $"../../UI/Chat/ChatWindow".visible == false:
 		var input_vector = Vector2(
 					Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 					Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
