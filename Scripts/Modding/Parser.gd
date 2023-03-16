@@ -40,7 +40,8 @@ static func getElements():
 			"Rotation": ["Integer", "$.rotation"],
 			"ZIndex": ["Integer", "$.z_index"],
 			"LinkedScript": ["String", "$.get_script()"],
-			"Speed": ["Integer", "$.£(\"Speed\")"] # £ is either SET or GET (executor handled)
+			"Speed": ["Integer", "$.£(\"Speed\")"],
+			"Inventory": ["Array", "$.£(\"inventory\")"]
 		}]
 	}
 	
