@@ -41,7 +41,7 @@ offset_top = -10.0
 offset_right = 112.75
 offset_bottom = 11.0
 scale = Vector2(0.1, 0.1)
-text = "Food Market [E]"
+text = "Food Market"
 label_settings = SubResource("LabelSettings_dewfb")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

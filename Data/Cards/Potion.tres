@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://fxueeixvjpb0"]
+
+[ext_resource type="Script" path="res://Data/Cards/Card.gd" id="1_tmr56"]
+
+[resource]
+script = ExtResource("1_tmr56")
+name = "Potion"
+icon_id = 31
+type = 1
+desc = "Immune for a day"
+clicked = "Use"
+object_name = "Player"
+object_variables = {}
+object_functions = {
+"effect": ["immune", 0, 240]
+}
+role_goal = ""
+role_exp = 0
+role_level = 0
+base_cost = 0
+markets = 0
+rarity = 100

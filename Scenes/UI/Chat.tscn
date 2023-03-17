@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhabhgi454nup"]
+[gd_scene load_steps=3 format=3 uid="uid://cnqw50mfe2ebs"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Chat.gd" id="1_umdoa"]
 
@@ -26,6 +26,7 @@ text = "You have unread chat messages. Press [] to read them."
 layout_mode = 0
 offset_right = 1440.0
 offset_bottom = 720.0
+focus_mode = 2
 
 [node name="ChatInput" type="LineEdit" parent="ChatWindow"]
 layout_mode = 2
@@ -36,11 +37,12 @@ offset_bottom = 700.0
 placeholder_text = "Type '/help' for a list of commands."
 max_length = 256
 
-[node name="Templates" type="Container" parent="ChatWindow"]
+[node name="Templates" type="MarginContainer" parent="ChatWindow"]
 visible = false
 layout_mode = 2
 offset_right = 40.0
 offset_bottom = 40.0
+focus_mode = 2
 
 [node name="ChatMessage" type="Panel" parent="ChatWindow/Templates"]
 layout_mode = 2
@@ -70,6 +72,7 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = 720.0
 offset_bottom = 654.0
+mouse_filter = 2
 
 [connection signal="mouse_entered" from="ChatWindow/ChatInput" to="." method="_on_chat_input_mouse_entered"]
 [connection signal="mouse_exited" from="ChatWindow/ChatInput" to="." method="_on_chat_input_mouse_exited"]

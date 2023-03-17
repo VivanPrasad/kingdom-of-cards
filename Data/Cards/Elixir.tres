@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://c27k3kcd5jbm0"]
+
+[ext_resource type="Script" path="res://Data/Cards/Card.gd" id="1_c6yf6"]
+
+[resource]
+script = ExtResource("1_c6yf6")
+name = "Elixir"
+icon_id = 34
+type = 2
+desc = "Full life and full hunger"
+clicked = "Use"
+object_name = "Player"
+object_variables = {
+"hunger": 2,
+"life": 4
+}
+object_functions = {}
+role_goal = ""
+role_exp = 0
+role_level = 0
+base_cost = 0
+markets = 0
+rarity = 100

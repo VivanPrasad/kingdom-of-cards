@@ -7,6 +7,10 @@ var in_dungeon : bool = false
 @onready var inventory_menu = preload("res://Scenes/UI/Menu/InventoryMenu.tscn")
 @onready var chat_screen = $UI/Chat
 
+enum menu {none=0,inventory=1,market=2,escape=3,chat=4}
+@export var current_menu : int = menu.none
+
+
 var lights = []
 var lights_pos = [] #positions of all lights
 var lights_on : bool = true
@@ -69,12 +73,12 @@ func toggle_lights(is_on : bool):
 		for pos in lights_pos:
 			atlas_coords = $Surface.get_cell_atlas_coords(2,pos)
 			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
-				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x-1,atlas_coords.y))
+				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x+1,atlas_coords.y))
 	else:
 		for pos in lights_pos:
 			atlas_coords = $Surface.get_cell_atlas_coords(2,pos)
 			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
-				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x+1,atlas_coords.y))
+				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x-1,atlas_coords.y))
 	
 	#TEMP GATE STATES
 	for child in $Surface.get_children():
@@ -93,7 +97,6 @@ func get_market_locations():
 		print(child.name)
 		if str(child.name) in ["FoodMarket","BankDesk","ItemMarket"]: #THERE CAN ONLY BE ONE MARKET INSTANCE FOR EACH!!!!
 			market_locations[str(child.name)] = child.position
-	print(market_locations)
 
 func update_light(type):
 	for child in lights: child.update(type)
@@ -104,14 +107,23 @@ func _on_stair_body_entered(body):
 	if body.name == "Player": dungeon($Entities/Player.layer)
 	#causes dungeon transition if the body in the area is player
 
-func _input(_event):
-	if Input.is_action_just_released("interaction") and $UI/Chat/ChatWindow.visible == false: #Just inv menu for now... will need to make a handler later
-		if get_node_or_null("UI/InventoryMenu") == null:
-			$UI.add_child(inventory_menu.instantiate())
-		else:
+func _unhandled_input(_event):
+	if Input.is_action_just_released("interact") and $UI/Chat/ChatWindow.visible == false: #Just inv menu for now... will need to make a handler later
+		if get_node_or_null("UI/InventoryMenu") != null:
+			current_menu = menu.none
 			$UI/InventoryMenu.queue_free()
+		elif current_menu == menu.none:
+			current_menu = menu.inventory
+			$UI.add_child(inventory_menu.instantiate())
+		
+	
 	if Input.is_action_just_released("chat") and $UI/Chat.get("isInputActive") == false:
-		chat_screen.get_node("ChatWindow").visible = !chat_screen.get_node("ChatWindow").visible
+		if current_menu == menu.chat:
+			chat_screen.get_node("ChatWindow").visible = false
+			current_menu = menu.none
+		else:
+			chat_screen.get_node("ChatWindow").visible = true
+			current_menu = menu.chat
 		if chat_screen.get_node("UnreadNotifier").visible and chat_screen.get_node("ChatWindow").visible: chat_screen.get_node("UnreadNotifier").visible = false
 		if get_node_or_null("UI/InventoryMenu") != null: $UI/InventoryMenu.queue_free()
 		

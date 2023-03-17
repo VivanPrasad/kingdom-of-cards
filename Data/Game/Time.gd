@@ -7,10 +7,12 @@ extends Node
 
 var day_processed : bool = true
 var lights_processed : bool = true
+var hunger_processed : bool = true
 
 var speed : int = 350 #100 = 1 irl second is 1 minute ig
 # Called when the node enters the scene tree for the first time.
-@onready var world = get_parent().get_parent()
+@onready var world = $"../.."
+@onready var player = $"../../Entities/Player"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if hour == 0 and day_processed == false and speed > 0:
@@ -27,14 +29,27 @@ func _process(delta):
 	
 	if (hour == 7 or hour == 17):
 		lights_processed = false
-	if (hour == 8 or hour == 18) and lights_processed == false:
-		lights_processed = true
-		update_lights()
+		hunger_processed = false
+	if (hour == 8 or hour == 18):
+		if lights_processed == false:
+			lights_processed = true
+			update_lights()
+		if hunger_processed == false:
+			hunger_processed = true
+			update_hunger()
+		
 	second += int(floor(delta*speed))
 	minute = int(second / 60.0) % 60
 	hour = int(second / 3600.0) % 24
 	update_labels()
 
+func update_hunger():
+	if player.hunger > 0:
+		player.hunger -= 1
+	else:
+		player.status = 1
+		print(player.life)
+	player.update_HUD()
 func update_lights():
 	if hour == 8:
 		world.toggle_lights(false)

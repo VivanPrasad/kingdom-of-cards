@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cbprcfgi3l4ec"]
+
+[ext_resource type="Script" path="res://Data/Cards/Card.gd" id="1_crdsp"]
+
+[resource]
+script = ExtResource("1_crdsp")
+name = "Fish Rod"
+icon_id = 16
+type = 6
+desc = "Used to catch fish"
+clicked = "Use"
+object_name = "Player"
+object_variables = {}
+object_functions = {}
+role_goal = ""
+role_exp = 0
+role_level = 0
+base_cost = 0
+markets = 0
+rarity = 100

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dgx03y130inmq"]
+
+[ext_resource type="Script" path="res://Data/Cards/Card.gd" id="1_a60ud"]
+
+[resource]
+script = ExtResource("1_a60ud")
+name = "Bag++"
+icon_id = 49
+type = 2
+desc = "Hold up to 10 Cards"
+clicked = "Use"
+object_name = "Player"
+object_variables = {}
+object_functions = {}
+role_goal = ""
+role_exp = 0
+role_level = 0
+base_cost = 0
+markets = 0
+rarity = 100

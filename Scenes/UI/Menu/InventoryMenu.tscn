@@ -4,7 +4,7 @@
 
 [sub_resource type="Animation" id="Animation_y0wqm"]
 resource_name = "Fade"
-length = 0.5
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -12,10 +12,22 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 180), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_v4q2l"]
@@ -32,6 +44,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a5358"]
 _data = {
@@ -47,7 +71,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+focus_mode = 2
 script = ExtResource("1_iqqit")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -62,22 +86,18 @@ color = Color(0, 0, 0, 0.439216)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 1440.0
+offset_bottom = 720.0
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 32
-columns = 4
+columns = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Fade"
+speed_scale = 0.8
 libraries = {
 "": SubResource("AnimationLibrary_a5358")
 }
