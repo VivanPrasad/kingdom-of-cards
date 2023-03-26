@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dbkbqj5q3wmx7"]
+[gd_scene load_steps=22 format=3 uid="uid://dbkbqj5q3wmx7"]
 
 [ext_resource type="Script" path="res://Scripts/Game/World.gd" id="1_mc8iw"]
 [ext_resource type="PackedScene" uid="uid://bxbor0a6xjb8k" path="res://Scenes/Game/Entities/Player.tscn" id="1_wplso"]
@@ -10,6 +10,7 @@
 [ext_resource type="Shader" path="res://Data/Shaders/fog.gdshader" id="9_uywq0"]
 [ext_resource type="PackedScene" uid="uid://cnqw50mfe2ebs" path="res://Scenes/UI/Chat.tscn" id="10_3n4ep"]
 [ext_resource type="Texture2D" uid="uid://cyq2gmm1bnmty" path="res://icon.png" id="10_lj8eo"]
+[ext_resource type="PackedScene" uid="uid://c4bvkmp8knty4" path="res://Scenes/UI/HUD/ActionHUD.tscn" id="11_wf7qn"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_npd8f"]
 
@@ -506,6 +507,8 @@ mouse_filter = 1
 mouse_filter = 1
 
 [node name="Chat" parent="UI" instance=ExtResource("10_3n4ep")]
+
+[node name="ActionHUD" parent="UI" instance=ExtResource("11_wf7qn")]
 
 [connection signal="ready" from="." to="." method="_started"]
 [connection signal="body_entered" from="Objects/Stair" to="." method="_on_stair_body_entered"]

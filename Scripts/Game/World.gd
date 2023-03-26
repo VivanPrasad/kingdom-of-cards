@@ -5,9 +5,9 @@ var in_dungeon : bool = false
 
 # UI Menu Instancing
 @onready var inventory_menu = preload("res://Scenes/UI/Menu/InventoryMenu.tscn")
-@onready var chat_screen = $UI/Chat
+@onready var action_hud = preload("res://Scenes/UI/HUD/ActionHUD.tscn")
 
-enum menu {none=0,inventory=1,market=2,escape=3,chat=4}
+enum menu {none=0,inventory=1,market=2,combat=3,escape=4,chat=5}
 @export var current_menu : int = menu.none
 
 
@@ -59,6 +59,7 @@ func instance_lights():
 		if str(child.name).contains("Light"): lights.append(child) #Adds the light node paths to the 
 	for i in $Dungeon.get_layers_count(): $Dungeon.set_layer_enabled(i, false)
 func _process(_delta):
+	
 	if not in_dungeon:
 		if $Shader/AnimationPlayer.is_playing():
 			$Shader/AnimationPlayer.seek($UI/Time.second / 3600.0,false)
@@ -67,18 +68,21 @@ func _process(_delta):
 	else:
 		$Shader/AnimationPlayer.seek(4) #the dungeon looks dark, so it infinitely seeks at time = 4am
 	
+	#MENU HANDLER
+	handle_menu()
+
 func toggle_lights(is_on : bool):
 	var atlas_coords
 	if not is_on:
 		for pos in lights_pos:
 			atlas_coords = $Surface.get_cell_atlas_coords(2,pos)
 			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
-				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x+1,atlas_coords.y))
+				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x-1,atlas_coords.y))
 	else:
 		for pos in lights_pos:
 			atlas_coords = $Surface.get_cell_atlas_coords(2,pos)
 			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
-				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x-1,atlas_coords.y))
+				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x+1,atlas_coords.y))
 	
 	#TEMP GATE STATES
 	for child in $Surface.get_children():
@@ -87,7 +91,8 @@ func toggle_lights(is_on : bool):
 				child.get_child(0).get_child(0).play("Gate")
 			else:
 				child.get_child(0).get_child(0).play_backwards("Gate")
-func dungeon(_layer): #flips state
+func dungeon(): #flips state
+	$Entities/Player.layer = in_dungeon
 	in_dungeon = !in_dungeon
 	if in_dungeon: $AnimationPlayer.play("Dungeon")
 	else: $AnimationPlayer.play_backwards("Dungeon")
@@ -104,29 +109,49 @@ func update_light(type):
 		# 0 = overworld on, 1 = dungeon on, 2 = overworld off
 
 func _on_stair_body_entered(body):
-	if body.name == "Player": dungeon($Entities/Player.layer)
+	if body.name == "Player": dungeon()
 	#causes dungeon transition if the body in the area is player
 
-func _unhandled_input(_event):
-	if Input.is_action_just_released("interact") and $UI/Chat/ChatWindow.visible == false: #Just inv menu for now... will need to make a handler later
+func handle_menu():
+	if $Entities/Player.in_combat:
+		current_menu = menu.combat
+	elif current_menu == menu.combat:
+		current_menu = menu.none
+	
+	if current_menu != menu.inventory:
 		if get_node_or_null("UI/InventoryMenu") != null:
-			current_menu = menu.none
 			$UI/InventoryMenu.queue_free()
+	else:
+		if get_node_or_null("UI/InventoryMenu") == null:
+			$UI.add_child(inventory_menu.instantiate())
+	
+	if current_menu != menu.combat:
+		if get_node_or_null("UI/ActionHUD") != null:
+			$UI/ActionHUD.queue_free()
+	else:
+		if get_node_or_null("UI/ActionHUD") == null:
+			$UI.add_child(action_hud.instantiate())
+	
+	if current_menu != menu.chat:
+		$UI/Chat.isInputActive = false
+		$UI/Chat/ChatWindow.visible = false
+	else:
+		$UI/Chat.isInputActive = true
+		$UI/Chat/ChatWindow.visible = true
+
+func _unhandled_input(_event):
+
+	if Input.is_action_just_pressed("interact"): #Just inv menu for now... will need to make a handler later
+		if current_menu == menu.inventory:
+			current_menu = menu.none
 		elif current_menu == menu.none:
 			current_menu = menu.inventory
-			$UI.add_child(inventory_menu.instantiate())
-		
-	
-	if Input.is_action_just_released("chat") and $UI/Chat.get("isInputActive") == false:
+
+	if Input.is_action_just_pressed("chat"):
 		if current_menu == menu.chat:
-			chat_screen.get_node("ChatWindow").visible = false
 			current_menu = menu.none
-		else:
-			chat_screen.get_node("ChatWindow").visible = true
+		elif current_menu != menu.combat:
 			current_menu = menu.chat
-		if chat_screen.get_node("UnreadNotifier").visible and chat_screen.get_node("ChatWindow").visible: chat_screen.get_node("UnreadNotifier").visible = false
-		if get_node_or_null("UI/InventoryMenu") != null: $UI/InventoryMenu.queue_free()
-		
 	'''
 	if event is InputEventMouseButton and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		$Surface.set_cell(0,Vector2i(get_global_mouse_position().floor() / 37),0,Vector2i(0,1))

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 var input_vector = Vector2.ZERO
 
+var layer : int = 1
 @export var path_to_player : NodePath
 
 var VELOCITY = Vector2.ZERO
@@ -15,6 +16,10 @@ func _ready():
 	
 
 func _physics_process(_delta):
+	if player.layer == layer:
+		visible = true
+	else:
+		visible = false
 	locations = world.market_locations.values()
 	if not agent.is_navigation_finished():
 		direction = global_position.direction_to(agent.get_next_path_position())
@@ -31,7 +36,8 @@ func _physics_process(_delta):
 	move_and_slide()
 	
 	
-
+func handle_time(): 
+	pass
 func _on_timer_timeout(): #10 second intervals to not lag the whole game
 	agent.target_position = locations[randi() % len(locations)]
 	locations.append(player.position)

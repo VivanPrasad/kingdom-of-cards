@@ -305,7 +305,7 @@ limit_right = 2000
 limit_bottom = 2000
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 3.0
+position_smoothing_speed = 2.0
 rotation_smoothing_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

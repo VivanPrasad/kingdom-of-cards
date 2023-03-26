@@ -10,7 +10,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	if $UnreadNotifier.visible and $ChatWindow.visible: 
+		$UnreadNotifier.visible = false
 func removeOldMessages(crd=0):
 	crd += 1
 	messages -= 1

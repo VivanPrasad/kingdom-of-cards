@@ -1,22 +1,28 @@
 extends CharacterBody2D
 
-const base_speed = 90
-var layer : int = 1
-
+const base_speed = 100
 enum state {good,sick,potion,unknown}
-var status : int = state.good
-var life : int = 4
-var hunger : int = 1
-var speed : int = base_speed
 
+var layer : int = 1 #layer 1 = surface, layer 0 = dungeon
+
+var actions = 2 #number of action cards during combat
+#+1 if holding the ring 
+#+1 if the guard role?
+
+var status : int = state.good
+var life : int = 4 #heart
+var hunger : int = 2 #food
+var speed : int = base_speed #starts at base speed
+
+var in_combat : bool = false
 var effect_queue : Array
 @onready var world = $"../.."
 func _ready():
 	$Sprite2D.texture = load(str("res://Assets/Game/Entities/Player/player" + str(randi() % 4 + 1)+".png"))
 	update_HUD()
 var inventory = [load("res://Data/Cards/Bread.tres").duplicate(),load("res://Data/Cards/Bag++.tres").duplicate(),load("res://Data/Cards/Berry.tres").duplicate(),load("res://Data/Cards/Potion.tres").duplicate(),load("res://Data/Cards/Fishing Rod.tres").duplicate(),load("res://Data/Cards/Elixir.tres").duplicate()]
-func _physics_process(_delta):
-	if world.current_menu == 0: #0 = menu.none
+func _process(_delta):
+	if world.current_menu == 0 or world.current_menu == 3: #0 = menu.none
 		var input_vector = Vector2(
 					Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 					Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")

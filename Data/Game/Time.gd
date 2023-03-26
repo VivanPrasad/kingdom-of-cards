@@ -29,7 +29,7 @@ func _process(delta):
 	
 	if (hour == 7 or hour == 17):
 		lights_processed = false
-		hunger_processed = false
+		if day != 1: hunger_processed = false
 	if (hour == 8 or hour == 18):
 		if lights_processed == false:
 			lights_processed = true

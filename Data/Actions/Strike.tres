@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ActionCard" load_steps=2 format=3 uid="uid://bsuf62pdkylhd"]
+
+[ext_resource type="Script" path="res://Data/Actions/ActionCard.gd" id="1_q0gnb"]
+
+[resource]
+script = ExtResource("1_q0gnb")
+name = "Strike"
+icon_id = 84
+type = "Attack"
+desc = "Damages the nearest enemy"
+rarity = 100
+recharge_rate = 0.0
