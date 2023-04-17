@@ -12,7 +12,7 @@ region = Rect2(0, 238, 18, 34)
 [sub_resource type="LabelSettings" id="LabelSettings_13qb5"]
 font = ExtResource("2_sq3xw")
 shadow_size = 0
-shadow_color = Color(0.427451, 0.470588, 0.513726, 1)
+shadow_color = Color(0.196078, 0.247059, 0.301961, 1)
 shadow_offset = Vector2(0, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3hkq"]
@@ -262,7 +262,7 @@ offset_left = 21.0
 offset_top = 130.0
 offset_right = 93.0
 offset_bottom = 183.0
-theme_override_colors/font_shadow_color = Color(0.427451, 0.470588, 0.513726, 1)
+theme_override_colors/font_shadow_color = Color(0.196078, 0.247059, 0.301961, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/normal_font_size = 12

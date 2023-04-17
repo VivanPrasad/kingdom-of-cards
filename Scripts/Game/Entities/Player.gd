@@ -15,8 +15,10 @@ var hunger : int = 2 #food
 var speed : int = base_speed #starts at base speed
 
 var in_combat : bool = false
+var targeted : bool = false
 var effect_queue : Array
 @onready var world = $"../.."
+
 func _ready():
 	$Sprite2D.texture = load(str("res://Assets/Game/Entities/Player/player" + str(randi() % 4 + 1)+".png"))
 	update_HUD()
@@ -37,6 +39,7 @@ func _process(_delta):
 		move_and_slide()
 	else:
 		$AnimationTree.get("parameters/playback").travel("Idle")
+	
 func effect(data): #data = [type, value, time (s)] #if data[0]
 	var type = data[0]; var value = data[1]; var time = data[2]
 	if type == "speed":
@@ -62,8 +65,22 @@ func eat(value):
 			hunger += 1
 		elif life < 4:
 			life += 1
+			in_combat = false
+			world.current_menu = 4
 	update_HUD()
 
+func hurt():
+	if life > 1:
+		$Hurt.play("Hurt")
+		life -= 1
+		update_HUD()
+	else:
+		life -=1
+		update_HUD()
+		visible = false
+		$"../../UI".add_child(world.game_over.instantiate())
+		get_tree().paused = true
+		
 func update_HUD():
 	if life <= 4:
 		$"../../UI/Profile/Life".frame = (life+1) * (status+1) -1

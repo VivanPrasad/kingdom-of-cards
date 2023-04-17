@@ -170,61 +170,61 @@ _data = {
 "U Run": SubResource("Animation_4jag1")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rdb54"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q4f5p"]
 animation = &"L Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1o1wo"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vfown"]
 animation = &"RD Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f10ki"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kp1gb"]
 animation = &"U Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mtjky"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n21ov"]
 animation = &"RD Idle"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_w2cx0"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_rdb54")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_4i84y"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_q4f5p")
 blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_1o1wo")
+blend_point_1/node = SubResource("AnimationNodeAnimation_vfown")
 blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_f10ki")
+blend_point_2/node = SubResource("AnimationNodeAnimation_kp1gb")
 blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_mtjky")
+blend_point_3/node = SubResource("AnimationNodeAnimation_n21ov")
 blend_point_3/pos = Vector2(0, 1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tm0fh"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a6r4s"]
 animation = &"L Run"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r8vev"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fijou"]
 animation = &"R Run"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kwf1l"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ah6qo"]
 animation = &"U Run"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k4ett"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xwva3"]
 animation = &"D Run"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_fltto"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_tm0fh")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_jf1d0"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_a6r4s")
 blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_r8vev")
+blend_point_1/node = SubResource("AnimationNodeAnimation_fijou")
 blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_kwf1l")
+blend_point_2/node = SubResource("AnimationNodeAnimation_ah6qo")
 blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_k4ett")
+blend_point_3/node = SubResource("AnimationNodeAnimation_xwva3")
 blend_point_3/pos = Vector2(0, 1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_v2lnx"]
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hjkl7"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qlybb"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pwdv2"]
 states/End/position = Vector2(756, 100)
-states/Idle/node = SubResource("AnimationNodeBlendSpace2D_w2cx0")
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_4i84y")
 states/Idle/position = Vector2(408, 100)
-states/Run/node = SubResource("AnimationNodeBlendSpace2D_fltto")
+states/Run/node = SubResource("AnimationNodeBlendSpace2D_jf1d0")
 states/Run/position = Vector2(635, 100)
-states/Sleep/node = SubResource("AnimationNodeBlendSpace2D_v2lnx")
+states/Sleep/node = SubResource("AnimationNodeBlendSpace2D_hjkl7")
 states/Sleep/position = Vector2(489, 231)
 graph_offset = Vector2(104, 5)
 
@@ -255,7 +255,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_qlybb")
+tree_root = SubResource("AnimationNodeStateMachine_pwdv2")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_adyit")

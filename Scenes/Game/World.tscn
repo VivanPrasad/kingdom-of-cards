@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://dbkbqj5q3wmx7"]
+[gd_scene load_steps=24 format=3 uid="uid://dbkbqj5q3wmx7"]
 
 [ext_resource type="Script" path="res://Scripts/Game/World.gd" id="1_mc8iw"]
 [ext_resource type="PackedScene" uid="uid://bxbor0a6xjb8k" path="res://Scenes/Game/Entities/Player.tscn" id="1_wplso"]
 [ext_resource type="TileSet" uid="uid://c0ndy3hw3jlqs" path="res://Data/Game/World.tres" id="2_br675"]
 [ext_resource type="PackedScene" uid="uid://xwe5x0ju0lxh" path="res://Scenes/Game/Entities/NPC.tscn" id="3_tdn0q"]
 [ext_resource type="PackedScene" uid="uid://dp824bwq2pcht" path="res://Scenes/Game/Objects/Stair.tscn" id="4_ag6e7"]
+[ext_resource type="PackedScene" uid="uid://c007xi351utek" path="res://Scenes/Game/Entities/Enemies/Wolf.tscn" id="4_bbokq"]
 [ext_resource type="PackedScene" uid="uid://bxtcig140w6k4" path="res://Data/Game/Time.tscn" id="5_lmxy0"]
 [ext_resource type="PackedScene" uid="uid://bpnermutitk2r" path="res://Scenes/UI/HUD/Profile.tscn" id="7_8xrvm"]
 [ext_resource type="Shader" path="res://Data/Shaders/fog.gdshader" id="9_uywq0"]
@@ -376,6 +377,11 @@ _data = {
 "Splash": SubResource("Animation_e763q")
 }
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_itjcw"]
+vertices = PackedVector2Array(-2000, -2000, 2000, -2000, 2000, 2040, -2000, 2040)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2000, -2000, 2000, -2000, 2000, 2040, -2000, 2040)])
+
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_mc8iw")
@@ -406,6 +412,10 @@ path_to_player = NodePath("../Player")
 [node name="NPC3" parent="Entities" instance=ExtResource("3_tdn0q")]
 position = Vector2(-140, 220)
 path_to_player = NodePath("../Player")
+
+[node name="Wolf" parent="Entities" instance=ExtResource("4_bbokq")]
+position = Vector2(-200, 300)
+scale = Vector2(2, 2)
 
 [node name="Objects" type="Node2D" parent="."]
 use_parent_material = true
@@ -465,6 +475,7 @@ layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(-655369, 2, 8, -655365, 2, 8, -589832, 458754, 7, -589828, 393218, 7, -655360, 393218, 7, -327680, 524290, 7, -262148, 458754, 7, -262152, 524290, 7, -327689, 4, 327680, -327685, 4, 327680, -327681, 4, 327680, -458753, 4, 327680, -458757, 4, 327680, -458761, 4, 327680, -720894, 589826, 6, -720892, 720898, 6, -393229, 786434, 2, -655361, 2, 8, -131073, 2, 8, -131077, 2, 8, -131081, 2, 8, -655377, 2, 8, -720893, 2, 8, -458749, 786434, 4, -131089, 2, 8, -131085, 2, 8)
+metadata/_edit_lock_ = true
 
 [node name="Cloud" type="Sprite2D" parent="."]
 z_index = 2
@@ -509,6 +520,10 @@ mouse_filter = 1
 [node name="Chat" parent="UI" instance=ExtResource("10_3n4ep")]
 
 [node name="ActionHUD" parent="UI" instance=ExtResource("11_wf7qn")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_itjcw")
+navigation_layers = 2
 
 [connection signal="ready" from="." to="." method="_started"]
 [connection signal="body_entered" from="Objects/Stair" to="." method="_on_stair_body_entered"]

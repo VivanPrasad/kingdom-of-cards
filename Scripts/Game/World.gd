@@ -6,6 +6,8 @@ var in_dungeon : bool = false
 # UI Menu Instancing
 @onready var inventory_menu = preload("res://Scenes/UI/Menu/InventoryMenu.tscn")
 @onready var action_hud = preload("res://Scenes/UI/HUD/ActionHUD.tscn")
+@onready var market_menu = preload("res://Scenes/UI/Menu/MarketMenu.tscn")
+@onready var game_over = preload("res://Scenes/UI/HUD/GameOver.tscn")
 
 enum menu {none=0,inventory=1,market=2,combat=3,escape=4,chat=5}
 @export var current_menu : int = menu.none
@@ -59,7 +61,6 @@ func instance_lights():
 		if str(child.name).contains("Light"): lights.append(child) #Adds the light node paths to the 
 	for i in $Dungeon.get_layers_count(): $Dungeon.set_layer_enabled(i, false)
 func _process(_delta):
-	
 	if not in_dungeon:
 		if $Shader/AnimationPlayer.is_playing():
 			$Shader/AnimationPlayer.seek($UI/Time.second / 3600.0,false)
@@ -125,6 +126,12 @@ func handle_menu():
 		if get_node_or_null("UI/InventoryMenu") == null:
 			$UI.add_child(inventory_menu.instantiate())
 	
+	if current_menu != menu.market:
+		if get_node_or_null("UI/MarketMenu") != null:
+			$UI/MarketMenu.queue_free()
+	else:
+		if get_node_or_null("UI/MarketMenu") == null:
+			$UI.add_child(market_menu.instantiate())
 	if current_menu != menu.combat:
 		if get_node_or_null("UI/ActionHUD") != null:
 			$UI/ActionHUD.queue_free()
@@ -146,7 +153,10 @@ func _unhandled_input(_event):
 			current_menu = menu.none
 		elif current_menu == menu.none:
 			current_menu = menu.inventory
-
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		current_menu = menu.none
+	
 	if Input.is_action_just_pressed("chat"):
 		if current_menu == menu.chat:
 			current_menu = menu.none
