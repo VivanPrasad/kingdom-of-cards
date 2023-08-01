@@ -147,7 +147,6 @@ func handle_menu():
 		$UI/Chat/ChatWindow.visible = true
 
 func _unhandled_input(_event):
-
 	if Input.is_action_just_pressed("interact"): #Just inv menu for now... will need to make a handler later
 		if current_menu == menu.inventory:
 			current_menu = menu.none
@@ -156,7 +155,7 @@ func _unhandled_input(_event):
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		current_menu = menu.none
-	
+	#owner
 	if Input.is_action_just_pressed("chat"):
 		if current_menu == menu.chat:
 			current_menu = menu.none
@@ -169,3 +168,9 @@ func _unhandled_input(_event):
 		print(Vector2i($Surface.get_global_mouse_position().floor() / 37))
 	'''
 
+'''
+func _on_pressed():
+	var prop_instance = load("res://Props/" + str($".".get_prop_files()[get_index()])).instantiate()
+	prop_instance.position = Vector3(0, 1.5, 0)
+	$"/root/devtest_01".add_child(prop_instance)
+'''

@@ -57,8 +57,6 @@ func _on_area_2d_body_entered(body):
 	if body.name == "Player":
 		touching_player = true
 
-
-
 func _on_area_2d_body_exited(body):
 	if body.name == "Player":
 		touching_player = false

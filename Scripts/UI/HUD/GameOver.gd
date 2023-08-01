@@ -8,3 +8,5 @@ func _ready():
 		$Text.text = "You survived " + str($"/root/World/UI/Time".day) + " day."
 func _on_button_pressed():
 	get_tree().quit()
+	#DirAccess
+	"hi".get_basename()
