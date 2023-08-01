@@ -7,6 +7,8 @@ var layer : int = 1
 var on_cooldown : bool = false
 var touching_player : bool = false
 var life : int = 3
+var speed : int = 90
+const base_speed : int = 90
 var VELOCITY = Vector2.ZERO
 @onready var player = $"/root/World/Entities/Player"
 @onready var agent = $NavigationAgent2D
@@ -29,7 +31,7 @@ func _physics_process(_delta):
 	else:
 		$AnimationTree.get("parameters/playback").travel("Idle")
 	
-	velocity = direction.normalized() * 95
+	velocity = direction.normalized() * speed
 	move_and_slide()
 	
 	if not on_cooldown and touching_player:
@@ -39,14 +41,15 @@ func _physics_process(_delta):
 	check_surroundings()
 
 func check_surroundings():
-	if position.distance_to(player.position) < 200:
-		if not self in player.enemies:
-			player.enemies.append(self)
-		agent.target_position = player.position
-	else:
-		if self in player.enemies:
-			player.enemies.erase(self)
-	await get_tree().create_timer(0.5).timeout
+	if not $Hurt.is_playing():
+		if position.distance_to(player.position) < 200:
+			if not self in player.enemies:
+				player.enemies.append(self)
+			agent.target_position = player.position
+		else:
+			if self in player.enemies:
+				player.enemies.erase(self)
+		await get_tree().create_timer(0.5).timeout
 
 func attack_cooldown():
 	on_cooldown = true
@@ -70,8 +73,20 @@ func die():
 		player.enemies.erase(self)
 	queue_free()
 func hurt():
-	life -= 1
 	$Hurt.play("Hurt")
+	life -= 1
 	await get_tree().create_timer(0.5).timeout
 	if life == 0:
 		die()
+func strike():
+	$Hurt.stop()
+	$Hurt.play("Strike")
+	life -= 1
+	await get_tree().create_timer(0.5).timeout
+	if life == 0:
+		die()
+
+func stun():
+	direction = Vector2.ZERO
+	agent.target_position = position
+	$Hurt.play("Stun")

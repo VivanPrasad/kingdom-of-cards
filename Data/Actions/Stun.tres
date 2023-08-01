@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ActionCard" load_steps=2 format=3 uid="uid://dipq4lefqqqg3"]
+
+[ext_resource type="Script" path="res://Data/Actions/ActionCard.gd" id="1_881rc"]
+
+[resource]
+script = ExtResource("1_881rc")
+name = "Stun"
+icon_id = 91
+type = "Attack"
+desc = "Stuns nearby enemies"
+rarity = 100
+recharge_rate = 0.0

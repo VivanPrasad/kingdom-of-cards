@@ -414,8 +414,11 @@ position = Vector2(-140, 220)
 path_to_player = NodePath("../Player")
 
 [node name="Wolf" parent="Entities" instance=ExtResource("4_bbokq")]
-modulate = Color(1, 1, 1, 1)
 position = Vector2(-224, -60)
+scale = Vector2(2, 2)
+
+[node name="Wolf2" parent="Entities" instance=ExtResource("4_bbokq")]
+position = Vector2(-296, 556)
 scale = Vector2(2, 2)
 
 [node name="Objects" type="Node2D" parent="."]

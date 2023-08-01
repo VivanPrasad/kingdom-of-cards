@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://c007xi351utek"]
+[gd_scene load_steps=35 format=3 uid="uid://c007xi351utek"]
 
 [ext_resource type="Texture2D" uid="uid://resp2qnsqhfb" path="res://Assets/Game/Entities/Enemies/wolf.png" id="1_1lunx"]
 [ext_resource type="Script" path="res://Scripts/Game/Entities/Enemies/Wolf.gd" id="1_kphp6"]
+[ext_resource type="Texture2D" uid="uid://dj078j0fnqq5" path="res://Assets/UI/Cards/items.png" id="3_p7icf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6b4a"]
 size = Vector2(6, 4)
@@ -236,38 +237,26 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Strike:modulate")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/path = NodePath("Stun:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Strike:text")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["  '", "/", "."]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_bnxb8"]
@@ -320,6 +309,30 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Stun:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Stun:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_yn5au"]
 resource_name = "Death"
@@ -337,11 +350,93 @@ tracks/0/keys = {
 "values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_boitq"]
+resource_name = "Strike"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Strike:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Strike:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["  '", "/", "."]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stun:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lbtr3"]
+resource_name = "Stun"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stun:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uapo6"]
 _data = {
 "Death": SubResource("Animation_yn5au"),
 "Hurt": SubResource("Animation_7rim3"),
-"RESET": SubResource("Animation_bnxb8")
+"RESET": SubResource("Animation_bnxb8"),
+"Strike": SubResource("Animation_boitq"),
+"Stun": SubResource("Animation_lbtr3")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgb75"]
@@ -381,6 +476,13 @@ navigation_layers = 2
 libraries = {
 "": SubResource("AnimationLibrary_uapo6")
 }
+
+[node name="Stun" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, -7)
+texture = ExtResource("3_p7icf")
+region_enabled = true
+region_rect = Rect2(71, 41, 8, 8)
 
 [node name="Strike" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)

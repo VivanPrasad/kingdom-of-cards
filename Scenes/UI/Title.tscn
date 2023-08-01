@@ -244,6 +244,7 @@ _data = {
 }
 
 [node name="Title" type="Control"]
+process_mode = 3
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15

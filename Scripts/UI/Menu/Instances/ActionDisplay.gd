@@ -38,7 +38,12 @@ func handle_use():
 			player.update_HUD()
 	elif data.name == "Strike":
 		for enemy in player.enemies:
-			enemy.hurt()
+			enemy.strike()
+	elif data.name == "Sprint":
+		player.effect(["speed",125,2])
+	elif data.name == "Stun":
+		for enemy in player.enemies:
+			enemy.stun()
 
 func _on_button_pressed():
 	if modulate.a > 0.9:
