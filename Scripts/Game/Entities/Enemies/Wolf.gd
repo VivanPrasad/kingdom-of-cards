@@ -6,7 +6,7 @@ var layer : int = 1
 
 var on_cooldown : bool = false
 var touching_player : bool = false
-var health : int = 3
+var life : int = 3
 var VELOCITY = Vector2.ZERO
 @onready var player = $"/root/World/Entities/Player"
 @onready var agent = $NavigationAgent2D
@@ -40,13 +40,13 @@ func _physics_process(_delta):
 
 func check_surroundings():
 	if position.distance_to(player.position) < 200:
-		await get_tree().create_timer(0.5).timeout
-		player.in_combat = true
+		if not self in player.enemies:
+			player.enemies.append(self)
 		agent.target_position = player.position
 	else:
-		await get_tree().create_timer(5).timeout
-		agent.target_position = position + Vector2(randi() % 301 - 150,randi() % 301 - 150)
-		player.in_combat = false
+		if self in player.enemies:
+			player.enemies.erase(self)
+	await get_tree().create_timer(0.5).timeout
 
 func attack_cooldown():
 	on_cooldown = true
@@ -60,3 +60,18 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if body.name == "Player":
 		touching_player = false
+
+func die():
+	direction = Vector2.ZERO
+	agent.target_position = position
+	$Hurt.play("Death")
+	await $Hurt.animation_finished
+	if self in player.enemies:
+		player.enemies.erase(self)
+	queue_free()
+func hurt():
+	life -= 1
+	$Hurt.play("Hurt")
+	await get_tree().create_timer(0.5).timeout
+	if life == 0:
+		die()

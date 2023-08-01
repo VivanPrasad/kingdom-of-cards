@@ -31,6 +31,14 @@ func _ready():
 
 func handle_use():
 	$AnimationPlayer.play("Use")
+	get_parent().get_parent().get_parent().new_card()
+	if data.name == "Heal":
+		if player.life < 4:
+			player.life += 1
+			player.update_HUD()
+	elif data.name == "Strike":
+		for enemy in player.enemies:
+			enemy.hurt()
 
 func _on_button_pressed():
 	if modulate.a > 0.9:

@@ -5,7 +5,7 @@ enum state {good,sick,potion,unknown}
 
 var layer : int = 1 #layer 1 = surface, layer 0 = dungeon
 
-var actions = 2 #number of action cards during combat
+var actions = 3 #number of action cards during combat
 #+1 if holding the ring 
 #+1 if the guard role?
 
@@ -15,6 +15,7 @@ var hunger : int = 2 #food
 var speed : int = base_speed #starts at base speed
 
 var in_combat : bool = false
+var enemies : Array[CharacterBody2D] = []
 var targeted : bool = false
 var effect_queue : Array
 @onready var world = $"../.."
@@ -24,6 +25,7 @@ func _ready():
 	update_HUD()
 var inventory = [load("res://Data/Cards/Bread.tres").duplicate(),load("res://Data/Cards/Bag++.tres").duplicate(),load("res://Data/Cards/Berry.tres").duplicate(),load("res://Data/Cards/Potion.tres").duplicate(),load("res://Data/Cards/Fishing Rod.tres").duplicate(),load("res://Data/Cards/Elixir.tres").duplicate()]
 func _process(_delta):
+	check_combat()
 	if world.current_menu == 0 or world.current_menu == 3: #0 = menu.none
 		var input_vector = Vector2(
 					Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
@@ -93,3 +95,9 @@ func update_HUD():
 
 func _on_timer_timeout():
 	effect(["clear",0,0])
+
+func check_combat():
+	if len(enemies): #if there are enemies, it returns true
+		in_combat = true
+	else:
+		in_combat = false

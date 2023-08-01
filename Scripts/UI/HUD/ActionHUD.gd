@@ -4,10 +4,12 @@ extends Control
 
 func _ready():
 	for item in $"/root/World/Entities/Player".actions:
-		var card = action_display.instantiate()
-		card.data = load(get_action_files("res://Data/Actions/").pick_random())
-		$CenterContainer/HBoxContainer.add_child(card)
+		new_card()
 
+func new_card():
+	var card = action_display.instantiate()
+	card.data = load(get_action_files("res://Data/Actions/").pick_random())
+	$CenterContainer/HBoxContainer.add_child(card)
 func get_action_files(path : String):
 	var dir = DirAccess.get_files_at(path)
 	var action_files : Array[String] = []
