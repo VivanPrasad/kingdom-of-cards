@@ -1,5 +1,6 @@
 extends Node2D
 
+var online = false
 var in_dungeon : bool = false
 @onready var light = preload("res://Scenes/Game/Objects/Light.tscn")
 
@@ -7,11 +8,11 @@ var in_dungeon : bool = false
 @onready var inventory_menu = preload("res://Scenes/UI/Menu/InventoryMenu.tscn")
 @onready var action_hud = preload("res://Scenes/UI/HUD/ActionHUD.tscn")
 @onready var market_menu = preload("res://Scenes/UI/Menu/MarketMenu.tscn")
+@onready var emote_menu = preload("res://Scenes/UI/Menu/EmoteMenu.tscn")
 @onready var game_over = preload("res://Scenes/UI/HUD/GameOver.tscn")
 
-enum menu {none=0,inventory=1,market=2,combat=3,escape=4,chat=5}
+enum menu {none=0,inventory=1,market=2,combat=3,escape=4,chat=5,emote=6}
 @export var current_menu : int = menu.none
-
 
 var lights = []
 var lights_pos = [] #positions of all lights
@@ -29,7 +30,6 @@ func _started(): # worldLoad mod hook
 	for hm in hooked_mods:
 		if hooked_mods.get(hm) == "worldLoad":
 			ModExec.runMod(hm, self)
-			
 func addMod(modInformation, hook):
 	print("[KOCM/ModLoader] Adding mod to World hook...")
 	hooked_mods.merge({modInformation["file"]: hook})
@@ -42,6 +42,7 @@ func _ready():
 	var wlm = moddingScript.getModsByRuntime("worldLoad")
 	for mod in wlm:
 		addMod(mod, "worldLoad")
+	
 func instance_lights():
 	var cell_data
 	for i in $Dungeon.get_layers_count():
@@ -92,6 +93,7 @@ func toggle_lights(is_on : bool):
 				child.get_child(0).get_child(0).play("Gate")
 			else:
 				child.get_child(0).get_child(0).play_backwards("Gate")
+
 func dungeon(): #flips state
 	$Entities/Player.layer = in_dungeon
 	in_dungeon = !in_dungeon
@@ -118,7 +120,6 @@ func handle_menu():
 		current_menu = menu.combat
 	elif current_menu == menu.combat:
 		current_menu = menu.none
-	
 	if current_menu != menu.inventory:
 		if get_node_or_null("UI/InventoryMenu") != null:
 			$UI/InventoryMenu.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxtcig140w6k4"]
+[gd_scene load_steps=5 format=3 uid="uid://bxtcig140w6k4"]
 
 [ext_resource type="Script" path="res://Data/Game/Time.gd" id="1_0fj23"]
 
@@ -7,6 +7,11 @@ font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_nmtap"]
 font_size = 24
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gp265"]
+properties/0/path = NodePath(".:second")
+properties/0/spawn = true
+properties/0/sync = true
 
 [node name="Time" type="Control"]
 layout_mode = 3
@@ -34,3 +39,7 @@ label_settings = SubResource("LabelSettings_tnc71")
 layout_mode = 2
 text = "6 am"
 label_settings = SubResource("LabelSettings_nmtap")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.25
+replication_config = SubResource("SceneReplicationConfig_gp265")

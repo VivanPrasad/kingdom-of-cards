@@ -13,7 +13,6 @@ var direction = Vector2.ZERO
 var locations
 func _ready():
 	$Sprite2D.texture = load(str("res://Assets/Game/Entities/Player/player" + str(randi() % 4 + 1)+".png"))
-	
 
 func _physics_process(_delta):
 	if player.layer == layer:
@@ -34,7 +33,6 @@ func _physics_process(_delta):
 	
 	velocity = direction.normalized() * 100
 	move_and_slide()
-	
 	
 func handle_time(): 
 	pass

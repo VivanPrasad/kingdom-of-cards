@@ -131,8 +131,49 @@ font_size = 32
 font_color = Color(0.596078, 0.654902, 0.686275, 1)
 shadow_size = 8
 
+[sub_resource type="Animation" id="Animation_61h2r"]
+resource_name = "FadeOut"
+length = 0.3
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.196078, 0.0784314, 0.160784, 0), Color(0.117647, 0.054902, 0.113725, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.28, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 0, 0, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_j4nqh"]
-resource_name = "Fade"
+resource_name = "IntroFade"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -148,53 +189,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect/TextureRect:modulate")
+tracks/1/path = NodePath("ColorRect:mouse_filter")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ColorRect:mouse_filter")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 2]
 }
-
-[sub_resource type="Animation" id="Animation_61h2r"]
-resource_name = "GameFade"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0.196078, 0.0784314, 0.160784, 0), Color(0.117647, 0.054902, 0.113725, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:mouse_filter")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_wix0r"]
@@ -214,32 +228,32 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect/TextureRect:modulate")
+tracks/1/path = NodePath("ColorRect:mouse_filter")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ColorRect:mouse_filter")
+tracks/2/path = NodePath("ColorRect/TextureRect:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wdavh"]
 _data = {
-"Fade": SubResource("Animation_j4nqh"),
-"GameFade": SubResource("Animation_61h2r"),
+"FadeOut": SubResource("Animation_61h2r"),
+"IntroFade": SubResource("Animation_j4nqh"),
 "RESET": SubResource("Animation_wix0r")
 }
 
@@ -317,6 +331,7 @@ theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1
 theme_override_constants/outline_size = 32
 theme_override_fonts/font = ExtResource("4_mssn7")
 theme_override_font_sizes/font_size = 40
+disabled = true
 text = "Settings"
 flat = true
 alignment = 0
@@ -331,6 +346,7 @@ theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1
 theme_override_constants/outline_size = 32
 theme_override_fonts/font = ExtResource("4_mssn7")
 theme_override_font_sizes/font_size = 40
+disabled = true
 text = "Collection"
 flat = true
 alignment = 0
@@ -361,7 +377,7 @@ size_flags_vertical = 8
 text = "proto_1"
 label_settings = SubResource("LabelSettings_u66ke")
 
-[node name="Panda" type="Label" parent="."]
+[node name="Edition" type="Label" parent="."]
 layout_mode = 0
 offset_left = 1159.0
 offset_top = 619.0
@@ -369,7 +385,7 @@ offset_right = 1365.0
 offset_bottom = 658.0
 size_flags_horizontal = 10
 size_flags_vertical = 8
-text = "Panda's Edition"
+text = "Sahil's Edition"
 label_settings = SubResource("LabelSettings_u66ke")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -384,6 +400,7 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -395,7 +412,6 @@ texture = ExtResource("5_3skeg")
 stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Fade"
 libraries = {
 "": SubResource("AnimationLibrary_wdavh")
 }

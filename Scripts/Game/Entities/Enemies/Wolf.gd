@@ -38,6 +38,8 @@ func _physics_process(_delta):
 		player.hurt()
 		attack_cooldown()
 	
+	#print("on_cooldown:" + str(on_cooldown))
+	#print("touching_player:" + str(touching_player))
 	check_surroundings()
 
 func check_surroundings():
@@ -47,13 +49,13 @@ func check_surroundings():
 				player.enemies.append(self)
 			agent.target_position = player.position
 		else:
+			await get_tree().create_timer(1.0).timeout
 			if self in player.enemies:
 				player.enemies.erase(self)
-		await get_tree().create_timer(0.5).timeout
 
 func attack_cooldown():
 	on_cooldown = true
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1.0).timeout
 	on_cooldown = false
 
 func _on_area_2d_body_entered(body):
