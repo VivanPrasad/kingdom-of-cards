@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://g0nn0ur2q0hs"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Menu/MarketMenu.gd" id="1_70j2g"]
+[ext_resource type="Script" path="res://Scripts/UI/Menu/MarketMenu.gd" id="1_i1k1s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ni3aj"]
 font_size = 64
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_70j2g")
+script = ExtResource("1_i1k1s")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

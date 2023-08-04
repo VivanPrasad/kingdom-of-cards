@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://vge52thnrp68"]
+[gd_scene load_steps=78 format=3 uid="uid://vge52thnrp68"]
 
 [ext_resource type="Script" path="res://Scripts/Game/MultiplayerTest.gd" id="1_y4hci"]
 [ext_resource type="PackedScene" uid="uid://dsl2ejw2wvw4b" path="res://Scenes/Game/OnlinePlayer.tscn" id="2_wqtoo"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://hfsfdnpe02d2" path="res://Scenes/Game/Objects/Markets/BankDesk.tscn" id="8_syuj2"]
 [ext_resource type="PackedScene" uid="uid://be6b75mcrotuj" path="res://Scenes/Game/Objects/Markets/ItemMarket.tscn" id="9_oomt3"]
 [ext_resource type="PackedScene" uid="uid://bkit43tirbeg8" path="res://Scenes/Game/Objects/Markets/FoodMarket.tscn" id="10_5iqo8"]
+[ext_resource type="PackedScene" uid="uid://c4q10lqua2k5" path="res://Scenes/UI/Menu/MultiplayerMenu.tscn" id="13_xunde"]
+[ext_resource type="PackedScene" uid="uid://bpnermutitk2r" path="res://Scenes/UI/HUD/Profile.tscn" id="14_ncr7o"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_26eh4"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
@@ -3270,20 +3272,17 @@ sources/0 = SubResource("TileSetAtlasSource_76dtx")
 sources/4 = SubResource("TileSetScenesCollectionSource_h7xef")
 sources/3 = SubResource("TileSetScenesCollectionSource_4ks18")
 
-[sub_resource type="LabelSettings" id="LabelSettings_2g08e"]
-font_size = 32
-
 [sub_resource type="Animation" id="Animation_huhjt"]
 resource_name = "FadeIn"
-length = 0.3
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Fade:color")
+tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0.2, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.117647, 0.054902, 0.113725, 1), Color(0.117647, 0.054902, 0.113725, 0)]
@@ -3294,14 +3293,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Fade:color")
+tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(0.117647, 0.054902, 0.113725, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1yimy"]
@@ -3310,7 +3309,7 @@ _data = {
 "RESET": SubResource("Animation_1mxmj")
 }
 
-[node name="MultiplayerTest" type="Node2D"]
+[node name="World" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_y4hci")
@@ -3344,212 +3343,34 @@ layer_2/tile_data = PackedInt32Array(-65534, 2, 8, -524280, 2, 8, -327682, 2, 8,
 _spawnable_scenes = PackedStringArray("res://Scenes/Game/OnlinePlayer.tscn")
 spawn_path = NodePath("..")
 
+[node name="HUD" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Profile" parent="HUD" instance=ExtResource("14_ncr7o")]
+mouse_filter = 1
+
 [node name="UI" type="CanvasLayer" parent="."]
-
-[node name="MainMenu" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="UI/MainMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.72549, 0.2, 0.498039, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -212.0
-offset_top = -162.0
-offset_right = 212.0
-offset_bottom = 162.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 32
-
-[node name="Title" type="Label" parent="UI/MainMenu/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Multiplayer Test"
-label_settings = SubResource("LabelSettings_2g08e")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TabContainer" type="TabContainer" parent="UI/MainMenu/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Host Game" type="CenterContainer" parent="UI/MainMenu/VBoxContainer/TabContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu/VBoxContainer/TabContainer/Host Game"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainMenu/VBoxContainer/TabContainer/Host Game/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Label" type="Label" parent="UI/MainMenu/VBoxContainer/TabContainer/Host Game/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Enter Public IP"
-
-[node name="HostIP" type="LineEdit" parent="UI/MainMenu/VBoxContainer/TabContainer/Host Game/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "192.168.1.92"
-placeholder_text = "192.168.1.92"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MainMenu/VBoxContainer/TabContainer/Host Game/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Label" type="Label" parent="UI/MainMenu/VBoxContainer/TabContainer/Host Game/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Enter Port"
-
-[node name="Port" type="LineEdit" parent="UI/MainMenu/VBoxContainer/TabContainer/Host Game/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "25565"
-placeholder_text = "25565"
-
-[node name="Host" type="Button" parent="UI/MainMenu/VBoxContainer/TabContainer/Host Game/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-text = "Host Game"
-
-[node name="Join Game" type="CenterContainer" parent="UI/MainMenu/VBoxContainer/TabContainer"]
+process_mode = 3
 visible = false
-layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu/VBoxContainer/TabContainer/Join Game"]
-layout_mode = 2
-theme_override_constants/separation = 16
+[node name="MultiplayerMenu" parent="UI" instance=ExtResource("13_xunde")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainMenu/VBoxContainer/TabContainer/Join Game/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Label" type="Label" parent="UI/MainMenu/VBoxContainer/TabContainer/Join Game/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Enter Server IP"
-
-[node name="JoinIP" type="LineEdit" parent="UI/MainMenu/VBoxContainer/TabContainer/Join Game/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "23.16.130.237"
-placeholder_text = "23.16.130.237"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MainMenu/VBoxContainer/TabContainer/Join Game/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Label" type="Label" parent="UI/MainMenu/VBoxContainer/TabContainer/Join Game/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Enter Server Port"
-
-[node name="Port" type="LineEdit" parent="UI/MainMenu/VBoxContainer/TabContainer/Join Game/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "25565"
-placeholder_text = "25565"
-
-[node name="Join" type="Button" parent="UI/MainMenu/VBoxContainer/TabContainer/Join Game/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "Join Game"
-
-[node name="Settings" type="CenterContainer" parent="UI/MainMenu/VBoxContainer/TabContainer"]
+[node name="Fade" type="CanvasLayer" parent="."]
+process_mode = 3
 visible = false
-layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu/VBoxContainer/TabContainer/Settings"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainMenu/VBoxContainer/TabContainer/Settings/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Label" type="Label" parent="UI/MainMenu/VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Enter Name"
-
-[node name="Name" type="LineEdit" parent="UI/MainMenu/VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Guest"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MainMenu/VBoxContainer/TabContainer/Settings/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Label" type="Label" parent="UI/MainMenu/VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "V-Sync            "
-
-[node name="CheckBox" type="CheckBox" parent="UI/MainMenu/VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-
-[node name="Version" type="Label" parent="UI/MainMenu"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -59.0
-offset_top = -34.0
-offset_right = -4.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "8.3.23"
-
-[node name="Info" type="Label" parent="UI/MainMenu"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = -32.0
-offset_right = 356.0
-offset_bottom = -6.0
-grow_vertical = 0
-text = "Multiplayer Framework"
-
-[node name="Fade" type="ColorRect" parent="UI"]
+[node name="Fade" type="ColorRect" parent="Fade"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -2.0
-offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0.117647, 0.054902, 0.113725, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fade"]
+root_node = NodePath("../Fade")
 autoplay = "FadeIn"
 libraries = {
 "": SubResource("AnimationLibrary_1yimy")
 }
-
-[connection signal="pressed" from="UI/MainMenu/VBoxContainer/TabContainer/Host Game/VBoxContainer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="UI/MainMenu/VBoxContainer/TabContainer/Join Game/VBoxContainer/Join" to="." method="_on_join_pressed"]

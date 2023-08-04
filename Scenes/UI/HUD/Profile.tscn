@@ -30,6 +30,7 @@ scale = Vector2(8, 8)
 texture = ExtResource("3_c1ig0")
 hframes = 5
 vframes = 5
+frame = 4
 
 [node name="Armour" type="Sprite2D" parent="."]
 position = Vector2(1264, 648)
@@ -44,3 +45,4 @@ position = Vector2(1232, 668)
 scale = Vector2(8, 8)
 texture = ExtResource("2_htsut")
 hframes = 3
+frame = 2

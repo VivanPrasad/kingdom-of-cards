@@ -38,7 +38,7 @@ func _on_online_mouse_exited():
 func _on_online_pressed():
 	$AnimationPlayer.play_backwards("Fade")
 	await $AnimationPlayer.animation_finished
-	get_tree().change_scene_to_file("res://Scenes/Game/MultiplayerTest.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Game/OnlineWorld.tscn")
 
 
 func _on_host_pressed():

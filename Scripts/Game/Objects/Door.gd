@@ -1,6 +1,9 @@
 extends Sprite2D
 
-const animation = ["Door","Castle","Bank","Dungeon1","Dungeon2","Tailor","Blacksmith","Cabin"]; var type : int = 0
+const animation : Array[String] = ["Door","Castle","Bank","Dungeon1","Dungeon2","Tailor","Blacksmith","Cabin"]
+var type : int = 0
+
+var body_count : int = 0
 
 func _ready(): 
 	$AnimationPlayer.speed_scale = 1.25
@@ -10,15 +13,15 @@ func _ready():
 	frame = type * 7
 
 func _on_area_2d_body_entered(body):
-	if str(body.name).contains("Player"):
-		$AnimationPlayer.play(animation[type])
-	if str(body.name).contains("NPC"):
-		$AnimationPlayer.play(animation[type])
+	if body is CharacterBody2D:
+		if body_count == 0:
+			$AnimationPlayer.play(animation[type])
+		body_count += 1
 
 func _on_area_2d_body_exited(body):
-	if str(body.name).contains("Player"): 
-		$AnimationPlayer.play_backwards(animation[type])
-	if str(body.name).contains("NPC"):
+	if body is CharacterBody2D:
+		body_count -= 1
+	if not body_count:
 		$AnimationPlayer.play_backwards(animation[type])
 
 ### I Had to make a custom set of doors for the tileset

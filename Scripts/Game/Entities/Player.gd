@@ -24,29 +24,25 @@ func _ready():
 	velocity = Vector2.ZERO
 	$Sprite2D.texture = load(str("res://Assets/Game/Entities/Player/player" + str(randi() % 4 + 1)+".png"))
 	update_HUD()
-	
-	if is_multiplayer_authority():
-		$Camera2D.enabled = true
-		
-		
+	$Camera2D.enabled = true
+
 func _process(_delta):
 	check_combat()
-	if is_multiplayer_authority():
-		if world.current_menu == 0 or world.current_menu == 3: #0 = menu.none
-			var input_vector = Vector2(
-						Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
-						Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-					).normalized()
-			if input_vector != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
-				$AnimationTree.set("parameters/Idle/blend_position", input_vector)
-				$AnimationTree.set("parameters/Run/blend_position", input_vector)
-				$AnimationTree.get("parameters/playback").travel("Run")
-			else:
-				$AnimationTree.get("parameters/playback").travel("Idle")
-			velocity = input_vector * speed
-			move_and_slide()
+	if world.current_menu == 0 or world.current_menu == 3: #0 = menu.none
+		var input_vector = Vector2(
+				Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
+				Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+				).normalized()
+		if input_vector != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
+			$AnimationTree.set("parameters/Idle/blend_position", input_vector)
+			$AnimationTree.set("parameters/Run/blend_position", input_vector)
+			$AnimationTree.get("parameters/playback").travel("Run")
 		else:
 			$AnimationTree.get("parameters/playback").travel("Idle")
+		velocity = input_vector * speed
+		move_and_slide()
+	else:
+		$AnimationTree.get("parameters/playback").travel("Idle")
 	
 func effect(data): #data = [type, value, time (s)] #if data[0]
 	var type = data[0]; var value = data[1]; var time = data[2]

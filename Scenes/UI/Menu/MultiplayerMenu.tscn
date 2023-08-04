@@ -1,0 +1,399 @@
+[gd_scene load_steps=24 format=3 uid="uid://c4q10lqua2k5"]
+
+[ext_resource type="Texture2D" uid="uid://bhgmleinj4te5" path="res://Assets/UI/Menu/background.png" id="1_cndxx"]
+[ext_resource type="Script" path="res://Scripts/UI/Menu/MultiplayerMenu.gd" id="1_epslo"]
+[ext_resource type="FontVariation" uid="uid://diqtfxvgb4nnc" path="res://Assets/Fonts/royal-intonation.tres" id="3_x0d4g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dg25"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04vea"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nldk7"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5sa8"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kovdw"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(2560, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63ymb"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(3200, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p85sv"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(3840, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6evr7"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(4480, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ucr4"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(5120, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1lh5"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(5760, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw557"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(6400, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4fji"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(7040, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmyj4"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(7680, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6frr"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(8320, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i58c"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(8960, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u2j3"]
+atlas = ExtResource("1_cndxx")
+region = Rect2(9600, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8vqf6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dg25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04vea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nldk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5sa8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kovdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63ymb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p85sv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6evr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ucr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1lh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vw557")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4fji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmyj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6frr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i58c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u2j3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2g08e"]
+font_size = 64
+font_color = Color(0.909804, 0.854902, 1, 1)
+outline_size = 32
+outline_color = Color(0.196078, 0.101961, 0.172549, 1)
+
+[sub_resource type="InputEventKey" id="InputEventKey_w23hc"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_oxsvi"]
+events = [SubResource("InputEventKey_w23hc")]
+
+[node name="MultiplayerMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_epslo")
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.25, 2.002)
+sprite_frames = SubResource("SpriteFrames_8vqf6")
+autoplay = "default"
+centered = false
+
+[node name="Tint" type="ColorRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.980392)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0, 0.219608, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -402.0
+offset_top = -265.0
+offset_right = 481.0
+offset_bottom = 265.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Kingdom Online"
+label_settings = SubResource("LabelSettings_2g08e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_selected_color = Color(0.596078, 0.658824, 1, 1)
+theme_override_colors/font_unselected_color = Color(0.901961, 0.933333, 0.92549, 1)
+theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+
+[node name="Settings" type="CenterContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Settings"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Enter Name"
+
+[node name="Name" type="LineEdit" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Guest"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TabContainer/Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "V-Sync            "
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/TabContainer/Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "FPS"
+
+[node name="Name" type="Label" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer3"]
+modulate = Color(0.678431, 0.678431, 0.678431, 1)
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 32
+text = "60"
+
+[node name="Join Game" type="CenterContainer" parent="VBoxContainer/TabContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Join Game"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Join Game/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Join Game/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Enter Server IP"
+
+[node name="JoinIP" type="LineEdit" parent="VBoxContainer/TabContainer/Join Game/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "23.16.130.237"
+placeholder_text = "23.16.130.237"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TabContainer/Join Game/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Join Game/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Enter Port"
+
+[node name="Port" type="LineEdit" parent="VBoxContainer/TabContainer/Join Game/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "25565"
+placeholder_text = "25565"
+
+[node name="Join" type="Button" parent="VBoxContainer/TabContainer/Join Game/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.733333, 0.615686, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Join Game"
+
+[node name="Host Game" type="CenterContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Host Game"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Host Game/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Host Game/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Enter Local IP"
+
+[node name="HostIP" type="LineEdit" parent="VBoxContainer/TabContainer/Host Game/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "192.168.1.92"
+placeholder_text = "192.168.1.92"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TabContainer/Host Game/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Host Game/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Enter Port"
+
+[node name="Port" type="LineEdit" parent="VBoxContainer/TabContainer/Host Game/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "25565"
+placeholder_text = "25565"
+
+[node name="Host" type="Button" parent="VBoxContainer/TabContainer/Host Game/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.14902, 0.580392, 0.635294, 1)
+theme_override_font_sizes/font_size = 32
+shortcut = SubResource("Shortcut_oxsvi")
+text = "Host Game"
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -59.0
+offset_top = -34.0
+offset_right = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "8.3.23"
+
+[node name="Info" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -32.0
+offset_right = 355.0
+offset_bottom = -6.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Multiplayer Framework for Kingdom of Cards
+Created by M. V. Prasad"
+
+[node name="Back" type="Button" parent="."]
+offset_left = 20.0
+offset_top = 21.0
+offset_right = 108.0
+offset_bottom = 74.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.796078, 0.74902, 0.87451, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.847059, 0.521569, 1)
+theme_override_colors/font_hover_color = Color(0.596078, 0.658824, 1, 1)
+theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("3_x0d4g")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+flat = true
+alignment = 0
+
+[connection signal="mouse_entered" from="Back" to="." method="_on_back_mouse_entered"]
+[connection signal="mouse_exited" from="Back" to="." method="_on_back_mouse_exited"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

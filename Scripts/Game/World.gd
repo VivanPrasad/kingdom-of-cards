@@ -5,10 +5,10 @@ var in_dungeon : bool = false
 @onready var light = preload("res://Scenes/Game/Objects/Light.tscn")
 
 # UI Menu Instancing
-@onready var inventory_menu = preload("res://Scenes/UI/Menu/InventoryMenu.tscn")
+@onready var inventory_menu = preload("res://Scenes/UI/Menu/In-Game/InventoryMenu.tscn")
 @onready var action_hud = preload("res://Scenes/UI/HUD/ActionHUD.tscn")
-@onready var market_menu = preload("res://Scenes/UI/Menu/MarketMenu.tscn")
-@onready var emote_menu = preload("res://Scenes/UI/Menu/EmoteMenu.tscn")
+@onready var market_menu = preload("res://Scenes/UI/Menu/In-Game/MarketMenu.tscn")
+@onready var emote_menu = preload("res://Scenes/UI/Menu/In-Game/EmoteMenu.tscn")
 @onready var game_over = preload("res://Scenes/UI/HUD/GameOver.tscn")
 
 enum menu {none=0,inventory=1,market=2,combat=3,escape=4,chat=5,emote=6}
