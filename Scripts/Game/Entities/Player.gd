@@ -48,21 +48,21 @@ func effect(data): #data = [type, value, time (s)] #if data[0]
 	var type = data[0]; var value = data[1]; var time = data[2]
 	if type == "speed":
 		speed = value + 10
-		$"../../UI/Chat".addMessage("Debug","Gave speed effect, increasing speed to " + str(value) + " for " + str(time) + " seconds.")
+		$"../../HUD/Chat".addMessage("Debug","Gave speed effect, increasing speed to " + str(value) + " for " + str(time) + " seconds.")
 		await get_tree().create_timer(time).timeout
-		$"../../UI/Chat".addMessage("Debug","Effect ended")
+		$"../../HUD/Chat".addMessage("Debug","Effect ended")
 		speed = base_speed
 	elif type == "immune":
 		var previous_state = status
 		status = state.potion
 		update_HUD()
-		$"../../UI/Chat".addMessage("Debug","Gave immunity for " + str(time) + " seconds.")
+		$"../../HUD/Chat".addMessage("Debug","Gave immunity for " + str(time) + " seconds.")
 		await get_tree().create_timer(time).timeout
-		$"../../UI/Chat".addMessage("Debug","Effect ended")
+		$"../../HUD/Chat".addMessage("Debug","Effect ended")
 		status = previous_state
 		update_HUD()
 func eat(value):
-	$"../../UI/Chat".addMessage("Debug","You ate something and restored" + str(value) + "hunger")
+	$"../../HUD/Chat".addMessage("Debug","You ate something and restored" + str(value) + "hunger")
 	print(value)
 	for times in value:
 		if hunger < 2:
@@ -87,13 +87,13 @@ func hurt():
 		
 func update_HUD():
 	if life <= 4:
-		$"../../UI/Profile/Life".frame = (life+1) * (status+1) -1
-		$"../../UI/Profile/Armour".frame = 15
+		$"../../HUD/Profile/Life".frame = (life+1) * (status+1) -1
+		$"../../HUD/Profile/Armour".frame = 15
 	else:
-		$"../../UI/Profile/Armour".frame = (life - 4) * 5
-		$"../../UI/Profile/Life".frame = 3
+		$"../../HUD/Profile/Armour".frame = (life - 4) * 5
+		$"../../HUD/Profile/Life".frame = 3
 	
-	$"../../UI/Profile/Hunger".frame = hunger
+	$"../../HUD/Profile/Hunger".frame = hunger
 
 func _on_timer_timeout():
 	effect(["clear",0,0])

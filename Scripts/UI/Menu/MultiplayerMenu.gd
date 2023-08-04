@@ -18,7 +18,6 @@ func _physics_process(_delta):
 	join_button.disabled = bool(len(join_ip_line.text) == 0 or not join_port_line.text.is_valid_int())
 	multiplayer_world.player_name = player_name_line.text
 
-
 func _on_back_pressed():
 	$"../../Fade/AnimationPlayer".play_backwards("FadeIn")
 	await $"../../Fade/AnimationPlayer".animation_finished

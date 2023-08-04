@@ -7,7 +7,7 @@ var time
 
 func _ready() -> void:
 	if layer == 1: enabled = false
-	time = $"/root/World/UI/Time"
+	time = $"/root/World/HUD/Time"
 	await get_tree().create_timer(randf_range(0.01,2.00)).timeout
 	$AnimationPlayer.play("Flicker")
 

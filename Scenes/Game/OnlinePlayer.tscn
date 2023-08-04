@@ -449,10 +449,12 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(-1, -25)
 scale = Vector2(2, 2)
 texture = ExtResource("3_hbpac")
-hframes = 8
-vframes = 10
+hframes = 6
+vframes = 14
 
 [node name="EmotePlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ccxs2")
 }
+
+[node name="UI" type="CanvasLayer" parent="."]

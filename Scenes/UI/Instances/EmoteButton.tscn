@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0d64h1p72ydt"]
+
+[ext_resource type="Texture2D" uid="uid://cnfivsntb6765" path="res://Assets/UI/HUD/emotes.png" id="1_0yuba"]
+[ext_resource type="Script" path="res://Scripts/UI/Menu/Instances/EmoteButton.gd" id="1_yehxr"]
+
+[node name="EmoteButton" type="Button"]
+texture_filter = 1
+custom_minimum_size = Vector2(96, 96)
+script = ExtResource("1_yehxr")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "Happy"
+horizontal_alignment = 1
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(43, 30)
+scale = Vector2(9.5, 9.5)
+texture = ExtResource("1_0yuba")
+hframes = 6
+vframes = 14
+frame = 12
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

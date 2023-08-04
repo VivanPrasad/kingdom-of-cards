@@ -5,12 +5,13 @@ var in_dungeon : bool = false
 @onready var light = preload("res://Scenes/Game/Objects/Light.tscn")
 
 # UI Menu Instancing
-@onready var inventory_menu = preload("res://Scenes/UI/Menu/In-Game/InventoryMenu.tscn")
-@onready var action_hud = preload("res://Scenes/UI/HUD/ActionHUD.tscn")
-@onready var market_menu = preload("res://Scenes/UI/Menu/In-Game/MarketMenu.tscn")
-@onready var emote_menu = preload("res://Scenes/UI/Menu/In-Game/EmoteMenu.tscn")
-@onready var game_over = preload("res://Scenes/UI/HUD/GameOver.tscn")
+@onready var inventory_menu := preload("res://Scenes/UI/Menu/In-Game/InventoryMenu.tscn")
+@onready var action_hud := preload("res://Scenes/UI/HUD/ActionHUD.tscn")
+@onready var market_menu := preload("res://Scenes/UI/Menu/In-Game/MarketMenu.tscn")
+@onready var emote_menu := preload("res://Scenes/UI/Menu/In-Game/EmoteMenu.tscn")
+@onready var game_over := preload("res://Scenes/UI/HUD/GameOver.tscn")
 
+@onready var time := $HUD/Time
 enum menu {none=0,inventory=1,market=2,combat=3,escape=4,chat=5,emote=6}
 @export var current_menu : int = menu.none
 
@@ -64,7 +65,7 @@ func instance_lights():
 func _process(_delta):
 	if not in_dungeon:
 		if $Shader/AnimationPlayer.is_playing():
-			$Shader/AnimationPlayer.seek($UI/Time.second / 3600.0,false)
+			$Shader/AnimationPlayer.seek(time.second / 3600.0,false)
 		else:
 			$Shader/AnimationPlayer.play("Cycle")
 	else:
@@ -89,7 +90,7 @@ func toggle_lights(is_on : bool):
 	#TEMP GATE STATES
 	for child in $Surface.get_children():
 		if str(child.name).contains("Gate"):
-			if $UI/Time.hour == 8:
+			if time.hour == 8:
 				child.get_child(0).get_child(0).play("Gate")
 			else:
 				child.get_child(0).get_child(0).play_backwards("Gate")
@@ -121,31 +122,31 @@ func handle_menu():
 	elif current_menu == menu.combat:
 		current_menu = menu.none
 	if current_menu != menu.inventory:
-		if get_node_or_null("UI/InventoryMenu") != null:
-			$UI/InventoryMenu.queue_free()
+		if get_node_or_null("HUD/InventoryMenu") != null:
+			$HUD/InventoryMenu.queue_free()
 	else:
-		if get_node_or_null("UI/InventoryMenu") == null:
-			$UI.add_child(inventory_menu.instantiate())
+		if get_node_or_null("HUD/InventoryMenu") == null:
+			$HUD.add_child(inventory_menu.instantiate())
 	
 	if current_menu != menu.market:
-		if get_node_or_null("UI/MarketMenu") != null:
-			$UI/MarketMenu.queue_free()
+		if get_node_or_null("HUD/MarketMenu") != null:
+			$HUD/MarketMenu.queue_free()
 	else:
-		if get_node_or_null("UI/MarketMenu") == null:
-			$UI.add_child(market_menu.instantiate())
+		if get_node_or_null("HUD/MarketMenu") == null:
+			$HUD.add_child(market_menu.instantiate())
 	if current_menu != menu.combat:
-		if get_node_or_null("UI/ActionHUD") != null:
-			$UI/ActionHUD.queue_free()
+		if get_node_or_null("HUD/ActionHUD") != null:
+			$HUD/ActionHUD.queue_free()
 	else:
-		if get_node_or_null("UI/ActionHUD") == null:
-			$UI.add_child(action_hud.instantiate())
+		if get_node_or_null("HUD/ActionHUD") == null:
+			$HUD.add_child(action_hud.instantiate())
 	
 	if current_menu != menu.chat:
-		$UI/Chat.isInputActive = false
-		$UI/Chat/ChatWindow.visible = false
+		$HUD/Chat.isInputActive = false
+		$HUD/Chat/ChatWindow.visible = false
 	else:
-		$UI/Chat.isInputActive = true
-		$UI/Chat/ChatWindow.visible = true
+		$HUD/Chat.isInputActive = true
+		$HUD/Chat/ChatWindow.visible = true
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("interact"): #Just inv menu for now... will need to make a handler later

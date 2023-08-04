@@ -1,9 +1,64 @@
-[gd_scene format=3 uid="uid://dv45klosu10id"]
+[gd_scene load_steps=3 format=3 uid="uid://dv45klosu10id"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menu/In-Game/EmoteMenu.gd" id="1_rsm3j"]
+[ext_resource type="PackedScene" uid="uid://b0d64h1p72ydt" path="res://Scenes/UI/Instances/EmoteButton.tscn" id="2_v1jiu"]
 
 [node name="EmoteMenu" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_rsm3j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.239216)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -408.0
+offset_top = -256.0
+offset_right = 408.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 6
+
+[node name="EmoteButton" parent="CenterContainer/GridContainer" instance=ExtResource("2_v1jiu")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = -137.0
+offset_right = 114.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Choose an emote"
+horizontal_alignment = 1
+vertical_alignment = 1

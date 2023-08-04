@@ -40,10 +40,8 @@ func _on_collection_mouse_exited():
 func _on_quit_mouse_entered():
 	$Options/Quit.text = "~ Quit"
 
-
 func _on_quit_mouse_exited():
 	$Options/Quit.text = "Quit"
-
 
 func _on_play_pressed():
 	$AnimationPlayer.play("FadeOut")
