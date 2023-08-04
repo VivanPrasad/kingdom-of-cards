@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Kingdom of Cards"
-config/tags=PackedStringArray("hiatus")
+config/tags=PackedStringArray("in_progress")
 run/main_scene="res://Scenes/UI/Title.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 run/max_fps=60
