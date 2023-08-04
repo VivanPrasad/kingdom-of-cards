@@ -36,7 +36,9 @@ func _on_online_mouse_exited():
 	$Options/Online.text = "Online"
 
 func _on_online_pressed():
-	$Control.visible = true
+	$AnimationPlayer.play_backwards("Fade")
+	await $AnimationPlayer.animation_finished
+	get_tree().change_scene_to_file("res://Scenes/Game/MultiplayerTest.tscn")
 
 
 func _on_host_pressed():

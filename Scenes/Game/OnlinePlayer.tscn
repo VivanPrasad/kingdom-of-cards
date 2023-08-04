@@ -1,10 +1,55 @@
-[gd_scene load_steps=34 format=3 uid="uid://bxbor0a6xjb8k"]
+[gd_scene load_steps=31 format=3 uid="uid://dsl2ejw2wvw4b"]
 
-[ext_resource type="Script" path="res://Scripts/Game/Entities/Player.gd" id="1_pdfi5"]
-[ext_resource type="Texture2D" uid="uid://cg5ul4ok6hwpc" path="res://Assets/Game/Entities/Player/player2.png" id="2_j3dxq"]
+[ext_resource type="Script" path="res://Scripts/Game/OnlinePlayer.gd" id="1_4878t"]
+[ext_resource type="Texture2D" uid="uid://dsfcdqy357ixp" path="res://Assets/Game/Entities/Player/player1.png" id="2_hq5xo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xuld3"]
-size = Vector2(10, 1.6)
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nhurb"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("Name:text")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("Sprite2D:frame")
+properties/2/spawn = true
+properties/2/sync = true
+
+[sub_resource type="Animation" id="Animation_kkdni"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gx4c6"]
+resource_name = "Zoom Load"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(0.9, 0.9), Vector2(3, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8veyy"]
+_data = {
+"RESET": SubResource("Animation_kkdni"),
+"Zoom Load": SubResource("Animation_gx4c6")
+}
 
 [sub_resource type="Animation" id="Animation_d7462"]
 resource_name = "D Run"
@@ -218,7 +263,7 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_v2lnx"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ova3r"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_abv4t"]
 states/End/position = Vector2(756, 100)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_w2cx0")
 states/Idle/position = Vector2(408, 100)
@@ -226,127 +271,37 @@ states/Run/node = SubResource("AnimationNodeBlendSpace2D_fltto")
 states/Run/position = Vector2(635, 100)
 states/Sleep/node = SubResource("AnimationNodeBlendSpace2D_v2lnx")
 states/Sleep/position = Vector2(489, 231)
-graph_offset = Vector2(79, 2)
+graph_offset = Vector2(-97, -33)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_kk704"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_6g8d4"]
 
-[sub_resource type="Animation" id="Animation_kkdni"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7f2r"]
+size = Vector2(20, 4)
 
-[sub_resource type="Animation" id="Animation_gx4c6"]
-resource_name = "Zoom Load"
-length = 2.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:zoom")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.9, 0.9), Vector2(0.9, 0.9), Vector2(3, 3)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8veyy"]
-_data = {
-"RESET": SubResource("Animation_kkdni"),
-"Zoom Load": SubResource("Animation_gx4c6")
-}
-
-[sub_resource type="Animation" id="Animation_ke4cv"]
-resource_name = "Hurt"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(3.73213, 1),
-"update": 0,
-"values": [Color(2, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(2, 0, 0, 0.313726), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_6m0ce"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_x2ow1"]
-_data = {
-"Hurt": SubResource("Animation_ke4cv"),
-"RESET": SubResource("Animation_6m0ce")
-}
-
-[sub_resource type="LabelSettings" id="LabelSettings_31ql6"]
-font_size = 8
-
-[node name="Player" type="CharacterBody2D"]
+[node name="OnlinePlayer" type="CharacterBody2D"]
 texture_filter = 1
-position = Vector2(20, 10)
-scale = Vector2(2, 2)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("1_pdfi5")
+position = Vector2(56, 176)
+collision_mask = 2
+script = ExtResource("1_4878t")
+
+[node name="Name" type="Label" parent="."]
+offset_left = -38.0
+offset_top = -27.0
+offset_right = 114.0
+offset_bottom = -1.0
+scale = Vector2(0.5, 0.5)
+text = "Guest"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_j3dxq")
+scale = Vector2(2, 2)
+texture = ExtResource("2_hq5xo")
 offset = Vector2(-1, -1)
 hframes = 46
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.47035e-08, 0.8)
-shape = SubResource("RectangleShape2D_xuld3")
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nhurb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
@@ -358,62 +313,26 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_q8573")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_ova3r")
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_kk704")
-parameters/Idle/blend_position = Vector2(-0.00116688, 0.956332)
-parameters/Run/blend_position = Vector2(0.00224721, 0.00436687)
-parameters/Sleep/blend_position = Vector2(0, 0)
-
 [node name="Camera" type="AnimationPlayer" parent="."]
 autoplay = "Zoom Load"
 libraries = {
 "": SubResource("AnimationLibrary_8veyy")
 }
 
-[node name="EffectTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Hurt" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_x2ow1")
+"": SubResource("AnimationLibrary_q8573")
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = 2
-offset_left = -360.0
-offset_top = -200.0
-offset_right = 360.0
-offset_bottom = 164.0
-color = Color(1, 1, 1, 0)
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_abv4t")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_6g8d4")
+parameters/Idle/blend_position = Vector2(-0.00116688, 0.956332)
+parameters/Run/blend_position = Vector2(0.00224721, 0.00436687)
+parameters/Sleep/blend_position = Vector2(0, 0)
 
-[node name="Emote" type="Sprite2D" parent="."]
-
-[node name="EmotePlayer" type="AnimationPlayer" parent="."]
-
-[node name="Name" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -13.5
-offset_right = 30.0
-offset_bottom = -1.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-text = "Guest"
-label_settings = SubResource("LabelSettings_31ql6")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="timeout" from="EffectTimer" to="." method="_on_timer_timeout"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_j7f2r")

@@ -27,7 +27,6 @@ func _ready():
 	
 	if is_multiplayer_authority():
 		$Camera2D.enabled = true
-		$Name.text = Multiplayer.player_name
 		
 		
 func _process(_delta):

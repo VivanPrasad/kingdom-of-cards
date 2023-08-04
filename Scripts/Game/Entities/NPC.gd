@@ -37,6 +37,7 @@ func _physics_process(_delta):
 func handle_time(): 
 	pass
 func _on_timer_timeout(): #10 second intervals to not lag the whole game
-	agent.target_position = locations[randi() % len(locations)]
-	locations.append(player.position)
+	agent.target_position = position
+	#agent.target_position = locations[randi() % len(locations)]
+	#locations.append(player.position)
 	# just wanders getting positions from the player's position

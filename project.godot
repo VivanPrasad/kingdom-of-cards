@@ -23,7 +23,6 @@ config/tags=PackedStringArray("hiatus")
 [autoload]
 
 Global="*res://Data/Game/Global.gd"
-Multiplayer="*res://Data/Game/Multiplayer.tscn"
 
 [display]
 
