@@ -1,7 +1,7 @@
-[gd_scene load_steps=151 format=3 uid="uid://vge52thnrp68"]
+[gd_scene load_steps=150 format=3 uid="uid://vge52thnrp68"]
 
 [ext_resource type="Script" path="res://Scripts/Game/MultiplayerTest.gd" id="1_y4hci"]
-[ext_resource type="PackedScene" uid="uid://41apmgaj1fk3" path="res://Scenes/Game/OnlinePlayer.tscn" id="2_xv08d"]
+[ext_resource type="PackedScene" uid="uid://41apmgaj1fk3" path="res://Scenes/Game/OnlinePlayer.tscn" id="2_ektd2"]
 [ext_resource type="PackedScene" uid="uid://evq6bnbmyoel" path="res://Scenes/Game/Objects/Door.tscn" id="3_c7tnn"]
 [ext_resource type="Texture2D" uid="uid://8g7rk7e3wu6b" path="res://Assets/Game/Tileset/ground.png" id="4_jssjr"]
 [ext_resource type="Texture2D" uid="uid://b52jw7mgm025" path="res://Assets/Game/Tileset/building.png" id="5_6a63j"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://be6b75mcrotuj" path="res://Scenes/Game/Objects/Markets/ItemMarket.tscn" id="9_oomt3"]
 [ext_resource type="PackedScene" uid="uid://bkit43tirbeg8" path="res://Scenes/Game/Objects/Markets/FoodMarket.tscn" id="10_5iqo8"]
 [ext_resource type="PackedScene" uid="uid://c4q10lqua2k5" path="res://Scenes/UI/Menu/MultiplayerMenu.tscn" id="13_xunde"]
-[ext_resource type="PackedScene" uid="uid://bpnermutitk2r" path="res://Scenes/UI/HUD/Profile.tscn" id="14_ncr7o"]
 [ext_resource type="PackedScene" uid="uid://bxtcig140w6k4" path="res://Data/Game/Time.tscn" id="15_ulm17"]
 [ext_resource type="Shader" path="res://Data/Shaders/fog.gdshader" id="17_dmbm6"]
 [ext_resource type="Texture2D" uid="uid://cyq2gmm1bnmty" path="res://icon.png" id="18_1k5m7"]
@@ -94,25 +93,13 @@ tracks/5/keys = {
 "update": 1,
 "values": [false, true]
 }
-tracks/6/type = "value"
+tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HUD/Transition:color")
+tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.45, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath(".")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0.25, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -123,37 +110,37 @@ tracks/7/keys = {
 "method": &"update_light"
 }]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Objects/Stair:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Objects/Stair:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0.25, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(-1, -1)]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Dungeon:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Dungeon:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0.25, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Surface:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Surface:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
 "times": PackedFloat32Array(0.3, 0.35),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -237,46 +224,34 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HUD/Transition:color")
+tracks/6/path = NodePath("Objects/Stair:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 0)]
+"values": [Vector2(1, 1)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Objects/Stair:scale")
+tracks/7/path = NodePath("Surface:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"update": 1,
+"values": [true]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Surface:visible")
+tracks/8/path = NodePath("Dungeon:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Dungeon:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -285,18 +260,6 @@ tracks/9/keys = {
 
 [sub_resource type="Animation" id="Animation_e763q"]
 resource_name = "Splash"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/Transition:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(0.117647, 0.054902, 0.113725, 1), Color(0.117647, 0.054902, 0.113725, 1), Color(0.117647, 0.054902, 0.113725, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eqo30"]
 _data = {
@@ -6936,7 +6899,7 @@ shader_parameter/noise = SubResource("NoiseTexture2D_a1api")
 y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_y4hci")
-player_scene = ExtResource("2_xv08d")
+player_scene = ExtResource("2_ektd2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Splash"
@@ -6998,7 +6961,7 @@ layer_2/tile_data = PackedInt32Array(-655369, 2, 8, -655365, 2, 8, -589832, 4587
 metadata/_edit_lock_ = true
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/Game/Entities/OnlinePlayer.tscn")
+_spawnable_scenes = PackedStringArray("res://Scenes/Game/OnlinePlayer.tscn")
 spawn_path = NodePath("..")
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -7006,18 +6969,6 @@ visible = false
 
 [node name="Time" parent="HUD" instance=ExtResource("15_ulm17")]
 mouse_filter = 1
-
-[node name="Profile" parent="HUD" instance=ExtResource("14_ncr7o")]
-mouse_filter = 1
-
-[node name="Transition" type="ColorRect" parent="HUD"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 0)
 
 [node name="Lobby" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -7062,7 +7013,7 @@ position = Vector2(0, 20)
 scale = Vector2(62.5, 63.125)
 texture = ExtResource("18_1k5m7")
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+[node name="LayerAnimation" type="AnimationPlayer" parent="."]
 
 [connection signal="despawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_despawned"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

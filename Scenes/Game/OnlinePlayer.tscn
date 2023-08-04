@@ -1,20 +1,21 @@
-[gd_scene load_steps=37 format=3 uid="uid://41apmgaj1fk3"]
+[gd_scene load_steps=38 format=3 uid="uid://41apmgaj1fk3"]
 
 [ext_resource type="Script" path="res://Scripts/Game/OnlinePlayer.gd" id="1_4878t"]
 [ext_resource type="Texture2D" uid="uid://dsfcdqy357ixp" path="res://Assets/Game/Entities/Player/player1.png" id="2_hq5xo"]
 [ext_resource type="Texture2D" uid="uid://cnfivsntb6765" path="res://Assets/UI/HUD/emotes.png" id="3_hbpac"]
+[ext_resource type="PackedScene" uid="uid://bpnermutitk2r" path="res://Scenes/UI/HUD/Profile.tscn" id="4_g36sg"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nhurb"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
-properties/1/path = NodePath("HBoxContainer/Name:text")
+properties/1/path = NodePath("HBoxContainer/HostIcon:visible")
 properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("HBoxContainer/HostIcon:visible")
+properties/1/sync = false
+properties/2/path = NodePath("Sprite2D:frame")
 properties/2/spawn = true
-properties/2/sync = false
-properties/3/path = NodePath("Sprite2D:frame")
+properties/2/sync = true
+properties/3/path = NodePath("Nametag/HBoxContainer/Name:text")
 properties/3/spawn = true
 properties/3/sync = true
 
@@ -376,9 +377,9 @@ replication_config = SubResource("SceneReplicationConfig_nhurb")
 
 [node name="Nametag" type="CenterContainer" parent="."]
 offset_left = -46.0
-offset_top = -29.0
+offset_top = -30.0
 offset_right = 138.0
-offset_bottom = -8.0
+offset_bottom = -9.0
 scale = Vector2(0.5, 0.5)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Nametag"]
@@ -401,7 +402,6 @@ size_flags_vertical = 8
 text = "Player"
 horizontal_alignment = 1
 vertical_alignment = 2
-visible_ratio = -0.166667
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -460,3 +460,6 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_j7f2r")
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Profile" parent="UI" instance=ExtResource("4_g36sg")]
+mouse_filter = 2

@@ -12,7 +12,9 @@ var in_dungeon : bool = false
 @onready var game_over := preload("res://Scenes/UI/HUD/GameOver.tscn")
 
 @onready var time := $HUD/Time
+
 enum menu {none=0,inventory=1,market=2,combat=3,escape=4,chat=5,emote=6}
+
 @export var current_menu : int = menu.none
 
 var lights = []

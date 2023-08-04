@@ -194,7 +194,6 @@ theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 
 [node name="Settings" type="CenterContainer" parent="VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Settings"]
@@ -250,6 +249,7 @@ theme_override_font_sizes/font_size = 32
 text = "60"
 
 [node name="Join Game" type="CenterContainer" parent="VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Join Game"]
@@ -378,6 +378,7 @@ text = "Multiplayer Framework for Kingdom of Cards
 Created by M. V. Prasad"
 
 [node name="Back" type="Button" parent="."]
+layout_mode = 0
 offset_left = 20.0
 offset_top = 21.0
 offset_right = 108.0

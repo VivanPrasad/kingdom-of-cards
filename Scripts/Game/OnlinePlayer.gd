@@ -5,17 +5,8 @@ extends CharacterBody2D
 @onready var emote := $Emotes
 @onready var emote_player := $Emotes/EmotePlayer
 
-class ello:
-	func _init(hi):
-		self.hi = hi
-	
 @onready var animation_tree := $AnimationTree
 @onready var animation_player := $AnimationPlayer
-
-@onready var name_label = $Nametag/HBoxContainer/Name
-@onready var name_icon = $Nametag/HBoxContainer/Icon
-
-@onready var player_id : String = str(self.name)
 
 @onready var UI := $UI
 const max_life : int = 4
@@ -32,32 +23,31 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
-	if player_id == "1":
-		name_icon.visible = true
+	if str(self.name) == "1":
+		$Nametag/HBoxContainer/Icon.visible = true
 	if is_multiplayer_authority():
 		$Camera.enabled = true
-		name_label.text = get_parent().player_name
+		$Nametag/HBoxContainer/Name.text = get_parent().player_name
 
 func _physics_process(_delta):
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority():	return
 	
 	var input_vector = Vector2(
 			Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 			Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 			).normalized()
-	if len(UI.get_children()):
+	if UI.has_node("EmoteMenu"):
 		input_vector = Vector2.ZERO
 	if input_vector != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
-		$AnimationTree.set("parameters/Idle/blend_position", input_vector)
-		$AnimationTree.set("parameters/Run/blend_position", input_vector)
-		$AnimationTree.get("parameters/playback").travel("Run")
+		animation_tree.set("parameters/Idle/blend_position", input_vector)
+		animation_tree.set("parameters/Run/blend_position", input_vector)
+		animation_tree.get("parameters/playback").travel("Run")
 	else:
-		$AnimationTree.get("parameters/playback").travel("Idle")
+		animation_tree.get("parameters/playback").travel("Idle")
 		
 	velocity = input_vector * speed
 	move_and_slide()
-	
-	if not is_multiplayer_authority():	return
+
 func _input(_event):
 	if not is_multiplayer_authority():	return
 	if Input.is_action_just_released("emote"):
