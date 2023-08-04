@@ -23,7 +23,7 @@ config/tags=PackedStringArray("hiatus")
 
 [autoload]
 
-Global="*res://Data/Game/Global.gd"
+Global="*res://Data/Singletons/Global.gd"
 Config="*res://Data/Config/Config.gd"
 
 [display]

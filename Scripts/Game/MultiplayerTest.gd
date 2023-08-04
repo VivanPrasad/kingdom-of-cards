@@ -4,9 +4,8 @@ var port : int
 var ip : String
 
 var peer = ENetMultiplayerPeer.new()
-@export var player_scene : PackedScene
-
-var player_name : String
+@export var player_scene : PackedScene = preload("res://Scenes/Game/Entities/OnlinePlayer.tscn")
+var player_name : String = "Guest" 
 
 @onready var host_button := $"Lobby/MultiplayerMenu/VBoxContainer/TabContainer/Host Game/VBoxContainer/Host"
 @onready var join_button := $"Lobby/MultiplayerMenu/VBoxContainer/TabContainer/Join Game/VBoxContainer/Join"
