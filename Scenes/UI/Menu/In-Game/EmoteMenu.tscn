@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dv45klosu10id"]
+[gd_scene load_steps=2 format=3 uid="uid://dv45klosu10id"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Menu/In-Game/EmoteMenu.gd" id="1_rsm3j"]
-[ext_resource type="PackedScene" uid="uid://b0d64h1p72ydt" path="res://Scenes/UI/Instances/EmoteButton.tscn" id="2_v1jiu"]
 
 [node name="EmoteMenu" type="Control"]
 texture_filter = 1
@@ -42,9 +41,6 @@ theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 6
 
-[node name="EmoteButton" parent="CenterContainer/GridContainer" instance=ExtResource("2_v1jiu")]
-layout_mode = 2
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -53,9 +49,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -114.0
-offset_top = -137.0
+offset_top = -62.0
 offset_right = 114.0
-offset_bottom = -98.0
+offset_bottom = -23.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 24

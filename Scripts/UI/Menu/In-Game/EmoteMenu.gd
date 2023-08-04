@@ -3,7 +3,7 @@ extends Control
 @onready var emote_button := preload("res://Scenes/UI/Instances/EmoteButton.tscn")
 
 const emote_name : Array[String] = [
-	"Happy","Meh","Sad","Look","HI","OK","Bread","Banana","Berries","Eaten","Skull","Medicine","No","Yes","Gold","Good","Ill","Immune","Servant","Guard","Farmer","Miner","Fisher","Logger","Sus","Sus2","Hehe",":3","Flush","Poop"]
+	"Happy","Meh","Sad","Look","HI","OK","Bread","Banana","Berries","Eaten","Skull","Medicine","No","Yes","Gold","Good","Ill","Immune","Servant","Guard","Farmer","Miner","Fisher","Logger","Sus","Ayo","Hehe",":3","Flushed","Poopy"]
 const emote_range = [0,]
 @onready var container := $CenterContainer/GridContainer
 func _ready():

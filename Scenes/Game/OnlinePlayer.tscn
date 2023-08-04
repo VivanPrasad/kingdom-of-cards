@@ -446,8 +446,8 @@ shape = SubResource("RectangleShape2D_j7f2r")
 
 [node name="Emotes" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(-1, -25)
-scale = Vector2(2, 2)
+position = Vector2(-1, -29)
+scale = Vector2(3, 3)
 texture = ExtResource("3_hbpac")
 hframes = 6
 vframes = 14
