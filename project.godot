@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="Kingdom of Cards"
+config/tags=PackedStringArray("hiatus")
 run/main_scene="res://Scenes/UI/Title.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+config/features=PackedStringArray("4.1", "Forward Plus")
 run/max_fps=60
 boot_splash/bg_color=Color(0.117647, 0.054902, 0.113725, 1)
 boot_splash/image="res://icon.png"
 boot_splash/use_filter=false
 config/icon="res://icon.png"
 boot_splash/minimum_display_time=1000
-config/tags=PackedStringArray("hiatus")
 
 [autoload]
 

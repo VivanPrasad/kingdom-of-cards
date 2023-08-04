@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://41apmgaj1fk3"]
+[gd_scene load_steps=37 format=3 uid="uid://41apmgaj1fk3"]
 
 [ext_resource type="Script" path="res://Scripts/Game/OnlinePlayer.gd" id="1_4878t"]
 [ext_resource type="Texture2D" uid="uid://dsfcdqy357ixp" path="res://Assets/Game/Entities/Player/player1.png" id="2_hq5xo"]
@@ -9,15 +9,19 @@
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
+properties/0/watch = false
 properties/1/path = NodePath("HBoxContainer/HostIcon:visible")
 properties/1/spawn = true
 properties/1/sync = false
+properties/1/watch = false
 properties/2/path = NodePath("Sprite2D:frame")
 properties/2/spawn = true
 properties/2/sync = true
+properties/2/watch = false
 properties/3/path = NodePath("Nametag/HBoxContainer/Name:text")
 properties/3/spawn = true
 properties/3/sync = true
+properties/3/watch = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cuwrn"]
 atlas = ExtResource("3_hbpac")
@@ -361,8 +365,6 @@ states/Sleep/node = SubResource("AnimationNodeBlendSpace2D_v2lnx")
 states/Sleep/position = Vector2(489, 231)
 graph_offset = Vector2(-97, 46.4163)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_6g8d4"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7f2r"]
 size = Vector2(20, 5)
 
@@ -450,7 +452,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_abv4t")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_6g8d4")
 parameters/Idle/blend_position = Vector2(-0.00116688, 0.956332)
 parameters/Run/blend_position = Vector2(-0.00767261, -0.799127)
 parameters/Sleep/blend_position = Vector2(0, 0)
