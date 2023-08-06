@@ -11,7 +11,7 @@ extends CharacterBody2D
 @onready var player4 = preload("res://Assets/Game/Entities/Player/player4.png")
 @onready var player5 = preload("res://Assets/Game/Entities/Player/player5.png")
 
-@export var character : String
+@export var character : String = "1"
 
 @onready var emote := $Emotes
 @onready var emote_player := $Emotes/EmotePlayer
@@ -41,11 +41,11 @@ func _ready() -> void:
 		character = $"..".player_character
 		Global.player_id = str(self.name)
 		$Camera.enabled = true
-		$Nametag/HBoxContainer/Name.text = get_parent().player_name
 		set_character.rpc(character)
+		$Nametag/HBoxContainer/Name.text = get_parent().player_name
 	else:
-		set_character(character)
 		$MobileUI.hide()
+		set_character(character)
 
 @rpc("call_local")
 func set_character(id):

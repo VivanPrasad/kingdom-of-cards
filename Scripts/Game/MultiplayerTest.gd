@@ -111,11 +111,12 @@ func toggle_lights(is_on : bool):
 	
 	#TEMP GATE STATES
 	for child in $Surface.get_children():
-		if str(child.name).contains("Gate"):
-			if time.hour == 8:
-				child.get_child(0).get_child(0).play("Gate")
-			else:
-				child.get_child(0).get_child(0).play_backwards("Gate")
+		if child is StaticBody2D:
+			if str(child.get_child(0).name).contains("Gate"):
+				if time.hour == 8:
+					child.get_child(0).get_child(0).play("Gate")
+				else:
+					child.get_child(0).get_child(0).play_backwards("Gate")
 
 func get_market_locations():
 	for child in $Surface.get_children():

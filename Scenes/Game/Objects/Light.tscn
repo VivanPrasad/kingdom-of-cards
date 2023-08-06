@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8kdk7m34wwca"]
+[gd_scene load_steps=9 format=3 uid="uid://c8kdk7m34wwca"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Objects/Light.gd" id="1_i4wb8"]
 
@@ -116,6 +116,12 @@ _data = {
 "RESET": SubResource("Animation_rjmj6")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_forfu"]
+properties/0/path = NodePath(".:enabled")
+properties/0/spawn = true
+properties/0/sync = false
+properties/0/watch = false
+
 [node name="Light" type="PointLight2D"]
 modulate = Color(1, 1, 1, 0)
 color = Color(1, 0.847059, 0.521569, 1)
@@ -129,3 +135,6 @@ script = ExtResource("1_i4wb8")
 libraries = {
 "": SubResource("AnimationLibrary_06yos")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_forfu")

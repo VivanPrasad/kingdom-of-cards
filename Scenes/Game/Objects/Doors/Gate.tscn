@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpovtw43hu6q3"]
+[gd_scene load_steps=7 format=3 uid="uid://cpovtw43hu6q3"]
 
 [ext_resource type="Texture2D" uid="uid://dnbkpmws1jmbb" path="res://Assets/Game/Objects/gate.png" id="1_aa3ms"]
 
@@ -66,6 +66,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4uc6d"]
 size = Vector2(18, 5)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_31bl5"]
+properties/0/path = NodePath("Gate:frame")
+properties/0/spawn = true
+properties/0/sync = false
+properties/0/watch = false
+
 [node name="Gate" type="StaticBody2D"]
 use_parent_material = true
 collision_layer = 2
@@ -87,3 +93,6 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_4uc6d")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_31bl5")
