@@ -4,11 +4,6 @@ extends Control
 func _ready():
 	$Background.play()
 	get_tree().paused = false
-	if Global.title_intro_played:
-		$AnimationPlayer.play_backwards("FadeOut")
-	else:
-		$AnimationPlayer.play("IntroFade")
-		Global.title_intro_played = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
@@ -44,9 +39,7 @@ func _on_quit_mouse_exited():
 	$Options/Quit.text = "Quit"
 
 func _on_play_pressed():
-	$AnimationPlayer.play("FadeOut")
-	await $AnimationPlayer.animation_finished
-	get_tree().change_scene_to_file("res://Scenes/UI/GameMode.tscn")
+	Transition.change_scene("res://Scenes/UI/GameMode.tscn")
 
 
 func _on_settings_pressed():

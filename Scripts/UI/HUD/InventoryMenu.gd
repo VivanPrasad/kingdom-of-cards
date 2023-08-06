@@ -1,9 +1,10 @@
 extends Control
 
 @onready var card_display = preload("res://Scenes/UI/Instances/CardDisplay.tscn")
-@onready var player = $"/root/World/Entities/Player"
+var player : Node 
 
 func _ready():
+	player = $"/root/World".get_node_or_null(Global.player_id)
 	get_inventory()
 
 func get_inventory(): #gets the inventory size

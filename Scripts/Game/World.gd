@@ -151,7 +151,7 @@ func handle_menu():
 		$HUD/Chat/ChatWindow.visible = true
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("interact"): #Just inv menu for now... will need to make a handler later
+	if Input.is_action_just_pressed("inventory"): #Just inv menu for now... will need to make a handler later
 		if current_menu == menu.inventory:
 			current_menu = menu.none
 		elif current_menu == menu.none:

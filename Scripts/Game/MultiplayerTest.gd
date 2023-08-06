@@ -4,21 +4,23 @@ var port : int
 var ip : String
 
 var peer = ENetMultiplayerPeer.new()
-@export var player_scene : PackedScene
+
+@export var connection_menu : PackedScene = preload("res://Scenes/UI/Menu/ConnectionMenu.tscn")
+@export var player_scene : PackedScene = preload("res://Scenes/Game/Entities/OnlinePlayer.tscn")
 
 var player_name : String
+var player_character : String
 
 @onready var host_button := $"Lobby/MultiplayerMenu/VBoxContainer/TabContainer/Host Game/VBoxContainer/Host"
 @onready var join_button := $"Lobby/MultiplayerMenu/VBoxContainer/TabContainer/Join Game/VBoxContainer/Join"
 
 @onready var multiplayer_menu := $Lobby/MultiplayerMenu
-@onready var animation_player := $Fade/AnimationPlayer
 
 ###
 @onready var time_cycle := $Shader/TimeCycle
 @onready var time := $HUD/Time
 
-@onready var light = preload("res://Scenes/Game/Objects/Light.tscn")
+@onready var light : PackedScene = preload("res://Scenes/Game/Objects/Light.tscn")
 
 var lights = [] #all node instances of all lights
 var lights_pos = [] #positions of all lights
@@ -31,9 +33,7 @@ func _ready():
 	instance_lights()
 	host_button.connect("pressed",Callable(self,"_on_host_pressed"))
 	join_button.connect("pressed",Callable(self,"_on_join_pressed"))
-	$HUD.hide()
-	$Lobby.show()
-	$Fade.show()
+	$HUD.hide(); $Lobby.show()
 
 func _on_host_pressed():
 	ip = multiplayer_menu.host_ip_line.text
@@ -45,7 +45,7 @@ func _on_host_pressed():
 	multiplayer.peer_disconnected.connect(remove_player)
 	_add_player()
 	transition_to_world()
-	
+
 func _add_player(id = 1):
 	var player = player_scene.instantiate()
 	player.name = str(id)
@@ -64,13 +64,12 @@ func _on_join_pressed():
 
 func transition_to_world():
 	get_tree().set_pause(false)
-	animation_player.play_backwards("FadeIn")
-	await animation_player.animation_finished
+	Transition.fade_in()
+	await Transition.player.animation_finished
 	multiplayer_menu.queue_free()
 	$HUD.show()
-	animation_player.play("FadeIn")
-	await animation_player.animation_finished
-	$Fade.queue_free()
+	Transition.fade_out()
+	Audio.change_music("day")
 	
 func _process(_delta):
 	if time_cycle.is_playing():
@@ -118,9 +117,16 @@ func toggle_lights(is_on : bool):
 			else:
 				child.get_child(0).get_child(0).play_backwards("Gate")
 
-
+func get_market_locations():
+	for child in $Surface.get_children():
+		print(child.name)
+		if str(child.name) in ["FoodMarket","BankDesk","ItemMarket"]: #THERE CAN ONLY BE ONE MARKET INSTANCE FOR EACH!!!!
+			market_locations[str(child.name)] = child.position
 func _on_multiplayer_spawner_spawned(_node):
 	pass
 
 func _on_multiplayer_spawner_despawned(_node):
+	pass
+
+func show_connection_error():
 	pass

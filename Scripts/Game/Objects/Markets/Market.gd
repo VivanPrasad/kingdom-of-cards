@@ -2,14 +2,15 @@ extends StaticBody2D
 #Market
 var nearby : bool = false
 var hovered : bool = false
-@onready var player = $"/root/World/Entities/Player"
+var player : Node
 @onready var world = $"/root/World"
 
 func _ready():
 	world.market_locations[str(name)] = (position + Vector2(0,6)) * 5
 
 func _physics_process(_delta):
-	if nearby and hovered and world.current_menu == world.menu.none:
+	player = $"/root/World".get_node_or_null(Global.player_id)
+	if nearby and hovered and player.current_menu == "None" and not player.get_node("Menu").get_child_count():
 		modulate = Color(1.5,1.5,1.5,1)
 		$Label.visible = true
 	else:
@@ -17,10 +18,10 @@ func _physics_process(_delta):
 		$Label.visible = false
 
 func _on_area_2d_body_entered(body):
-	if str(body.name).contains("Player"): nearby = true
+	if body is CharacterBody2D and body.is_multiplayer_authority(): nearby = true
 
 func _on_area_2d_body_exited(body):
-	if str(body.name).contains("Player"): nearby = false
+	if body is CharacterBody2D and body.is_multiplayer_authority(): nearby = false
 
 func _input(event):
 	if event is InputEventMouse:
@@ -29,5 +30,5 @@ func _input(event):
 		else:
 			hovered = false
 		if event is InputEventMouseButton and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and hovered:
-			if world.current_menu == 0:
-				world.current_menu = world.menu.market
+			if player.current_menu == "None":
+				player.open_menu(player.market_menu)

@@ -1,7 +1,6 @@
 extends TextureRect
 
 var data : Card
-@onready var player = $"/root/World/Entities/Player"
 
 var hovered : bool = false
 var selected : bool = false
@@ -43,16 +42,16 @@ func _input(event):
 	#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		#if get_global_rect().has_point(get_global_mouse_position()):
 			#handle_use()
-func _process(_delta):
+func _physics_process(_delta):
 	custom_minimum_size = Vector2(scale.x*144,272)
 	if hovered: modulate = Color(1.1,1.1,1.1,1.0); position.y -= 3.0 * float(position.y > -8) #when hovered
 	else: modulate = Color(1.0,1.0,1.0,1.0); position.y += 3.0 * float(position.y < 0)
-	if selected: $Use.visible = true #when clicked to be selected
-	else: $Use.visible = false
+	if selected and data.clicked == "Use": $Use.show() #when clicked to be selected
+	else: $Use.hide()
 
 func handle_use():
-	var object = $"/root/World/Entities".find_child(data.object_name)
-	
+	var object = $"/root/World/".get_node_or_null(Global.player_id)
+
 	var key_index = 0
 	for var_string in data.object_variables.keys():
 		object.set(var_string,data.object_variables.values()[key_index])
@@ -62,8 +61,8 @@ func handle_use():
 	for func_string in data.object_functions.keys():
 		object.call(func_string,data.object_functions.values()[key_index])
 		key_index += 1
-	player.inventory.pop_at(get_index())
-	$AnimationPlayer.play("Flip")
+	object.inventory.pop_at(get_index())
+	$AnimationPlayer.play("Fade")
 	await $AnimationPlayer.animation_finished
 	queue_free()
 	

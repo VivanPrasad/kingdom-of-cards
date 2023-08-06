@@ -31,7 +31,7 @@ position = Vector2(43, 30)
 scale = Vector2(9.5, 9.5)
 texture = ExtResource("1_0yuba")
 hframes = 6
-vframes = 14
-frame = 12
+vframes = 15
+frame = 54
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

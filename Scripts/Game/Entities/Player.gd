@@ -21,6 +21,7 @@ var effect_queue : Array
 @onready var world = $"../.."
 var inventory = [load("res://Data/Cards/Bread.tres").duplicate(),load("res://Data/Cards/Bread.tres").duplicate(),load("res://Data/Cards/Berry.tres").duplicate()]
 func _ready():
+	Global.player_id = "Entities/Player"
 	velocity = Vector2.ZERO
 	$Sprite2D.texture = load(str("res://Assets/Game/Entities/Player/player" + str(randi() % 4 + 1)+".png"))
 	update_HUD()
@@ -88,9 +89,9 @@ func hurt():
 func update_HUD():
 	if life <= 4:
 		$"../../HUD/Profile/Life".frame = (life+1) * (status+1) -1
-		$"../../HUD/Profile/Armour".frame = 15
+		$"../../HUD/Profile/Armor".frame = 0
 	else:
-		$"../../HUD/Profile/Armour".frame = (life - 4) * 5
+		$"../../HUD/Profile/Armor".frame = (life - 4)
 		$"../../HUD/Profile/Life".frame = 3
 	
 	$"../../HUD/Profile/Hunger".frame = hunger

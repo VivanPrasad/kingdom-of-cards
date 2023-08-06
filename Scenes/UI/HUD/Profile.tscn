@@ -1,23 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpnermutitk2r"]
+[gd_scene load_steps=5 format=3 uid="uid://bpnermutitk2r"]
 
 [ext_resource type="Texture2D" uid="uid://bj20hgdonoflj" path="res://Assets/UI/HUD/profile.png" id="1_bblg1"]
 [ext_resource type="Texture2D" uid="uid://decis6yax6a2q" path="res://Assets/UI/HUD/hunger.png" id="2_htsut"]
 [ext_resource type="Texture2D" uid="uid://cyk571mb53bxf" path="res://Assets/UI/HUD/life.png" id="3_c1ig0"]
 
-[node name="Profile" type="Control"]
-modulate = Color(1.1, 1.1, 1.1, 1)
-z_as_relative = false
-texture_filter = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="AtlasTexture" id="AtlasTexture_bob3i"]
+atlas = ExtResource("3_c1ig0")
+region = Rect2(0, 24, 40, 8)
+
+[node name="Profile" type="CanvasLayer"]
 
 [node name="Icon" type="TextureRect" parent="."]
+texture_filter = 1
 custom_minimum_size = Vector2(96, 96)
-layout_mode = 0
 offset_left = 1312.0
 offset_top = 592.0
 offset_right = 1408.0
@@ -25,6 +20,7 @@ offset_bottom = 688.0
 texture = ExtResource("1_bblg1")
 
 [node name="Life" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(1264, 648)
 scale = Vector2(8, 8)
 texture = ExtResource("3_c1ig0")
@@ -32,15 +28,15 @@ hframes = 5
 vframes = 5
 frame = 4
 
-[node name="Armour" type="Sprite2D" parent="."]
+[node name="Armor" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(1264, 648)
 scale = Vector2(8, 8)
-texture = ExtResource("3_c1ig0")
+texture = SubResource("AtlasTexture_bob3i")
 hframes = 5
-vframes = 5
-frame = 15
 
 [node name="Hunger" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(1232, 668)
 scale = Vector2(8, 8)
 texture = ExtResource("2_htsut")

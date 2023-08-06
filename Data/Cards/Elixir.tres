@@ -9,7 +9,6 @@ icon_id = 34
 type = 2
 desc = "Full life and full hunger"
 clicked = "Use"
-object_name = "Player"
 object_variables = {
 "hunger": 2,
 "life": 4

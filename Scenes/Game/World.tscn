@@ -498,10 +498,8 @@ mouse_filter = 1
 color = Color(0, 0, 0, 0)
 
 [node name="Time" parent="HUD" instance=ExtResource("5_lmxy0")]
-mouse_filter = 1
 
 [node name="Profile" parent="HUD" instance=ExtResource("7_8xrvm")]
-mouse_filter = 1
 
 [node name="Chat" parent="HUD" instance=ExtResource("10_3n4ep")]
 

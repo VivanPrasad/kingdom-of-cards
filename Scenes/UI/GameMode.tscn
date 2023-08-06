@@ -270,8 +270,9 @@ offset_left = 1056.0
 offset_top = 619.0
 offset_right = 1350.0
 offset_bottom = 658.0
-text = "Currently unavailable"
+text = "Choose a Game Mode"
 label_settings = SubResource("LabelSettings_ff1ut")
+horizontal_alignment = 2
 
 [node name="Control" type="Button" parent="."]
 visible = false
@@ -282,43 +283,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 flat = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 2
-offset_left = 240.0
-offset_top = 477.0
-offset_right = 410.0
-offset_bottom = 603.0
-theme_override_constants/separation = 20
-metadata/_edit_group_ = true
-
-[node name="Host" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_color = Color(0.796078, 0.74902, 0.87451, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.847059, 0.521569, 1)
-theme_override_colors/font_hover_color = Color(0.898039, 1, 0.721569, 1)
-theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1)
-theme_override_constants/outline_size = 32
-theme_override_fonts/font = ExtResource("4_7tqnq")
-theme_override_font_sizes/font_size = 40
-text = "Host"
-flat = true
-alignment = 0
-
-[node name="Join" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_color = Color(0.796078, 0.74902, 0.87451, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.847059, 0.521569, 1)
-theme_override_colors/font_hover_color = Color(0.898039, 1, 0.721569, 1)
-theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1)
-theme_override_constants/outline_size = 32
-theme_override_fonts/font = ExtResource("4_7tqnq")
-theme_override_font_sizes/font_size = 40
-text = "Join"
-flat = true
-alignment = 0
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -353,5 +317,3 @@ metadata/_edit_lock_ = true
 [connection signal="mouse_exited" from="Options/Back" to="." method="_on_back_mouse_exited"]
 [connection signal="pressed" from="Options/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Control" to="." method="_on_control_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/Join" to="." method="_on_join_pressed"]

@@ -1,0 +1,173 @@
+[gd_scene load_steps=20 format=3 uid="uid://c41w176i5ubxv"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Menu/ConnectionMenu.gd" id="1_gyh3k"]
+[ext_resource type="Texture2D" uid="uid://bhgmleinj4te5" path="res://Assets/UI/Menu/background.png" id="2_52rm4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dg25"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04vea"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nldk7"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5sa8"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kovdw"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(2560, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63ymb"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(3200, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p85sv"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(3840, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6evr7"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(4480, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ucr4"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(5120, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1lh5"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(5760, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw557"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(6400, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4fji"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(7040, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmyj4"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(7680, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6frr"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(8320, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i58c"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(8960, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u2j3"]
+atlas = ExtResource("2_52rm4")
+region = Rect2(9600, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qo00q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dg25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04vea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nldk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5sa8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kovdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63ymb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p85sv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6evr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ucr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1lh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vw557")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4fji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmyj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6frr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i58c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u2j3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="ConnectionMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gyh3k")
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.25, 2.002)
+sprite_frames = SubResource("SpriteFrames_qo00q")
+autoplay = "default"
+centered = false
+
+[node name="Tint" type="ColorRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.980392)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0, 0.219608, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "There was an issue connecting to the server"
+
+[node name="Back" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Back to Lobby"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

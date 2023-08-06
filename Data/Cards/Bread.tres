@@ -7,10 +7,8 @@ script = ExtResource("1_3vctd")
 name = "Bread"
 icon_id = 0
 type = 0
-desc = "+1 Hunger
-🍞d(o_o)b"
+desc = "+1 Food"
 clicked = "Use"
-object_name = "Player"
 object_variables = {}
 object_functions = {
 "eat": 1

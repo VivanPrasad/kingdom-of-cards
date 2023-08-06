@@ -1,8 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4q10lqua2k5"]
+[gd_scene load_steps=50 format=3 uid="uid://c4q10lqua2k5"]
 
 [ext_resource type="Texture2D" uid="uid://bhgmleinj4te5" path="res://Assets/UI/Menu/background.png" id="1_cndxx"]
 [ext_resource type="Script" path="res://Scripts/UI/Menu/MultiplayerMenu.gd" id="1_epslo"]
+[ext_resource type="Texture2D" uid="uid://dsfcdqy357ixp" path="res://Assets/Game/Entities/Player/player1.png" id="3_ve8c2"]
 [ext_resource type="FontVariation" uid="uid://diqtfxvgb4nnc" path="res://Assets/Fonts/royal-intonation.tres" id="3_x0d4g"]
+[ext_resource type="Texture2D" uid="uid://cg5ul4ok6hwpc" path="res://Assets/Game/Entities/Player/player2.png" id="4_5liw5"]
+[ext_resource type="Texture2D" uid="uid://dtb1mjk23fxte" path="res://Assets/Game/Entities/Player/player3.png" id="5_5w1qp"]
+[ext_resource type="Texture2D" uid="uid://d4bhtrcusipl8" path="res://Assets/Game/Entities/Player/player4.png" id="6_005sl"]
+[ext_resource type="Texture2D" uid="uid://tiohbaydniva" path="res://Assets/Game/Entities/Player/player5.png" id="7_s2uus"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dg25"]
 atlas = ExtResource("1_cndxx")
@@ -130,6 +135,174 @@ font_color = Color(0.909804, 0.854902, 1, 1)
 outline_size = 32
 outline_color = Color(0.196078, 0.101961, 0.172549, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_80410"]
+atlas = ExtResource("3_ve8c2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt32y"]
+atlas = ExtResource("3_ve8c2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84ix3"]
+atlas = ExtResource("3_ve8c2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1cb1"]
+atlas = ExtResource("3_ve8c2")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke3px"]
+atlas = ExtResource("4_5liw5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yndg2"]
+atlas = ExtResource("4_5liw5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sw8va"]
+atlas = ExtResource("4_5liw5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l4nb"]
+atlas = ExtResource("4_5liw5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r2d3"]
+atlas = ExtResource("5_5w1qp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc8qc"]
+atlas = ExtResource("5_5w1qp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c01f6"]
+atlas = ExtResource("5_5w1qp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b4f8"]
+atlas = ExtResource("5_5w1qp")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckuaj"]
+atlas = ExtResource("6_005sl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ylg2"]
+atlas = ExtResource("6_005sl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbh2w"]
+atlas = ExtResource("6_005sl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy8c4"]
+atlas = ExtResource("6_005sl")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04kim"]
+atlas = ExtResource("7_s2uus")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hke8w"]
+atlas = ExtResource("7_s2uus")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rh5f"]
+atlas = ExtResource("7_s2uus")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfa3r"]
+atlas = ExtResource("7_s2uus")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wm7nm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80410")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt32y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84ix3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1cb1")
+}],
+"loop": true,
+"name": &"1",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke3px")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yndg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw8va")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5l4nb")
+}],
+"loop": true,
+"name": &"2",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r2d3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nc8qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c01f6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b4f8")
+}],
+"loop": true,
+"name": &"3",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckuaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ylg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbh2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy8c4")
+}],
+"loop": true,
+"name": &"4",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04kim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hke8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rh5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfa3r")
+}],
+"loop": true,
+"name": &"5",
+"speed": 2.0
+}]
+
 [sub_resource type="InputEventKey" id="InputEventKey_w23hc"]
 device = -1
 keycode = 4194309
@@ -196,57 +369,119 @@ theme_override_font_sizes/font_size = 32
 [node name="Settings" type="CenterContainer" parent="VBoxContainer/TabContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Settings"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Settings"]
+layout_mode = 2
+theme_override_constants/separation = 128
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/TabContainer/Settings/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 24
+text = "Character"
+
+[node name="Name" type="OptionButton" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/HBoxContainer4"]
+modulate = Color(0.678431, 0.678431, 0.678431, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 32
+item_count = 5
+selected = 0
+popup/item_0/text = "Soren"
+popup/item_0/id = 0
+popup/item_1/text = "Bobby"
+popup/item_1/id = 1
+popup/item_2/text = "Vincent"
+popup/item_2/id = 2
+popup/item_3/text = "Suzie"
+popup/item_3/id = 3
+popup/item_4/text = "Leiya"
+popup/item_4/id = 4
+
+[node name="Character" type="AnimatedSprite2D" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/HBoxContainer4"]
+texture_filter = 1
+position = Vector2(103, 38)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_wm7nm")
+animation = &"1"
+autoplay = "1"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Settings/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Settings/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Enter Name"
 
-[node name="Name" type="LineEdit" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer"]
+[node name="Name" type="LineEdit" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Guest"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TabContainer/Settings/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
 text = "V-Sync            "
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer2"]
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 button_pressed = true
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/TabContainer/Settings/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "FPS"
 
-[node name="Name" type="Label" parent="VBoxContainer/TabContainer/Settings/VBoxContainer/HBoxContainer3"]
+[node name="Name" type="Label" parent="VBoxContainer/TabContainer/Settings/HBoxContainer/VBoxContainer/HBoxContainer3"]
 modulate = Color(0.678431, 0.678431, 0.678431, 1)
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 32
 text = "60"
+
+[node name="MarginContainer" type="Control" parent="VBoxContainer/TabContainer/Settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/MarginContainer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 217.0
+offset_top = 141.0
+offset_right = 420.0
+offset_bottom = 162.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "*Settings do not save in this version"
+horizontal_alignment = 2
 
 [node name="Join Game" type="CenterContainer" parent="VBoxContainer/TabContainer"]
 visible = false
@@ -361,7 +596,7 @@ offset_right = -4.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 24
-text = "8.3.23"
+text = "8.5.23"
 
 [node name="Info" type="Label" parent="."]
 layout_mode = 1
@@ -395,6 +630,7 @@ text = "Back"
 flat = true
 alignment = 0
 
+[connection signal="item_selected" from="VBoxContainer/TabContainer/Settings/HBoxContainer/HBoxContainer4/Name" to="." method="_on_name_item_selected"]
 [connection signal="mouse_entered" from="Back" to="." method="_on_back_mouse_entered"]
 [connection signal="mouse_exited" from="Back" to="." method="_on_back_mouse_exited"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

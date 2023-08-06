@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjkatgsgw8jmf"]
+
+[ext_resource type="Script" path="res://Data/Singletons/Audio.gd" id="1_pyu87"]
+[ext_resource type="AudioStream" uid="uid://bfp5uttjwhos1" path="res://Assets/Audio/Music/title.ogg" id="3_jnpju"]
+
+[node name="Audio" type="Node"]
+process_mode = 3
+script = ExtResource("1_pyu87")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jnpju")
+autoplay = true
+mix_target = 1
+bus = &"Music"
+
+[node name="SFX" type="Node" parent="."]

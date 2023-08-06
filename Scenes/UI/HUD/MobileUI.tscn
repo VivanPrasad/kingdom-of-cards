@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjk88wtc5it3r"]
+
+[ext_resource type="Script" path="res://Scripts/UI/HUD/MobileUI.gd" id="1_uftnm"]
+[ext_resource type="Texture2D" uid="uid://0l86aj7m315p" path="res://Assets/UI/HUD/mobile.png" id="2_v0qs3"]
+[ext_resource type="Texture2D" uid="uid://crvjeb1avfpyr" path="res://Assets/UI/HUD/joystick.png" id="3_frp7m"]
+[ext_resource type="Texture2D" uid="uid://ciun8kr2cfikx" path="res://Assets/UI/HUD/joystick_button.png" id="4_qtrnr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wo7ao"]
+atlas = ExtResource("2_v0qs3")
+region = Rect2(0, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdeid"]
+atlas = ExtResource("2_v0qs3")
+region = Rect2(13, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6gph"]
+atlas = ExtResource("2_v0qs3")
+region = Rect2(26, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nwe7"]
+atlas = ExtResource("2_v0qs3")
+region = Rect2(39, 0, 13, 13)
+
+[node name="MobileUI" type="CanvasLayer"]
+script = ExtResource("1_uftnm")
+
+[node name="Pause" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.666667)
+texture_filter = 1
+position = Vector2(1336, 24)
+scale = Vector2(6, 6)
+texture_normal = SubResource("AtlasTexture_wo7ao")
+visibility_mode = 1
+
+[node name="Inventory" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.666667)
+texture_filter = 1
+position = Vector2(1000, 616)
+scale = Vector2(6, 6)
+texture_normal = SubResource("AtlasTexture_mdeid")
+visibility_mode = 1
+
+[node name="Emote" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.666667)
+texture_filter = 1
+position = Vector2(1104, 616)
+scale = Vector2(6, 6)
+texture_normal = SubResource("AtlasTexture_g6gph")
+visibility_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Exit" type="TouchScreenButton" parent="CanvasLayer"]
+visible = false
+texture_filter = 1
+position = Vector2(1336, 24)
+scale = Vector2(6, 6)
+texture_normal = SubResource("AtlasTexture_5nwe7")
+
+[node name="Joystick" type="TouchScreenButton" parent="."]
+shape_centered = false
+shape_visible = false
+visibility_mode = 1
+
+[node name="Ring" type="Sprite2D" parent="Joystick"]
+modulate = Color(1, 1, 1, 0.666667)
+texture_filter = 1
+position = Vector2(168, 552)
+scale = Vector2(6, 6)
+texture = ExtResource("3_frp7m")
+
+[node name="Button" type="Sprite2D" parent="Joystick/Ring"]
+texture = ExtResource("4_qtrnr")
+
+[connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="Inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="Emote" to="." method="_on_emote_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]

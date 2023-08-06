@@ -9,7 +9,6 @@ icon_id = 32
 type = 1
 desc = "Immune for a day"
 clicked = "Use"
-object_name = "Player"
 object_variables = {}
 object_functions = {
 "effect": ["immune", 0, 240]

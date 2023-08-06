@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://g0nn0ur2q0hs"]
+[gd_scene load_steps=4 format=3 uid="uid://g0nn0ur2q0hs"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Menu/MarketMenu.gd" id="1_i1k1s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ni3aj"]
 font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_iwhee"]
+font_size = 32
 
 [node name="MarketMenu" type="Control"]
 layout_mode = 3
@@ -32,3 +35,21 @@ offset_right = 1376.0
 offset_bottom = 123.0
 text = "Market"
 label_settings = SubResource("LabelSettings_ni3aj")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -37.5
+offset_right = 104.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Nothing on sale right now! Come again another time :)"
+label_settings = SubResource("LabelSettings_iwhee")
+horizontal_alignment = 1
+vertical_alignment = 1
