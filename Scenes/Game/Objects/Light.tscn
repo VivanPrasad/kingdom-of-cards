@@ -119,7 +119,7 @@ _data = {
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_forfu"]
 properties/0/path = NodePath(".:enabled")
 properties/0/spawn = true
-properties/0/sync = false
+properties/0/sync = true
 properties/0/watch = false
 
 [node name="Light" type="PointLight2D"]

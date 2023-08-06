@@ -69,7 +69,7 @@ size = Vector2(18, 5)
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_31bl5"]
 properties/0/path = NodePath("Gate:frame")
 properties/0/spawn = true
-properties/0/sync = false
+properties/0/sync = true
 properties/0/watch = false
 
 [node name="Gate" type="StaticBody2D"]
