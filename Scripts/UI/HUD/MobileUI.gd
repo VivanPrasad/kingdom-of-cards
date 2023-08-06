@@ -9,7 +9,6 @@ var vector = Vector2.ZERO
 func _input(event):
 	if event is InputEventScreenTouch:
 		var distance = event.position.distance_to(joystick_ring.global_position)
-		print(distance)
 		if not joystick_active:
 			if distance <= 96:
 				joystick_active = true

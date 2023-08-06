@@ -3,6 +3,15 @@ extends CharacterBody2D
 const base_speed = 100
 enum state {good,sick,potion,unknown}
 
+@onready var emote_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/EmoteMenu.tscn")
+@onready var inventory_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/InventoryMenu.tscn")
+@onready var pause_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/PauseMenu.tscn")
+@onready var market_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/MarketMenu.tscn")
+@onready var action_hud := preload("res://Scenes/UI/HUD/ActionHUD.tscn")
+@onready var game_over := preload("res://Scenes/UI/HUD/GameOver.tscn")
+
+@onready var emote_player = $Emotes/EmotePlayer
+@onready var emote = $Emotes
 var layer : int = 1 #layer 1 = surface, layer 0 = dungeon
 
 var actions = 3 #number of action cards during combat
@@ -18,6 +27,8 @@ var in_combat : bool = false
 var enemies : Array[CharacterBody2D] = []
 var targeted : bool = false
 var effect_queue : Array
+
+var current_menu : String = "None"
 @onready var world = $"../.."
 var inventory = [load("res://Data/Cards/Bread.tres").duplicate(),load("res://Data/Cards/Bread.tres").duplicate(),load("res://Data/Cards/Berry.tres").duplicate()]
 func _ready():
@@ -28,12 +39,13 @@ func _ready():
 	$Camera2D.enabled = true
 
 func _process(_delta):
-	check_combat()
-	if world.current_menu == 0 or world.current_menu == 3: #0 = menu.none
+		check_combat() #0 = menu.none
 		var input_vector = Vector2(
-				Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
-				Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-				).normalized()
+			Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
+			Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+			).normalized() * int(current_menu == "None")
+		if $MobileUI.vector != Vector2.ZERO:
+			input_vector = $MobileUI.vector
 		if input_vector != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
 			$AnimationTree.set("parameters/Idle/blend_position", input_vector)
 			$AnimationTree.set("parameters/Run/blend_position", input_vector)
@@ -42,8 +54,6 @@ func _process(_delta):
 			$AnimationTree.get("parameters/playback").travel("Idle")
 		velocity = input_vector * speed
 		move_and_slide()
-	else:
-		$AnimationTree.get("parameters/playback").travel("Idle")
 	
 func effect(data): #data = [type, value, time (s)] #if data[0]
 	var type = data[0]; var value = data[1]; var time = data[2]
@@ -88,13 +98,13 @@ func hurt():
 		
 func update_HUD():
 	if life <= 4:
-		$"../../HUD/Profile/Life".frame = (life+1) * (status+1) -1
-		$"../../HUD/Profile/Armor".frame = 0
+		$"Profile/Life".frame = (life+1) * (status+1) -1
+		$"Profile/Armor".frame = 0
 	else:
-		$"../../HUD/Profile/Armor".frame = (life - 4)
-		$"../../HUD/Profile/Life".frame = 3
+		$"Profile/Armor".frame = (life - 4)
+		$"Profile/Life".frame = 3
 	
-	$"../../HUD/Profile/Hunger".frame = hunger
+	$"Profile/Hunger".frame = hunger
 
 func _on_timer_timeout():
 	effect(["clear",0,0])
@@ -104,3 +114,47 @@ func check_combat():
 		in_combat = true
 	else:
 		in_combat = false
+
+func open_menu(menu : PackedScene) -> void:
+	close_menu()
+	$Menu.add_child(menu.instantiate())
+	current_menu = str($Menu.get_child(0).name)
+	
+	if current_menu == "EmoteMenu":
+		start_thinking()
+
+func close_menu():
+	if current_menu == "EmoteMenu":
+		stop_thinking()
+	
+func start_thinking():
+	emote_player.play("Popup")
+	await emote_player.animation_finished
+	emote_player.play("Thinking")
+
+func stop_thinking():
+	emote_player.play_backwards("Popup")
+
+func play_emote(emote_id : int):
+	if $Menu.get_child_count():
+		$Menu.get_child(0).queue_free()
+	current_menu = "None"
+	emote_player.stop()
+	emote.frame = emote_id
+	current_menu = "None"
+	emote.show()
+	await get_tree().create_timer(3.0).timeout
+	emote_player.play_backwards("Popup")
+
+func _unhandled_key_input(_event) -> void:
+	if not is_multiplayer_authority():	return
+	
+	if Input.is_action_just_pressed("ui_cancel") and $Menu.get_child_count():
+		close_menu()
+	elif Input.is_action_just_pressed("pause") and current_menu != "PauseMenu":
+		current_menu = "PauseMenu"
+		open_menu(pause_menu)
+	elif Input.is_action_just_pressed("inventory") and current_menu != "InventoryMenu":
+		open_menu(inventory_menu)
+	elif Input.is_action_just_pressed("emote") and emote.modulate == Color("ffffff00"):
+		open_menu(emote_menu)

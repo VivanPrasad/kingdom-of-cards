@@ -5,17 +5,8 @@ var in_dungeon : bool = false
 @onready var light = preload("res://Scenes/Game/Objects/Light.tscn")
 
 # UI Menu Instancing
-@onready var inventory_menu := preload("res://Scenes/UI/Menu/In-Game/InventoryMenu.tscn")
-@onready var action_hud := preload("res://Scenes/UI/HUD/ActionHUD.tscn")
-@onready var market_menu := preload("res://Scenes/UI/Menu/In-Game/MarketMenu.tscn")
-@onready var emote_menu := preload("res://Scenes/UI/Menu/In-Game/EmoteMenu.tscn")
-@onready var game_over := preload("res://Scenes/UI/HUD/GameOver.tscn")
 
 @onready var time := $HUD/Time
-
-enum menu {none=0,inventory=1,market=2,combat=3,escape=4,chat=5,emote=6}
-
-@export var current_menu : int = menu.none
 
 var lights = []
 var lights_pos = [] #positions of all lights
@@ -72,9 +63,6 @@ func _process(_delta):
 			$Shader/AnimationPlayer.play("Cycle")
 	else:
 		$Shader/AnimationPlayer.seek(4) #the dungeon looks dark, so it infinitely seeks at time = 4am
-	
-	#MENU HANDLER
-	handle_menu()
 
 func toggle_lights(is_on : bool):
 	var atlas_coords
@@ -118,59 +106,13 @@ func _on_stair_body_entered(body):
 	if body.name == "Player": dungeon()
 	#causes dungeon transition if the body in the area is player
 
-func handle_menu():
-	if $Entities/Player.in_combat:
-		current_menu = menu.combat
-	elif current_menu == menu.combat:
-		current_menu = menu.none
-	if current_menu != menu.inventory:
-		if get_node_or_null("HUD/InventoryMenu") != null:
-			$HUD/InventoryMenu.queue_free()
-	else:
-		if get_node_or_null("HUD/InventoryMenu") == null:
-			$HUD.add_child(inventory_menu.instantiate())
-	
-	if current_menu != menu.market:
-		if get_node_or_null("HUD/MarketMenu") != null:
-			$HUD/MarketMenu.queue_free()
-	else:
-		if get_node_or_null("HUD/MarketMenu") == null:
-			$HUD.add_child(market_menu.instantiate())
-	if current_menu != menu.combat:
-		if get_node_or_null("HUD/ActionHUD") != null:
-			$HUD/ActionHUD.queue_free()
-	else:
-		if get_node_or_null("HUD/ActionHUD") == null:
-			$HUD.add_child(action_hud.instantiate())
-	
-	if current_menu != menu.chat:
-		$HUD/Chat.isInputActive = false
-		$HUD/Chat/ChatWindow.visible = false
-	else:
-		$HUD/Chat.isInputActive = true
-		$HUD/Chat/ChatWindow.visible = true
-
+'''
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("inventory"): #Just inv menu for now... will need to make a handler later
-		if current_menu == menu.inventory:
-			current_menu = menu.none
-		elif current_menu == menu.none:
-			current_menu = menu.inventory
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		current_menu = menu.none
-	#owner
-	if Input.is_action_just_pressed("chat"):
-		if current_menu == menu.chat:
-			current_menu = menu.none
-		elif current_menu != menu.combat:
-			current_menu = menu.chat
-	'''
 	if event is InputEventMouseButton and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		$Surface.set_cell(0,Vector2i(get_global_mouse_position().floor() / 37),0,Vector2i(0,1))
 	if event is InputEventMouse:
 		print(Vector2i($Surface.get_global_mouse_position().floor() / 37))
-	'''
+'''
 
 '''
 func _on_pressed():

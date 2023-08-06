@@ -45,9 +45,12 @@ func _ready() -> void:
 		set_character.rpc(character)
 	else:
 		set_character(character)
+		$MobileUI.hide()
+
 @rpc("call_local")
 func set_character(id):
 	$Sprite.texture = get("player" + id)
+
 func _physics_process(_delta):
 	if not is_multiplayer_authority(): return
 	input_vector = Vector2(

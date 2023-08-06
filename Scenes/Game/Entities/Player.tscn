@@ -1,7 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://bxbor0a6xjb8k"]
+[gd_scene load_steps=39 format=3 uid="uid://bxbor0a6xjb8k"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Entities/Player.gd" id="1_pdfi5"]
 [ext_resource type="Texture2D" uid="uid://cg5ul4ok6hwpc" path="res://Assets/Game/Entities/Player/player2.png" id="2_j3dxq"]
+[ext_resource type="PackedScene" uid="uid://bjk88wtc5it3r" path="res://Scenes/UI/HUD/MobileUI.tscn" id="3_t80ug"]
+[ext_resource type="PackedScene" uid="uid://bpnermutitk2r" path="res://Scenes/UI/HUD/Profile.tscn" id="4_yh6hc"]
+[ext_resource type="Texture2D" uid="uid://cnfivsntb6765" path="res://Assets/UI/HUD/emotes.png" id="5_1sow2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xuld3"]
 size = Vector2(10, 1.6)
@@ -326,8 +329,84 @@ _data = {
 "RESET": SubResource("Animation_6m0ce")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_31ql6"]
-font_size = 8
+[sub_resource type="Animation" id="Animation_2n2bw"]
+resource_name = "Popup"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Emotes:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Emotes:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_i3vw1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Emotes:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Emotes:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n6dk0"]
+resource_name = "Thinking"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Emotes:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ccxs2"]
+_data = {
+"Popup": SubResource("Animation_2n2bw"),
+"RESET": SubResource("Animation_i3vw1"),
+"Thinking": SubResource("Animation_n6dk0")
+}
 
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
@@ -391,27 +470,26 @@ offset_right = 360.0
 offset_bottom = 164.0
 color = Color(1, 1, 1, 0)
 
-[node name="Emote" type="Sprite2D" parent="."]
+[node name="Emotes" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-2, -17)
+scale = Vector2(2, 2)
+texture = ExtResource("5_1sow2")
+hframes = 6
+vframes = 15
 
-[node name="EmotePlayer" type="AnimationPlayer" parent="."]
+[node name="EmotePlayer" type="AnimationPlayer" parent="Emotes"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ccxs2")
+}
+next/Popup = &"Thinking"
 
-[node name="Name" type="Label" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -13.5
-offset_right = 30.0
-offset_bottom = -1.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-text = "Guest"
-label_settings = SubResource("LabelSettings_31ql6")
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Profile" parent="." instance=ExtResource("4_yh6hc")]
+
+[node name="MobileUI" parent="." instance=ExtResource("3_t80ug")]
+
+[node name="Menu" type="CanvasLayer" parent="."]
+layer = 2
 
 [connection signal="timeout" from="EffectTimer" to="." method="_on_timer_timeout"]

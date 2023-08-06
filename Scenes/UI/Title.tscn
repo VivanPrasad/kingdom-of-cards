@@ -258,7 +258,7 @@ offset_right = 1365.0
 offset_bottom = 658.0
 size_flags_horizontal = 10
 size_flags_vertical = 8
-text = "Drew's Edition"
+text = "Gianna's Edition"
 label_settings = SubResource("LabelSettings_u66ke")
 
 [connection signal="mouse_entered" from="Options/Play" to="." method="_on_play_mouse_entered"]

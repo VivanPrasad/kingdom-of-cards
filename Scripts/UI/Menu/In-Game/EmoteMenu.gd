@@ -18,5 +18,8 @@ func _ready():
 	container.add_child(dice_emote)
 
 func play_emote(id):
-	$"../..".play_emote.rpc(id)
+	if Global.player_id.is_valid_int():
+		$"../..".play_emote.rpc(id)
+	else:
+		$"../..".play_emote(id)
 	queue_free()
