@@ -1,6 +1,8 @@
 extends Control
 
 # Called when the node enters the scene tree for the first time.
+@onready var settings : PackedScene = preload("res://Scenes/UI/Settings.tscn")
+
 func _ready():
 	$Background.play()
 	get_tree().paused = false
@@ -14,11 +16,11 @@ func _on_play_mouse_exited():
 
 
 func _on_settings_mouse_entered():
-	pass#$Options/Settings.text = "X Settings"
+	$Options/Settings.text = "~ Settings"
 
 
 func _on_settings_mouse_exited():
-	pass#$Options/Settings.text = "Settings"
+	$Options/Settings.text = "Settings"
 
 
 func _on_collection_mouse_entered():
@@ -40,8 +42,7 @@ func _on_play_pressed():
 
 
 func _on_settings_pressed():
-	get_tree().reload_current_scene()
-
+	add_child(settings.instantiate())
 
 func _on_collection_pressed():
 	get_tree().reload_current_scene()

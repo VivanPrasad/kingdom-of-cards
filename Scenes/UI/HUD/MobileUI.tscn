@@ -59,6 +59,7 @@ scale = Vector2(6, 6)
 texture_normal = SubResource("AtlasTexture_5nwe7")
 
 [node name="Joystick" type="TouchScreenButton" parent="."]
+visible = false
 shape_centered = false
 shape_visible = false
 visibility_mode = 1

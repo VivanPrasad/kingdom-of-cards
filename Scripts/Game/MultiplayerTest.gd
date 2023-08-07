@@ -29,11 +29,11 @@ var lights_on : bool = true
 var market_locations = {}
 
 func _ready():
-	get_tree().set_pause(true)
-	instance_lights()
+	$HUD.hide(); $Lobby.show()
 	host_button.connect("pressed",Callable(self,"_on_host_pressed"))
 	join_button.connect("pressed",Callable(self,"_on_join_pressed"))
-	$HUD.hide(); $Lobby.show()
+	get_tree().set_pause(true)
+
 
 func _on_host_pressed():
 	ip = multiplayer_menu.host_ip_line.text
@@ -67,6 +67,7 @@ func transition_to_world():
 	Transition.fade_in()
 	await Transition.player.animation_finished
 	multiplayer_menu.queue_free()
+	instance_lights()
 	$HUD.show()
 	Transition.fade_out()
 	Audio.change_music("day")

@@ -18,8 +18,8 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if body is CharacterBody2D:
 		body_count -= 1
-	if not body_count:
-		$AnimationPlayer.play_backwards(animation[type])
+		if not body_count:
+			$AnimationPlayer.play_backwards(animation[type])
 
 ### I Had to make a custom set of doors for the tileset
 ### DOOR IDs (change in the packed scenes of id >1 the first variant names value to the names in the animation)

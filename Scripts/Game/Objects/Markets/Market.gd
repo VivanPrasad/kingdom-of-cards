@@ -24,11 +24,11 @@ func _on_area_2d_body_exited(body):
 	if body is CharacterBody2D and body.is_multiplayer_authority(): nearby = false
 
 func _input(event):
-	if event is InputEventMouse:
+	if event is InputEventMouse or event is InputEventScreenTouch:
 		if $Sprite2D.get_rect().has_point($Sprite2D.get_local_mouse_position()):
 			hovered = true
 		else:
 			hovered = false
-		if event is InputEventMouseButton and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and hovered:
+		if ((event is InputEventMouseButton and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)) or event is InputEventScreenTouch) and hovered:
 			if player.current_menu == "None":
 				player.open_menu(player.market_menu)

@@ -50,14 +50,15 @@ text = "Back to Game"
 [node name="Settings" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
-disabled = true
 text = "Settings"
 
 [node name="ServerConfig" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 disabled = true
 text = "Server Config"
@@ -76,4 +77,5 @@ theme_override_font_sizes/font_size = 32
 text = "Disconnect"
 
 [connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/Disconnect" to="." method="_on_disconnect_pressed"]

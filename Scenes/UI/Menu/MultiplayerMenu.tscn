@@ -468,6 +468,7 @@ text = "60"
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/MarginContainer"]
+modulate = Color(0.647059, 1, 0.662745, 1)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -480,7 +481,8 @@ offset_right = 420.0
 offset_bottom = 162.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "*Settings do not save in this version"
+theme_override_font_sizes/font_size = 24
+text = "*Settings save automatically"
 horizontal_alignment = 2
 
 [node name="Join Game" type="CenterContainer" parent="VBoxContainer/TabContainer"]
@@ -596,7 +598,7 @@ offset_right = -4.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 24
-text = "8.5.23"
+text = "8.7.23"
 
 [node name="Info" type="Label" parent="."]
 layout_mode = 1

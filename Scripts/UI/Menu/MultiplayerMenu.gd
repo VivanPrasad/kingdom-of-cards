@@ -14,13 +14,29 @@ extends Control
 @onready var character = $VBoxContainer/TabContainer/Settings/HBoxContainer/HBoxContainer4/Character
 @onready var multiplayer_world = $"../.."
 
+var config_data : Resource = ConfigData
+
 func _ready():
-	player_name_line.text = "Guest" + str(randi_range(100,999))
+	load_config_data()
+
+func load_config_data():
+	if ConfigData.save_exists():
+		config_data = ConfigData.load_save() as ConfigData
+	else:
+		config_data = ConfigData.new()
+		config_data.write_save()
+	player_name_line.text = config_data.player_name
+	character.play(config_data.player_character)
+	character_name.select(int(config_data.player_character) - 1)
+
 func _physics_process(_delta):
 	host_button.disabled = bool(len(host_ip_line.text) == 0 or not host_port_line.text.is_valid_int())
 	join_button.disabled = bool(len(join_ip_line.text) == 0 or not join_port_line.text.is_valid_int())
 	multiplayer_world.player_name = player_name_line.text
 	multiplayer_world.player_character = str(character_name.selected+1)
+	config_data.player_name = player_name_line.text
+	config_data.player_character = str(character_name.get_selected_id() + 1)
+	config_data.write_save()
 
 func _on_back_pressed():
 	get_tree().set_pause(false)

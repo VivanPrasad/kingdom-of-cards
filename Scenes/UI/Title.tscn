@@ -204,7 +204,6 @@ theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1
 theme_override_constants/outline_size = 32
 theme_override_fonts/font = ExtResource("4_mssn7")
 theme_override_font_sizes/font_size = 40
-disabled = true
 text = "Settings"
 flat = true
 alignment = 0
@@ -258,7 +257,7 @@ offset_right = 1365.0
 offset_bottom = 658.0
 size_flags_horizontal = 10
 size_flags_vertical = 8
-text = "Gianna's Edition"
+text = "Don's Edition"
 label_settings = SubResource("LabelSettings_u66ke")
 
 [connection signal="mouse_entered" from="Options/Play" to="." method="_on_play_mouse_entered"]
