@@ -44,6 +44,7 @@ theme_override_constants/separation = 16
 [node name="Back" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Back to Game"
 
@@ -66,6 +67,7 @@ text = "Server Config"
 [node name="Collection" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 disabled = true
 text = "Collection"
@@ -73,6 +75,7 @@ text = "Collection"
 [node name="Disconnect" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Disconnect"
 

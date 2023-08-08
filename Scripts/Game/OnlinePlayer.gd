@@ -3,7 +3,9 @@ extends CharacterBody2D
 @onready var emote_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/EmoteMenu.tscn")
 @onready var inventory_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/InventoryMenu.tscn")
 @onready var pause_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/PauseMenu.tscn")
+
 @onready var market_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/MarketMenu.tscn")
+@onready var sign_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/SignMenu.tscn")
 
 @onready var player1 = preload("res://Assets/Game/Entities/Player/player1.png")
 @onready var player2 = preload("res://Assets/Game/Entities/Player/player2.png")

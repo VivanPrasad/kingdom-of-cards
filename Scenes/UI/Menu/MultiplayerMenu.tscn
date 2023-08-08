@@ -632,7 +632,10 @@ text = "Back"
 flat = true
 alignment = 0
 
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="item_selected" from="VBoxContainer/TabContainer/Settings/HBoxContainer/HBoxContainer4/Name" to="." method="_on_name_item_selected"]
-[connection signal="mouse_entered" from="Back" to="." method="_on_back_mouse_entered"]
-[connection signal="mouse_exited" from="Back" to="." method="_on_back_mouse_exited"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

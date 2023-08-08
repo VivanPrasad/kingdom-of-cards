@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8kdk7m34wwca"]
+[gd_scene load_steps=8 format=3 uid="uid://c8kdk7m34wwca"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Objects/Light.gd" id="1_i4wb8"]
 
@@ -16,7 +16,7 @@ fill_to = Vector2(0, 0)
 
 [sub_resource type="Animation" id="Animation_o1a6r"]
 resource_name = "Fade"
-length = 3.1
+length = 10.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -24,7 +24,7 @@ tracks/0/path = NodePath(".:energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.5, 0.0]
@@ -36,7 +36,7 @@ tracks/1/path = NodePath(".:enabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.6, 3),
+"times": PackedFloat32Array(0, 10, 10.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [true, true, false]
@@ -55,7 +55,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.5, 0.6, 0.5]
+"values": [0.5, 0.55, 0.5]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -116,14 +116,7 @@ _data = {
 "RESET": SubResource("Animation_rjmj6")
 }
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_forfu"]
-properties/0/path = NodePath(".:enabled")
-properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
-
 [node name="Light" type="PointLight2D"]
-modulate = Color(1, 1, 1, 0)
 color = Color(1, 0.847059, 0.521569, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_kvoah")
@@ -135,6 +128,3 @@ script = ExtResource("1_i4wb8")
 libraries = {
 "": SubResource("AnimationLibrary_06yos")
 }
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_forfu")

@@ -43,11 +43,5 @@ func _on_back_pressed():
 	Transition.change_scene("res://Scenes/UI/GameMode.tscn")
 	Audio.change_music("title")
 
-func _on_back_mouse_entered():
-	pass # Replace with function body.
-
-func _on_back_mouse_exited():
-	pass # Replace with function body.
-
 func _on_name_item_selected(id):
 	character.play(str(id+1))

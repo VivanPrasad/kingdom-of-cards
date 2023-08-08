@@ -83,22 +83,6 @@ tracks/0/keys = {
 "values": [28, 29, 30, 31, 32, 33, 34]
 }
 
-[sub_resource type="Animation" id="Animation_43cd5"]
-resource_name = "Door"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-
 [sub_resource type="Animation" id="Animation_8ikcd"]
 resource_name = "Dungeon"
 length = 0.8
@@ -131,6 +115,22 @@ tracks/0/keys = {
 "values": [35, 36, 37, 38, 39, 40, 41]
 }
 
+[sub_resource type="Animation" id="Animation_43cd5"]
+resource_name = "House"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xt3vi"]
 _data = {
 "Bank": SubResource("Animation_ojedi"),
@@ -138,8 +138,8 @@ _data = {
 "Cabin": SubResource("Animation_lu82q"),
 "Castle": SubResource("Animation_3duld"),
 "Cell": SubResource("Animation_6ln5a"),
-"Door": SubResource("Animation_43cd5"),
 "Dungeon": SubResource("Animation_8ikcd"),
+"House": SubResource("Animation_43cd5"),
 "Tailor": SubResource("Animation_8m3x7")
 }
 
@@ -156,7 +156,6 @@ texture = ExtResource("1_sfrr5")
 offset = Vector2(0, -3)
 hframes = 7
 vframes = 8
-frame = 28
 script = ExtResource("2_1r3dt")
 type = 4
 

@@ -35,7 +35,3 @@ func _on_online_mouse_exited():
 func _on_online_pressed():
 	Audio.change_music("online")
 	Transition.change_scene("res://Scenes/Game/OnlineWorld.tscn")
-
-func _on_control_pressed():
-	$Control.visible = false
-	

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=45 format=3 uid="uid://c0ndy3hw3jlqs"]
+[gd_resource type="TileSet" load_steps=46 format=3 uid="uid://c0ndy3hw3jlqs"]
 
 [ext_resource type="Texture2D" uid="uid://8g7rk7e3wu6b" path="res://Assets/Game/Tileset/ground.png" id="1_d2rvy"]
 [ext_resource type="Texture2D" uid="uid://b52jw7mgm025" path="res://Assets/Game/Tileset/building.png" id="2_nfgvx"]
@@ -2821,6 +2821,9 @@ scenes/6/scene = ExtResource("12_xnogc")
 scenes/7/scene = ExtResource("13_otm4u")
 scenes/9/scene = ExtResource("14_ce2dc")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lwyxx"]
+resource_name = "Objects"
+
 [resource]
 tile_size = Vector2i(8, 8)
 uv_clipping = true
@@ -2857,3 +2860,4 @@ sources/2 = SubResource("TileSetAtlasSource_aybre")
 sources/0 = SubResource("TileSetAtlasSource_76dtx")
 sources/4 = SubResource("TileSetScenesCollectionSource_h7xef")
 sources/3 = SubResource("TileSetScenesCollectionSource_4ks18")
+sources/5 = SubResource("TileSetScenesCollectionSource_lwyxx")

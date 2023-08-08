@@ -2,7 +2,7 @@ extends PointLight2D
 
 var layer
 var type
-var disabled = false
+static var disabled = false
 var time
 
 func _ready() -> void:
@@ -12,11 +12,11 @@ func _ready() -> void:
 	$AnimationPlayer.play("Flicker")
 
 func _process(_delta) -> void:
-	if time.hour == 8:
+	if time.hour == 7 and time.minute == 30:
 		if layer == 0 and not disabled:
 			$AnimationPlayer.play("Fade")
 			disabled = true
-	elif time.hour == 18:
+	elif time.hour == 17:
 		if layer == 0 and disabled:
 			$AnimationPlayer.play_backwards("Fade")
 			disabled = false

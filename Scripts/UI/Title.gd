@@ -14,7 +14,6 @@ func _on_play_mouse_entered():
 func _on_play_mouse_exited():
 	$Options/Play.text = "Play"
 
-
 func _on_settings_mouse_entered():
 	$Options/Settings.text = "~ Settings"
 

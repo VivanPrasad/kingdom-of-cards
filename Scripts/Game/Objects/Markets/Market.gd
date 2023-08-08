@@ -10,18 +10,12 @@ func _ready():
 
 func _physics_process(_delta):
 	player = $"/root/World".get_node_or_null(Global.player_id)
-	if nearby and hovered and player.current_menu == "None" and not player.get_node("Menu").get_child_count():
+	if hovered and player.current_menu == "None" and not player.get_node("Menu").get_child_count():
 		modulate = Color(1.5,1.5,1.5,1)
 		$Label.visible = true
 	else:
 		modulate = Color(1,1,1,1)
 		$Label.visible = false
-
-func _on_area_2d_body_entered(body):
-	if body is CharacterBody2D and body.is_multiplayer_authority(): nearby = true
-
-func _on_area_2d_body_exited(body):
-	if body is CharacterBody2D and body.is_multiplayer_authority(): nearby = false
 
 func _input(event):
 	if event is InputEventMouse or event is InputEventScreenTouch:

@@ -1,8 +1,8 @@
 extends Node
 
-@export var second : int = 14400
+@export var second : int = 3600 * 5
 @export var minute : int = 0
-@export var hour : int = 0
+@export var hour : int = 5
 @export var day : int = 1
 
 @export_enum("am","pm") var meridiem : String = "am"
@@ -22,10 +22,10 @@ func _process(delta):
 	if hour == 0 and day_processed == false and speed > 0:
 		start_new_day()
 	if day_processed:
-		if hour > 4 and hour < 23: 
-			speed = 216  #5am to 10pm; 18 hours in 4.5 minutes
+		if hour > 4 and hour < 22: 
+			speed = 240  #5am-10pm; 18 hours in 4.5 minutes
 		else:
-			speed = 240 #11pm to 5am; 6 hours in 1 minute
+			speed = 280 #10pm-5am; 7 hours in 1.5 minutes
 	
 	if hour == 23:
 		day_processed = false
