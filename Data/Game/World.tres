@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=46 format=3 uid="uid://c0ndy3hw3jlqs"]
+[gd_resource type="TileSet" load_steps=47 format=3 uid="uid://c0ndy3hw3jlqs"]
 
 [ext_resource type="Texture2D" uid="uid://8g7rk7e3wu6b" path="res://Assets/Game/Tileset/ground.png" id="1_d2rvy"]
 [ext_resource type="Texture2D" uid="uid://b52jw7mgm025" path="res://Assets/Game/Tileset/building.png" id="2_nfgvx"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://h0j38y2cahqw" path="res://Scenes/Game/Objects/Doors/TailorDoor.tscn" id="12_xnogc"]
 [ext_resource type="PackedScene" uid="uid://cr151idtqxoo7" path="res://Scenes/Game/Objects/Doors/BlacksmithDoor.tscn" id="13_otm4u"]
 [ext_resource type="PackedScene" uid="uid://cpovtw43hu6q3" path="res://Scenes/Game/Objects/Doors/Gate.tscn" id="14_ce2dc"]
+[ext_resource type="PackedScene" uid="uid://vopkt8mtvj2v" path="res://Scenes/Game/Objects/BerryBush.tscn" id="15_ffkxl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_26eh4"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
@@ -200,7 +201,6 @@ texture_region_size = Vector2i(8, 8)
 4:2/0/terrain = 2
 4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:2/0/physics_layer_0/angular_velocity = 0.0
-4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 4:2/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 4:2/0/physics_layer_1/angular_velocity = 0.0
 0:3/0 = 0
@@ -2445,14 +2445,13 @@ texture_region_size = Vector2i(8, 8)
 0:5/0/z_index = -1
 0:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:5/0/physics_layer_0/angular_velocity = 0.0
-0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 4, 0, 4, 4, -4, 4)
 0:5/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:5/0/physics_layer_1/angular_velocity = 0.0
 1:5/0 = 0
 1:5/0/z_index = -1
 1:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:5/0/physics_layer_0/angular_velocity = 0.0
-1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 0, 4, 0, 4, 4, -4, 4)
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, 3, -4, 3, -4, 4, 4, 4)
 1:5/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 1:5/0/physics_layer_1/angular_velocity = 0.0
 2:5/0 = 0
@@ -2823,6 +2822,7 @@ scenes/9/scene = ExtResource("14_ce2dc")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lwyxx"]
 resource_name = "Objects"
+scenes/0/scene = ExtResource("15_ffkxl")
 
 [resource]
 tile_size = Vector2i(8, 8)

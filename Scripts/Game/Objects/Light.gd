@@ -1,27 +1,39 @@
 extends PointLight2D
 
-var layer
+@export var on_surface : bool = true
+
 var type
-static var disabled = false
-var time
+@onready var time = $"/root/World/HUD/Time"
+@onready var player : Node
 
 func _ready() -> void:
-	if layer == 1: enabled = false
-	time = $"/root/World/HUD/Time"
-	await get_tree().create_timer(randf_range(0.01,2.00)).timeout
-	$AnimationPlayer.play("Flicker")
+	player = $"/root/World".get_node_or_null(Global.player_id)
+	enabled = bool(on_surface == player.on_surface)
 
-func _process(_delta) -> void:
-	if time.hour == 7 and time.minute == 30:
-		if layer == 0 and not disabled:
+func _physics_process(_delta) -> void:
+	var previous_value = enabled
+	if on_surface:
+		if time.hour == 7 and time.minute == 30:
 			$AnimationPlayer.play("Fade")
-			disabled = true
-	elif time.hour == 17:
-		if layer == 0 and disabled:
+		elif time.hour == 17 and time.minute == 0:
 			$AnimationPlayer.play_backwards("Fade")
-			disabled = false
-func update(t): #state is the layer affected, it will invert the layer if true
-	if t == 0:
-		if not disabled: enabled = bool(layer == 0)
-	elif t == 1:
-		if not disabled: enabled = bool(layer == 1)
+		if time.hour >= 8 and time.hour < 17:
+			enabled = false
+		else:
+			enabled = true
+	elif on_surface == player.on_surface:
+		enabled = true
+	else:
+		enabled = false
+	if previous_value != enabled:
+		if enabled == true:
+			var atlas_coords = get_parent().get_cell_atlas_coords(2,position/8)
+			print(atlas_coords)
+			if not atlas_coords in [Vector2(0,8),Vector2(0,0)]:
+				get_parent().set_cell(2,position/8,2,Vector2i(atlas_coords.x+1,atlas_coords.y))
+		else:
+			var atlas_coords = get_parent().get_cell_atlas_coords(2,position/8)
+			print(atlas_coords)
+			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
+				get_parent().set_cell(2,position/8,2,Vector2i(atlas_coords.x-1,atlas_coords.y))
+	previous_value = enabled

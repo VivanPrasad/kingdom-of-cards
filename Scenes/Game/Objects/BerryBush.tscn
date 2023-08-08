@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://vopkt8mtvj2v"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Objects/BerryBush.gd" id="1_cx1bi"]
+[ext_resource type="Texture2D" uid="uid://c8aescd14087o" path="res://Assets/Game/Tileset/decoration.png" id="1_g0bjs"]
+[ext_resource type="Texture2D" uid="uid://dtffvkp4kjhie" path="res://Assets/UI/HUD/keyhints.png" id="3_r0lt0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6btn"]
+size = Vector2(6, 1)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pl6ep"]
+properties/0/path = NodePath("../Timer:wait_time")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lkgtd"]
+size = Vector2(6, 6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8nbp2"]
+
+[node name="BerryBush" type="StaticBody2D"]
+texture_filter = 1
+script = ExtResource("1_cx1bi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_r6btn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g0bjs")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 8)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Sprite2D"]
+replication_config = SubResource("SceneReplicationConfig_pl6ep")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_lkgtd")
+
+[node name="Label" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Name" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -7.0
+offset_right = 29.0
+offset_bottom = 14.0
+scale = Vector2(0.1, 0.1)
+text = "Pick"
+label_settings = SubResource("LabelSettings_8nbp2")
+
+[node name="Key" type="Sprite2D" parent="Label"]
+position = Vector2(2, -6)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_r0lt0")
+hframes = 6
+vframes = 5
+frame = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

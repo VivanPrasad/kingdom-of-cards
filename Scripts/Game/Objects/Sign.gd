@@ -19,7 +19,7 @@ func _physics_process(_delta):
 func _input(event):
 	if ((event is InputEventScreenTouch and hovered) or (event is InputEventMouseButton and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT))) and hovered:
 		hovered = false
-		player.open_menu(player.sign_menu)
+		player.open_menu(player.sign_menu,text)
 func _on_area_2d_mouse_entered():
 	if player.current_menu == "None":
 		hovered = true

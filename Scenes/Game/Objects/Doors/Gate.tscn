@@ -1,6 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cpovtw43hu6q3"]
 
 [ext_resource type="Texture2D" uid="uid://dnbkpmws1jmbb" path="res://Assets/Game/Objects/gate.png" id="1_aa3ms"]
+[ext_resource type="Script" path="res://Scripts/Game/Objects/Gate.gd" id="1_guf0f"]
 
 [sub_resource type="Animation" id="Animation_davq6"]
 resource_name = "Gate"
@@ -66,16 +67,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4uc6d"]
 size = Vector2(18, 5)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_31bl5"]
-properties/0/path = NodePath("Gate:frame")
-properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
-
 [node name="Gate" type="StaticBody2D"]
 use_parent_material = true
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("1_guf0f")
 
 [node name="Gate" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -85,7 +81,6 @@ hframes = 13
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gate"]
 root_node = NodePath("../..")
-speed_scale = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_fdvug")
 }
@@ -93,6 +88,3 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_4uc6d")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_31bl5")

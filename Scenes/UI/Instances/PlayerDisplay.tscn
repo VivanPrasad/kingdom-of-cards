@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://mu6msb766x61"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Instances/PlayerDisplay.gd" id="1_lx35c"]
+[ext_resource type="Texture2D" uid="uid://bj20hgdonoflj" path="res://Assets/UI/HUD/profile.png" id="1_prjs0"]
+
+[node name="PlayerDisplay" type="HBoxContainer"]
+theme_override_constants/separation = 32
+script = ExtResource("1_lx35c")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="Sprite2D" parent="MarginContainer"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_prjs0")
+offset = Vector2(8, 4)
+hframes = 6
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "PossiblePanda"
+horizontal_alignment = 1
+vertical_alignment = 1

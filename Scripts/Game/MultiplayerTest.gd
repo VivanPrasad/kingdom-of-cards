@@ -19,6 +19,7 @@ var player_character : String
 ###
 @onready var time_cycle := $Shader/TimeCycle
 @onready var time := $HUD/Time
+@onready var server_updates := $HUD/ServerUpdates
 
 @onready var light : PackedScene = preload("res://Scenes/Game/Objects/Light.tscn")
 
@@ -34,7 +35,6 @@ func _ready():
 	join_button.connect("pressed",Callable(self,"_on_join_pressed"))
 	get_tree().set_pause(true)
 
-
 func _on_host_pressed():
 	ip = multiplayer_menu.host_ip_line.text
 	port = int(multiplayer_menu.host_port_line.text)
@@ -44,15 +44,16 @@ func _on_host_pressed():
 	multiplayer.peer_connected.connect(_add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
 	_add_player()
-	transition_to_world()
+	transition_to_world("castle")
 
 func _add_player(id = 1):
 	var player = player_scene.instantiate()
 	player.name = str(id)
-	call_deferred("add_child",player)
+	add_child(player)
 
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
+	server_updates.player_left(player)
 	if player:	player.queue_free()
 
 func _on_join_pressed():
@@ -60,9 +61,9 @@ func _on_join_pressed():
 	port = int(multiplayer_menu.join_port_line.text)
 	peer.create_client(ip,port)
 	multiplayer.multiplayer_peer = peer
-	transition_to_world()
+	transition_to_world("day")
 
-func transition_to_world():
+func transition_to_world(music):
 	get_tree().set_pause(false)
 	Transition.fade_in()
 	await Transition.player.animation_finished
@@ -70,7 +71,7 @@ func transition_to_world():
 	instance_lights()
 	$HUD.show()
 	Transition.fade_out()
-	Audio.change_music("day")
+	Audio.change_music(music)
 	
 func _process(_delta):
 	if time_cycle.is_playing():
@@ -91,39 +92,18 @@ func instance_lights():
 				lights_pos.append(cell)
 				var instance = light.instantiate()
 				instance.position = cell * 8 #position on grid is 8x scale
-				instance.layer = [$Surface,$Dungeon].find(layer) #surface = 0, dungeon = 1
-				layer.add_child(instance)
+				instance.on_surface = bool(layer == $Surface) #surface = 0, dungeon = 1
+				layer.add_child(instance,true)
 	for child in $Surface.get_children() + $Dungeon.get_children():
 		if str(child.name).contains("Light"): lights.append(child) #Adds the light node paths to the 
 	for i in $Dungeon.get_layers_count(): $Dungeon.set_layer_enabled(i, false)
-
-func toggle_lights(is_on : bool):
-	var atlas_coords
-	if not is_on:
-		for pos in lights_pos:
-			atlas_coords = $Surface.get_cell_atlas_coords(2,pos)
-			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
-				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x-1,atlas_coords.y))
-	else:
-		for pos in lights_pos:
-			atlas_coords = $Surface.get_cell_atlas_coords(2,pos)
-			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
-				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x+1,atlas_coords.y))
-	
-	#TEMP GATE STATES
-	for child in $Surface.get_children():
-		if child is StaticBody2D:
-			if str(child.get_child(0).name).contains("Gate"):
-				if time.hour == 8:
-					child.get_child(0).get_child(0).play("Gate")
-				else:
-					child.get_child(0).get_child(0).play_backwards("Gate")
 
 func get_market_locations():
 	for child in $Surface.get_children():
 		print(child.name)
 		if str(child.name) in ["FoodMarket","BankDesk","ItemMarket"]: #THERE CAN ONLY BE ONE MARKET INSTANCE FOR EACH!!!!
 			market_locations[str(child.name)] = child.position
+
 func _on_multiplayer_spawner_spawned(_node):
 	pass
 

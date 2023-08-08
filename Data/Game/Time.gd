@@ -29,14 +29,8 @@ func _process(delta):
 	
 	if hour == 23:
 		day_processed = false
-	
-	if (hour == 7 or hour == 17):
-		lights_processed = false
+		
 		if day != 1: hunger_processed = false
-	if (hour == 8 or hour == 18):
-		if lights_processed == false:
-			lights_processed = true
-			update_lights()
 		if hunger_processed == false:
 			hunger_processed = true
 			#update_hunger()
@@ -57,12 +51,6 @@ func update_hunger():
 		print(player.life)
 	player.update_HUD()
 """
-
-func update_lights():
-	if hour == 8:
-		world.toggle_lights(false)
-	elif hour == 18:
-		world.toggle_lights(true)
 
 func update_labels():
 	day_label.text = "Day " + str(day)

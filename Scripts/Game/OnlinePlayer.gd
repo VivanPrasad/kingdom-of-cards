@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var market_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/MarketMenu.tscn")
 @onready var sign_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/SignMenu.tscn")
 
+@onready var player0 = preload("res://Assets/Game/Entities/Player/player0.png")
 @onready var player1 = preload("res://Assets/Game/Entities/Player/player1.png")
 @onready var player2 = preload("res://Assets/Game/Entities/Player/player2.png")
 @onready var player3 = preload("res://Assets/Game/Entities/Player/player3.png")
@@ -18,15 +19,20 @@ extends CharacterBody2D
 @onready var emote := $Emotes
 @onready var emote_player := $Emotes/EmotePlayer
 
+@onready var world = $".."
 @onready var animation_tree := $AnimationTree
 @onready var animation_player := $AnimationPlayer
 
 @export var current_menu : String = "None"
 
 @export var inventory : Array[Card] = [Card.new("Rules",82,"There are no rules!",3,"Hold"),load("res://Data/Cards/Bread.tres").duplicate(),load("res://Data/Cards/Berry.tres").duplicate()]
+
+
 @export var life : int = 4
 @export var hunger : int = 2
+@export var cards : int = 3
 
+@export var on_surface : bool = true
 @export_enum("Good","Ill","Immune") var status : int
 
 const base_speed = 100
@@ -40,18 +46,30 @@ func _ready() -> void:
 	if str(self.name) == "1":
 		$Nametag/HBoxContainer/Icon.visible = true
 	if is_multiplayer_authority():
-		character = $"..".player_character
+		
+		if name == &"1":
+			character = "0"
+			speed = 80
+			position = Vector2i(384,-238)
+		else:
+			character = $"..".player_character
 		Global.player_id = str(self.name)
+		$Nametag/HBoxContainer/Name.text = get_parent().player_name
 		$Camera.enabled = true
 		set_character.rpc(character)
-		$Nametag/HBoxContainer/Name.text = get_parent().player_name
+		$"/root/World/HUD/ServerUpdates".player_joined(self)
 	else:
 		$MobileUI.hide()
+		$Menu.hide()
+		$Profile.hide()
+		if name == &"1":	character = "0"
 		set_character(character)
+		$"/root/World/HUD/ServerUpdates".player_joined(self)
 
 @rpc("call_local")
 func set_character(id):
 	$Sprite.texture = get("player" + id)
+	$Profile/Icon.frame = int(id)
 
 func _physics_process(_delta):
 	if not is_multiplayer_authority(): return
@@ -70,16 +88,19 @@ func _physics_process(_delta):
 		
 	velocity = input_vector * speed
 	move_and_slide()
+	
+	$Profile/Cards/Amount.text = "x" + str(len(inventory))
 
 #Menu Handling
-func open_menu(menu : PackedScene) -> void:
+func open_menu(menu,data : String = "") -> void:
 	close_menu()
 	$Menu.add_child(menu.instantiate())
 	current_menu = str($Menu.get_child(0).name)
 	
 	if current_menu == "EmoteMenu":
 		start_thinking.rpc()
-
+	if current_menu == "SignMenu":
+		$Menu.get_child(0).get_node_or_null("TextureRect/CenterContainer/Label").text = data
 func close_menu():
 	if current_menu == "EmoteMenu":
 		stop_thinking.rpc()
