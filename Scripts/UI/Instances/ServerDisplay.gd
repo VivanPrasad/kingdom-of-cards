@@ -28,20 +28,20 @@ var current_player_count : int
 var max_player_count : int = 20
 
 func _ready():
+	if server.server_ip in world.official_servers:
+		ip = world.official_servers[server.server_ip]
+	else:
+		ip = server.server_ip
 	name_label.text = server.server_name
 	var texture = icon.texture
 	icon.texture = texture.duplicate()
 	icon.texture.region = Rect2i(5*(server.icon_id%5),5*int(floor(server.icon_id/5.0)),5,5)
 	
 	udp_client.set_broadcast_enabled(true)
-	udp_client.set_dest_address("255.255.255.255",25566)
+	udp_client.connect_to_host(ip, 9999)
 	locating = true
 	await get_tree().create_timer(1.5).timeout
 	locating = false
-	if server.server_ip in world.official_servers:
-		ip = world.official_servers[server.server_ip]
-	else:
-		ip = server.server_ip
 
 func _process(delta):
 	delta_time += delta

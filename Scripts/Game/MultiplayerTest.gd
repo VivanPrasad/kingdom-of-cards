@@ -1,6 +1,6 @@
 extends Node2D
 
-const port : int = 25565
+const port : int = 9998
 var ip : String
 
 const official_servers = {"kingdom.cards":"23.16.130.237","cards":"23.16.130.237","bamboo":"23.16.130.237","whispering.kingdom":"94.70.115.110"}
@@ -47,6 +47,7 @@ func _on_host_pressed():
 	multiplayer.peer_disconnected.connect(remove_player)
 	_add_player()
 	create_udp_server()
+	upnp_setup()
 	transition_to_world("castle")
 func _add_player(id = 1):
 	var player = player_scene.instantiate()
@@ -122,8 +123,15 @@ func _on_multiplayer_spawner_despawned(_node):
 func show_connection_error():
 	pass
 
+func upnp_setup():
+	var upnp = UPNP.new()
+	
+	upnp.discover()
+	upnp.add_port_mapping(9999)
+	upnp.add_port_mapping(9998)
+	
 func create_udp_server():
-	udp.listen(25566,"0.0.0.0")
+	udp.listen(9999)
 
 func _process(_delta):
 	udp.poll()

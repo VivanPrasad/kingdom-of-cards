@@ -75,9 +75,6 @@ func set_character(id):
 	$Profile/Icon.frame = int(id)
 
 func _physics_process(_delta):
-	if not is_multiplayer_authority():
-		print(self.player_name)
-		
 	if not is_multiplayer_authority(): return
 	input_vector = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
