@@ -36,9 +36,9 @@ func _ready():
 	var texture = icon.texture
 	icon.texture = texture.duplicate()
 	icon.texture.region = Rect2i(5*(server.icon_id%5),5*int(floor(server.icon_id/5.0)),5,5)
-	
 	udp_client.set_broadcast_enabled(true)
-	udp_client.connect_to_host(ip, 9999)
+	udp_client.set_dest_address("255.255.255.255",9999)
+	#udp_client.connect_to_host(ip, 9999)
 	locating = true
 	await get_tree().create_timer(1.5).timeout
 	locating = false
@@ -60,7 +60,7 @@ func _process(delta):
 		set_status(0)
 	elif udp_server_found:
 		set_status(1)
-	elif not ip.is_valid_ip_address() and not udp_server_found:
+	elif not ip.is_valid_ip_address() and not udp_server_found and ip != "localhost":
 		set_status(3)
 	else:
 		set_status(2)

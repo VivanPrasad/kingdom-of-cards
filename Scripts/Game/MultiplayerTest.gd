@@ -131,7 +131,7 @@ func upnp_setup():
 	upnp.add_port_mapping(9998)
 	
 func create_udp_server():
-	udp.listen(9999)
+	udp.listen(9999,"0.0.0.0")
 
 func _process(_delta):
 	udp.poll()

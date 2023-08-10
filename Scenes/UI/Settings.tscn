@@ -399,7 +399,7 @@ modulate = Color(0.631373, 0.631373, 0.631373, 1)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 32
-text = "25565"
+text = "9999"
 
 [node name="Label" type="Label" parent="TabContainer/Online/Container"]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
