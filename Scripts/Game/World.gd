@@ -50,7 +50,7 @@ func instance_lights():
 				lights_pos.append(cell)
 				var instance = light.instantiate()
 				instance.position = cell * 8 #position on grid is 8x scale
-				instance.layer = [$Surface,$Dungeon].find(layer) #surface = 0, dungeon = 1
+				instance.on_surface = [$Dungeon,$Surface].find(layer) #surface = 0, dungeon = 1
 				layer.add_child(instance)
 	for child in $Surface.get_children() + $Dungeon.get_children():
 		if str(child.name).contains("Light"): lights.append(child) #Adds the light node paths to the 
@@ -63,27 +63,6 @@ func _process(_delta):
 			$Shader/AnimationPlayer.play("Cycle")
 	else:
 		$Shader/AnimationPlayer.seek(4) #the dungeon looks dark, so it infinitely seeks at time = 4am
-
-func toggle_lights(is_on : bool):
-	var atlas_coords
-	if not is_on:
-		for pos in lights_pos:
-			atlas_coords = $Surface.get_cell_atlas_coords(2,pos)
-			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
-				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x-1,atlas_coords.y))
-	else:
-		for pos in lights_pos:
-			atlas_coords = $Surface.get_cell_atlas_coords(2,pos)
-			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
-				$Surface.set_cell(2,pos,2,Vector2i(atlas_coords.x+1,atlas_coords.y))
-	
-	#TEMP GATE STATES
-	for child in $Surface.get_children():
-		if str(child.name).contains("Gate"):
-			if time.hour == 8:
-				child.get_child(0).get_child(0).play("Gate")
-			else:
-				child.get_child(0).get_child(0).play_backwards("Gate")
 
 func dungeon(): #flips state
 	$Entities/Player.layer = in_dungeon

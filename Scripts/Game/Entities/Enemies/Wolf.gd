@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var input_vector = Vector2.ZERO
 
-var layer : int = 1
+var on_surface : bool = true
 
 var on_cooldown : bool = false
 var touching_player : bool = false
@@ -16,7 +16,7 @@ var VELOCITY = Vector2.ZERO
 var direction = Vector2.ZERO
 
 func _physics_process(_delta):
-	if player.layer == layer:
+	if player.on_surface == on_surface:
 		visible = true
 	else:
 		visible = false

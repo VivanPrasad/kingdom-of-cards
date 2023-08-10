@@ -21,10 +21,11 @@ func _input(event):
 		hovered = false
 		player.open_menu(player.sign_menu,text)
 func _on_area_2d_mouse_entered():
-	if player.current_menu == "None":
-		hovered = true
-	else:
-		hovered = false
+	if player != null:
+		if player.current_menu == "None":
+			hovered = true
+		else:
+			hovered = false
 
 func _on_area_2d_mouse_exited():
 	hovered = false

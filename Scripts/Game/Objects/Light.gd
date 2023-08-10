@@ -8,7 +8,8 @@ var type
 
 func _ready() -> void:
 	player = $"/root/World".get_node_or_null(Global.player_id)
-	enabled = bool(on_surface == player.on_surface)
+	if player != null:
+		enabled = bool(on_surface == player.on_surface)
 
 func _physics_process(_delta) -> void:
 	var previous_value = enabled

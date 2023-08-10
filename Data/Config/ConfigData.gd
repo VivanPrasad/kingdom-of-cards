@@ -10,17 +10,17 @@ const save_path : String = "user://data/config.tres"
 @export var music : int = 100
 @export var sfx : int = 100
 
-#controls
+#Controls
 @export var keybinds : Dictionary = {
-	"ui_left":"",
-	"ui_right":"",
-	"ui_up":"",
-	"ui_down":"",
-	"ui_cancel":["ui_right","ui_left","ui_up","ui_down","pause"],
-	"inventory":"",
-	"emote":"",
-	"pause":"",
-	"chat":""
+	"ui_up":KEY_W,
+	"ui_left":KEY_A,
+	"ui_down":KEY_S,
+	"ui_right":KEY_D,
+	"inventory":KEY_E,
+	"emote":KEY_B,
+	"chat":KEY_T,
+	"player_list":KEY_TAB,
+	"pause":KEY_ESCAPE
 }
 
 #Display
@@ -30,6 +30,7 @@ const save_path : String = "user://data/config.tres"
 @export var fps : int = 1 #30,60,90,120,Unlimited
 
 #Multiplayer
+@export var server_list : Array[Server] = [load("res://Data/Config/OfficialServer.tres")]
 @export var player_name : String = "Guest" + str(randi_range(100,999))
 @export var player_character : String = "1"
 
@@ -38,7 +39,10 @@ func write_save() -> void:
 	Config.update_config()
 
 static func save_exists() -> bool:
-	return ResourceLoader.exists(save_path)
+	if ResourceLoader.load(save_path) != null:
+		return ResourceLoader.exists(save_path)
+	else:
+		return false
 	
 static func load_save() -> Resource:
 	return ResourceLoader.load(save_path)

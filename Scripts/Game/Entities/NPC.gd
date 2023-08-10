@@ -1,7 +1,7 @@
 extends CharacterBody2D
 var input_vector = Vector2.ZERO
 
-var layer : int = 1
+var on_surface : bool = true
 @export var path_to_player : NodePath
 
 var VELOCITY = Vector2.ZERO
@@ -15,7 +15,7 @@ func _ready():
 	$Sprite2D.texture = load(str("res://Assets/Game/Entities/Player/player" + str(randi() % 4 + 1)+".png"))
 
 func _physics_process(_delta):
-	if player.layer == layer:
+	if player.on_surface == on_surface:
 		visible = true
 	else:
 		visible = false

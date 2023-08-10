@@ -10,12 +10,13 @@ func _ready():
 
 func _physics_process(_delta):
 	player = $"/root/World".get_node_or_null(Global.player_id)
-	if hovered and player.current_menu == "None" and not player.get_node("Menu").get_child_count():
-		modulate = Color(1.5,1.5,1.5,1)
-		$Label.visible = true
-	else:
-		modulate = Color(1,1,1,1)
-		$Label.visible = false
+	if player != null:
+		if hovered and player.current_menu == "None" and not player.get_node("Menu").get_child_count():
+			modulate = Color(1.5,1.5,1.5,1)
+			$Label.visible = true
+		else:
+			modulate = Color(1,1,1,1)
+			$Label.visible = false
 
 func _input(event):
 	if event is InputEventMouse or event is InputEventScreenTouch:

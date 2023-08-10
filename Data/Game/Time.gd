@@ -19,6 +19,7 @@ var speed : int = 350 #60 = 1 irl second is 1 minute
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if get_tree().paused: return
 	if hour == 0 and day_processed == false and speed > 0:
 		start_new_day()
 	if day_processed:

@@ -32,8 +32,7 @@ func _input(event):
 		$Timer.start()
 		
 func _on_timer_timeout():
-	if Global.player_id == "1":
-		$Sprite2D.frame = 1
+	$Sprite2D.frame = 1
 
 func _on_area_2d_mouse_entered():
 	if player.current_menu == "None":

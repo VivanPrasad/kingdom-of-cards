@@ -23,6 +23,8 @@ extends CharacterBody2D
 @onready var animation_tree := $AnimationTree
 @onready var animation_player := $AnimationPlayer
 
+@onready var icon := $Nametag/HBoxContainer/Icon
+@onready var player_name := $Nametag/HBoxContainer/Name
 @export var current_menu : String = "None"
 
 @export var inventory : Array[Card] = [Card.new("Rules",82,"There are no rules!",3,"Hold"),load("res://Data/Cards/Bread.tres").duplicate(),load("res://Data/Cards/Berry.tres").duplicate()]
@@ -44,9 +46,11 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	if str(self.name) == "1":
-		$Nametag/HBoxContainer/Icon.visible = true
+		icon.show()
+	
+	if name == &"1":
+			character = "0"
 	if is_multiplayer_authority():
-		
 		if name == &"1":
 			character = "0"
 			speed = 80
@@ -54,17 +58,16 @@ func _ready() -> void:
 		else:
 			character = $"..".player_character
 		Global.player_id = str(self.name)
-		$Nametag/HBoxContainer/Name.text = get_parent().player_name
-		$Camera.enabled = true
+		player_name.text = get_parent().player_name
+		$Camera.set_enabled(true)
 		set_character.rpc(character)
-		$"/root/World/HUD/ServerUpdates".player_joined(self)
 	else:
 		$MobileUI.hide()
 		$Menu.hide()
 		$Profile.hide()
-		if name == &"1":	character = "0"
 		set_character(character)
-		$"/root/World/HUD/ServerUpdates".player_joined(self)
+	await get_tree().create_timer(1.0).timeout
+	$"/root/World/HUD/ServerUpdates".player_joined(self)
 
 @rpc("call_local")
 func set_character(id):
@@ -72,6 +75,9 @@ func set_character(id):
 	$Profile/Icon.frame = int(id)
 
 func _physics_process(_delta):
+	if not is_multiplayer_authority():
+		print(self.player_name)
+		
 	if not is_multiplayer_authority(): return
 	input_vector = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
@@ -88,8 +94,6 @@ func _physics_process(_delta):
 		
 	velocity = input_vector * speed
 	move_and_slide()
-	
-	$Profile/Cards/Amount.text = "x" + str(len(inventory))
 
 #Menu Handling
 func open_menu(menu,data : String = "") -> void:
@@ -101,6 +105,7 @@ func open_menu(menu,data : String = "") -> void:
 		start_thinking.rpc()
 	if current_menu == "SignMenu":
 		$Menu.get_child(0).get_node_or_null("TextureRect/CenterContainer/Label").text = data
+
 func close_menu():
 	if current_menu == "EmoteMenu":
 		stop_thinking.rpc()
@@ -109,6 +114,7 @@ func close_menu():
 		$Menu.get_child(0).queue_free()
 	current_menu = "None"
 
+#Input Handling
 func _unhandled_key_input(_event) -> void:
 	if not is_multiplayer_authority():	return
 	
@@ -122,6 +128,7 @@ func _unhandled_key_input(_event) -> void:
 	elif Input.is_action_just_pressed("emote") and emote.modulate == Color("ffffff00"):
 		open_menu(emote_menu)
 
+#Emotes
 @rpc("call_local")
 func start_thinking():
 	emote_player.play("Popup")
@@ -141,6 +148,7 @@ func play_emote(emote_id : int):
 	await get_tree().create_timer(3.0).timeout
 	emote_player.play_backwards("Popup")
 
+#Card Functions
 func eat(value):
 	for times in value:
 		if hunger < 2:
@@ -161,3 +169,4 @@ func update_profile():
 	$Profile/Life.frame = life * (status + 1)
 	$Profile/Armor.frame = (life-4) * int(life > 4)
 	$Profile/Hunger.frame = hunger
+	$Profile/Cards/Amount.text = "x" + str(len(inventory))

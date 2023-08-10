@@ -1,8 +1,7 @@
-[gd_scene load_steps=53 format=3 uid="uid://c4q10lqua2k5"]
+[gd_scene load_steps=50 format=3 uid="uid://c4q10lqua2k5"]
 
 [ext_resource type="Texture2D" uid="uid://bhgmleinj4te5" path="res://Assets/UI/Menu/background.png" id="1_cndxx"]
 [ext_resource type="Script" path="res://Scripts/UI/Menu/MultiplayerMenu.gd" id="1_epslo"]
-[ext_resource type="Texture2D" uid="uid://cucyhea3l1s0k" path="res://Assets/UI/HUD/Buttons/refresh.png" id="3_7ey8p"]
 [ext_resource type="Texture2D" uid="uid://dsfcdqy357ixp" path="res://Assets/Game/Entities/Player/player1.png" id="3_ve8c2"]
 [ext_resource type="FontVariation" uid="uid://diqtfxvgb4nnc" path="res://Assets/Fonts/royal-intonation.tres" id="3_x0d4g"]
 [ext_resource type="Texture2D" uid="uid://cg5ul4ok6hwpc" path="res://Assets/Game/Entities/Player/player2.png" id="4_5liw5"]
@@ -136,15 +135,12 @@ font_color = Color(0.909804, 0.854902, 1, 1)
 outline_size = 32
 outline_color = Color(0.196078, 0.101961, 0.172549, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bea6q"]
-atlas = ExtResource("3_7ey8p")
-region = Rect2(0, 0, 16, 18)
+[sub_resource type="InputEventKey" id="InputEventKey_w23hc"]
+device = -1
+keycode = 4194309
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_367kt"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmblp"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pt8u8"]
+[sub_resource type="Shortcut" id="Shortcut_oxsvi"]
+events = [SubResource("InputEventKey_w23hc")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_80410"]
 atlas = ExtResource("3_ve8c2")
@@ -394,7 +390,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="TabContainer/Servers/VBoxContainer/ScrollContainer/VBoxContainer"]
-visible = false
 modulate = Color(0.605469, 0.605469, 0.605469, 1)
 layout_mode = 2
 size_flags_vertical = 3
@@ -406,7 +401,6 @@ vertical_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Servers/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_constants/separation = 16
 
 [node name="Host" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -418,46 +412,26 @@ theme_override_colors/font_color = Color(0.14902, 0.580392, 0.635294, 1)
 theme_override_font_sizes/font_size = 32
 text = "Host"
 
-[node name="Refresh" type="TextureButton" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
-modulate = Color(0.760784, 0.768627, 1, 1)
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-texture_normal = SubResource("AtlasTexture_bea6q")
-stretch_mode = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Deselect" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
-modulate = Color(0.54902, 0.54902, 0.54902, 1)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_367kt")
-action_mode = 0
-text = "Deselect"
-
-[node name="Edit" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
+[node name="Add" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_colors/font_color = Color(0.819608, 0.839216, 0.603922, 1)
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.639216, 0.905882, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_rmblp")
-text = "Edit"
+text = "Add"
 
-[node name="Add" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
+[node name="Edit" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_colors/font_color = Color(1, 0.639216, 0.905882, 1)
+focus_mode = 0
+theme_override_colors/font_color = Color(0.819608, 0.839216, 0.603922, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_pt8u8")
-text = "Add"
+text = "Edit"
 
 [node name="Join" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -467,6 +441,7 @@ size_flags_vertical = 8
 focus_mode = 0
 theme_override_colors/font_color = Color(0.733333, 0.615686, 1, 1)
 theme_override_font_sizes/font_size = 32
+shortcut = SubResource("Shortcut_oxsvi")
 text = "Join"
 
 [node name="Direct" type="CenterContainer" parent="TabContainer"]
@@ -630,7 +605,7 @@ offset_right = -4.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 24
-text = "8.10.23"
+text = "8.9.23"
 
 [node name="Info" type="Label" parent="."]
 layout_mode = 1
@@ -663,10 +638,10 @@ text = "Back"
 flat = true
 alignment = 0
 
-[connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
-[connection signal="pressed" from="TabContainer/Servers/VBoxContainer/HBoxContainer/Refresh" to="." method="_on_refresh_pressed"]
-[connection signal="pressed" from="TabContainer/Servers/VBoxContainer/HBoxContainer/Deselect" to="." method="_on_deselect_pressed"]
-[connection signal="pressed" from="TabContainer/Servers/VBoxContainer/HBoxContainer/Edit" to="." method="_on_edit_pressed"]
-[connection signal="pressed" from="TabContainer/Servers/VBoxContainer/HBoxContainer/Add" to="." method="_on_add_pressed"]
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="item_selected" from="TabContainer/Profile/HBoxContainer/VBoxContainer/Character/OptionButton" to="." method="_on_name_item_selected"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

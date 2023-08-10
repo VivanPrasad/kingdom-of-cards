@@ -1,23 +1,19 @@
 extends Node2D
 
-const port : int = 25565
+var port : int
 var ip : String
 
-const official_servers = {"kingdom.cards":"23.16.130.237","cards":"23.16.130.237","bamboo":"23.16.130.237","whispering.kingdom":"94.70.115.110"}
-
 var peer = ENetMultiplayerPeer.new()
-var udp = UDPServer.new()
 
 @export var player_scene : PackedScene = preload("res://Scenes/Game/Entities/OnlinePlayer.tscn")
 
 var player_name : String
 var player_character : String
 
-@onready var multiplayer_menu := $Lobby/MultiplayerMenu
-@onready var host_button := $Lobby/MultiplayerMenu/TabContainer/Servers/VBoxContainer/HBoxContainer/Host
-@onready var join_button := $Lobby/MultiplayerMenu/TabContainer/Servers/VBoxContainer/HBoxContainer/Join
-@onready var direct_join_button := $Lobby/MultiplayerMenu/TabContainer/Direct/VBoxContainer/DirectJoin
+@onready var host_button := $"Lobby/MultiplayerMenu/VBoxContainer/TabContainer/Host Game/VBoxContainer/Host"
+@onready var join_button := $"Lobby/MultiplayerMenu/VBoxContainer/TabContainer/Join Game/VBoxContainer/Join"
 
+@onready var multiplayer_menu := $Lobby/MultiplayerMenu
 
 ###
 @onready var time_cycle := $Shader/TimeCycle
@@ -37,16 +33,17 @@ func _ready():
 	$HUD.hide(); $Lobby.show()
 	host_button.connect("pressed",Callable(self,"_on_host_pressed"))
 	join_button.connect("pressed",Callable(self,"_on_join_pressed"))
-	direct_join_button.connect("pressed",Callable(self,"_on_direct_join_pressed"))
-	get_tree().paused = true
+	get_tree().set_pause(true)
 
 func _on_host_pressed():
+	ip = multiplayer_menu.host_ip_line.text
+	port = int(multiplayer_menu.host_port_line.text)
+	#peer.set_bind_ip(ip)
 	peer.create_server(port)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
 	_add_player()
-	create_udp_server()
 	transition_to_world("castle")
 func _add_player(id = 1):
 	var player = player_scene.instantiate()
@@ -59,27 +56,21 @@ func remove_player(peer_id):
 	remove_child(player)
 	player.free()
 
-func _on_direct_join_pressed():
-	pass
-	
 func _on_join_pressed():
-	var server_ip = Config.config_data.server_list[multiplayer_menu.server_selected-1].server_ip
-	if server_ip in official_servers:
-		ip = official_servers[server_ip]
-	else:
-		ip = server_ip
+	ip = multiplayer_menu.join_ip_line.text
+	port = int(multiplayer_menu.join_port_line.text)
 	peer.create_client(ip,port)
 	multiplayer.multiplayer_peer = peer
 	transition_to_world("day")
 
 func transition_to_world(music):
-	Transition.fade_in(0.8)
-	await Transition.player.animation_finished
 	get_tree().set_pause(false)
+	Transition.fade_in()
+	await Transition.player.animation_finished
 	multiplayer_menu.queue_free()
 	instance_lights()
 	$HUD.show()
-	Transition.fade_out(0.8)
+	Transition.fade_out()
 	Audio.change_music(music)
 	
 func _physics_process(_delta):
@@ -87,6 +78,13 @@ func _physics_process(_delta):
 		time_cycle.seek(time.second / 3600.0,false)
 	else:
 		time_cycle.play("Cycle")
+	
+	for child in get_children():
+		if child is CharacterBody2D:
+			$HUD/ConnectionMenu.hide()
+			return
+	$HUD/ConnectionMenu.show()
+	
 
 func instance_lights():
 	var cell_data
@@ -121,23 +119,3 @@ func _on_multiplayer_spawner_despawned(_node):
 
 func show_connection_error():
 	pass
-
-func create_udp_server():
-	udp.listen(25566,"0.0.0.0")
-
-func _process(_delta):
-	udp.poll()
-	if udp.is_connection_available():
-		var udp_peer : PacketPeerUDP = udp.take_connection()
-		var packet = udp_peer.get_packet()
-		print("Recieved : %s from %s:%s" %
-		[
-			packet.get_string_from_ascii(),
-			udp_peer.get_packet_ip(),
-			udp_peer.get_packet_port(),
-		])
-		var players : int = 0
-		for child in get_children():
-			if child is CharacterBody2D:
-				players += 1
-		udp_peer.put_packet(str(players).to_ascii_buffer())

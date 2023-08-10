@@ -12,7 +12,7 @@ enum state {good,sick,potion,unknown}
 
 @onready var emote_player = $Emotes/EmotePlayer
 @onready var emote = $Emotes
-var layer : int = 1 #layer 1 = surface, layer 0 = dungeon
+var on_surface : bool = true #layer 1 = surface, layer 0 = dungeon
 
 var actions = 3 #number of action cards during combat
 #+1 if holding the ring 
@@ -147,8 +147,6 @@ func play_emote(emote_id : int):
 	emote_player.play_backwards("Popup")
 
 func _unhandled_key_input(_event) -> void:
-	if not is_multiplayer_authority():	return
-	
 	if Input.is_action_just_pressed("ui_cancel") and $Menu.get_child_count():
 		close_menu()
 	elif Input.is_action_just_pressed("pause") and current_menu != "PauseMenu":

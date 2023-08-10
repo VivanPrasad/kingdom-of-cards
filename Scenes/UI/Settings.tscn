@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://6kyictdbolcp"]
+[gd_scene load_steps=30 format=3 uid="uid://6kyictdbolcp"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Settings.gd" id="1_o2ner"]
 [ext_resource type="Texture2D" uid="uid://bhgmleinj4te5" path="res://Assets/UI/Menu/background.png" id="2_brtxe"]
 [ext_resource type="Texture2D" uid="uid://dredbjdsjbxus" path="res://Assets/UI/HUD/Buttons/checkbutton-export.png" id="3_xvtwj"]
+[ext_resource type="Texture2D" uid="uid://bl0tw1mqanlru" path="res://Assets/UI/HUD/Buttons/visible.png" id="4_3jj6y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dg25"]
 atlas = ExtResource("2_brtxe")
@@ -173,8 +174,17 @@ region = Rect2(0, 64, 64, 32)
 atlas = ExtResource("3_xvtwj")
 region = Rect2(0, 32, 64, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_prgtf"]
+atlas = ExtResource("4_3jj6y")
+region = Rect2(0, 9, 18, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okr04"]
+atlas = ExtResource("4_3jj6y")
+region = Rect2(0, 0, 18, 10)
+
 [node name="Settings" type="Control"]
 modulate = Color(1, 1, 1, 0)
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -339,32 +349,193 @@ button_pressed = true
 [node name="Controls" type="MarginContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="Container" type="VBoxContainer" parent="TabContainer/Controls"]
+[node name="Keys" type="HBoxContainer" parent="TabContainer/Controls"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_constants/separation = 64
 
-[node name="Label" type="Label" parent="TabContainer/Controls/Container"]
+[node name="Row2" type="VBoxContainer" parent="TabContainer/Controls/Keys"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="Row1" type="VBoxContainer" parent="TabContainer/Controls/Keys"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="Online" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Container" type="VBoxContainer" parent="TabContainer/Online"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="Port" type="HBoxContainer" parent="TabContainer/Online/Container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Online/Container/Port"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "Port"
+
+[node name="Label2" type="Label" parent="TabContainer/Online/Container/Port"]
+modulate = Color(0.631373, 0.631373, 0.631373, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "25565"
+
+[node name="Label" type="Label" parent="TabContainer/Online/Container"]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "*Port forwarding is required to host servers"
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Online/Container"]
+layout_mode = 2
+
+[node name="LocalIP" type="HBoxContainer" parent="TabContainer/Online/Container"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="TabContainer/Online/Container/LocalIP"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "Local IP"
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/Online/Container/LocalIP"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "25565"
+editable = false
+secret = true
+
+[node name="LocalVisible" type="TextureButton" parent="TabContainer/Online/Container/LocalIP"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+toggle_mode = true
+action_mode = 0
+texture_normal = SubResource("AtlasTexture_prgtf")
+texture_pressed = SubResource("AtlasTexture_okr04")
+stretch_mode = 5
+
+[node name="PublicIP" type="HBoxContainer" parent="TabContainer/Online/Container"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Online/Container/PublicIP"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Online/Container/PublicIP/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="TabContainer/Online/Container/PublicIP/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "Public IP"
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/Online/Container/PublicIP/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "25565"
+editable = false
+secret = true
+
+[node name="PublicVisible" type="TextureButton" parent="TabContainer/Online/Container/PublicIP/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+toggle_mode = true
+action_mode = 0
+texture_normal = SubResource("AtlasTexture_prgtf")
+texture_pressed = SubResource("AtlasTexture_okr04")
+stretch_mode = 5
+
+[node name="CopyIP" type="Button" parent="TabContainer/Online/Container/PublicIP/VBoxContainer"]
+modulate = Color(1, 0.945098, 0.584314, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "Copy Public IP to Clipboard"
+
+[node name="Data" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Container" type="VBoxContainer" parent="TabContainer/Data"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 32
+
+[node name="Button" type="Button" parent="TabContainer/Data/Container"]
+modulate = Color(0.929412, 0.690196, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "Coming Soon!"
+text = "Open Data Folder"
+
+[node name="HBoxContainer" type="VBoxContainer" parent="TabContainer/Data/Container"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button2" type="Button" parent="TabContainer/Data/Container/HBoxContainer"]
+modulate = Color(1, 0.494118, 0.568627, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Delete Config Data"
+
+[node name="Label" type="Label" parent="TabContainer/Data/Container/HBoxContainer"]
+modulate = Color(0.572549, 0.572549, 0.572549, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "*Requires restart"
 
 [node name="Back" type="Control" parent="TabContainer"]
 visible = false
 layout_mode = 2
-
-[node name="Label" type="Label" parent="."]
-modulate = Color(0.647059, 1, 0.662745, 1)
-layout_mode = 0
-offset_left = 1119.0
-offset_top = 673.0
-offset_right = 1423.0
-offset_bottom = 703.0
-theme_override_font_sizes/font_size = 24
-text = "*Settings save automatically"
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
@@ -382,3 +553,8 @@ text = "Settings"
 [connection signal="value_changed" from="TabContainer/Audio/Container/Music/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Audio/Container/SFX/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="toggled" from="TabContainer/Display/Container/Fullscreen/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="TabContainer/Online/Container/LocalIP/LocalVisible" to="." method="_on_local_visible_toggled"]
+[connection signal="toggled" from="TabContainer/Online/Container/PublicIP/VBoxContainer/HBoxContainer/PublicVisible" to="." method="_on_public_visible_toggled"]
+[connection signal="pressed" from="TabContainer/Online/Container/PublicIP/VBoxContainer/CopyIP" to="." method="_on_copy_ip_pressed"]
+[connection signal="pressed" from="TabContainer/Data/Container/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TabContainer/Data/Container/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]

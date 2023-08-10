@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vopkt8mtvj2v"]
+[gd_scene load_steps=7 format=3 uid="uid://vopkt8mtvj2v"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Objects/BerryBush.gd" id="1_cx1bi"]
 [ext_resource type="Texture2D" uid="uid://c8aescd14087o" path="res://Assets/Game/Tileset/decoration.png" id="1_g0bjs"]
@@ -6,12 +6,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6btn"]
 size = Vector2(6, 1)
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pl6ep"]
-properties/0/path = NodePath("../Timer:wait_time")
-properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lkgtd"]
 size = Vector2(6, 6)
@@ -31,9 +25,6 @@ texture = ExtResource("1_g0bjs")
 hframes = 2
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 8)
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Sprite2D"]
-replication_config = SubResource("SceneReplicationConfig_pl6ep")
 
 [node name="Area2D" type="Area2D" parent="."]
 

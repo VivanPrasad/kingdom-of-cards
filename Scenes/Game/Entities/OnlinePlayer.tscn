@@ -408,7 +408,7 @@ modulate = Color(1, 1, 1, 0.407843)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 8
-text = "Someone"
+text = "Player"
 horizontal_alignment = 1
 vertical_alignment = 2
 
@@ -472,7 +472,3 @@ shape = SubResource("RectangleShape2D_j7f2r")
 [node name="Profile" parent="." instance=ExtResource("4_w0r7n")]
 
 [node name="Menu" type="CanvasLayer" parent="."]
-
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(-1.43051e-06, 1.43051e-06)
-scale = Vector2(1.6, 1.6)

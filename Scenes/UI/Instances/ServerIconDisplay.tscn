@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwoc1l1bpaokf"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Instances/ServerIconDisplay.gd" id="1_77c73"]
+[ext_resource type="Texture2D" uid="uid://cl0ov10fdidsx" path="res://Assets/UI/HUD/server_icons.png" id="1_fxh3c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_to0kj"]
+bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7khp"]
+bg_color = Color(1, 1, 1, 0.211765)
+
+[node name="ServerIconDisplay" type="PanelContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(54, 54)
+theme_override_styles/panel = SubResource("StyleBoxFlat_to0kj")
+script = ExtResource("1_77c73")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_e7khp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.741176)
+scale = Vector2(8, 8)
+texture = ExtResource("1_fxh3c")
+centered = false
+offset = Vector2(0.9, 0.9)
+hframes = 5
+vframes = 5
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

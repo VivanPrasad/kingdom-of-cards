@@ -1,0 +1,171 @@
+[gd_scene load_steps=11 format=3 uid="uid://dlp70u0m0rtnn"]
+
+[ext_resource type="Texture2D" uid="uid://cl0ov10fdidsx" path="res://Assets/UI/HUD/server_icons.png" id="1_7p30u"]
+[ext_resource type="Script" path="res://Scripts/UI/Instances/ServerDisplay.gd" id="1_sc5la"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7vsh"]
+bg_color = Color(0.129412, 0.0784314, 0.184314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfyn6"]
+bg_color = Color(0.156863, 0.156863, 0.294118, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h4ft"]
+atlas = ExtResource("1_7p30u")
+region = Rect2(0, 5, 5, 5)
+margin = Rect2(1, 1, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_434e7"]
+atlas = ExtResource("1_7p30u")
+region = Rect2(0, 20, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d52rs"]
+atlas = ExtResource("1_7p30u")
+region = Rect2(10, 20, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y3ro"]
+atlas = ExtResource("1_7p30u")
+region = Rect2(15, 20, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8olp"]
+atlas = ExtResource("1_7p30u")
+region = Rect2(5, 20, 5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yphy"]
+bg_color = Color(1, 1, 1, 0.247059)
+
+[node name="ServerDisplay" type="PanelContainer"]
+texture_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k7vsh")
+script = ExtResource("1_sc5la")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sfyn6")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = SubResource("AtlasTexture_0h4ft")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "My Server"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Status" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Locating" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status/Locating"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_434e7")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status/Locating"]
+modulate = Color(0.996094, 0.84375, 0.519531, 1)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Locating"
+
+[node name="Online" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status/Online"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_d52rs")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status/Online"]
+modulate = Color(0.355469, 0.566406, 0.289063, 1)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Online"
+
+[node name="Offline" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status/Offline"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_2y3ro")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status/Offline"]
+modulate = Color(0.59375, 0.652344, 0.683594, 1)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Offline"
+
+[node name="Unavailable" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status/Unavailable"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_h8olp")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status/Unavailable"]
+modulate = Color(0.617188, 0.246094, 0.375, 1)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Unavailable"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(0.443137, 0.266667, 0.627451, 1)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 32
+text = "0/20"
+
+[node name="Select" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_5yphy")
+flat = true
+
+[connection signal="focus_entered" from="Select" to="." method="_on_select_focus_entered"]
+[connection signal="gui_input" from="Select" to="." method="_on_select_gui_input"]
+[connection signal="pressed" from="Select" to="." method="_on_select_pressed"]
