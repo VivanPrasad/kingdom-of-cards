@@ -134,14 +134,15 @@ func upnp_setup():
 	upnp.add_port_mapping(port - 1)
 	
 func create_udp_server():
-	udp.listen(port - 1,"0.0.0.0")
+	#print(IP.get_local_addresses())
+	udp.listen(port - 1,IP.get_local_addresses()[-1])
 
 func _process(_delta):
 	udp.poll()
 	if udp.is_connection_available():
 		var udp_peer : PacketPeerUDP = udp.take_connection()
 		var packet = udp_peer.get_packet()
-		print("Recieved : %s from %s:%s" %
+		print("Recieved Packet: %s from %s:%s" %
 		[
 			packet.get_string_from_ascii(),
 			udp_peer.get_packet_ip(),

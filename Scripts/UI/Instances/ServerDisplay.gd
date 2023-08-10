@@ -38,8 +38,7 @@ func _ready():
 	icon.texture = texture.duplicate()
 	icon.texture.region = Rect2i(5*(server.icon_id%5),5*int(floor(server.icon_id/5.0)),5,5)
 	udp_client.set_broadcast_enabled(true)
-	udp_client.set_dest_address("255.255.255.255",sub_port)
-	#udp_client.connect_to_host(ip, 9999)
+	udp_client.connect_to_host(ip,sub_port)
 	locating = true
 	await get_tree().create_timer(1.5).timeout
 	locating = false
@@ -49,7 +48,7 @@ func _process(delta):
 	if delta_time >= 1.5:
 		delta_time = 0.2
 		if not udp_server_found:
-			udp_client.put_packet("Valid_Request".to_ascii_buffer())
+			udp_client.put_packet("validrequest".to_ascii_buffer())
 			udp_requests -= 1
 			if udp_requests == 0:
 				pass
