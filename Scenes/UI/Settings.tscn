@@ -223,6 +223,7 @@ theme_override_font_sizes/font_size = 32
 metadata/_edit_lock_ = true
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
@@ -371,7 +372,6 @@ size_flags_vertical = 0
 theme_override_constants/separation = 16
 
 [node name="Online" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
@@ -394,12 +394,17 @@ size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 32
 text = "Port"
 
-[node name="Label2" type="Label" parent="TabContainer/Online/Container/Port"]
+[node name="LineEdit" type="LineEdit" parent="TabContainer/Online/Container/Port"]
 modulate = Color(0.631373, 0.631373, 0.631373, 1)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 32
 text = "9999"
+placeholder_text = "9999"
+max_length = 8
+expand_to_text_length = true
+virtual_keyboard_type = 2
+caret_blink = true
 
 [node name="Label" type="Label" parent="TabContainer/Online/Container"]
 modulate = Color(0.501961, 0.501961, 0.501961, 1)
@@ -553,6 +558,7 @@ text = "Settings"
 [connection signal="value_changed" from="TabContainer/Audio/Container/Music/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Audio/Container/SFX/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="toggled" from="TabContainer/Display/Container/Fullscreen/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="text_changed" from="TabContainer/Online/Container/Port/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="toggled" from="TabContainer/Online/Container/LocalIP/LocalVisible" to="." method="_on_local_visible_toggled"]
 [connection signal="toggled" from="TabContainer/Online/Container/PublicIP/VBoxContainer/HBoxContainer/PublicVisible" to="." method="_on_public_visible_toggled"]
 [connection signal="pressed" from="TabContainer/Online/Container/PublicIP/VBoxContainer/CopyIP" to="." method="_on_copy_ip_pressed"]

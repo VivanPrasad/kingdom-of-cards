@@ -1,6 +1,7 @@
 extends Node2D
 
-const port : int = 9998
+var port : int = 9999
+
 var ip : String
 
 const official_servers = {"kingdom.cards":"23.16.130.237","cards":"23.16.130.237","bamboo":"23.16.130.237","whispering.kingdom":"94.70.115.110"}
@@ -34,6 +35,7 @@ var lights_on : bool = true
 var market_locations = {}
 
 func _ready():
+	port = Config.config_data.port
 	$HUD.hide(); $Lobby.show()
 	host_button.connect("pressed",Callable(self,"_on_host_pressed"))
 	join_button.connect("pressed",Callable(self,"_on_join_pressed"))
@@ -127,11 +129,12 @@ func upnp_setup():
 	var upnp = UPNP.new()
 	
 	upnp.discover()
-	upnp.add_port_mapping(9999)
-	upnp.add_port_mapping(9998)
+	print(upnp.discover())
+	upnp.add_port_mapping(port)
+	upnp.add_port_mapping(port - 1)
 	
 func create_udp_server():
-	udp.listen(9999,"0.0.0.0")
+	udp.listen(port - 1,"0.0.0.0")
 
 func _process(_delta):
 	udp.poll()

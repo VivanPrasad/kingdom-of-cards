@@ -31,6 +31,7 @@ const save_path : String = "user://data/config.tres"
 
 #Multiplayer
 @export var server_list : Array[Server] = [load("res://Data/Config/OfficialServer.tres")]
+@export var port : int = 9999
 @export var player_name : String = "Guest" + str(randi_range(100,999))
 @export var player_character : String = "1"
 

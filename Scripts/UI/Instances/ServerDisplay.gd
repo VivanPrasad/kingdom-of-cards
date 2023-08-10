@@ -28,6 +28,7 @@ var current_player_count : int
 var max_player_count : int = 20
 
 func _ready():
+	var sub_port = Config.config_data.port - 1
 	if server.server_ip in world.official_servers:
 		ip = world.official_servers[server.server_ip]
 	else:
@@ -37,7 +38,7 @@ func _ready():
 	icon.texture = texture.duplicate()
 	icon.texture.region = Rect2i(5*(server.icon_id%5),5*int(floor(server.icon_id/5.0)),5,5)
 	udp_client.set_broadcast_enabled(true)
-	udp_client.set_dest_address("255.255.255.255",9999)
+	udp_client.set_dest_address("255.255.255.255",sub_port)
 	#udp_client.connect_to_host(ip, 9999)
 	locating = true
 	await get_tree().create_timer(1.5).timeout

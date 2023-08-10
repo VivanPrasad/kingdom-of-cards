@@ -52,8 +52,9 @@ func update_values():
 	master_slider.value = config_data.master
 	music_slider.value = config_data.music
 	sfx_slider.value = config_data.sfx
-	
 	fullscreen_button.button_pressed = config_data.fullscreen
+	$TabContainer/Online/Container/Port/LineEdit.text = str(config_data.port)
+	
 func _on_tab_container_tab_clicked(tab):
 	if tab == 5:
 		$AnimationPlayer.play_backwards("FadeIn")
@@ -99,3 +100,9 @@ func _on_button_pressed():
 func _on_button_2_pressed():
 	var dir = DirAccess.open("user://data")
 	dir.remove("config.tres")
+
+
+func _on_line_edit_text_changed(new_text):
+	if new_text.is_valid_int():
+		config_data.port = int(new_text)
+		config_data.write_save()
