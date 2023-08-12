@@ -345,9 +345,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -441.5
-offset_top = 64.0
+offset_top = 37.0
 offset_right = 441.5
-offset_bottom = 139.0
+offset_bottom = 112.0
 grow_horizontal = 2
 text = "Kingdom Online"
 label_settings = SubResource("LabelSettings_2g08e")
@@ -361,10 +361,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -368.0
-offset_top = -176.0
-offset_right = 368.0
-offset_bottom = 304.0
+offset_left = -433.0
+offset_top = -209.0
+offset_right = 433.0
+offset_bottom = 333.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
@@ -483,7 +483,7 @@ theme_override_constants/separation = 16
 
 [node name="Label" type="Label" parent="TabContainer/Direct/VBoxContainer/DirectIP"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "Enter Server IP"
 
 [node name="LineEdit" type="LineEdit" parent="TabContainer/Direct/VBoxContainer/DirectIP"]
@@ -624,26 +624,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -59.0
-offset_top = -34.0
-offset_right = -4.0
+offset_left = -109.0
+offset_top = -46.0
+offset_right = -13.0
+offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-text = "8.10.23"
-
-[node name="Info" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 14.0
-offset_top = -32.0
-offset_right = 355.0
-offset_bottom = -6.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-text = "Online Framework by M. V. Prasad"
+theme_override_font_sizes/font_size = 32
+text = "8.11.23"
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 0

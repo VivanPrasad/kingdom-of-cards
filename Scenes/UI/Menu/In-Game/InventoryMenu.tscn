@@ -56,6 +56,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.2, 1.2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer:anchors_preset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a5358"]
 _data = {
@@ -69,8 +93,11 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -240.0
+offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.2, 1.2)
 focus_mode = 2
 script = ExtResource("1_iqqit")
 
@@ -86,8 +113,11 @@ color = Color(0, 0, 0, 0.439216)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
-offset_right = 1440.0
-offset_bottom = 720.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
 layout_mode = 2

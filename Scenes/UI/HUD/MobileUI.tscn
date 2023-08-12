@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjk88wtc5it3r"]
+[gd_scene load_steps=10 format=3 uid="uid://bjk88wtc5it3r"]
 
 [ext_resource type="Script" path="res://Scripts/UI/HUD/MobileUI.gd" id="1_uftnm"]
 [ext_resource type="Texture2D" uid="uid://0l86aj7m315p" path="res://Assets/UI/HUD/mobile.png" id="2_v0qs3"]
@@ -8,6 +8,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_wo7ao"]
 atlas = ExtResource("2_v0qs3")
 region = Rect2(0, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fjhj"]
+atlas = ExtResource("2_v0qs3")
+region = Rect2(52, 0, 13, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mdeid"]
 atlas = ExtResource("2_v0qs3")
@@ -30,6 +34,14 @@ texture_filter = 1
 position = Vector2(1336, 24)
 scale = Vector2(6, 6)
 texture_normal = SubResource("AtlasTexture_wo7ao")
+visibility_mode = 1
+
+[node name="PlayerList" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.666667)
+texture_filter = 1
+position = Vector2(1232, 24)
+scale = Vector2(6, 6)
+texture_normal = SubResource("AtlasTexture_5fjhj")
 visibility_mode = 1
 
 [node name="Inventory" type="TouchScreenButton" parent="."]
@@ -75,6 +87,8 @@ texture = ExtResource("3_frp7m")
 texture = ExtResource("4_qtrnr")
 
 [connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="PlayerList" to="." method="_on_player_list_pressed"]
+[connection signal="released" from="PlayerList" to="." method="_on_player_list_released"]
 [connection signal="pressed" from="Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="pressed" from="Emote" to="." method="_on_emote_pressed"]
 [connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]

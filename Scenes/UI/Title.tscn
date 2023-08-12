@@ -126,8 +126,11 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u66ke"]
-font_size = 32
-font_color = Color(0.596078, 0.654902, 0.686275, 1)
+line_spacing = 0.0
+font_size = 40
+font_color = Color(0.898438, 0.929688, 0.921875, 1)
+outline_size = 32
+outline_color = Color(0.195313, 0.101563, 0.171875, 1)
 shadow_size = 8
 
 [node name="Title" type="Control"]
@@ -238,27 +241,34 @@ flat = true
 alignment = 0
 
 [node name="Version" type="Label" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 1253.0
-offset_top = 619.0
-offset_right = 1371.0
-offset_bottom = 658.0
+offset_left = 1296.0
+offset_top = 636.0
+offset_right = 1396.0
+offset_bottom = 681.0
 size_flags_horizontal = 10
 size_flags_vertical = 8
-text = "proto_1"
+text = "v1.0.0"
 label_settings = SubResource("LabelSettings_u66ke")
+horizontal_alignment = 2
 
-[node name="Edition" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1159.0
-offset_top = 619.0
-offset_right = 1365.0
-offset_bottom = 658.0
+[node name="Notice" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.133333)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1135.0
+offset_top = -39.0
+offset_right = -8.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 10
 size_flags_vertical = 8
-text = "Rene's Edition"
-label_settings = SubResource("LabelSettings_u66ke")
+theme_override_font_sizes/font_size = 24
+text = "This game is in prototype stages and is prone to crashes and bugs. Please report any issues to the developer."
 
 [connection signal="mouse_entered" from="Options/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="mouse_exited" from="Options/Play" to="." method="_on_play_mouse_exited"]

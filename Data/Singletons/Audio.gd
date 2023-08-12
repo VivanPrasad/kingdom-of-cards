@@ -6,20 +6,21 @@ extends Node
 
 @onready var day = preload("res://Assets/Audio/Music/day.ogg")
 @onready var castle = preload("res://Assets/Audio/Music/castle.ogg")
+
 #SFX
 @onready var back = preload("res://Assets/Audio/SFX/UI/back.wav")
 @onready var select = preload("res://Assets/Audio/SFX/UI/select.wav")
 @onready var confirm = preload("res://Assets/Audio/SFX/UI/confirm.wav")
 
 @onready var select2 = preload("res://Assets/Audio/SFX/UI/select.wav")
-const music_max = {"online":-11.0,"title":-7.0,"day":-7.0,"castle":-6.0}
+const music_max = {"online":-14.0,"title":-5.0,"day":-7.0,"castle":-11.0}
 const sfx_volume = {"back":10.0,"confirm":-5.0,"select":15.0,"select2":15.0}
 const sfx_pitch = {"back":1.0,"confirm":1.0,"select":1.0,"select2":2.0}
+
 func _ready():
 	var tween = create_tween()
-	tween.tween_property($Music, "volume_db",2.0,1.0)
+	tween.tween_property($Music, "volume_db",music_max["title"],1.0)
 	tween.play()
-	
 func play_day():
 	$day.play()
 
@@ -46,7 +47,6 @@ func play_sfx(sfx_name):
 	sfx.play()
 	await sfx.finished
 	sfx.queue_free()
-	
 	
 func is_music_playing():
 	return $Music.is_playing()

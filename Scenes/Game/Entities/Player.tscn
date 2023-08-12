@@ -485,11 +485,10 @@ libraries = {
 }
 next/Popup = &"Thinking"
 
-[node name="Profile" parent="." instance=ExtResource("4_yh6hc")]
-
 [node name="MobileUI" parent="." instance=ExtResource("3_t80ug")]
 
+[node name="Profile" parent="." instance=ExtResource("4_yh6hc")]
+
 [node name="Menu" type="CanvasLayer" parent="."]
-layer = 2
 
 [connection signal="timeout" from="EffectTimer" to="." method="_on_timer_timeout"]

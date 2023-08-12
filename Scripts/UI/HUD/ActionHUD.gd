@@ -3,7 +3,8 @@ extends Control
 @onready var action_display = preload("res://Scenes/UI/Instances/ActionDisplay.tscn")
 
 func _ready():
-	for item in $"/root/World/Entities/Player".actions:
+	var player = $"/root/World".get_node_or_null(Global.player_id)
+	for item in player.actions:
 		new_card()
 
 func new_card():

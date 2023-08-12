@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c007xi351utek"]
+[gd_scene load_steps=34 format=3 uid="uid://c007xi351utek"]
 
 [ext_resource type="Texture2D" uid="uid://resp2qnsqhfb" path="res://Assets/Game/Entities/Enemies/wolf.png" id="1_1lunx"]
 [ext_resource type="Script" path="res://Scripts/Game/Entities/Enemies/Wolf.gd" id="1_kphp6"]
@@ -229,8 +229,6 @@ states/Sleep/node = SubResource("AnimationNodeBlendSpace2D_v2lnx")
 states/Sleep/position = Vector2(489, 231)
 graph_offset = Vector2(104, 5)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_h82jc"]
-
 [sub_resource type="Animation" id="Animation_yn5au"]
 resource_name = "Death"
 length = 0.5
@@ -443,17 +441,28 @@ _data = {
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
+properties/0/watch = false
 properties/1/path = NodePath("Sprite2D:frame")
 properties/1/spawn = true
 properties/1/sync = true
-properties/2/path = NodePath(".:script")
+properties/1/watch = false
+properties/2/path = NodePath(".:life")
 properties/2/spawn = true
 properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath("Sprite2D:modulate")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+properties/4/path = NodePath("Strike:text")
+properties/4/spawn = true
+properties/4/sync = true
+properties/4/watch = false
 
 [node name="Wolf" type="CharacterBody2D"]
 texture_filter = 1
-scale = Vector2(2, 2)
-collision_mask = 0
+scale = Vector2(0.5, 0.5)
+collision_mask = 2
 script = ExtResource("1_kphp6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -473,7 +482,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_a81bf")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_h82jc")
 parameters/Idle/blend_position = Vector2(0, -0.676856)
 parameters/Run/blend_position = Vector2(-0.017585, -0.746725)
 parameters/Sleep/blend_position = Vector2(0, 0)

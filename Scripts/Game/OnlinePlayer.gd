@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var market_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/MarketMenu.tscn")
 @onready var sign_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/SignMenu.tscn")
 
+@onready var action_hud : PackedScene = preload("res://Scenes/UI/HUD/ActionHUD.tscn")
+
 @onready var player0 = preload("res://Assets/Game/Entities/Player/player0.png")
 @onready var player1 = preload("res://Assets/Game/Entities/Player/player1.png")
 @onready var player2 = preload("res://Assets/Game/Entities/Player/player2.png")
@@ -33,6 +35,9 @@ extends CharacterBody2D
 @export var life : int = 4
 @export var hunger : int = 2
 @export var cards : int = 3
+
+@export var enemies : Array[Node] = []
+@export var actions : int = 3
 
 @export var on_surface : bool = true
 @export_enum("Good","Ill","Immune") var status : int
@@ -79,7 +84,7 @@ func _physics_process(_delta):
 	input_vector = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-		).normalized() * int(bool(current_menu == "None"))
+		).normalized() * int(bool(current_menu in ["None","ActionHUD"]))
 	if $MobileUI.vector != Vector2.ZERO:
 		input_vector = $MobileUI.vector
 	if input_vector != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
@@ -88,9 +93,14 @@ func _physics_process(_delta):
 		animation_tree.get("parameters/playback").travel("Run")
 	else:
 		animation_tree.get("parameters/playback").travel("Idle")
-		
 	velocity = input_vector * speed
 	move_and_slide()
+	if len(enemies) > 0:
+		if current_menu != "ActionHUD":
+			close_menu()
+			open_menu(action_hud)
+	elif current_menu == "ActionHUD":
+		close_menu()
 
 #Menu Handling
 func open_menu(menu,data : String = "") -> void:
@@ -115,7 +125,7 @@ func close_menu():
 func _unhandled_key_input(_event) -> void:
 	if not is_multiplayer_authority():	return
 	
-	if Input.is_action_just_pressed("ui_cancel") and $Menu.get_child_count():
+	if Input.is_action_just_pressed("ui_cancel") and $Menu.get_child_count() and current_menu not in ["None","ActionHUD"]:
 		close_menu()
 	elif Input.is_action_just_pressed("pause") and current_menu != "PauseMenu":
 		current_menu = "PauseMenu"

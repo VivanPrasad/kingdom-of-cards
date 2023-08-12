@@ -15,7 +15,7 @@ func _on_disconnect_pressed():
 		Transition.change_scene("res://Scenes/Game/OnlineWorld.tscn")
 		await get_tree().create_timer(0.25).timeout
 		get_tree().set_pause(false)
-		Audio.change_music("title")
+		Audio.change_music("online")
 		for node in world.get_children():
 			if node is CharacterBody2D:
 				world.remove_child(node)

@@ -3,13 +3,14 @@ extends CanvasLayer
 @onready var player_display = preload("res://Scenes/UI/Instances/PlayerDisplay.tscn")
 @onready var world = $"/root/World"
 
+var mobile : bool = false
 func _input(_event):
-	if Input.is_action_pressed("player_list"):
-		if visible == false:
-			update_list()
-		show()
-	else:
-		hide()
+	if not mobile:
+		if Input.is_action_pressed("player_list"):
+			show()
+		else:
+			hide()
+	update_list()
 
 func update_list():
 	for child in $Panel/VBoxContainer.get_children():

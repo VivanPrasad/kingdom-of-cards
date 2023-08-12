@@ -35,9 +35,7 @@ func _input(event):
 		else:
 			hovered = false
 	if event is InputEventMouseButton and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if get_global_rect().has_point(get_global_mouse_position()):
-			selected = true
-		else:
+		if not get_global_rect().has_point(get_global_mouse_position()):
 			selected = false
 	#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		#if get_global_rect().has_point(get_global_mouse_position()):
@@ -71,3 +69,6 @@ func _on_use_pressed():
 	handle_use()
 	selected = false
 	hovered = false
+
+func _on_tooltip_pressed():
+	selected = true

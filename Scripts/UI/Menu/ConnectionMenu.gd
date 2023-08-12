@@ -15,6 +15,5 @@ func _process(_delta):
 			if visible: hide()
 			return
 		else:
-			Audio.get_child(0).stop()
 			show()
 	

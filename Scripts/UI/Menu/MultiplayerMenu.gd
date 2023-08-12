@@ -77,7 +77,11 @@ func _physics_process(_delta):
 		edit_server_button.hide()
 		deselect_server_button.hide()
 		join_button.disabled = true
-
+	if direct_join_ip_line.text.is_valid_ip_address() or direct_join_ip_line.text == "localhost" or direct_join_ip_line.text in multiplayer_world.official_servers:
+		direct_join_button.disabled = true
+	else:
+		direct_join_button.disabled = false
+		
 func _on_back_pressed():
 	get_tree().set_pause(false)
 	Transition.change_scene("res://Scenes/UI/GameMode.tscn")

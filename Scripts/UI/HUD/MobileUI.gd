@@ -3,6 +3,7 @@ extends CanvasLayer
 var joystick_active : bool = false
 var vector = Vector2.ZERO
 @onready var player := $".."
+@onready var world := $"/root/World"
 
 @onready var joystick_button := $Joystick/Ring/Button
 @onready var joystick_ring := $Joystick/Ring
@@ -12,7 +13,7 @@ func _input(event):
 	if event is InputEventScreenTouch:
 		var distance = event.position.distance_to(joystick_ring.global_position)
 		if not joystick_active and player.current_menu == "None":
-			if distance <= 96:
+			if distance <= 96 + 20:
 				joystick_active = true
 		else:
 			joystick_button.position = Vector2(0,0)
@@ -27,6 +28,7 @@ func _process(_delta):
 		joystick_button.position = joystick_button.position.limit_length(16.0)
 		get_input_vector()
 	if $Joystick.visible:
+		world.player_list.mobile = true
 		if player.current_menu == "None":
 			hide_exit()
 		else:
@@ -66,3 +68,12 @@ func _on_emote_pressed():
 
 func _on_exit_pressed():
 	player.close_menu()
+
+
+func _on_player_list_pressed():
+	if not $CanvasLayer/Exit.visible:
+		world.player_list.show()
+
+func _on_player_list_released():
+	if not $CanvasLayer/Exit.visible:
+		world.player_list.hide()

@@ -1,7 +1,7 @@
 extends TextureRect
 
 var data : ActionCard
-@onready var player = $"/root/World/Entities/Player"
+@onready var player = $"/root/World/".get_node_or_null(Global.player_id)
 @onready var world = $"/root/World/"
 
 var hovered : bool = false

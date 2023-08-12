@@ -19,9 +19,9 @@ func load_config_data():
 	update_config()
 
 func update_config():
-	AudioServer.set_bus_volume_db(0,((0.8*float(config_data.master))-80.0))
-	AudioServer.set_bus_volume_db(1,((0.8*float(config_data.music))-80.0))
-	AudioServer.set_bus_volume_db(2,((0.8*float(config_data.sfx))-80.0))
+	AudioServer.set_bus_volume_db(0,linear_to_db(config_data.master/100.0))
+	AudioServer.set_bus_volume_db(1,linear_to_db(config_data.music/100.0))
+	AudioServer.set_bus_volume_db(2,linear_to_db(config_data.sfx/100.0))
 	if config_data.fullscreen:
 		if not DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)

@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dcviwx3f18g1"]
+
+[ext_resource type="FontFile" uid="uid://ce0hax8sasknc" path="res://Assets/Fonts/royal-intonation.ttf" id="1_4b814"]
+
+[resource]
+default_font = ExtResource("1_4b814")
+default_font_size = 16

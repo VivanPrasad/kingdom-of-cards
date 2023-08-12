@@ -169,6 +169,7 @@ text = "There was an issue connecting to the server"
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Back to Lobby"
 

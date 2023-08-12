@@ -223,7 +223,6 @@ theme_override_font_sizes/font_size = 32
 metadata/_edit_lock_ = true
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
@@ -372,6 +371,7 @@ size_flags_vertical = 0
 theme_override_constants/separation = 16
 
 [node name="Online" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32

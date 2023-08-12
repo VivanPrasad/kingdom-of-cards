@@ -19,11 +19,11 @@ var player_character : String
 @onready var join_button := $Lobby/MultiplayerMenu/TabContainer/Servers/VBoxContainer/HBoxContainer/Join
 @onready var direct_join_button := $Lobby/MultiplayerMenu/TabContainer/Direct/VBoxContainer/DirectJoin
 
-
 ###
 @onready var time_cycle := $Shader/TimeCycle
 @onready var time := $HUD/Time
 @onready var server_updates := $HUD/ServerUpdates
+@onready var player_list := $HUD/PlayerList
 @onready var connection_menu = $HUD/ConnectionMenu
 
 @onready var light : PackedScene = preload("res://Scenes/Game/Objects/Light.tscn")
@@ -43,14 +43,15 @@ func _ready():
 	get_tree().paused = true
 
 func _on_host_pressed():
+	var setup = await setup_server()
+	if not setup:	return
 	peer.create_server(port)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
 	_add_player()
-	create_udp_server()
-	upnp_setup()
 	transition_to_world("castle")
+
 func _add_player(id = 1):
 	var player = player_scene.instantiate()
 	player.name = str(id)
@@ -63,9 +64,17 @@ func remove_player(peer_id):
 	player.free()
 
 func _on_direct_join_pressed():
-	pass
+	transition_to_world("day")
+	var server_ip = multiplayer_menu.direct_join_ip_line.text
+	if server_ip in official_servers:
+		ip = official_servers[server_ip]
+	else:
+		ip = server_ip
+	peer.create_client(ip,port)
+	multiplayer.multiplayer_peer = peer
 	
 func _on_join_pressed():
+	transition_to_world("day")
 	var server_ip = Config.config_data.server_list[multiplayer_menu.server_selected-1].server_ip
 	if server_ip in official_servers:
 		ip = official_servers[server_ip]
@@ -73,17 +82,18 @@ func _on_join_pressed():
 		ip = server_ip
 	peer.create_client(ip,port)
 	multiplayer.multiplayer_peer = peer
-	transition_to_world("day")
+	
 
 func transition_to_world(music):
-	Transition.fade_in(0.8)
-	await Transition.player.animation_finished
+	if music == "day":
+		Transition.fade_in(0.8)
+		await Transition.player.animation_finished
 	get_tree().set_pause(false)
 	multiplayer_menu.queue_free()
 	instance_lights()
 	$HUD.show()
-	Transition.fade_out(0.8)
 	Audio.change_music(music)
+	Transition.fade_out(0.8)
 	
 func _physics_process(_delta):
 	if time_cycle.is_playing():
@@ -125,17 +135,21 @@ func _on_multiplayer_spawner_despawned(_node):
 func show_connection_error():
 	pass
 
-func upnp_setup():
+func setup_server() -> bool:
+	Transition.fade_in()
+	await Transition.player.animation_finished
+	udp.listen(port - 1,IP.get_local_addresses()[-1])
 	var upnp = UPNP.new()
 	
 	upnp.discover()
-	print(upnp.discover())
+	if upnp.discover() == 0:
+		print("UPnP is Enabled, finding ports")
+	else:
+		Transition.change_scene("res://Scenes/Game/OnlineWorld.tscn")
+		return false
 	upnp.add_port_mapping(port)
 	upnp.add_port_mapping(port - 1)
-	
-func create_udp_server():
-	#print(IP.get_local_addresses())
-	udp.listen(port - 1,IP.get_local_addresses()[-1])
+	return true
 
 func _process(_delta):
 	udp.poll()

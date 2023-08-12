@@ -22,19 +22,18 @@ func _physics_process(_delta) -> void:
 			enabled = false
 		else:
 			enabled = true
-	elif on_surface == player.on_surface:
-		enabled = true
-	else:
-		enabled = false
+	elif player != null:
+		if on_surface == player.on_surface:
+			enabled = true
+		else:
+			enabled = false
 	if previous_value != enabled:
 		if enabled == true:
 			var atlas_coords = get_parent().get_cell_atlas_coords(2,position/8)
-			print(atlas_coords)
 			if not atlas_coords in [Vector2(0,8),Vector2(0,0)]:
 				get_parent().set_cell(2,position/8,2,Vector2i(atlas_coords.x+1,atlas_coords.y))
 		else:
 			var atlas_coords = get_parent().get_cell_atlas_coords(2,position/8)
-			print(atlas_coords)
 			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
 				get_parent().set_cell(2,position/8,2,Vector2i(atlas_coords.x-1,atlas_coords.y))
 	previous_value = enabled

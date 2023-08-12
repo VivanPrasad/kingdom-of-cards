@@ -2,55 +2,61 @@ extends CharacterBody2D
 
 var input_vector = Vector2.ZERO
 
-var on_surface : bool = true
+@export var on_surface : bool = true
 
-var on_cooldown : bool = false
-var touching_player : bool = false
-var life : int = 3
+@export var on_cooldown : bool = false
+@export var touching_player : bool = false
+@export var life : int = 3
 var speed : int = 90
 const base_speed : int = 90
 var VELOCITY = Vector2.ZERO
-@onready var player = $"/root/World/Entities/Player"
 @onready var agent = $NavigationAgent2D
 @onready var world = $"/root/World/"
 var direction = Vector2.ZERO
+var player = null
 
 func _physics_process(_delta):
-	if player.on_surface == on_surface:
-		visible = true
-	else:
-		visible = false
-	if not agent.is_navigation_finished():
-		direction = global_position.direction_to(agent.get_next_path_position())
-	else:
-		direction = Vector2.ZERO
-	if  direction != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
-		$AnimationTree.set("parameters/Idle/blend_position", direction)
-		$AnimationTree.set("parameters/Run/blend_position", direction)
-		$AnimationTree.get("parameters/playback").travel("Run")
-	else:
-		$AnimationTree.get("parameters/playback").travel("Idle")
-	
-	velocity = direction.normalized() * speed
+	player = world.get_node_or_null(Global.player_id)
+	if player != null:
+		if player.on_surface == on_surface:
+			visible = true
+		else:
+			visible = false
+		if not agent.is_navigation_finished():
+			direction = global_position.direction_to(agent.get_next_path_position())
+		else:
+			direction = Vector2.ZERO
+		if  direction != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
+			$AnimationTree.set("parameters/Idle/blend_position", direction)
+			$AnimationTree.set("parameters/Run/blend_position", direction)
+			$AnimationTree.get("parameters/playback").travel("Run")
+		else:
+			$AnimationTree.get("parameters/playback").travel("Idle")
+			
+		velocity = direction.normalized() * speed
 	move_and_slide()
-	
+			
 	if not on_cooldown and touching_player:
 		player.hurt()
 		attack_cooldown()
-	
-	#print("on_cooldown:" + str(on_cooldown))
-	#print("touching_player:" + str(touching_player))
+			
+			#print("on_cooldown:" + str(on_cooldown))
+			#print("touching_player:" + str(touching_player))
 	check_surroundings()
-
+			
+	if life == 0:
+		die()
 func check_surroundings():
 	if not $Hurt.is_playing():
 		if position.distance_to(player.position) < 200:
 			if not self in player.enemies:
 				player.enemies.append(self)
+				print("added")
 			agent.target_position = player.position
 		else:
 			await get_tree().create_timer(1.0).timeout
 			if self in player.enemies:
+				print("removed")
 				player.enemies.erase(self)
 
 func attack_cooldown():
@@ -74,6 +80,7 @@ func die():
 	if self in player.enemies:
 		player.enemies.erase(self)
 	queue_free()
+
 func hurt():
 	$Hurt.play("Hurt")
 	life -= 1
