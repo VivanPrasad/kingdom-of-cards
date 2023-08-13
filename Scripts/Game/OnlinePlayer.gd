@@ -80,7 +80,18 @@ func set_character(id):
 	$Profile/Icon.frame = int(id)
 
 func _physics_process(_delta):
-	if not is_multiplayer_authority(): return
+	if on_surface:
+		z_index = 0
+	else:
+		z_index = -2
+	
+	if not is_multiplayer_authority():
+		if on_surface == world.get_node_or_null(Global.player_id).on_surface:
+			visible = true
+		else:
+			visible = false
+		return
+
 	input_vector = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")

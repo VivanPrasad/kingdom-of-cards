@@ -40,7 +40,29 @@ func _ready():
 	host_button.connect("pressed",Callable(self,"_on_host_pressed"))
 	join_button.connect("pressed",Callable(self,"_on_join_pressed"))
 	direct_join_button.connect("pressed",Callable(self,"_on_direct_join_pressed"))
+	$Stair.connect("body_entered",Callable(self,"descend"))
 	get_tree().paused = true
+
+func descend(body):
+	if body is CharacterBody2D and body.is_multiplayer_authority():
+		if body.on_surface:
+			body.on_surface = false
+			Transition.fade_in(1.5)
+			await Transition.player.animation_finished
+			$Surface.tile_set.set_physics_layer_collision_layer(0,0)
+			$Surface.hide()
+			$Dungeon.tile_set.set_physics_layer_collision_layer(0,2)
+			$Stair.scale = Vector2(-1,-1)
+			Transition.fade_out(1.5)
+		else:
+			body.on_surface = true
+			Transition.fade_in(1.5)
+			await Transition.player.animation_finished
+			$Surface.tile_set.set_physics_layer_collision_layer(0,2)
+			$Surface.show()
+			$Dungeon.tile_set.set_physics_layer_collision_layer(0,0)
+			$Stair.scale = Vector2(0,0)
+			Transition.fade_out(1.5)
 
 func _on_host_pressed():
 	var setup = await setup_server()
@@ -83,7 +105,6 @@ func _on_join_pressed():
 	peer.create_client(ip,port)
 	multiplayer.multiplayer_peer = peer
 	
-
 func transition_to_world(music):
 	if music == "day":
 		Transition.fade_in(0.8)
@@ -96,15 +117,21 @@ func transition_to_world(music):
 	Transition.fade_out(0.8)
 	
 func _physics_process(_delta):
+	var local_player = get_node_or_null(Global.player_id)
+	var on_surface : bool = true
+	if local_player != null:
+		on_surface = local_player.on_surface
+	
 	if time_cycle.is_playing():
-		time_cycle.seek(time.second / 3600.0,false)
+		if on_surface:
+			time_cycle.seek(time.second / 3600.0,false)
+		else:
+			time_cycle.seek((3600.0*3.0),false)
 	else:
 		time_cycle.play("Cycle")
 
 func instance_lights():
 	var cell_data
-	for i in $Dungeon.get_layers_count():
-		$Dungeon.set_layer_enabled(i, true)
 		#checks how many layers are there in the dungeon, and enables each of them
 	for layer in [$Surface,$Dungeon]:
 		for cell in layer.get_used_cells(2): #all the cells in decoration layer
@@ -118,7 +145,6 @@ func instance_lights():
 				layer.add_child(instance,true)
 	for child in $Surface.get_children() + $Dungeon.get_children():
 		if str(child.name).contains("Light"): lights.append(child) #Adds the light node paths to the 
-	for i in $Dungeon.get_layers_count(): $Dungeon.set_layer_enabled(i, false)
 
 func get_market_locations():
 	for child in $Surface.get_children():

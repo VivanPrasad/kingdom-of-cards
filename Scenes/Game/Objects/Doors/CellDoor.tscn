@@ -156,7 +156,7 @@ texture = ExtResource("1_sfrr5")
 offset = Vector2(0, -3)
 hframes = 7
 vframes = 8
-frame = 14
+frame = 28
 script = ExtResource("2_1r3dt")
 type = 4
 

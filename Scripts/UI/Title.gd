@@ -17,18 +17,14 @@ func _on_play_mouse_exited():
 func _on_settings_mouse_entered():
 	$Options/Settings.text = "~ Settings"
 
-
 func _on_settings_mouse_exited():
 	$Options/Settings.text = "Settings"
-
 
 func _on_collection_mouse_entered():
 	pass#$Options/Collection.text = "X Collection"
 
-
 func _on_collection_mouse_exited():
 	pass#$Options/Collection.text = "Collection"
-
 
 func _on_quit_mouse_entered():
 	$Options/Quit.text = "~ Quit"
@@ -39,13 +35,11 @@ func _on_quit_mouse_exited():
 func _on_play_pressed():
 	Transition.change_scene("res://Scenes/UI/GameMode.tscn")
 
-
 func _on_settings_pressed():
 	add_child(settings.instantiate())
 
 func _on_collection_pressed():
 	get_tree().reload_current_scene()
-
 
 func _on_quit_pressed():
 	get_tree().quit()
