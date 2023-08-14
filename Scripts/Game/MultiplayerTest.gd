@@ -4,7 +4,7 @@ var port : int = 9999
 
 var ip : String
 
-const official_servers = {"kingdom.cards":"23.16.130.237","cards":"23.16.130.237","bamboo":"23.16.130.237","whispering.kingdom":"94.70.115.110"}
+const official_servers = {"kingdom.cards":"23.16.130.237"}
 
 var peer = ENetMultiplayerPeer.new()
 var udp = UDPServer.new()
@@ -32,8 +32,6 @@ var lights = [] #all node instances of all lights
 var lights_pos = [] #positions of all lights
 var lights_on : bool = true
 
-var market_locations = {}
-
 func _ready():
 	port = Config.config_data.port
 	$HUD.hide(); $Lobby.show()
@@ -42,27 +40,6 @@ func _ready():
 	direct_join_button.connect("pressed",Callable(self,"_on_direct_join_pressed"))
 	$Stair.connect("body_entered",Callable(self,"descend"))
 	get_tree().paused = true
-
-func descend(body):
-	if body is CharacterBody2D and body.is_multiplayer_authority():
-		if body.on_surface:
-			body.on_surface = false
-			Transition.fade_in(1.5)
-			await Transition.player.animation_finished
-			$Surface.tile_set.set_physics_layer_collision_layer(0,0)
-			$Surface.hide()
-			$Dungeon.tile_set.set_physics_layer_collision_layer(0,2)
-			$Stair.scale = Vector2(-1,-1)
-			Transition.fade_out(1.5)
-		else:
-			body.on_surface = true
-			Transition.fade_in(1.5)
-			await Transition.player.animation_finished
-			$Surface.tile_set.set_physics_layer_collision_layer(0,2)
-			$Surface.show()
-			$Dungeon.tile_set.set_physics_layer_collision_layer(0,0)
-			$Stair.scale = Vector2(0,0)
-			Transition.fade_out(1.5)
 
 func _on_host_pressed():
 	var setup = await setup_server()
@@ -115,7 +92,7 @@ func transition_to_world(music):
 	$HUD.show()
 	Audio.change_music(music)
 	Transition.fade_out(0.8)
-	
+
 func _physics_process(_delta):
 	var local_player = get_node_or_null(Global.player_id)
 	var on_surface : bool = true
@@ -126,10 +103,9 @@ func _physics_process(_delta):
 		if on_surface:
 			time_cycle.seek(time.second / 3600.0,false)
 		else:
-			time_cycle.seek((3600.0*3.0),false)
+			time_cycle.seek(4.0,false)
 	else:
 		time_cycle.play("Cycle")
-
 func instance_lights():
 	var cell_data
 		#checks how many layers are there in the dungeon, and enables each of them
@@ -146,17 +122,39 @@ func instance_lights():
 	for child in $Surface.get_children() + $Dungeon.get_children():
 		if str(child.name).contains("Light"): lights.append(child) #Adds the light node paths to the 
 
-func get_market_locations():
-	for child in $Surface.get_children():
-		print(child.name)
-		if str(child.name) in ["FoodMarket","BankDesk","ItemMarket"]: #THERE CAN ONLY BE ONE MARKET INSTANCE FOR EACH!!!!
-			market_locations[str(child.name)] = child.position
+func descend(body):
+	if body is CharacterBody2D and body.is_multiplayer_authority():
+		if body.on_surface:
+			Transition.fade_in(1.5)
+			await Transition.player.animation_finished
+			body.on_surface = false
+			$Surface.tile_set.set_physics_layer_collision_layer(0,0)
+			$Surface.hide()
+			$Dungeon.tile_set.set_physics_layer_collision_layer(0,2)
+			$Stair.scale = Vector2(-1,-1)
+			Transition.fade_out(1.5)
+			Audio.change_music("dungeon")
+		else:
+			Transition.fade_in(1.5)
+			await Transition.player.animation_finished
+			body.on_surface = true
+			$Surface.tile_set.set_physics_layer_collision_layer(0,2)
+			$Surface.show()
+			$Dungeon.tile_set.set_physics_layer_collision_layer(0,0)
+			$Stair.scale = Vector2(1,1)
+			Transition.fade_out(1.5)
+			if player_character == "0":
+				Audio.change_music("castle")
+			else:
+				Audio.change_music("day")
 
-func _on_multiplayer_spawner_spawned(_node):
-	pass
+func _on_multiplayer_spawner_spawned(node):
+	await get_tree().create_timer(0.5).timeout
+	server_updates.player_joined(node)
 
-func _on_multiplayer_spawner_despawned(_node):
-	pass
+func _on_multiplayer_spawner_despawned(node):
+	await get_tree().create_timer(0.5).timeout
+	server_updates.player_left(node)
 
 func show_connection_error():
 	pass

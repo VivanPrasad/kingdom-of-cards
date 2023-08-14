@@ -19,10 +19,7 @@ func _on_disconnect_pressed():
 		for node in world.get_children():
 			if node is CharacterBody2D:
 				world.remove_child(node)
-		if Global.player_id != "1":
-			world.peer.disconnect_peer(int(Global.player_id))
-		world.peer.close()
-		
+		world.multiplayer.multiplayer_peer = null
 	else:
 		Transition.change_scene("res://Scenes/UI/GameMode.tscn")
 		Audio.change_music("title")

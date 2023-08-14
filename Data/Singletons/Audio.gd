@@ -6,14 +6,14 @@ extends Node
 
 @onready var day = preload("res://Assets/Audio/Music/day.ogg")
 @onready var castle = preload("res://Assets/Audio/Music/castle.ogg")
-
+@onready var dungeon = preload("res://Assets/Audio/Music/dungeon.ogg")
 #SFX
 @onready var back = preload("res://Assets/Audio/SFX/UI/back.wav")
 @onready var select = preload("res://Assets/Audio/SFX/UI/select.wav")
 @onready var confirm = preload("res://Assets/Audio/SFX/UI/confirm.wav")
 
 @onready var select2 = preload("res://Assets/Audio/SFX/UI/select.wav")
-const music_max = {"online":-14.0,"title":-5.0,"day":-7.0,"castle":-11.0}
+const music_max = {"online":-14.0,"title":-4.0,"day":-7.0,"castle":-11.0,"dungeon":-5.0}
 const sfx_volume = {"back":10.0,"confirm":-5.0,"select":15.0,"select2":15.0}
 const sfx_pitch = {"back":1.0,"confirm":1.0,"select":1.0,"select2":2.0}
 

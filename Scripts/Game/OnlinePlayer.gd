@@ -46,6 +46,7 @@ const base_speed = 100
 @export var speed = base_speed
 
 var input_vector : Vector2 = Vector2.ZERO
+
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 
@@ -60,20 +61,20 @@ func _ready() -> void:
 			character = "0"
 			speed = 80
 			position = Vector2i(384,-238)
+			$CollisionShape2D.shape.size.x = 30
+			$CollisionShape2D.position.x = -4
 		else:
 			character = $"..".player_character
 		Global.player_id = str(self.name)
 		player_name.text = get_parent().player_name
 		$Camera.set_enabled(true)
-		set_character.rpc(character)
 	else:
 		$MobileUI.hide()
 		$Menu.hide()
 		$Profile.hide()
-		set_character(character)
-	await get_tree().create_timer(1.0).timeout
-	$"/root/World/HUD/ServerUpdates".player_joined(self)
-
+	await get_tree().create_timer(0.01).timeout
+	set_character(character)
+	
 @rpc("call_local")
 func set_character(id):
 	$Sprite.texture = get("player" + id)
@@ -83,7 +84,7 @@ func _physics_process(_delta):
 	if on_surface:
 		z_index = 0
 	else:
-		z_index = -2
+		z_index = -3
 	
 	if not is_multiplayer_authority():
 		if on_surface == world.get_node_or_null(Global.player_id).on_surface:
@@ -95,7 +96,7 @@ func _physics_process(_delta):
 	input_vector = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-		).normalized() * int(bool(current_menu in ["None","ActionHUD"]))
+		).normalized() * int(bool(current_menu in ["None","ActionHUD"])) * int(bool(Transition.player.is_playing() == false))
 	if $MobileUI.vector != Vector2.ZERO:
 		input_vector = $MobileUI.vector
 	if input_vector != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
@@ -178,7 +179,7 @@ func eat(value):
 func effect(value):
 	var type = value[0]; var new_value = value[1]; var duration = value[2]
 	var old_value = get(type)
-	set(type,new_value)
+	set(type,old_value + new_value)
 	await get_tree().create_timer(duration).timeout
 	set(type, old_value)
 	update_profile()
@@ -187,4 +188,6 @@ func update_profile():
 	$Profile/Life.frame = life * (status + 1)
 	$Profile/Armor.frame = (life-4) * int(life > 4)
 	$Profile/Hunger.frame = hunger
+
+func _process(_delta):
 	$Profile/Cards/Amount.text = "x" + str(len(inventory))

@@ -464,8 +464,9 @@ parameters/Run/blend_position = Vector2(-0.00767261, -0.799127)
 parameters/Sleep/blend_position = Vector2(0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_j7f2r")
+debug_color = Color(0.686275, 0.701961, 0.517647, 0.419608)
 
 [node name="MobileUI" parent="." instance=ExtResource("5_e0n2g")]
 

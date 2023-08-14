@@ -1,12 +1,9 @@
 extends StaticBody2D
+
 #Market
 var nearby : bool = false
 var hovered : bool = false
 var player : Node
-@onready var world = $"/root/World"
-
-func _ready():
-	world.market_locations[str(name)] = (position + Vector2(0,6)) * 5
 
 func _physics_process(_delta):
 	player = $"/root/World".get_node_or_null(Global.player_id)
@@ -27,3 +24,11 @@ func _input(event):
 		if ((event is InputEventMouseButton and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)) or event is InputEventScreenTouch) and hovered:
 			if player.current_menu == "None":
 				player.open_menu(player.market_menu)
+
+func _on_area_2d_body_entered(body):
+	if body == player:
+		nearby = true
+
+func _on_area_2d_body_exited(body):
+	if body == player:
+		nearby = false

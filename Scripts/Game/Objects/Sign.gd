@@ -5,10 +5,16 @@ extends StaticBody2D
 var player : Node
 var hovered : bool = false
 
+@export var on_surface : bool = true
 func _ready():
-	pass
-func _physics_process(_delta):
 	player = $"/root/World".get_node_or_null(Global.player_id)
+func _physics_process(_delta):
+	if player != null:
+		if on_surface != player.on_surface:
+			hide()
+			hovered = false
+		else:
+			show()
 	if hovered:
 		$Label.show()
 		$Sprite2D.modulate = Color(1.5,1.5,1.5,1.0)

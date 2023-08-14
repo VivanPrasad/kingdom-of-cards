@@ -8,12 +8,12 @@ name = "Berry"
 icon_id = 1
 type = 0
 desc = "+1 Food
-+25% Speed"
++10% Speed (60s)"
 clicked = "Use"
 object_variables = {}
 object_functions = {
 "eat": 1,
-"effect": ["speed", 125, 15]
+"effect": ["speed", 10, 60]
 }
 role_goal = ""
 role_exp = 0
