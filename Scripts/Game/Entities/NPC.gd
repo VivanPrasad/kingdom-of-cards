@@ -13,6 +13,7 @@ var direction = Vector2.ZERO
 var locations = []
 
 func _ready():
+	locations.append(position)
 	player = $"/root/World/".get_node_or_null(Global.player_id)
 	$Sprite2D.texture = load(str("res://Assets/Game/Entities/Player/player" + str(randi() % 4 + 1)+".png"))
 

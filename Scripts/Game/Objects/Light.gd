@@ -20,7 +20,7 @@ func _physics_process(_delta) -> void:
 		else:
 			energy = 0
 	if on_surface:
-		if time.hour == 7 and time.minute == 30:
+		if time.hour == 7 and time.minute == 45:
 			$AnimationPlayer.play("Fade")
 		elif time.hour == 17 and time.minute == 0:
 			$AnimationPlayer.play_backwards("Fade")

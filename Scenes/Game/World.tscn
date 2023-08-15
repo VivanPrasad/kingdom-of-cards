@@ -225,8 +225,28 @@ position = Vector2(-20, -180)
 position = Vector2(60, 20)
 path_to_player = NodePath("../Player")
 
+[node name="NPC2" parent="Entities" instance=ExtResource("3_tdn0q")]
+position = Vector2(60, 268)
+path_to_player = NodePath("../Player")
+
+[node name="NPC3" parent="Entities" instance=ExtResource("3_tdn0q")]
+position = Vector2(-412, 443)
+path_to_player = NodePath("../Player")
+
+[node name="NPC4" parent="Entities" instance=ExtResource("3_tdn0q")]
+position = Vector2(-420, -69)
+path_to_player = NodePath("../Player")
+
+[node name="NPC5" parent="Entities" instance=ExtResource("3_tdn0q")]
+position = Vector2(-420, -301)
+path_to_player = NodePath("../Player")
+
+[node name="NPC6" parent="Entities" instance=ExtResource("3_tdn0q")]
+position = Vector2(-132, -461)
+path_to_player = NodePath("../Player")
+
 [node name="Wolf" parent="Entities" instance=ExtResource("4_bbokq")]
-position = Vector2(15, -307)
+position = Vector2(-40, -768)
 
 [node name="Stair" parent="." instance=ExtResource("4_ag6e7")]
 
