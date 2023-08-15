@@ -39,41 +39,47 @@ func _ready():
 	$Camera2D.enabled = true
 
 func _process(_delta):
-		check_combat() #0 = menu.none
-		var input_vector = Vector2(
-			Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
-			Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-			).normalized() * int(current_menu == "None")
-		if $MobileUI.vector != Vector2.ZERO:
-			input_vector = $MobileUI.vector
-		if input_vector != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
-			$AnimationTree.set("parameters/Idle/blend_position", input_vector)
-			$AnimationTree.set("parameters/Run/blend_position", input_vector)
-			$AnimationTree.get("parameters/playback").travel("Run")
-		else:
-			$AnimationTree.get("parameters/playback").travel("Idle")
-		velocity = input_vector * speed
-		move_and_slide()
+	if on_surface:
+		z_index = 0
+	else:
+		z_index = -3
+	check_combat() #0 = menu.none
+	if in_combat:
+		if current_menu != "ActionHUD":
+				close_menu()
+				open_menu(action_hud)
+	else:
+		if current_menu == "ActionHUD":
+			close_menu()
+	var input_vector = Vector2(
+		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
+		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+		).normalized() * int(current_menu in ["None","ActionHUD"])
+	if $MobileUI.vector != Vector2.ZERO:
+		input_vector = $MobileUI.vector
+	if input_vector != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
+		$AnimationTree.set("parameters/Idle/blend_position", input_vector)
+		$AnimationTree.set("parameters/Run/blend_position", input_vector)
+		$AnimationTree.get("parameters/playback").travel("Run")
+	else:
+		$AnimationTree.get("parameters/playback").travel("Idle")
+	velocity = input_vector * speed
+	move_and_slide()
 	
 func effect(data): #data = [type, value, time (s)] #if data[0]
 	var type = data[0]; var value = data[1]; var time = data[2]
 	if type == "speed":
 		speed = value + 10
-		$"../../HUD/Chat".addMessage("Debug","Gave speed effect, increasing speed to " + str(value) + " for " + str(time) + " seconds.")
 		await get_tree().create_timer(time).timeout
-		$"../../HUD/Chat".addMessage("Debug","Effect ended")
 		speed = base_speed
 	elif type == "immune":
 		var previous_state = status
 		status = state.potion
 		update_HUD()
-		$"../../HUD/Chat".addMessage("Debug","Gave immunity for " + str(time) + " seconds.")
 		await get_tree().create_timer(time).timeout
-		$"../../HUD/Chat".addMessage("Debug","Effect ended")
 		status = previous_state
 		update_HUD()
 func eat(value):
-	$"../../HUD/Chat".addMessage("Debug","You ate something and restored" + str(value) + "hunger")
 	print(value)
 	for times in value:
 		if hunger < 2:
@@ -93,7 +99,8 @@ func hurt():
 		life -=1
 		update_HUD()
 		visible = false
-		$"../../UI".add_child(world.game_over.instantiate())
+		close_menu()
+		open_menu(game_over)
 		get_tree().paused = true
 		
 func update_HUD():
@@ -124,6 +131,9 @@ func open_menu(menu : PackedScene) -> void:
 		start_thinking()
 
 func close_menu():
+	if $Menu.get_child_count() > 0:
+		$Menu.get_child(0).queue_free()
+	current_menu = "None"
 	if current_menu == "EmoteMenu":
 		stop_thinking()
 	
@@ -146,8 +156,8 @@ func play_emote(emote_id : int):
 	await get_tree().create_timer(3.0).timeout
 	emote_player.play_backwards("Popup")
 
-func _unhandled_key_input(_event) -> void:
-	if Input.is_action_just_pressed("ui_cancel") and $Menu.get_child_count():
+func _input(_event) -> void:
+	if Input.is_action_just_pressed("ui_cancel") and $Menu.get_child_count() and not current_menu in ["None","ActionHUD"]:
 		close_menu()
 	elif Input.is_action_just_pressed("pause") and current_menu != "PauseMenu":
 		current_menu = "PauseMenu"

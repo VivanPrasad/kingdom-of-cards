@@ -4,14 +4,16 @@ extends Node
 @export var minute : int = 0
 @export var hour : int = 5
 @export var day : int = 1
+@export var weather : String = "Normal"
 
 @export_enum("am","pm") var meridiem : String = "am"
 
 var day_processed : bool = true
 var lights_processed : bool = true
 var hunger_processed : bool = true
-
+var weather_processed : bool = false
 var speed : int = 350 #60 = 1 irl second is 1 minute
+
 
 @onready var world = $"../.."
 @onready var hour_label := $MarginContainer/Hour
@@ -28,6 +30,13 @@ func _process(delta):
 		else:
 			speed = 280 #10pm-5am; 7 hours in 1.5 minutes
 	
+	if hour == 5:
+		weather_processed = false
+	if hour == 6 and weather_processed == false:
+		if Global.player_id in ["1","Entities/Player"]:
+			weather = ["HeavyRain","Normal","BloodMoon"].pick_random()
+			weather_processed = true
+	
 	if hour == 23:
 		day_processed = false
 		
@@ -35,12 +44,12 @@ func _process(delta):
 		if hunger_processed == false:
 			hunger_processed = true
 			#update_hunger()
-		
+	
 	second += int(floor(delta*speed))
 	minute = int(second / 60.0) % 60
 	hour = int(second / 3600.0) % 24
 	meridiem = ["am","pm"][int(hour >= 12 and hour < 24)]
-	
+	world.weather = weather
 	update_labels()
 
 """

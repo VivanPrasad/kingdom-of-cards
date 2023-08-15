@@ -15,13 +15,13 @@ func _ready():
 		on_surface = false
 
 func _on_area_2d_body_entered(body):
-	if body is CharacterBody2D and body.on_surface == on_surface:
+	if body is CharacterBody2D:
 		if body_count == 0:
 			$AnimationPlayer.play(animation[type])
 		body_count += 1
 
 func _on_area_2d_body_exited(body):
-	if body is CharacterBody2D and body.on_surface == on_surface:
+	if body is CharacterBody2D:
 		body_count -= 1
 		if not body_count:
 			$AnimationPlayer.play_backwards(animation[type])

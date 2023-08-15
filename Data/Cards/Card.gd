@@ -4,6 +4,7 @@ class_name Card
 @export var name : String
 @export var icon_id : int = 83
 @export_enum("Food", "Item", "Golden", "Material", "Attire", "Role", "Tool", "Other") var type : int
+@export var amount : int = 1
 @export_multiline var desc : String
 
 @export_category("Properties")
@@ -13,7 +14,6 @@ class_name Card
 @export_group("Object Reference","object_")
 @export var object_variables : Dictionary #key:value -> gets variable:sets variable
 @export var object_functions : Dictionary #key:value -> calls function:parameters (either string, int or array for data)
-#get("life"):get("life") + 1
 
 @export_group("Role","role_")
 @export var role_goal : String

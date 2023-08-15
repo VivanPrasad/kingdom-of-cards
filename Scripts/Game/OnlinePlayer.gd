@@ -72,8 +72,9 @@ func _ready() -> void:
 		$MobileUI.hide()
 		$Menu.hide()
 		$Profile.hide()
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.5).timeout
 	set_character(character)
+	$"/root/World/HUD/ServerUpdates".player_joined(player_name.text)
 	
 @rpc("call_local")
 func set_character(id):

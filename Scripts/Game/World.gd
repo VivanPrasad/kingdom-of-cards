@@ -1,29 +1,22 @@
 extends Node2D
 
-var online = false
-var in_dungeon : bool = false
 @onready var light = preload("res://Scenes/Game/Objects/Light.tscn")
 
-# UI Menu Instancing
-
 @onready var time := $HUD/Time
-
-var lights = []
-var lights_pos = [] #positions of all lights
-var lights_on : bool = true
-
-var market_locations = {}
+@onready var time_cycle := $Shader/TimeCycle
 
 # Format:
 # mod: runtime (e.g. "testmod.kocm": "worldLoad"
 var hooked_mods = {}
 
+var weather = "Normal"
 func _started(): # worldLoad mod hook
 	print("[KOCM/WorldLoadHook] Executing worldLoad mods...")
 	var ModExec = load("res://Scripts/Modding/Executor.gd")
 	for hm in hooked_mods:
 		if hooked_mods.get(hm) == "worldLoad":
 			ModExec.runMod(hm, self)
+
 func addMod(modInformation, hook):
 	print("[KOCM/ModLoader] Adding mod to World hook...")
 	hooked_mods.merge({modInformation["file"]: hook})
@@ -39,50 +32,63 @@ func _ready():
 	
 func instance_lights():
 	var cell_data
-	for i in $Dungeon.get_layers_count():
-		$Dungeon.set_layer_enabled(i, true)
 		#checks how many layers are there in the dungeon, and enables each of them
 	for layer in [$Surface,$Dungeon]:
 		for cell in layer.get_used_cells(2): #all the cells in decoration layer
 			cell_data = layer.get_cell_tile_data(2, cell) #get the TileData of the cell
 			if cell_data != null and cell_data.modulate != Color(1.0,1.0,1.0,1.0): #the lights do not have white modulate
 				#layer.set_cell(2,)
-				lights_pos.append(cell)
 				var instance = light.instantiate()
 				instance.position = cell * 8 #position on grid is 8x scale
 				instance.on_surface = [$Dungeon,$Surface].find(layer) #surface = 0, dungeon = 1
 				layer.add_child(instance)
-	for child in $Surface.get_children() + $Dungeon.get_children():
-		if str(child.name).contains("Light"): lights.append(child) #Adds the light node paths to the 
-	for i in $Dungeon.get_layers_count(): $Dungeon.set_layer_enabled(i, false)
+
 func _process(_delta):
-	if not in_dungeon:
-		if $Shader/AnimationPlayer.is_playing():
-			$Shader/AnimationPlayer.seek(time.second / 3600.0,false)
+	var local_player = get_node_or_null(Global.player_id)
+	var on_surface : bool = true
+	if local_player != null:
+		on_surface = local_player.on_surface
+	
+	if time_cycle.is_playing():
+		if weather != time_cycle.current_animation:
+			time_cycle.play(weather)
+		if on_surface:
+			if weather == "HeavyRain":
+				$Weather/Rain.emitting = true
+			else:
+				$Weather/Rain.emitting = false
+			time_cycle.seek(time.second / 3600.0,false)
 		else:
-			$Shader/AnimationPlayer.play("Cycle")
+			$Weather/Rain.emitting = false
+			time_cycle.seek(4.0,false)
 	else:
-		$Shader/AnimationPlayer.seek(4) #the dungeon looks dark, so it infinitely seeks at time = 4am
+		time_cycle.play(weather) #the dungeon looks dark, so it infinitely seeks at time = 4am
 
-func dungeon(): #flips state
-	$Entities/Player.layer = in_dungeon
-	in_dungeon = !in_dungeon
-	if in_dungeon: $AnimationPlayer.play("Dungeon")
-	else: $AnimationPlayer.play_backwards("Dungeon")
-
-func get_market_locations():
-	for child in $Surface.get_children():
-		print(child.name)
-		if str(child.name) in ["FoodMarket","BankDesk","ItemMarket"]: #THERE CAN ONLY BE ONE MARKET INSTANCE FOR EACH!!!!
-			market_locations[str(child.name)] = child.position
-
-func update_light(type):
-	for child in lights: child.update(type)
-		#in the lights path array, each child is updated for the type of light desired
-		# 0 = overworld on, 1 = dungeon on, 2 = overworld off
+func descend(body):
+	if body is CharacterBody2D and body.is_multiplayer_authority():
+		if body.on_surface:
+			Transition.fade_in(1.5)
+			await Transition.player.animation_finished
+			body.on_surface = false
+			$Surface.tile_set.set_physics_layer_collision_layer(0,0)
+			$Surface.hide()
+			$Dungeon.tile_set.set_physics_layer_collision_layer(0,2)
+			$Stair.scale = Vector2(-1,-1)
+			Transition.fade_out(1.5)
+			Audio.change_music("dungeon")
+		else:
+			Transition.fade_in(1.5)
+			await Transition.player.animation_finished
+			body.on_surface = true
+			$Surface.tile_set.set_physics_layer_collision_layer(0,2)
+			$Surface.show()
+			$Dungeon.tile_set.set_physics_layer_collision_layer(0,0)
+			$Stair.scale = Vector2(1,1)
+			Transition.fade_out(1.5)
+			Audio.change_music("day")
 
 func _on_stair_body_entered(body):
-	if body.name == "Player": dungeon()
+	if body.name == "Player": descend(body)
 	#causes dungeon transition if the body in the area is player
 
 '''

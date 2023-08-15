@@ -19,7 +19,7 @@ func _on_solo_pressed():
 	Transition.change_scene("res://Scenes/Game/World.tscn")
 
 func _on_solo_mouse_entered():
-	$Options/Solo.text = "Solo"
+	$Options/Solo.text = "~ Solo"
 
 func _on_solo_mouse_exited():
 	$Options/Solo.text = "Solo"

@@ -11,7 +11,7 @@ size = Vector2(6, 5)
 size = Vector2(6, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e25kv"]
-size = Vector2(12, 11)
+size = Vector2(12, 14)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hu8n3"]
 
@@ -42,7 +42,7 @@ shape = SubResource("RectangleShape2D_5y2sb")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
-position = Vector2(0, 3.5)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_e25kv")
 
 [node name="Label" type="Control" parent="."]

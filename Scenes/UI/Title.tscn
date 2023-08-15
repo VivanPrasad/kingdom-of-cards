@@ -248,7 +248,7 @@ offset_right = 1396.0
 offset_bottom = 681.0
 size_flags_horizontal = 10
 size_flags_vertical = 8
-text = "v1.0.0"
+text = "v1.1.0"
 label_settings = SubResource("LabelSettings_u66ke")
 horizontal_alignment = 2
 

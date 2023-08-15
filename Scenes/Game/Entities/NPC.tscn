@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://xwe5x0ju0lxh"]
+[gd_scene load_steps=26 format=3 uid="uid://xwe5x0ju0lxh"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Entities/NPC.gd" id="1_5exka"]
 [ext_resource type="Texture2D" uid="uid://dsfcdqy357ixp" path="res://Assets/Game/Entities/Player/player1.png" id="2_j4d8t"]
@@ -228,8 +228,6 @@ states/Sleep/node = SubResource("AnimationNodeBlendSpace2D_hjkl7")
 states/Sleep/position = Vector2(489, 231)
 graph_offset = Vector2(104, 5)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_adyit"]
-
 [node name="NPC" type="CharacterBody2D"]
 use_parent_material = true
 scale = Vector2(2, 2)
@@ -258,7 +256,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_pwdv2")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_adyit")
 parameters/Idle/blend_position = Vector2(-0.00449437, -0.0393013)
 parameters/Run/blend_position = Vector2(-0.017585, -0.746725)
 parameters/Sleep/blend_position = Vector2(0, 0)

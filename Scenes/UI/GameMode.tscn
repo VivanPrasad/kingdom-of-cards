@@ -217,7 +217,6 @@ theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1
 theme_override_constants/outline_size = 32
 theme_override_fonts/font = ExtResource("4_7tqnq")
 theme_override_font_sizes/font_size = 40
-disabled = true
 text = "Solo"
 flat = true
 alignment = 0

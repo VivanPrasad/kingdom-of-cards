@@ -461,8 +461,9 @@ properties/4/watch = false
 
 [node name="Wolf" type="CharacterBody2D"]
 texture_filter = 1
-scale = Vector2(0.5, 0.5)
-collision_mask = 2
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_kphp6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

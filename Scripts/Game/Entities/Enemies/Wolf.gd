@@ -6,7 +6,7 @@ var input_vector = Vector2.ZERO
 
 @export var on_cooldown : bool = false
 @export var touching_player : bool = false
-@export var life : int = 3
+@export var life : int = 10
 var speed : int = 90
 const base_speed : int = 90
 var VELOCITY = Vector2.ZERO
@@ -51,17 +51,15 @@ func check_surroundings():
 		if position.distance_to(player.position) < 200:
 			if not self in player.enemies:
 				player.enemies.append(self)
-				print("added")
 			agent.target_position = player.position
 		else:
 			await get_tree().create_timer(1.0).timeout
 			if self in player.enemies:
-				print("removed")
 				player.enemies.erase(self)
 
 func attack_cooldown():
 	on_cooldown = true
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.8).timeout
 	on_cooldown = false
 
 func _on_area_2d_body_entered(body):

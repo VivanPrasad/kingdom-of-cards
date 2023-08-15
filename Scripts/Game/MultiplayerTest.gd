@@ -11,6 +11,7 @@ var udp = UDPServer.new()
 
 @export var player_scene : PackedScene = preload("res://Scenes/Game/Entities/OnlinePlayer.tscn")
 
+#Local Player
 var player_name : String
 var player_character : String
 
@@ -28,9 +29,7 @@ var player_character : String
 
 @onready var light : PackedScene = preload("res://Scenes/Game/Objects/Light.tscn")
 
-var lights = [] #all node instances of all lights
-var lights_pos = [] #positions of all lights
-var lights_on : bool = true
+@onready var weather : String = "Normal"
 
 func _ready():
 	port = Config.config_data.port
@@ -100,12 +99,19 @@ func _physics_process(_delta):
 		on_surface = local_player.on_surface
 	
 	if time_cycle.is_playing():
+		if weather != time_cycle.current_animation:
+			time_cycle.play(weather)
 		if on_surface:
+			if weather == "HeavyRain":
+				$Weather/Rain.emitting = true
+			else:
+				$Weather/Rain.emitting = false
 			time_cycle.seek(time.second / 3600.0,false)
 		else:
+			$Weather/Rain.emitting = false
 			time_cycle.seek(4.0,false)
 	else:
-		time_cycle.play("Cycle")
+		time_cycle.play(weather)
 func instance_lights():
 	var cell_data
 		#checks how many layers are there in the dungeon, and enables each of them
@@ -113,14 +119,10 @@ func instance_lights():
 		for cell in layer.get_used_cells(2): #all the cells in decoration layer
 			cell_data = layer.get_cell_tile_data(2, cell) #get the TileData of the cell
 			if cell_data != null and cell_data.modulate != Color(1.0,1.0,1.0,1.0): #the lights do not have white modulate
-				#layer.set_cell(2,)
-				lights_pos.append(cell)
 				var instance = light.instantiate()
 				instance.position = cell * 8 #position on grid is 8x scale
-				instance.on_surface = bool(layer == $Surface) #surface = 0, dungeon = 1
+				instance.on_surface = bool(layer == $Surface)
 				layer.add_child(instance,true)
-	for child in $Surface.get_children() + $Dungeon.get_children():
-		if str(child.name).contains("Light"): lights.append(child) #Adds the light node paths to the 
 
 func descend(body):
 	if body is CharacterBody2D and body.is_multiplayer_authority():
@@ -148,13 +150,12 @@ func descend(body):
 			else:
 				Audio.change_music("day")
 
+@warning_ignore("unused_parameter")
 func _on_multiplayer_spawner_spawned(node):
-	await get_tree().create_timer(0.5).timeout
-	server_updates.player_joined(node)
+	pass
 
 func _on_multiplayer_spawner_despawned(node):
-	await get_tree().create_timer(0.5).timeout
-	server_updates.player_left(node)
+	server_updates.player_left(node.player_name.text)
 
 func show_connection_error():
 	pass
