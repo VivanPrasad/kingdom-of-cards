@@ -14,7 +14,7 @@ clicked = "Use"
 object_variables = {}
 object_functions = {
 "eat": 1,
-"effect": ["speed", 10, 60]
+"effect": ["speed", 15, 60]
 }
 role_goal = ""
 role_exp = 0

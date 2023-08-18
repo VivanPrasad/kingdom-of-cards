@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp824bwq2pcht"]
+[gd_scene load_steps=5 format=3 uid="uid://dp824bwq2pcht"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Objects/Stair.gd" id="1_4onno"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dor"]
 size = Vector2(40, 5)
@@ -6,13 +8,15 @@ size = Vector2(40, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23jh4"]
 size = Vector2(40, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bg1r1"]
-size = Vector2(15, 110)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p17bt"]
+size = Vector2(15, 50)
 
 [node name="Stair" type="Area2D"]
 use_parent_material = true
 position = Vector2(-500, -460)
 collision_layer = 2
+script = ExtResource("1_4onno")
+type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 18)
@@ -28,9 +32,9 @@ position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_23jh4")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(27.5, -6)
-shape = SubResource("RectangleShape2D_bg1r1")
+position = Vector2(27.5, -5)
+shape = SubResource("RectangleShape2D_p17bt")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-27.5, -6)
-shape = SubResource("RectangleShape2D_bg1r1")
+position = Vector2(-27.5, -5)
+shape = SubResource("RectangleShape2D_p17bt")

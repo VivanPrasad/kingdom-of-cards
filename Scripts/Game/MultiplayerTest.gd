@@ -37,7 +37,6 @@ func _ready():
 	host_button.connect("pressed",Callable(self,"_on_host_pressed"))
 	join_button.connect("pressed",Callable(self,"_on_join_pressed"))
 	direct_join_button.connect("pressed",Callable(self,"_on_direct_join_pressed"))
-	$Stair.connect("body_entered",Callable(self,"descend"))
 	get_tree().paused = true
 
 func _on_host_pressed():
@@ -103,13 +102,19 @@ func _physics_process(_delta):
 			time_cycle.play(weather)
 		if on_surface:
 			if weather == "HeavyRain":
+				if Audio.get_node_or_null("SFX/light_rain") == null:
+					Audio.play_sfx("light_rain",true)
 				$Weather/Rain.emitting = true
 			else:
+				if Audio.get_node_or_null("SFX/light_rain") != null:
+					Audio.stop_sfx("light_rain",true)
 				$Weather/Rain.emitting = false
 			time_cycle.seek(time.second / 3600.0,false)
 		else:
 			$Weather/Rain.emitting = false
 			time_cycle.seek(4.0,false)
+			if Audio.get_node_or_null("SFX/light_rain") != null:
+				Audio.stop_sfx("light_rain",true)
 	else:
 		time_cycle.play(weather)
 func instance_lights():
@@ -124,7 +129,13 @@ func instance_lights():
 				instance.on_surface = bool(layer == $Surface)
 				layer.add_child(instance,true)
 
-func descend(body):
+func descend_to_mines(body):
+	descend(body,"mines")
+
+func descend_to_dungeon(body):
+	descend(body,"dungeon")
+
+func descend(body,music):
 	if body is CharacterBody2D and body.is_multiplayer_authority():
 		if body.on_surface:
 			Transition.fade_in(1.5)
@@ -135,7 +146,7 @@ func descend(body):
 			$Dungeon.tile_set.set_physics_layer_collision_layer(0,2)
 			$Stair.scale = Vector2(-1,-1)
 			Transition.fade_out(1.5)
-			Audio.change_music("dungeon")
+			Audio.change_music(music)
 		else:
 			Transition.fade_in(1.5)
 			await Transition.player.animation_finished
@@ -145,7 +156,7 @@ func descend(body):
 			$Dungeon.tile_set.set_physics_layer_collision_layer(0,0)
 			$Stair.scale = Vector2(1,1)
 			Transition.fade_out(1.5)
-			if player_character == "0":
+			if body.character == "0":
 				Audio.change_music("castle")
 			else:
 				Audio.change_music("day")
