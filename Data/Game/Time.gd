@@ -34,7 +34,7 @@ func _process(delta):
 		weather_processed = false
 	if hour == 6 and weather_processed == false:
 		if Global.player_id in ["1","Entities/Player"]:
-			weather = ["HeavyRain","Normal","BloodMoon"].pick_random()
+			weather = ["HeavyRain","Normal","BloodMoon"].pick_random() #"HeavyRain"
 			weather_processed = true
 	
 	if hour == 23:

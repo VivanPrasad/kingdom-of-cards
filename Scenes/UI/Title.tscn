@@ -241,14 +241,21 @@ flat = true
 alignment = 0
 
 [node name="Version" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1296.0
-offset_top = 636.0
-offset_right = 1396.0
-offset_bottom = 681.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -84.0
+offset_right = -44.0
+offset_bottom = -39.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 10
 size_flags_vertical = 8
-text = "v1.1.0"
+text = "Edition Ax"
 label_settings = SubResource("LabelSettings_u66ke")
 horizontal_alignment = 2
 

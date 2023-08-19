@@ -33,6 +33,7 @@ var player_character : String
 
 func _ready():
 	port = Config.config_data.port
+	$Surface.show()
 	$HUD.hide(); $Lobby.show()
 	host_button.connect("pressed",Callable(self,"_on_host_pressed"))
 	join_button.connect("pressed",Callable(self,"_on_join_pressed"))
@@ -104,17 +105,24 @@ func _physics_process(_delta):
 			if weather == "HeavyRain":
 				if Audio.get_node_or_null("SFX/light_rain") == null:
 					Audio.play_sfx("light_rain",true)
+				else:
+					Audio.reset_sfx_volume("light_rain")
 				$Weather/Rain.emitting = true
+				$Weather.show()
 			else:
 				if Audio.get_node_or_null("SFX/light_rain") != null:
 					Audio.stop_sfx("light_rain",true)
 				$Weather/Rain.emitting = false
 			time_cycle.seek(time.second / 3600.0,false)
 		else:
+			if time_cycle.current_animation != "Normal":
+				time_cycle.play("Normal")
 			$Weather/Rain.emitting = false
+			$Weather.hide()
 			time_cycle.seek(4.0,false)
+			
 			if Audio.get_node_or_null("SFX/light_rain") != null:
-				Audio.stop_sfx("light_rain",true)
+				Audio.lower_sfx_volume("light_rain")
 	else:
 		time_cycle.play(weather)
 func instance_lights():
@@ -144,7 +152,7 @@ func descend(body,music):
 			$Surface.tile_set.set_physics_layer_collision_layer(0,0)
 			$Surface.hide()
 			$Dungeon.tile_set.set_physics_layer_collision_layer(0,2)
-			$Stair.scale = Vector2(-1,-1)
+			$DungeonStair.scale = Vector2(-1,-1)
 			Transition.fade_out(1.5)
 			Audio.change_music(music)
 		else:
@@ -154,7 +162,7 @@ func descend(body,music):
 			$Surface.tile_set.set_physics_layer_collision_layer(0,2)
 			$Surface.show()
 			$Dungeon.tile_set.set_physics_layer_collision_layer(0,0)
-			$Stair.scale = Vector2(1,1)
+			$DungeonStair.scale = Vector2(1,1)
 			Transition.fade_out(1.5)
 			if body.character == "0":
 				Audio.change_music("castle")

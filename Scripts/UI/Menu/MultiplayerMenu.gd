@@ -32,6 +32,8 @@ var config_data : Resource = ConfigData
 func _ready():
 	load_config_data()
 	update_server_list()
+	if Audio.get_node_or_null("SFX/light_rain") != null:
+		Audio.stop_sfx("light_rain")
 
 func load_config_data():
 	if ConfigData.save_exists():

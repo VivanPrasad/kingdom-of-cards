@@ -28,10 +28,12 @@ region_enabled = true
 region_rect = Rect2(8, 53, 16, 11)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(4, 2)
 shape = SubResource("RectangleShape2D_pxsju")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -63,6 +65,7 @@ vframes = 5
 frame = 1
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+visible = false
 position = Vector2(4, -1.5)
 scale = Vector2(0.8, 0.55)
 

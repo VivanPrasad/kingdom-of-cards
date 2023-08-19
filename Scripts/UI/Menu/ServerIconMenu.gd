@@ -16,6 +16,10 @@ func get_icon():
 				child.get_child(0).grab_focus()
 				icon_selected = child.get_child(1).frame
 
-func _on_button_pressed():
+func _on_use_pressed():
 	server_display_menu.set_icon(icon_selected)
+	hide()
+
+
+func _on_cancel_pressed():
 	hide()

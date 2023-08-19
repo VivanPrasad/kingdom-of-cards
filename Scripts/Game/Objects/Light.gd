@@ -12,7 +12,7 @@ func _ready() -> void:
 		energy = 0.5 * float(bool(on_surface == player.on_surface))
 
 func _physics_process(_delta) -> void:
-	var previous_value = enabled
+	var _previous_value = enabled
 	player = $"/root/World".get_node_or_null(Global.player_id)
 	if player != null and not $AnimationPlayer.is_playing():
 		if on_surface == player.on_surface:
@@ -30,6 +30,7 @@ func _physics_process(_delta) -> void:
 			enabled = true
 	else:
 		enabled = true
+	"""
 	if previous_value != enabled:
 		if enabled == true:
 			var atlas_coords = get_parent().get_cell_atlas_coords(2,position/8)
@@ -40,3 +41,4 @@ func _physics_process(_delta) -> void:
 			if not atlas_coords in [Vector2i(0,8),Vector2i(0,0)]:
 				get_parent().set_cell(2,position/8,2,Vector2i(atlas_coords.x-1,atlas_coords.y))
 	previous_value = enabled
+	"""

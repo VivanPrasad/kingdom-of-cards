@@ -29,16 +29,19 @@ region_enabled = true
 region_rect = Rect2(56, 16, 24, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_5kebl")
 
 [node name="MouseArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_5y2sb")
 
 [node name="PlayerArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]

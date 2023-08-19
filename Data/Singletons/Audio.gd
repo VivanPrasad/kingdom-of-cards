@@ -17,7 +17,7 @@ extends Node
 
 @onready var light_rain = preload("res://Assets/Audio/Ambience/light_rain.mp3")
 const music_max = {"online":-14.0,"title":-4.0,"day":-7.0,"castle":-11.0,"dungeon":-5.0,"mines":0.0}
-const sfx_volume = {"back":10.0,"confirm":-5.0,"select":15.0,"select2":15.0,"light_rain":-5.0}
+const sfx_volume = {"back":10.0,"confirm":-5.0,"select":15.0,"select2":15.0,"light_rain":-7.0}
 const sfx_pitch = {"back":1.0,"confirm":1.0,"select":1.0,"select2":2.0,"light_rain":0.8}
 
 func _ready():
@@ -27,6 +27,16 @@ func _ready():
 func play_day():
 	$day.play()
 
+func lower_sfx_volume(sfx):
+	var node = $SFX.get_node_or_null(sfx)
+	node.volume_db = sfx_volume[sfx] - 20.0
+	node.pitch_scale = sfx_pitch[sfx] - 0.6
+	
+
+func reset_sfx_volume(sfx):
+	var node = $SFX.get_node_or_null(sfx)
+	node.volume_db = sfx_volume[sfx]
+	node.pitch_scale = sfx_pitch[sfx]
 func change_music(stream_name):
 	var tween = create_tween()
 	tween.tween_property($Music, "volume_db",-80,0.0)
@@ -42,7 +52,7 @@ func play_sfx(sfx_name,fade_in = false):
 	var sfx = AudioStreamPlayer.new()
 	sfx.name = sfx_name
 	sfx.set_stream(get(sfx_name))
-	sfx.mix_target = AudioStreamPlayer.MIX_TARGET_SURROUND 
+	sfx.mix_target = AudioStreamPlayer.MIX_TARGET_SURROUND
 	sfx.bus = &"SFX"
 	sfx.pitch_scale = sfx_pitch[sfx_name]
 	$SFX.add_child(sfx)
