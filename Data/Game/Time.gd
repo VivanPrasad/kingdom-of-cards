@@ -26,10 +26,18 @@ func _process(delta):
 		start_new_day()
 	if day_processed:
 		if hour > 4 and hour < 22: 
-			speed = 240  #5am-10pm; 18 hours in 4.5 minutes
+			speed = 240 #5am-10pm; 18 hours in 4.5 minutes
 		else:
 			speed = 280 #10pm-5am; 7 hours in 1.5 minutes
 	
+	if hour == 11 or hour == 23:
+		hunger_processed = false
+		
+	if hour == 12 or hour == 0:
+		if hunger_processed == false:
+			hunger_processed = true
+			update_hunger()
+			
 	if hour == 5:
 		weather_processed = false
 	if hour == 6 and weather_processed == false:
@@ -39,11 +47,6 @@ func _process(delta):
 	
 	if hour == 23:
 		day_processed = false
-		
-		if day != 1: hunger_processed = false
-		if hunger_processed == false:
-			hunger_processed = true
-			#update_hunger()
 	
 	second += int(floor(delta*speed))
 	minute = int(second / 60.0) % 60
@@ -52,15 +55,20 @@ func _process(delta):
 	world.weather = weather
 	update_labels()
 
-"""
 func update_hunger():
+	var player = $"/root/World".get_node_or_null(Global.player_id)
 	if player.hunger > 0:
 		player.hunger -= 1
-	else:
+	elif player.status != 1:
 		player.status = 1
-		print(player.life)
-	player.update_HUD()
-"""
+	else:
+		var n = randi() % 4
+		if n == 0 or n == 1:
+			player.life -= 1
+		elif n == 3:
+			player.status = 0
+	player.update_profile()
+
 
 func update_labels():
 	day_label.text = "Day " + str(day)

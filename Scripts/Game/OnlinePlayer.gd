@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var sign_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/SignMenu.tscn")
 
 @onready var action_hud : PackedScene = preload("res://Scenes/UI/HUD/ActionHUD.tscn")
-
+@onready var game_over : PackedScene = preload("res://Scenes/UI/HUD/GameOver.tscn")
 @onready var player0 = preload("res://Assets/Game/Entities/Player/player0.png")
 @onready var player1 = preload("res://Assets/Game/Entities/Player/player1.png")
 @onready var player2 = preload("res://Assets/Game/Entities/Player/player2.png")
@@ -186,9 +186,13 @@ func effect(value):
 	update_profile()
 
 func update_profile():
+	if life < 1:
+		close_menu()
+		get_tree().paused = true
+		open_menu(game_over)
 	$Profile/Life.frame = life * (status + 1)
 	$Profile/Armor.frame = (life-4) * int(life > 4)
 	$Profile/Hunger.frame = hunger
-
+	
 func _process(_delta):
 	$Profile/Cards/Amount.text = "x" + str(len(inventory))

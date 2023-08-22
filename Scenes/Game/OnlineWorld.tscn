@@ -241,7 +241,6 @@ position = Vector2(1820, 1900)
 [node name="MineStair" parent="." instance=ExtResource("3_eojxg")]
 
 [node name="Surface" type="TileMap" parent="."]
-visible = false
 y_sort_enabled = true
 texture_filter = 1
 scale = Vector2(5, 5)
@@ -320,6 +319,7 @@ metadata/_edit_lock_ = true
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Scenes/Game/Entities/OnlinePlayer.tscn")
 spawn_path = NodePath("..")
+spawn_limit = 20
 
 [node name="HUD" type="CanvasLayer" parent="."]
 visible = false
