@@ -1,3 +1,11 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
 config_version=5
 
 [admob]
@@ -65,7 +73,7 @@ config/name="Kingdom of Cards"
 config/tags=PackedStringArray("in_progress")
 run/main_scene="res://Scenes/UI/Title.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-run/max_fps=60
+run/max_fps=144
 boot_splash/bg_color=Color(0.117647, 0.054902, 0.113725, 1)
 boot_splash/image="res://icon.png"
 boot_splash/use_filter=false

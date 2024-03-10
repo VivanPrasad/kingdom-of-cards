@@ -1,19 +1,20 @@
 extends Node2D
-
+class_name Game
 var port : int = 9999
 
 var ip : String
 
 const official_servers = {"kingdom.cards":"23.16.130.237"}
 
-var peer = ENetMultiplayerPeer.new()
-var udp = UDPServer.new()
+var peer : ENetMultiplayerPeer = ENetMultiplayerPeer.new()
+var udp : UDPServer = UDPServer.new()
 
-@export var player_scene : PackedScene = preload("res://Scenes/Game/Entities/OnlinePlayer.tscn")
+var player_scene : PackedScene = preload("res://Scenes/Game/Entities/OnlinePlayer.tscn")
 
 #Local Player
-var player_name : String
-var player_character : String
+@export var player_name : String
+@export var player_character : String
+@export_enum("Normal","Rain","BloodMoon") var weather : String = "Normal"
 
 @onready var multiplayer_menu := $Lobby/MultiplayerMenu
 @onready var host_button := $Lobby/MultiplayerMenu/TabContainer/Servers/VBoxContainer/HBoxContainer/Host
@@ -26,10 +27,15 @@ var player_character : String
 @onready var server_updates := $HUD/ServerUpdates
 @onready var player_list := $HUD/PlayerList
 @onready var connection_menu = $HUD/ConnectionMenu
+@onready var rain: GPUParticles2D = $Weather/Rain
+
+@onready var surface: TileMap = $Surface
+@onready var dungeon: TileMap = $Dungeon
+@onready var dungeon_stair: Area2D = $DungeonStair
+@onready var mine_stair: Area2D = $MineStair
+@onready var stair: Area2D = $Stair
 
 @onready var light : PackedScene = preload("res://Scenes/Game/Objects/Light.tscn")
-
-@onready var weather : String = "Normal"
 
 func _ready():
 	port = Config.config_data.port
@@ -93,11 +99,16 @@ func transition_to_world(music):
 	Transition.fade_out(0.8)
 
 func _physics_process(_delta):
+	
+	
+	
+	handle_weather()
+
+func handle_weather() -> void:
 	var local_player = get_node_or_null(Global.player_id)
 	var on_surface : bool = true
 	if local_player != null:
 		on_surface = local_player.on_surface
-	
 	if time_cycle.is_playing():
 		if weather != time_cycle.current_animation:
 			time_cycle.play(weather)
@@ -107,28 +118,27 @@ func _physics_process(_delta):
 					Audio.play_sfx("light_rain",true)
 				else:
 					Audio.reset_sfx_volume("light_rain")
-				$Weather/Rain.emitting = true
-				$Weather.show()
+				rain.emitting = true
 			else:
 				if Audio.get_node_or_null("SFX/light_rain") != null:
 					Audio.stop_sfx("light_rain",true)
-				$Weather/Rain.emitting = false
+				rain.emitting = false
 			time_cycle.seek(time.second / 3600.0,false)
 		else:
 			if time_cycle.current_animation != "Normal":
 				time_cycle.play("Normal")
-			$Weather/Rain.emitting = false
-			$Weather.hide()
+			rain.emitting = false
 			time_cycle.seek(4.0,false)
 			
 			if Audio.get_node_or_null("SFX/light_rain") != null:
 				Audio.lower_sfx_volume("light_rain")
 	else:
 		time_cycle.play(weather)
+
 func instance_lights():
 	var cell_data
 		#checks how many layers are there in the dungeon, and enables each of them
-	for layer in [$Surface,$Dungeon]:
+	for layer in [surface,dungeon]:
 		for cell in layer.get_used_cells(2): #all the cells in decoration layer
 			cell_data = layer.get_cell_tile_data(2, cell) #get the TileData of the cell
 			if cell_data != null and cell_data.modulate != Color(1.0,1.0,1.0,1.0): #the lights do not have white modulate
@@ -159,9 +169,9 @@ func descend(body,music):
 			Transition.fade_in(1.5)
 			await Transition.player.animation_finished
 			body.on_surface = true
-			$Surface.tile_set.set_physics_layer_collision_layer(0,2)
-			$Surface.show()
-			$Dungeon.tile_set.set_physics_layer_collision_layer(0,0)
+			surface.tile_set.set_physics_layer_collision_layer(0,2)
+			surface.show()
+			dungeon.tile_set.set_physics_layer_collision_layer(0,0)
 			$DungeonStair.scale = Vector2(1,1)
 			Transition.fade_out(1.5)
 			if body.character == "0":
@@ -169,8 +179,8 @@ func descend(body,music):
 			else:
 				Audio.change_music("day")
 
-@warning_ignore("unused_parameter")
-func _on_multiplayer_spawner_spawned(node):
+
+func _on_multiplayer_spawner_spawned(_node):
 	pass
 
 func _on_multiplayer_spawner_despawned(node):

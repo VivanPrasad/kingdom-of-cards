@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal faded
+
 @onready var player = $AnimationPlayer
 func change_scene(scene : String,speed = 1.5):
 	player.speed_scale = speed
@@ -12,6 +14,7 @@ func change_scene(scene : String,speed = 1.5):
 func fade_in(speed = 1.5):
 	player.speed_scale = speed
 	player.play("FadeIn")
+	emit_signal("faded")
 
 func fade_out(speed = 1.5):
 	player.speed_scale = speed
