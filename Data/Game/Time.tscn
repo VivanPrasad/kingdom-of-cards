@@ -11,16 +11,13 @@ font_size = 24
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gp265"]
 properties/0/path = NodePath(".:second")
 properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
+properties/0/replication_mode = 1
 properties/1/path = NodePath(".:day")
 properties/1/spawn = true
-properties/1/sync = true
-properties/1/watch = false
+properties/1/replication_mode = 1
 properties/2/path = NodePath(".:weather")
 properties/2/spawn = true
-properties/2/sync = true
-properties/2/watch = false
+properties/2/replication_mode = 1
 
 [node name="Time" type="Node"]
 script = ExtResource("1_0fj23")

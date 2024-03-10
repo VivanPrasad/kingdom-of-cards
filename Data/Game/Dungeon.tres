@@ -21,21 +21,25 @@
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_r2nt0"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3ielv"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_21u6q"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_76dtx"]
 resource_name = "Ground"
@@ -586,91 +590,112 @@ texture_region_size = Vector2i(8, 8)
 6:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x2x04"]
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_f535h"]
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2pni0"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dl5yn"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_s7fhh"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0k0qa"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_55q5s"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jultk"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8igf4"]
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mdagn"]
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rrib3"]
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i5uk6"]
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_65cni"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_i0f35"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_orkj5"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_edgf4"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_05j01"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mw6ck"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5ftam"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kkor8"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ng7xt"]
 vertices = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kourm"]
 resource_name = "Building"
