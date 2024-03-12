@@ -33,4 +33,4 @@ func _on_online_mouse_exited():
 
 func _on_online_pressed():
 	Audio.change_music("online")
-	Transition.change_scene("res://Scenes/Game/OnlineWorld.tscn")
+	Transition.change_scene("res://Scenes/Game/World.tscn")

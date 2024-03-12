@@ -194,10 +194,10 @@ grow_vertical = 2
 color = Color(0.141176, 0.101961, 0.156863, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Fade"
 libraries = {
 "": SubResource("AnimationLibrary_w3hed")
 }
+autoplay = "Fade"
 
 [node name="Options" type="VBoxContainer" parent="."]
 layout_mode = 0

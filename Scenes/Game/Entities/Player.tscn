@@ -1,13 +1,148 @@
-[gd_scene load_steps=39 format=3 uid="uid://bxbor0a6xjb8k"]
+[gd_scene load_steps=39 format=3 uid="uid://b7a65oxtcm835"]
 
-[ext_resource type="Script" path="res://Scripts/Game/Entities/Player.gd" id="1_pdfi5"]
-[ext_resource type="Texture2D" uid="uid://cg5ul4ok6hwpc" path="res://Assets/Game/Entities/Player/player2.png" id="2_j3dxq"]
+[ext_resource type="Script" path="res://Scripts/Game/Player.gd" id="1_pmmak"]
+[ext_resource type="Texture2D" uid="uid://b4t031xaf47mh" path="res://Assets/UI/HUD/online_icons.png" id="2_jddlr"]
+[ext_resource type="Texture2D" uid="uid://dsfcdqy357ixp" path="res://Assets/Game/Entities/Player/player1.png" id="3_c6x5t"]
 [ext_resource type="PackedScene" uid="uid://bjk88wtc5it3r" path="res://Scenes/UI/HUD/MobileUI.tscn" id="3_t80ug"]
 [ext_resource type="PackedScene" uid="uid://bpnermutitk2r" path="res://Scenes/UI/HUD/Profile.tscn" id="4_yh6hc"]
 [ext_resource type="Texture2D" uid="uid://cnfivsntb6765" path="res://Assets/UI/HUD/emotes.png" id="5_1sow2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xuld3"]
-size = Vector2(10, 1.6)
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nhurb"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Sprite:frame")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Nametag/HBoxContainer/Name:text")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:character")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:on_surface")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuwrn"]
+atlas = ExtResource("2_jddlr")
+region = Rect2(1, 2, 5, 4)
+
+[sub_resource type="Animation" id="Animation_kkdni"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gx4c6"]
+resource_name = "Zoom Load"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(0.9, 0.9), Vector2(3.5, 3.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8veyy"]
+_data = {
+"RESET": SubResource("Animation_kkdni"),
+"Zoom Load": SubResource("Animation_gx4c6")
+}
+
+[sub_resource type="Animation" id="Animation_2n2bw"]
+resource_name = "Popup"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Emote:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Emote:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_i3vw1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Emote:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Emote:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n6dk0"]
+resource_name = "Thinking"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Emote:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ccxs2"]
+_data = {
+"Popup": SubResource("Animation_2n2bw"),
+"RESET": SubResource("Animation_i3vw1"),
+"Thinking": SubResource("Animation_n6dk0")
+}
 
 [sub_resource type="Animation" id="Animation_d7462"]
 resource_name = "D Run"
@@ -16,7 +151,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,7 +168,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -50,7 +185,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -67,7 +202,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -84,7 +219,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -99,7 +234,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -116,7 +251,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -133,7 +268,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -150,7 +285,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -221,7 +356,7 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_v2lnx"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ova3r"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_abv4t"]
 states/End/position = Vector2(756, 100)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_w2cx0")
 states/Idle/position = Vector2(408, 100)
@@ -229,203 +364,56 @@ states/Run/node = SubResource("AnimationNodeBlendSpace2D_fltto")
 states/Run/position = Vector2(635, 100)
 states/Sleep/node = SubResource("AnimationNodeBlendSpace2D_v2lnx")
 states/Sleep/position = Vector2(489, 231)
-graph_offset = Vector2(79, 2)
+graph_offset = Vector2(-97, 46.4163)
 
-[sub_resource type="Animation" id="Animation_kkdni"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_gx4c6"]
-resource_name = "Zoom Load"
-length = 2.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:zoom")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.9, 0.9), Vector2(0.9, 0.9), Vector2(3, 3)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8veyy"]
-_data = {
-"RESET": SubResource("Animation_kkdni"),
-"Zoom Load": SubResource("Animation_gx4c6")
-}
-
-[sub_resource type="Animation" id="Animation_ke4cv"]
-resource_name = "Hurt"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(3.73213, 1),
-"update": 0,
-"values": [Color(2, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(2, 0, 0, 0.313726), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_6m0ce"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_x2ow1"]
-_data = {
-"Hurt": SubResource("Animation_ke4cv"),
-"RESET": SubResource("Animation_6m0ce")
-}
-
-[sub_resource type="Animation" id="Animation_2n2bw"]
-resource_name = "Popup"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Emotes:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Emotes:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_i3vw1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Emotes:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Emotes:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_n6dk0"]
-resource_name = "Thinking"
-length = 1.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Emotes:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [2, 3, 4, 5]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ccxs2"]
-_data = {
-"Popup": SubResource("Animation_2n2bw"),
-"RESET": SubResource("Animation_i3vw1"),
-"Thinking": SubResource("Animation_n6dk0")
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7f2r"]
+size = Vector2(20, 5)
 
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
-position = Vector2(20, 10)
-scale = Vector2(2, 2)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("1_pdfi5")
+position = Vector2(56, 176)
+collision_mask = 2
+script = ExtResource("1_pmmak")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_j3dxq")
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nhurb")
+
+[node name="Nametag" type="CenterContainer" parent="."]
+offset_left = -46.0
+offset_top = -30.0
+offset_right = 138.0
+offset_bottom = -9.0
+scale = Vector2(0.5, 0.5)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Nametag"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="Nametag/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_cuwrn")
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Nametag/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.407843)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("3_c6x5t")
 offset = Vector2(-1, -1)
 hframes = 46
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.47035e-08, 0.8)
-shape = SubResource("RectangleShape2D_xuld3")
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 enabled = false
 limit_left = -2000
 limit_top = -2000
@@ -435,60 +423,50 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_q8573")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_ova3r")
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/Idle/blend_position = Vector2(-0.00116688, 0.956332)
-parameters/Run/blend_position = Vector2(0.00224721, 0.00436687)
-parameters/Sleep/blend_position = Vector2(0, 0)
-
-[node name="Camera" type="AnimationPlayer" parent="."]
-autoplay = "Zoom Load"
+[node name="Camera" type="AnimationPlayer" parent="Camera"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_8veyy")
 }
+autoplay = "Zoom Load"
 
-[node name="EffectTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Hurt" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_x2ow1")
-}
-
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = 2
-offset_left = -360.0
-offset_top = -200.0
-offset_right = 360.0
-offset_bottom = 164.0
-color = Color(1, 1, 1, 0)
-
-[node name="Emotes" type="Sprite2D" parent="."]
+[node name="Emote" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(-2, -17)
-scale = Vector2(2, 2)
+position = Vector2(-1, -29)
+scale = Vector2(3, 3)
 texture = ExtResource("5_1sow2")
 hframes = 6
 vframes = 15
 
-[node name="EmotePlayer" type="AnimationPlayer" parent="Emotes"]
+[node name="EmotePlayer" type="AnimationPlayer" parent="Emote"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_ccxs2")
 }
 next/Popup = &"Thinking"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q8573")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q8573")
+}
+tree_root = SubResource("AnimationNodeStateMachine_abv4t")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/blend_position = Vector2(-0.00116688, 0.956332)
+parameters/Run/blend_position = Vector2(-0.00767261, -0.799127)
+parameters/Sleep/blend_position = Vector2(0, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_j7f2r")
+debug_color = Color(0.686275, 0.701961, 0.517647, 0.419608)
+
 [node name="MobileUI" parent="." instance=ExtResource("3_t80ug")]
 
 [node name="Profile" parent="." instance=ExtResource("4_yh6hc")]
 
 [node name="Menu" type="CanvasLayer" parent="."]
-
-[connection signal="timeout" from="EffectTimer" to="." method="_on_timer_timeout"]

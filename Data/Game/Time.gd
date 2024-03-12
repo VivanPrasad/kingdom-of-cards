@@ -1,4 +1,5 @@
 extends Node
+class_name GameTime
 
 @export var second : int = 3600 * 5
 @export var minute : int = 0

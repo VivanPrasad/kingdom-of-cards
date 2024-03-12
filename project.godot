@@ -80,6 +80,10 @@ boot_splash/use_filter=false
 config/icon="res://icon.png"
 boot_splash/minimum_display_time=1500
 
+[audio]
+
+buses/default_bus_layout="res://Assets/Audio/audio.tres"
+
 [autoload]
 
 Global="*res://Data/Singletons/Global.gd"

@@ -7,6 +7,7 @@ script = ExtResource("1_c6yf6")
 name = "Elixir"
 icon_id = 34
 type = 2
+amount = 1
 desc = "Full life and full hunger"
 clicked = "Use"
 object_variables = {

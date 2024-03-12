@@ -1,5 +1,5 @@
 extends CanvasLayer
-
+class_name ServerUpdates
 @onready var world = $"/root/World"
 @onready var player = $MarginContainer/AnimationPlayer
 
