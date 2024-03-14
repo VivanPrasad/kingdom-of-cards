@@ -7,6 +7,7 @@ script = ExtResource("1_crdsp")
 name = "Fish Rod"
 icon_id = 16
 type = 6
+amount = 1
 desc = "Used to catch fish"
 clicked = "Hold"
 object_variables = {}

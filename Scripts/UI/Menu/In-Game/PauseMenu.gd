@@ -2,27 +2,27 @@ extends Control
 
 @onready var settings : PackedScene = preload("res://Scenes/UI/Settings.tscn")
 @onready var world : Node = $"/root/World"
-
+@onready var disconnect_button : Button = $Panel/CenterContainer/VBoxContainer/Disconnect
 func _ready():
-	if Global.player_id.is_valid_int():
-		$Panel/CenterContainer/VBoxContainer/Disconnect.text = "Disconnect"
+	if Game.is_online:
+		disconnect_button.text = "Disconnect"
 	else:
-		$Panel/CenterContainer/VBoxContainer/Disconnect.text = "Quit to Menu"
+		disconnect_button.text = "Quit to Menu"
 
 func _on_disconnect_pressed():
-	if Global.player_id.is_valid_int():
+	if Game.is_online:
 		get_tree().set_pause(true)
-		Transition.change_scene("res://Scenes/Game/OnlineWorld.tscn")
-		await get_tree().create_timer(0.25).timeout
+		Transition.change_scene(Global.Scenes.GAME_MODE_SCENE)
+		await get_tree().create_timer(0.4).timeout
 		get_tree().set_pause(false)
-		Audio.change_music("online")
+		Audio.change_music(Music.ONLINE)
 		for node in world.get_children():
-			if node is CharacterBody2D:
+			if node is Player:
 				world.remove_child(node)
 		world.multiplayer.multiplayer_peer = null
 	else:
-		Transition.change_scene("res://Scenes/UI/GameMode.tscn")
-		Audio.change_music("title")
+		Transition.change_scene(Global.Scenes.GAME_MODE_SCENE)
+		Audio.change_music(Music.ONLINE)
 func _on_back_pressed():
 	queue_free()
 	$"../..".current_menu = "None"

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cg4q1mwftd15h"]
+
+[ext_resource type="Script" path="res://Data/Cards/Card.gd" id="1_qw2in"]
+
+[resource]
+script = ExtResource("1_qw2in")
+name = "Key"
+icon_id = 8
+type = 1
+amount = 1
+desc = "Removes prisoner status"
+clicked = "Use"
+object_variables = {}
+object_functions = {}
+role_goal = ""
+role_exp = 0
+role_level = 0
+base_cost = 0
+markets = 0
+rarity = 100

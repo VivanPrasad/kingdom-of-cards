@@ -9,12 +9,12 @@ icon_id = 1
 type = 0
 amount = 1
 desc = "+1 Food
-+10% Speed (60s)"
++25% Speed (60s)"
 clicked = "Use"
 object_variables = {}
 object_functions = {
 "eat": 1,
-"effect": ["speed", 15, 60]
+"effect": ["speed", 20, 60]
 }
 role_goal = ""
 role_exp = 0

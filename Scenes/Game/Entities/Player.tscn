@@ -374,6 +374,7 @@ texture_filter = 1
 position = Vector2(56, 176)
 collision_mask = 2
 script = ExtResource("1_pmmak")
+character = ""
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_nhurb")

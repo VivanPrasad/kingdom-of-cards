@@ -84,6 +84,7 @@ layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Status/Locating"]
+clip_contents = true
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -164,6 +165,7 @@ text = "0/20"
 [node name="Select" type="Button" parent="."]
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxFlat_5yphy")
+action_mode = 0
 flat = true
 
 [connection signal="focus_entered" from="Select" to="." method="_on_select_focus_entered"]

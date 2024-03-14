@@ -1,10 +1,11 @@
 extends Control
-
+class_name ServerIconMenu
 @onready var server_display_menu = $".."
 @onready var grid = $PanelContainer/MarginContainer/VBoxContainer/GridContainer
 @onready var icon_display = preload("res://Scenes/UI/Instances/ServerIconDisplay.tscn")
 
-var icon_selected : int
+static var icon_selected : int
+
 func _ready():
 	for i in range(20):
 		var icon = icon_display.instantiate()

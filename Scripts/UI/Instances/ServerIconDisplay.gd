@@ -1,8 +1,9 @@
 extends PanelContainer
 
-@onready var icon_menu = $"../../../../.."
+@onready var button = $Button
+@onready var icon = $Sprite2D
 func _ready():
-	$Sprite2D.frame = get_index()
+	icon.frame = get_index()
 
 func _on_button_pressed():
-	icon_menu.icon_selected = get_index()
+	ServerIconMenu.icon_selected = get_index()

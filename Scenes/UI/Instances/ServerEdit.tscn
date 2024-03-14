@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dnm85tk5mtnku"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Instances/ServerDisplayEdit.gd" id="1_j2rvy"]
-[ext_resource type="Texture2D" uid="uid://cl0ov10fdidsx" path="res://Assets/UI/HUD/server_icons.png" id="2_q1nov"]
-[ext_resource type="PackedScene" uid="uid://crouk2ea4clq6" path="res://Scenes/UI/Instances/ServerIconMenu.tscn" id="3_5j1p2"]
+[ext_resource type="Script" path="res://Scripts/UI/Instances/ServerEdit.gd" id="1_ms44j"]
+[ext_resource type="Texture2D" uid="uid://cl0ov10fdidsx" path="res://Assets/UI/HUD/server_icons.png" id="2_rs313"]
+[ext_resource type="PackedScene" uid="uid://crouk2ea4clq6" path="res://Scenes/UI/Instances/ServerIconMenu.tscn" id="3_xuhdk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2yvu"]
 bg_color = Color(0.109804, 0.0627451, 0.156863, 1)
@@ -12,11 +12,11 @@ corner_detail = 1
 bg_color = Color(0.156863, 0.156863, 0.294118, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxx43"]
-atlas = ExtResource("2_q1nov")
+atlas = ExtResource("2_rs313")
 region = Rect2(0, 5, 5, 5)
 margin = Rect2(1, 1, 2, 2)
 
-[node name="ServerDisplayEdit" type="Control"]
+[node name="ServerEdit" type="Control"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -25,7 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_j2rvy")
+script = ExtResource("1_ms44j")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -91,7 +91,6 @@ theme_override_font_sizes/font_size = 24
 text = "My Server"
 placeholder_text = "My Server"
 max_length = 28
-expand_to_text_length = true
 caret_blink = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -171,7 +170,7 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Cancel"
 
-[node name="Save" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="Change" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -179,11 +178,11 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Save"
 
-[node name="ServerIconMenu" parent="." instance=ExtResource("3_5j1p2")]
+[node name="ServerIconMenu" parent="." instance=ExtResource("3_xuhdk")]
 visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/Icon" to="." method="_on_icon_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/Delete" to="." method="_on_delete_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/Cancel" to="." method="_on_cancel_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/Change" to="." method="_on_change_pressed"]

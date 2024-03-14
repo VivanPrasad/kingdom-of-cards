@@ -1,38 +1,43 @@
 extends CharacterBody2D
 class_name Player
 
-var emote_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/EmoteMenu.tscn")
-var inventory_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/InventoryMenu.tscn")
-var pause_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/PauseMenu.tscn")
+const emote_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/EmoteMenu.tscn")
+const inventory_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/InventoryMenu.tscn")
+const pause_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/PauseMenu.tscn")
 
-var market_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/MarketMenu.tscn")
-var sign_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/SignMenu.tscn")
+const market_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/MarketMenu.tscn")
+const sign_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/SignMenu.tscn")
 
-var action_hud : PackedScene = preload("res://Scenes/UI/HUD/ActionHUD.tscn")
-var game_over : PackedScene = preload("res://Scenes/UI/HUD/GameOver.tscn")
+const action_hud : PackedScene = preload("res://Scenes/UI/HUD/ActionHUD.tscn")
+const game_over : PackedScene = preload("res://Scenes/UI/HUD/GameOver.tscn")
 
-var player0 = preload("res://Assets/Game/Entities/Player/player0.png")
-var player1 = preload("res://Assets/Game/Entities/Player/player1.png")
-var player2 = preload("res://Assets/Game/Entities/Player/player2.png")
-var player3 = preload("res://Assets/Game/Entities/Player/player3.png")
-var player4 = preload("res://Assets/Game/Entities/Player/player4.png")
-var player5 = preload("res://Assets/Game/Entities/Player/player5.png")
+const player0 = preload("res://Assets/Game/Entities/Player/player0.png")
+const player1 = preload("res://Assets/Game/Entities/Player/player1.png")
+const player2 = preload("res://Assets/Game/Entities/Player/player2.png")
+const player3 = preload("res://Assets/Game/Entities/Player/player3.png")
+const player4 = preload("res://Assets/Game/Entities/Player/player4.png")
+const player5 = preload("res://Assets/Game/Entities/Player/player5.png")
 
 @export var character : String = "1"
+
+const ROYAL : String = "0"
 
 @onready var emote := $Emote
 @onready var emote_player := $Emote/EmotePlayer
 
-@onready var world = $".."
+@onready var world : Game = $".."
+@onready var chat : Chat = $"/root/World/HUD/Chat"
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
-
 @onready var icon : TextureRect = $Nametag/HBoxContainer/Icon
 @onready var player_name : Label = $Nametag/HBoxContainer/Name
+@onready var nametag: CenterContainer = $Nametag
+
 @export var current_menu : String = "None"
 
 @onready var mobile_ui : CanvasLayer = $MobileUI
 @onready var profile : CanvasLayer = $Profile
+@onready var profile_icon: Sprite2D = $Profile/Icon
 @onready var menu : CanvasLayer = $Menu
 
 @onready var collision : CollisionShape2D = $Collision
@@ -48,8 +53,9 @@ var player5 = preload("res://Assets/Game/Entities/Player/player5.png")
 
 @export var inventory : Array[Card] = [
 	Card.new("Rules",82,"There are no rules!",3,"Hold"),
-	load("res://Data/Cards/Bread.tres").duplicate(),
-	load("res://Data/Cards/Berry.tres").duplicate()
+	Card.new_card("Bread"),
+	Card.new_card("Berry"),
+	Card.new_card("Key")
 ]
 
 @export var life : int = 4
@@ -70,18 +76,25 @@ const BASE_ROYAL_SPEED : int = 80
 
 var input_vector : Vector2 = Vector2.ZERO
 
+var ghost_effect : bool = false
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 
 func _ready() -> void:
-	if str(self.name) == "1":
+	if not Game.is_online: 
+		nametag.hide()
+		camera.set_enabled(true)
+		inventory.pop_at(0)
+		Global.player_id = str(self.name)
+		set_character("1")
+		return
+	
+	if name == &"1": # If player is king
+		character = "0"
 		icon.show()
 	
-	if name == &"1":
-			character = "0"
 	if is_multiplayer_authority():
 		if name == &"1":
-			character = "0"
 			speed = BASE_ROYAL_SPEED
 			position = ROYAL_SPAWN_POSITION
 			collision.shape.size.x = 30
@@ -95,14 +108,13 @@ func _ready() -> void:
 		mobile_ui.hide()
 		menu.hide()
 		profile.hide()
-	await get_tree().create_timer(0.5).timeout
 	set_character(character)
-	$"/root/World/HUD/ServerUpdates".player_joined(player_name.text)
+	chat.player_joined(player_name.text)
 	
 @rpc("call_local")
 func set_character(id):
 	sprite.texture = get("player" + id)
-	sprite.frame = int(id)
+	profile_icon.frame = int(id)
 
 func _physics_process(_delta):
 	if on_surface:
@@ -110,17 +122,27 @@ func _physics_process(_delta):
 	else:
 		z_index = -3
 	
-	if not is_multiplayer_authority():
-		if on_surface == world.get_node_or_null(Global.player_id).on_surface:
-			visible = true
-		else:
-			visible = false
-		return
+	if Game.is_online:
+		if not is_multiplayer_authority():
+			if on_surface == world.get_node_or_null(Global.player_id).on_surface:
+				visible = true
+			else:
+				visible = false
+			return
 
 	input_vector = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-		).normalized() * int(bool(current_menu in ["None","ActionHUD"])) * int(bool(Transition.player.is_playing() == false))
+		).normalized() * int(bool(current_menu in ["None","ActionHUD"]))\
+		* int(bool(Transition.player.is_playing() == false))\
+		* int(bool(get_tree().paused == false))
+	
+	if ghost_effect:
+		create_ghost_effect()
+		if world.is_online:
+			create_ghost_effect.rpc()
+	if world.is_online:
+		input_vector *= int(bool(chat.chat_input.has_focus() == false))
 	if mobile_ui.vector != Vector2.ZERO:
 		input_vector = mobile_ui.vector
 	if input_vector != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
@@ -138,6 +160,17 @@ func _physics_process(_delta):
 	elif current_menu == "ActionHUD":
 		close_menu()
 
+@rpc("call_local")
+func create_ghost_effect() -> void:
+	var ghost : Sprite2D = sprite.duplicate()
+	ghost.modulate.a = 0.5
+	ghost.global_position = sprite.global_position
+	world.add_child(ghost)
+	await create_tween()\
+	.tween_property(ghost,"modulate:a",0.0,0.2)\
+	.set_trans(Tween.TRANS_CIRC)\
+	.finished
+	ghost.queue_free()
 #Menu Handling
 func open_menu(menu_,data : String = "") -> void:
 	close_menu()
@@ -200,11 +233,18 @@ func eat(value):
 			life += 1
 	update_profile()
 
-func effect(value):
-	var type = value[0]; var new_value = value[1]; var duration = value[2]
-	var old_value = get(type)
-	set(type,old_value + new_value)
+func effect(value : Array):
+	var type : String = value[0];
+	var old_value : Variant = get(type) #Get the variable value
+	var new_value : Variant = value[1]
+	var duration : int = value[2]
+	
+	if value[0] == "speed": ghost_effect = true
+	
+	if not new_value is String:
+		set(type,old_value + new_value)
 	await get_tree().create_timer(duration).timeout
+	if value[0] == "speed": ghost_effect = false
 	set(type, old_value)
 	update_profile()
 

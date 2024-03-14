@@ -201,10 +201,10 @@ autoplay = "default"
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "FadeIn"
 libraries = {
 "": SubResource("AnimationLibrary_5y8b4")
 }
+autoplay = "FadeIn"
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1

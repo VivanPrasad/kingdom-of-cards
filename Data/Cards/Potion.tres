@@ -7,6 +7,7 @@ script = ExtResource("1_tmr56")
 name = "Potion"
 icon_id = 32
 type = 1
+amount = 1
 desc = "Immune for a day"
 clicked = "Use"
 object_variables = {}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhgq27myyv348"]
+[gd_scene load_steps=26 format=3 uid="uid://dhgq27myyv348"]
 
 [ext_resource type="Script" path="res://Scripts/UI/GameMode.gd" id="1_1m103"]
 [ext_resource type="Texture2D" uid="uid://bhgmleinj4te5" path="res://Assets/UI/Menu/background.png" id="2_hhmm3"]
@@ -124,15 +124,50 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="Animation" id="Animation_iox16"]
+resource_name = "Fade"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.117647, 0.054902, 0.113725, 1), Color(0.117647, 0.054902, 0.113725, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ydmij"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.117647, 0.054902, 0.113725, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w3hed"]
+_data = {
+"Fade": SubResource("Animation_iox16"),
+"RESET": SubResource("Animation_ydmij")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_ff1ut"]
 font_size = 40
-outline_size = 24
-outline_color = Color(0.0980392, 0.117647, 0.196078, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5cyr3"]
 font_size = 64
 outline_size = 32
-outline_color = Color(0.0980392, 0.117647, 0.196078, 1)
+outline_color = Color(0.196078, 0.101961, 0.172549, 1)
 
 [node name="GameMode" type="Control"]
 texture_filter = 1
@@ -157,24 +192,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0910879, 0.0703377, 0.156863, 1)
+color = Color(0.141176, 0.101961, 0.156863, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w3hed")
+}
+autoplay = "Fade"
 
 [node name="Options" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 99.0
 offset_top = 365.0
 offset_right = 269.0
-offset_bottom = 617.0
+offset_bottom = 637.0
 theme_override_constants/separation = 20
 alignment = 2
 
 [node name="Solo" type="Button" parent="Options"]
 layout_mode = 2
+size_flags_vertical = 8
+tooltip_text = "go back"
 focus_mode = 0
-theme_override_colors/font_color = Color(0.776471, 0.835294, 0.87451, 1)
+theme_override_colors/font_color = Color(0.796078, 0.74902, 0.87451, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.847059, 0.521569, 1)
 theme_override_colors/font_hover_color = Color(1, 0.631373, 0.796078, 1)
-theme_override_colors/font_outline_color = Color(0.0980392, 0.117647, 0.196078, 1)
+theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1)
 theme_override_constants/outline_size = 32
 theme_override_fonts/font = ExtResource("4_7tqnq")
 theme_override_font_sizes/font_size = 40
@@ -185,38 +228,44 @@ alignment = 0
 [node name="Online" type="Button" parent="Options"]
 layout_mode = 2
 focus_mode = 0
-theme_override_colors/font_color = Color(0.776471, 0.835294, 0.87451, 1)
+theme_override_colors/font_color = Color(0.796078, 0.74902, 0.87451, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.847059, 0.521569, 1)
-theme_override_colors/font_hover_color = Color(0.901961, 0.933333, 0.92549, 1)
-theme_override_colors/font_outline_color = Color(0.0980392, 0.117647, 0.196078, 1)
+theme_override_colors/font_hover_color = Color(0.898039, 1, 0.721569, 1)
+theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1)
 theme_override_constants/outline_size = 32
 theme_override_fonts/font = ExtResource("4_7tqnq")
 theme_override_font_sizes/font_size = 40
-text = "Online
-"
+text = "Online"
 flat = true
 alignment = 0
 
 [node name="Back" type="Button" parent="Options"]
 layout_mode = 2
 focus_mode = 0
-theme_override_colors/font_color = Color(0.776471, 0.835294, 0.87451, 1)
+theme_override_colors/font_color = Color(0.796078, 0.74902, 0.87451, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.847059, 0.521569, 1)
 theme_override_colors/font_hover_color = Color(0.596078, 0.658824, 1, 1)
-theme_override_colors/font_outline_color = Color(0.0980392, 0.117647, 0.196078, 1)
+theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1)
 theme_override_constants/outline_size = 32
 theme_override_fonts/font = ExtResource("4_7tqnq")
 theme_override_font_sizes/font_size = 40
-text = "Quit"
+text = "Back"
 flat = true
 alignment = 0
 
 [node name="Info" type="Label" parent="."]
 layout_mode = 1
-offset_left = 1054.0
-offset_top = 636.0
-offset_right = 1398.0
-offset_bottom = 681.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -376.0
+offset_top = -80.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "Choose a Game Mode"
 label_settings = SubResource("LabelSettings_ff1ut")
 horizontal_alignment = 2
@@ -232,21 +281,19 @@ label_settings = SubResource("LabelSettings_5cyr3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Notice" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0.133333)
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1135.0
-offset_top = -39.0
-offset_right = -8.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 10
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 24
-text = "This game is in prototype stages and is prone to crashes and bugs. Please report any issues to the developer."
-vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.117647, 0.054902, 0.113725, 1)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

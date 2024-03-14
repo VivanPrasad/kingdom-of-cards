@@ -47,19 +47,21 @@ func load_config() -> void:
 		config_data = ConfigData.load_save() as ConfigData
 	else:
 		config_data = Config.config_data
-
 func update_values():
 	master_slider.value = config_data.master
 	music_slider.value = config_data.music
 	sfx_slider.value = config_data.sfx
 	fullscreen_button.button_pressed = config_data.fullscreen
 	$TabContainer/Online/Container/Port/LineEdit.text = str(config_data.port)
-	
+
 func _on_tab_container_tab_clicked(tab):
 	if tab == 5:
 		$AnimationPlayer.play_backwards("FadeIn")
+		Audio.play_sfx(SFX.BACK)
 		await $AnimationPlayer.animation_finished
 		queue_free()
+	else:
+		Audio.play_sfx(SFX.SELECT,0.0,1.0)
 
 func _on_master_slider_value_changed(value):
 	config_data.master = value
@@ -68,12 +70,10 @@ func _on_master_slider_value_changed(value):
 
 func _on_music_slider_value_changed(value):
 	config_data.music = value
-	#AudioServer.set_bus_volume_db(1,((0.8*float(value))-80.0))
 	config_data.write_save()
 
 func _on_sfx_slider_value_changed(value):
 	config_data.sfx = value
-	#AudioServer.set_bus_volume_db(2,((0.8*float(value))-80.0))
 	config_data.write_save()
 
 func _on_check_button_toggled(button_pressed):

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Server" load_steps=2 format=3 uid="uid://dbdtanos0heyl"]
 
-[ext_resource type="Script" path="res://Data/Config/Server.gd" id="1_il7uv"]
+[ext_resource type="Script" path="res://Data/Classes/Server.gd" id="1_il7uv"]
 
 [resource]
 script = ExtResource("1_il7uv")

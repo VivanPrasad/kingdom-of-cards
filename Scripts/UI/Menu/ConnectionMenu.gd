@@ -3,17 +3,13 @@ extends Control
 @onready var world = $"../.."
 
 func _on_back_pressed():
-	get_tree().paused = true
-	Audio.change_music("online")
-	Transition.change_scene("res://Scenes/Game/OnlineWorld.tscn")
-	
-
+	Audio.change_music(Music.TITLE)
+	Transition.change_scene(Global.Scenes.WORLD_SCENE)
 
 func _process(_delta):
 	for child in world.get_children():
-		if child is CharacterBody2D:
+		if child is Player:
 			if visible: hide()
 			return
 		else:
 			show()
-	

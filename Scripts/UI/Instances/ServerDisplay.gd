@@ -38,7 +38,8 @@ func _ready():
 	icon.texture = texture.duplicate()
 	icon.texture.region = Rect2i(5*(server.icon_id%5),5*int(floor(server.icon_id/5.0)),5,5)
 	udp_client.set_broadcast_enabled(true)
-	udp_client.connect_to_host(ip,sub_port)
+	if ip.is_valid_ip_address():
+		udp_client.connect_to_host(ip,sub_port)
 	locating = true
 	await get_tree().create_timer(1.5).timeout
 	locating = false
@@ -47,7 +48,7 @@ func _process(delta):
 	delta_time += delta
 	if delta_time >= 1.5:
 		delta_time = 0.2
-		if not udp_server_found:
+		if not udp_server_found and ip.is_valid_ip_address():
 			udp_client.put_packet("validrequest".to_ascii_buffer())
 			udp_requests -= 1
 			if udp_requests == 0:
@@ -83,6 +84,7 @@ func _on_select_pressed():
 	
 	
 func _on_select_focus_entered():
+	Audio.play_sfx(SFX.SELECT,0.0,-0.3)
 	menu.server_selected = id
 
 func _on_select_gui_input(event):

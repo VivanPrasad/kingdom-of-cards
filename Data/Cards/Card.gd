@@ -2,7 +2,7 @@ extends Resource
 class_name Card
 
 @export var name : String
-@export var icon_id : int = 83
+@export_range(0,126) var icon_id : int = 83
 @export_enum("Food", "Item", "Golden", "Material", "Attire", "Role", "Tool", "Other") var type : int
 @export var amount : int = 1
 @export_multiline var desc : String
@@ -25,6 +25,14 @@ class_name Card
 @export_flags("Food","Item","Secret","Merchant") var markets = 0
 @export_range(1.0,100.0,1.0,"suffix:%") var rarity = 100
 
+static func new_card(card_name : String):
+	var file_path = "res://Data/Cards/" + card_name + ".tres"
+	if FileAccess.file_exists(file_path):
+		return load(file_path).duplicate()
+	
+	push_error("Unable to create using premade card name")
+	return null
+
 func _init(n = null,id = null,des = null,typ=null,click=null) -> void:
 	if n != null: self.name = n
 	if id != null: self.icon_id = id
@@ -33,4 +41,3 @@ func _init(n = null,id = null,des = null,typ=null,click=null) -> void:
 	if click != null: self.clicked = click
 	#if "gain_life" in properties["use"].keys():
 	#	print("gain life from card")
-

@@ -12,7 +12,7 @@
 [ext_resource type="Shader" path="res://Data/Shaders/fog.gdshader" id="9_uywq0"]
 [ext_resource type="Texture2D" uid="uid://8g7rk7e3wu6b" path="res://Assets/Game/Tileset/ground.png" id="10_1qoh4"]
 [ext_resource type="Texture2D" uid="uid://cyq2gmm1bnmty" path="res://icon.png" id="10_lj8eo"]
-[ext_resource type="PackedScene" uid="uid://cy4tvgj3ejor7" path="res://Scenes/UI/HUD/Chat.tscn" id="10_ww4vy"]
+[ext_resource type="PackedScene" uid="uid://cy4tvgj3ejor7" path="res://Scenes/UI/HUD/ServerUpdates.tscn" id="10_ww4vy"]
 [ext_resource type="PackedScene" uid="uid://blkksqqd26ywm" path="res://Scenes/UI/Menu/PlayerList.tscn" id="11_ljwh2"]
 [ext_resource type="PackedScene" uid="uid://c41w176i5ubxv" path="res://Scenes/UI/Menu/ConnectionMenu.tscn" id="12_j02f0"]
 [ext_resource type="PackedScene" uid="uid://c4q10lqua2k5" path="res://Scenes/UI/Menu/MultiplayerMenu.tscn" id="13_tevr2"]
@@ -299,7 +299,6 @@ layer_2/tile_data = PackedInt32Array(-655369, 2, 8, -655365, 2, 8, -458753, 4, 3
 metadata/_edit_lock_ = true
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/Game/Entities/Player.tscn")
 spawn_path = NodePath("..")
 spawn_limit = 20
 
@@ -308,7 +307,7 @@ visible = false
 
 [node name="Time" parent="HUD" instance=ExtResource("5_lmxy0")]
 
-[node name="Chat" parent="HUD" instance=ExtResource("10_ww4vy")]
+[node name="ServerUpdates" parent="HUD" instance=ExtResource("10_ww4vy")]
 
 [node name="PlayerList" parent="HUD" instance=ExtResource("11_ljwh2")]
 visible = false

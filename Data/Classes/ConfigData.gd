@@ -40,10 +40,7 @@ func write_save() -> void:
 	Config.update_config()
 
 static func save_exists() -> bool:
-	if ResourceLoader.load(save_path) != null:
-		return ResourceLoader.exists(save_path)
-	else:
-		return false
+	return ResourceLoader.exists(save_path)
 	
 static func load_save() -> Resource:
 	return ResourceLoader.load(save_path)
