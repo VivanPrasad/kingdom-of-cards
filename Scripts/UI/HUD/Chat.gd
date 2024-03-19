@@ -41,6 +41,9 @@ func add_town_message(text : String) -> void:
 	add_message(get_nametag("Town",Color.MEDIUM_PURPLE),text)
 
 func _on_chat_input_text_submitted(text: String) -> void:
+	if (text.count(" ") == len(text)) or text.is_empty():
+		chat_input.release_focus()
+		return
 	send_message(get_nametag(world.player_name),text)
 	send_message.rpc(get_nametag(world.player_name),text)
 	chat_input.clear()

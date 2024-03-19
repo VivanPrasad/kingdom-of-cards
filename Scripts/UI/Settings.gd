@@ -15,14 +15,15 @@ var config_data = Config.config_data
 @onready var keys_row1 = $TabContainer/Controls/Keys/Row1
 @onready var keys_row2 = $TabContainer/Controls/Keys/Row2
 @onready var keybind = preload("res://Scenes/UI/Instances/Keybind.tscn")
+
 func _ready() -> void:
 	load_config()
 	instance_keybinds()
 	update_values()
 	
-	update_online()
+	update_online() #update online stuff
 
-func instance_keybinds():
+func instance_keybinds() -> void:
 	for key in config_data.keybinds.keys():
 		var key_node = keybind.instantiate()
 		key_node.key = key
@@ -32,14 +33,14 @@ func instance_keybinds():
 		else:
 			keys_row2.add_child(key_node)
 
-func update_online():
+func update_online() -> void:
 	local_ip_line.text = IP.get_local_addresses()[-1]
 	var http = HTTPRequest.new()
 	add_child(http)
-	http.connect("request_completed", Callable(self, "public_ip"))
+	http.request_completed.connect(_update_public_ip)
 	http.request("https://api.ipify.org")
 
-func public_ip(_result, _response_code, _headers, body):
+func _update_public_ip(_result, _response_code, _headers, body):
 	public_ip_line.text = body.get_string_from_utf8()
 	
 func load_config() -> void:

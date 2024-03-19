@@ -58,11 +58,15 @@ const ROYAL : String = "0"
 	Card.new_card("Key")
 ]
 
-@export var life : int = 4
-@export var hunger : int = 2
+const MAX_LIFE : int = 4
+const MAX_HUNGER : int = 2
+
+@export var life : int = MAX_LIFE
+@export var hunger : int = MAX_HUNGER
 @export var cards : int = 3
 
 @export var enemies : Array[Node] = []
+
 @export var actions : int = 3
 
 @export var on_surface : bool = true
@@ -225,8 +229,8 @@ func play_emote(emote_id : int):
 	emote_player.play_backwards("Popup")
 
 #Card Functions
-func eat(value):
-	for times in value:
+func eat(value : int):
+	for times in range(value):
 		if hunger < 2:
 			hunger += 1
 		elif life < 4:

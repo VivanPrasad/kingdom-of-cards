@@ -219,8 +219,10 @@ offset_right = 424.0
 offset_bottom = 222.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 32
-metadata/_edit_lock_ = true
+theme_override_font_sizes/font_size = 24
+tab_alignment = 1
+clip_tabs = false
+tab_focus_mode = 0
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
 layout_mode = 2

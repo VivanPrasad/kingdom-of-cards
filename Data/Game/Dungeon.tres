@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://8g7rk7e3wu6b" path="res://Assets/Game/Tileset/ground.png" id="1_myfsn"]
 [ext_resource type="Texture2D" uid="uid://b52jw7mgm025" path="res://Assets/Game/Tileset/building.png" id="2_wjqqu"]
 [ext_resource type="Texture2D" uid="uid://c8aescd14087o" path="res://Assets/Game/Tileset/decoration.png" id="3_xwi8i"]
-[ext_resource type="PackedScene" uid="uid://bkit43tirbeg8" path="res://Scenes/Game/Objects/Markets/FoodMarket.tscn" id="4_x6krp"]
+[ext_resource type="PackedScene" uid="uid://b4aiuskge8yob" path="res://Scenes/Game/Objects/Markets/FoodMarket.tscn" id="4_x6krp"]
 [ext_resource type="PackedScene" uid="uid://be6b75mcrotuj" path="res://Scenes/Game/Objects/Markets/ItemMarket.tscn" id="5_320n5"]
 [ext_resource type="PackedScene" uid="uid://hfsfdnpe02d2" path="res://Scenes/Game/Objects/Markets/BankDesk.tscn" id="6_abkmm"]
 [ext_resource type="PackedScene" uid="uid://evq6bnbmyoel" path="res://Scenes/Game/Objects/Doors/HouseDoor.tscn" id="7_vwd0s"]
