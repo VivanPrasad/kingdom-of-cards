@@ -14,7 +14,7 @@ func _process(_delta):
 			if str(child.name) != Global.player_id:
 				child.hide()
 func _on_button_pressed():
-	Transition.change_scene(Global.Scenes.TITLE_SCENE)
+	Transition.change_scene(Global.Scenes.TITLE_PATH)
 	await get_tree().create_timer(0.25).timeout
 	get_tree().set_pause(false)
 	if Global.player_id.is_valid_int():

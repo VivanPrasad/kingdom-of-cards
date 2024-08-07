@@ -1,32 +1,45 @@
 extends Control
 
-@onready var settings : PackedScene = preload("res://Scenes/UI/Settings.tscn")
 @onready var world : Node = $"/root/World"
-@onready var disconnect_button : Button = $Panel/CenterContainer/VBoxContainer/Disconnect
-func _ready():
-	if Game.is_online:
-		disconnect_button.text = "Disconnect"
-	else:
-		disconnect_button.text = "Quit to Menu"
+@onready var buttons: VBoxContainer = $Panel/CenterContainer/Buttons
 
-func _on_disconnect_pressed():
-	if Game.is_online:
-		get_tree().set_pause(true)
-		Transition.change_scene(Global.Scenes.GAME_MODE_SCENE)
-		await get_tree().create_timer(0.4).timeout
-		get_tree().set_pause(false)
-		Audio.change_music(Music.ONLINE)
-		for node in world.get_children():
-			if node is Player:
-				world.remove_child(node)
-		world.multiplayer.multiplayer_peer = null
-	else:
-		Transition.change_scene(Global.Scenes.GAME_MODE_SCENE)
-		Audio.change_music(Music.ONLINE)
-func _on_back_pressed():
-	queue_free()
-	$"../..".current_menu = "None"
-	
+func _ready() -> void:
+	connect_buttons()
 
-func _on_settings_pressed():
-	add_child(settings.instantiate())
+func connect_buttons() -> void:
+	for button:Button in buttons.get_children():
+		button.pressed.connect(
+			_on_button_pressed.bind(button))
+		match str(button.name):
+			"Quit to Menu":
+				if Multi.is_online:
+					button.name = &"Disconnect"
+			"Invite":
+				button.disabled = !Multi.is_online
+				button.visible = Multi.is_online
+		button.text = str(button.name)
+
+func _on_button_pressed(button : Button) -> void:
+	Audio.play_sfx(SFX.CONFIRM)
+	match str(button.name):
+		"Back to Game": 
+			$"../..".current_menu = "None" ## Player
+			queue_free()
+		"Settings": 
+			add_child(Global.Scenes.SETTINGS_SCENE\
+				.instantiate())
+		"Invite":
+			pass
+		"Quit to Menu":
+			Transition.change_scene(Global.Scenes.GAME_MODE_PATH)
+			Audio.change_music(Music.ONLINE)
+		"Disconnect":
+			get_tree().paused = true
+			Transition.change_scene(Global.Scenes.GAME_MODE_PATH)
+			await get_tree().create_timer(0.4).timeout
+			get_tree().paused = false
+			Audio.change_music(Music.ONLINE)
+			for node in world.get_children():
+				if node is Player:
+					world.remove_child(node)
+			world.multiplayer.multiplayer_peer = null

@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlp70u0m0rtnn"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Instances/TownListing.gd" id="1_ghblm"]
+[ext_resource type="Texture2D" uid="uid://cl0ov10fdidsx" path="res://Assets/UI/HUD/server_icons.png" id="2_bibjv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7vsh"]
+bg_color = Color(0.129412, 0.0784314, 0.184314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfyn6"]
+bg_color = Color(0.156863, 0.156863, 0.294118, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h4ft"]
+atlas = ExtResource("2_bibjv")
+region = Rect2(0, 5, 5, 5)
+margin = Rect2(1, 1, 2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yphy"]
+bg_color = Color(1, 1, 1, 0.247059)
+
+[node name="TownListing" type="PanelContainer"]
+texture_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k7vsh")
+script = ExtResource("1_ghblm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sfyn6")
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = SubResource("AtlasTexture_0h4ft")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TownName" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Town of Origins"
+
+[node name="PlayerCount" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(0.443137, 0.266667, 0.627451, 1)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 32
+text = "0/20"
+
+[node name="Select" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_5yphy")
+action_mode = 0

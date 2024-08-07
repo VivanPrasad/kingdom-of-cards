@@ -242,9 +242,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 24
 tab_alignment = 1
-current_tab = 0
+current_tab = 3
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
@@ -252,64 +253,64 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 metadata/_tab_index = 0
 
-[node name="Options" type="VBoxContainer" parent="TabContainer/Audio"]
+[node name="Sliders" type="VBoxContainer" parent="TabContainer/Audio"]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Master" type="HBoxContainer" parent="TabContainer/Audio/Options"]
+[node name="Master" type="HBoxContainer" parent="TabContainer/Audio/Sliders"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="TabContainer/Audio/Options/Master"]
+[node name="Label" type="Label" parent="TabContainer/Audio/Sliders/Master"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 32
 text = "Master"
 
-[node name="MasterSlider" type="HSlider" parent="TabContainer/Audio/Options/Master"]
+[node name="MasterSlider" type="HSlider" parent="TabContainer/Audio/Sliders/Master"]
 custom_minimum_size = Vector2(256, 16)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 100.0
 
-[node name="Music" type="HBoxContainer" parent="TabContainer/Audio/Options"]
+[node name="Music" type="HBoxContainer" parent="TabContainer/Audio/Sliders"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="TabContainer/Audio/Options/Music"]
+[node name="Label" type="Label" parent="TabContainer/Audio/Sliders/Music"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 32
 text = "Music"
 
-[node name="MusicSlider" type="HSlider" parent="TabContainer/Audio/Options/Music"]
+[node name="MusicSlider" type="HSlider" parent="TabContainer/Audio/Sliders/Music"]
 custom_minimum_size = Vector2(256, 16)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 100.0
 
-[node name="SFX" type="HBoxContainer" parent="TabContainer/Audio/Options"]
+[node name="SFX" type="HBoxContainer" parent="TabContainer/Audio/Sliders"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="TabContainer/Audio/Options/SFX"]
+[node name="Label" type="Label" parent="TabContainer/Audio/Sliders/SFX"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 32
 text = "SFX"
 
-[node name="SFXSlider" type="HSlider" parent="TabContainer/Audio/Options/SFX"]
+[node name="SFXSlider" type="HSlider" parent="TabContainer/Audio/Sliders/SFX"]
 custom_minimum_size = Vector2(256, 16)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -325,44 +326,44 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 metadata/_tab_index = 1
 
-[node name="Options" type="VBoxContainer" parent="TabContainer/Display"]
+[node name="Container" type="VBoxContainer" parent="TabContainer/Display"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 32
 
-[node name="Fullscreen" type="HBoxContainer" parent="TabContainer/Display/Options"]
+[node name="Fullscreen" type="HBoxContainer" parent="TabContainer/Display/Container"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Display/Options/Fullscreen"]
+[node name="Label" type="Label" parent="TabContainer/Display/Container/Fullscreen"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Fullscreen"
 
-[node name="CheckButton" type="CheckButton" parent="TabContainer/Display/Options/Fullscreen"]
+[node name="CheckButton" type="CheckButton" parent="TabContainer/Display/Container/Fullscreen"]
 layout_mode = 2
 theme_override_icons/checked = SubResource("AtlasTexture_4vt03")
 theme_override_icons/unchecked = SubResource("AtlasTexture_snb50")
 theme_override_icons/unchecked_disabled = SubResource("AtlasTexture_iwlfy")
 
-[node name="Label2" type="Label" parent="TabContainer/Display/Options/Fullscreen"]
+[node name="Label2" type="Label" parent="TabContainer/Display/Container/Fullscreen"]
 modulate = Color(0.666667, 0.666667, 0.666667, 1)
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "*May cause flashing"
 
-[node name="FPS" type="HBoxContainer" parent="TabContainer/Display/Options"]
+[node name="Fullscreen2" type="HBoxContainer" parent="TabContainer/Display/Container"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Display/Options/FPS"]
+[node name="Label" type="Label" parent="TabContainer/Display/Container/Fullscreen2"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "FPS"
+text = "Fullscreen"
 
-[node name="OptionButton" type="OptionButton" parent="TabContainer/Display/Options/FPS"]
+[node name="OptionButton" type="OptionButton" parent="TabContainer/Display/Container/Fullscreen2"]
 custom_minimum_size = Vector2(158, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -380,17 +381,17 @@ popup/item_3/id = 3
 popup/item_4/text = "Leiya"
 popup/item_4/id = 4
 
-[node name="Resolution" type="HBoxContainer" parent="TabContainer/Display/Options"]
+[node name="Resolution" type="HBoxContainer" parent="TabContainer/Display/Container"]
 modulate = Color(0.199219, 0.199219, 0.199219, 1)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Display/Options/Resolution"]
+[node name="Label" type="Label" parent="TabContainer/Display/Container/Resolution"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Resolution"
 
-[node name="OptionButton" type="OptionButton" parent="TabContainer/Display/Options/Resolution"]
+[node name="OptionButton" type="OptionButton" parent="TabContainer/Display/Container/Resolution"]
 custom_minimum_size = Vector2(158, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -401,17 +402,17 @@ selected = 0
 item_count = 1
 popup/item_0/text = "1440x720 @ 60Hz"
 
-[node name="Vsync" type="HBoxContainer" parent="TabContainer/Display/Options"]
+[node name="Vsync" type="HBoxContainer" parent="TabContainer/Display/Container"]
 modulate = Color(0.199219, 0.199219, 0.199219, 1)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Display/Options/Vsync"]
+[node name="Label" type="Label" parent="TabContainer/Display/Container/Vsync"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "V-Sync"
 
-[node name="CheckButton" type="CheckButton" parent="TabContainer/Display/Options/Vsync"]
+[node name="CheckButton" type="CheckButton" parent="TabContainer/Display/Container/Vsync"]
 layout_mode = 2
 focus_mode = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_blal4")
@@ -431,20 +432,20 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 metadata/_tab_index = 2
 
-[node name="Options" type="VBoxContainer" parent="TabContainer/Controls"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls"]
 layout_mode = 2
 theme_override_constants/separation = 48
 
-[node name="Input" type="HBoxContainer" parent="TabContainer/Controls/Options"]
+[node name="Input" type="HBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Controls/Options/Input"]
+[node name="Label" type="Label" parent="TabContainer/Controls/VBoxContainer/Input"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Input"
 
-[node name="OptionButton" type="OptionButton" parent="TabContainer/Controls/Options/Input"]
+[node name="OptionButton" type="OptionButton" parent="TabContainer/Controls/VBoxContainer/Input"]
 layout_mode = 2
 item_count = 3
 popup/item_0/text = "Mouse & Keyboard"
@@ -454,25 +455,24 @@ popup/item_2/text = "Controller"
 popup/item_2/id = 1
 popup/item_2/disabled = true
 
-[node name="Keys" type="HBoxContainer" parent="TabContainer/Controls/Options"]
+[node name="Keys" type="HBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 64
 
-[node name="Row1" type="VBoxContainer" parent="TabContainer/Controls/Options/Keys"]
+[node name="Row1" type="VBoxContainer" parent="TabContainer/Controls/VBoxContainer/Keys"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 16
 
-[node name="Row2" type="VBoxContainer" parent="TabContainer/Controls/Options/Keys"]
+[node name="Row2" type="VBoxContainer" parent="TabContainer/Controls/VBoxContainer/Keys"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 16
 
 [node name="Data" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32

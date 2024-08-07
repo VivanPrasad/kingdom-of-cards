@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6fpc0dpnciks"]
+[gd_scene load_steps=3 format=3 uid="uid://b6fpc0dpnciks"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Instances/Keybind.gd" id="1_52cko"]
+[ext_resource type="Texture2D" uid="uid://bobpf8grtwewm" path="res://Assets/UI/controller.png" id="2_xgkh2"]
 
 [node name="Keybind" type="HBoxContainer"]
 theme_override_constants/separation = 16
@@ -19,5 +20,14 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 24
 disabled = true
 text = "W"
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(144, 0)
+scale = Vector2(3.8, 3.8)
+texture = ExtResource("2_xgkh2")
+offset = Vector2(16.5, 4)
+hframes = 16
+vframes = 3
+frame = 16
 
 [connection signal="pressed" from="Value" to="." method="_on_value_pressed"]

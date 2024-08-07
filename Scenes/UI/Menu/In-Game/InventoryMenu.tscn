@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://w4kbknsmjg0o"]
 
-[ext_resource type="Script" path="res://Scripts/UI/HUD/InventoryMenu.gd" id="1_iqqit"]
+[ext_resource type="Script" path="res://Scripts/UI/Menu/In-Game/InventoryMenu.gd" id="1_iqqit"]
 
 [sub_resource type="Animation" id="Animation_y0wqm"]
 resource_name = "Fade"

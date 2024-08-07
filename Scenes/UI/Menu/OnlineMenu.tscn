@@ -1,77 +1,78 @@
-[gd_scene load_steps=53 format=3 uid="uid://c4q10lqua2k5"]
+[gd_scene load_steps=52 format=3 uid="uid://c4q10lqua2k5"]
 
-[ext_resource type="Texture2D" uid="uid://bhgmleinj4te5" path="res://Assets/UI/Menu/background.png" id="1_cndxx"]
-[ext_resource type="Script" path="res://Scripts/UI/Menu/MultiplayerMenu.gd" id="1_epslo"]
-[ext_resource type="Texture2D" uid="uid://cucyhea3l1s0k" path="res://Assets/UI/HUD/Buttons/refresh.png" id="3_7ey8p"]
-[ext_resource type="Texture2D" uid="uid://dsfcdqy357ixp" path="res://Assets/Game/Entities/Player/player1.png" id="3_ve8c2"]
-[ext_resource type="FontVariation" uid="uid://diqtfxvgb4nnc" path="res://Assets/Fonts/royal-intonation.tres" id="3_x0d4g"]
-[ext_resource type="Texture2D" uid="uid://cg5ul4ok6hwpc" path="res://Assets/Game/Entities/Player/player2.png" id="4_5liw5"]
-[ext_resource type="Texture2D" uid="uid://dtb1mjk23fxte" path="res://Assets/Game/Entities/Player/player3.png" id="5_5w1qp"]
-[ext_resource type="Texture2D" uid="uid://d4bhtrcusipl8" path="res://Assets/Game/Entities/Player/player4.png" id="6_005sl"]
-[ext_resource type="Texture2D" uid="uid://tiohbaydniva" path="res://Assets/Game/Entities/Player/player5.png" id="7_s2uus"]
+[ext_resource type="Script" path="res://Scripts/UI/Menu/OnlineMenu.gd" id="1_pqn1j"]
+[ext_resource type="Texture2D" uid="uid://bhgmleinj4te5" path="res://Assets/UI/Menu/background.png" id="2_8gaax"]
+[ext_resource type="Texture2D" uid="uid://cucyhea3l1s0k" path="res://Assets/UI/HUD/Buttons/refresh.png" id="3_5nri0"]
+[ext_resource type="Texture2D" uid="uid://dsfcdqy357ixp" path="res://Assets/Game/Entities/Player/player1.png" id="4_qqylt"]
+[ext_resource type="Texture2D" uid="uid://cg5ul4ok6hwpc" path="res://Assets/Game/Entities/Player/player2.png" id="5_ui6op"]
+[ext_resource type="Texture2D" uid="uid://dtb1mjk23fxte" path="res://Assets/Game/Entities/Player/player3.png" id="6_ermrc"]
+[ext_resource type="Texture2D" uid="uid://d4bhtrcusipl8" path="res://Assets/Game/Entities/Player/player4.png" id="7_eql2n"]
+[ext_resource type="Texture2D" uid="uid://tiohbaydniva" path="res://Assets/Game/Entities/Player/player5.png" id="8_p0rig"]
+[ext_resource type="FontVariation" uid="uid://diqtfxvgb4nnc" path="res://Assets/Fonts/royal-intonation.tres" id="9_8ay3l"]
+[ext_resource type="Texture2D" uid="uid://bobpf8grtwewm" path="res://Assets/UI/controller.png" id="10_7uudo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dg25"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(0, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_04vea"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(640, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nldk7"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(1280, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w5sa8"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(1920, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kovdw"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(2560, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_63ymb"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(3200, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p85sv"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(3840, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6evr7"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(4480, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ucr4"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(5120, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j1lh5"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(5760, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vw557"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(6400, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4fji"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(7040, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lmyj4"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(7680, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6frr"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(8320, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6i58c"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(8960, 0, 640, 360)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5u2j3"]
-atlas = ExtResource("1_cndxx")
+atlas = ExtResource("2_8gaax")
 region = Rect2(9600, 0, 640, 360)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8vqf6"]
@@ -136,94 +137,84 @@ font_color = Color(0.909804, 0.854902, 1, 1)
 outline_size = 32
 outline_color = Color(0.196078, 0.101961, 0.172549, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bea6q"]
-atlas = ExtResource("3_7ey8p")
-region = Rect2(0, 0, 16, 18)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_367kt"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmblp"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pt8u8"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_80410"]
-atlas = ExtResource("3_ve8c2")
+atlas = ExtResource("4_qqylt")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pt32y"]
-atlas = ExtResource("3_ve8c2")
+atlas = ExtResource("4_qqylt")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_84ix3"]
-atlas = ExtResource("3_ve8c2")
+atlas = ExtResource("4_qqylt")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x1cb1"]
-atlas = ExtResource("3_ve8c2")
+atlas = ExtResource("4_qqylt")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ke3px"]
-atlas = ExtResource("4_5liw5")
+atlas = ExtResource("5_ui6op")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yndg2"]
-atlas = ExtResource("4_5liw5")
+atlas = ExtResource("5_ui6op")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sw8va"]
-atlas = ExtResource("4_5liw5")
+atlas = ExtResource("5_ui6op")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5l4nb"]
-atlas = ExtResource("4_5liw5")
+atlas = ExtResource("5_ui6op")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3r2d3"]
-atlas = ExtResource("5_5w1qp")
+atlas = ExtResource("6_ermrc")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nc8qc"]
-atlas = ExtResource("5_5w1qp")
+atlas = ExtResource("6_ermrc")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c01f6"]
-atlas = ExtResource("5_5w1qp")
+atlas = ExtResource("6_ermrc")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7b4f8"]
-atlas = ExtResource("5_5w1qp")
+atlas = ExtResource("6_ermrc")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ckuaj"]
-atlas = ExtResource("6_005sl")
+atlas = ExtResource("7_eql2n")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ylg2"]
-atlas = ExtResource("6_005sl")
+atlas = ExtResource("7_eql2n")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nbh2w"]
-atlas = ExtResource("6_005sl")
+atlas = ExtResource("7_eql2n")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xy8c4"]
-atlas = ExtResource("6_005sl")
+atlas = ExtResource("7_eql2n")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_04kim"]
-atlas = ExtResource("7_s2uus")
+atlas = ExtResource("8_p0rig")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hke8w"]
-atlas = ExtResource("7_s2uus")
+atlas = ExtResource("8_p0rig")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2rh5f"]
-atlas = ExtResource("7_s2uus")
+atlas = ExtResource("8_p0rig")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rfa3r"]
-atlas = ExtResource("7_s2uus")
+atlas = ExtResource("8_p0rig")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wm7nm"]
@@ -314,7 +305,15 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="MultiplayerMenu" type="Control"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bea6q"]
+atlas = ExtResource("3_5nri0")
+region = Rect2(0, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7ea8"]
+atlas = ExtResource("3_5nri0")
+region = Rect2(0, 0, 16, 18)
+
+[node name="OnlineMenu" type="Control"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -322,10 +321,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_epslo")
+script = ExtResource("1_pqn1j")
 
 [node name="Background" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2.25, 2.002)
+scale = Vector2(2.25, 2)
 sprite_frames = SubResource("SpriteFrames_8vqf6")
 autoplay = "default"
 centered = false
@@ -349,28 +348,9 @@ offset_top = 37.0
 offset_right = 441.5
 offset_bottom = 112.0
 grow_horizontal = 2
-text = "Kingdom Online"
+text = "Explore"
 label_settings = SubResource("LabelSettings_2g08e")
 horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Notice" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0.133333)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1135.0
-offset_top = -39.0
-offset_right = -8.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 10
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 24
-text = "This game is in prototype stages and is prone to crashes and bugs. Please report any issues to the developer."
 vertical_alignment = 1
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -387,110 +367,18 @@ offset_bottom = 333.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-theme_override_colors/font_selected_color = Color(0.596078, 0.658824, 1, 1)
-theme_override_colors/font_unselected_color = Color(0.901961, 0.933333, 0.92549, 1)
 theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1)
+theme_override_colors/font_unselected_color = Color(0.901961, 0.933333, 0.92549, 1)
+theme_override_colors/font_selected_color = Color(0.596078, 0.658824, 1, 1)
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
-
-[node name="Servers" type="MarginContainer" parent="TabContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Servers"]
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Servers/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Servers/VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="NoServers" type="Label" parent="TabContainer/Servers/VBoxContainer/ScrollContainer/VBoxContainer"]
-visible = false
-modulate = Color(0.605469, 0.605469, 0.605469, 1)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 24
-text = "No Servers Added"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Servers/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_constants/separation = 16
-
-[node name="Host" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 8
-focus_mode = 0
-theme_override_colors/font_color = Color(0.14902, 0.580392, 0.635294, 1)
-theme_override_font_sizes/font_size = 32
-text = "Host"
-
-[node name="Refresh" type="TextureButton" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
-modulate = Color(0.760784, 0.768627, 1, 1)
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-texture_normal = SubResource("AtlasTexture_bea6q")
-stretch_mode = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Deselect" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
-modulate = Color(0.54902, 0.54902, 0.54902, 1)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_367kt")
-action_mode = 0
-text = "Deselect"
-
-[node name="Edit" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_colors/font_color = Color(0.819608, 0.839216, 0.603922, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_rmblp")
-text = "Edit"
-
-[node name="Add" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_colors/font_color = Color(1, 0.639216, 0.905882, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_pt8u8")
-text = "Add"
-
-[node name="Join" type="Button" parent="TabContainer/Servers/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-focus_mode = 0
-theme_override_colors/font_color = Color(0.733333, 0.615686, 1, 1)
-theme_override_font_sizes/font_size = 32
-text = "Join"
+tab_alignment = 1
+current_tab = 1
 
 [node name="Profile" type="CenterContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Profile"]
 layout_mode = 2
@@ -540,10 +428,9 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 32
-item_count = 5
 selected = 0
+item_count = 5
 popup/item_0/text = "Soren"
-popup/item_0/id = 0
 popup/item_1/text = "Bobby"
 popup/item_1/id = 1
 popup/item_2/text = "Vincent"
@@ -578,10 +465,9 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 32
-item_count = 6
 selected = 0
+item_count = 6
 popup/item_0/text = "None"
-popup/item_0/id = 0
 popup/item_1/text = "OG"
 popup/item_1/id = 2
 popup/item_1/disabled = true
@@ -602,22 +488,77 @@ popup/item_5/disabled = true
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 
-[node name="Version" type="Label" parent="."]
+[node name="Explore" type="MarginContainer" parent="TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+metadata/_tab_index = 1
+
+[node name="NoTowns" type="Label" parent="TabContainer/Explore"]
+modulate = Color(0.605469, 0.605469, 0.605469, 1)
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/line_spacing = -4
+theme_override_font_sizes/font_size = 24
+text = "No Towns to Visit...
+
+  __o
+ _ \\<,_
+ (_)/ (_)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Explore"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="TownListings" type="VBoxContainer" parent="TabContainer/Explore/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Refresh" type="TextureButton" parent="TabContainer/Explore"]
+modulate = Color(0.760784, 0.768627, 1, 1)
+custom_minimum_size = Vector2(48, 54)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = SubResource("AtlasTexture_bea6q")
+texture_focused = SubResource("AtlasTexture_e7ea8")
+stretch_mode = 5
+
+[node name="Create" type="MarginContainer" parent="TabContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -109.0
-offset_top = -46.0
-offset_right = -13.0
-offset_bottom = -7.0
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+metadata/_tab_index = 2
+
+[node name="Host" type="Button" parent="TabContainer/Create"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_colors/font_color = Color(0.14902, 0.580392, 0.635294, 1)
 theme_override_font_sizes/font_size = 32
-text = "3.12.24"
+text = "Host"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Create"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Create/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Create/VBoxContainer/MarginContainer"]
+layout_mode = 2
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 0
@@ -626,21 +567,30 @@ offset_top = 21.0
 offset_right = 108.0
 offset_bottom = 74.0
 focus_mode = 0
-theme_override_colors/font_color = Color(0.796078, 0.74902, 0.87451, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.847059, 0.521569, 1)
 theme_override_colors/font_hover_color = Color(0.596078, 0.658824, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.847059, 0.521569, 1)
+theme_override_colors/font_color = Color(0.796078, 0.74902, 0.87451, 1)
 theme_override_colors/font_outline_color = Color(0.196078, 0.101961, 0.172549, 1)
 theme_override_constants/outline_size = 32
-theme_override_fonts/font = ExtResource("3_x0d4g")
+theme_override_fonts/font = ExtResource("9_8ay3l")
 theme_override_font_sizes/font_size = 40
 text = "Back"
 flat = true
 alignment = 0
 
+[node name="Left" type="Sprite2D" parent="."]
+position = Vector2(312, 170)
+scale = Vector2(4, 4)
+texture = ExtResource("10_7uudo")
+region_enabled = true
+region_rect = Rect2(36, 0, 9, 9)
+
+[node name="Right" type="Sprite2D" parent="."]
+position = Vector2(1130, 170)
+scale = Vector2(4, 4)
+texture = ExtResource("10_7uudo")
+region_enabled = true
+region_rect = Rect2(45, 0, 9, 9)
+
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
-[connection signal="pressed" from="TabContainer/Servers/VBoxContainer/HBoxContainer/Refresh" to="." method="_on_refresh_pressed"]
-[connection signal="pressed" from="TabContainer/Servers/VBoxContainer/HBoxContainer/Deselect" to="." method="_on_deselect_pressed"]
-[connection signal="pressed" from="TabContainer/Servers/VBoxContainer/HBoxContainer/Edit" to="." method="_on_edit_pressed"]
-[connection signal="pressed" from="TabContainer/Servers/VBoxContainer/HBoxContainer/Add" to="." method="_on_add_pressed"]
-[connection signal="item_selected" from="TabContainer/Profile/HBoxContainer/VBoxContainer/Character/OptionButton" to="." method="_on_name_item_selected"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

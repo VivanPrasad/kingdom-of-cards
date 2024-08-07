@@ -11,13 +11,6 @@ const sign_menu : PackedScene = preload("res://Scenes/UI/Menu/In-Game/SignMenu.t
 const action_hud : PackedScene = preload("res://Scenes/UI/HUD/ActionHUD.tscn")
 const game_over : PackedScene = preload("res://Scenes/UI/HUD/GameOver.tscn")
 
-const player0 = preload("res://Assets/Game/Entities/Player/player0.png")
-const player1 = preload("res://Assets/Game/Entities/Player/player1.png")
-const player2 = preload("res://Assets/Game/Entities/Player/player2.png")
-const player3 = preload("res://Assets/Game/Entities/Player/player3.png")
-const player4 = preload("res://Assets/Game/Entities/Player/player4.png")
-const player5 = preload("res://Assets/Game/Entities/Player/player5.png")
-
 @export var character : String = "1"
 
 const ROYAL : String = "0"
@@ -85,7 +78,7 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 
 func _ready() -> void:
-	if not Game.is_online: 
+	if not Multi.is_online: 
 		nametag.hide()
 		camera.set_enabled(true)
 		inventory.pop_at(0)
@@ -117,7 +110,7 @@ func _ready() -> void:
 	
 @rpc("call_local")
 func set_character(id):
-	sprite.texture = get("player" + id)
+	sprite.texture = load("res://Assets/Game/Entities/Player/player" + id + ".png")
 	profile_icon.frame = int(id)
 
 func _physics_process(_delta):
@@ -126,33 +119,32 @@ func _physics_process(_delta):
 	else:
 		z_index = -3
 	
-	if Game.is_online:
+	if Multi.is_online:
 		if not is_multiplayer_authority():
-			if on_surface == world.get_node_or_null(Global.player_id).on_surface:
-				visible = true
-			else:
-				visible = false
-			return
+			visible = bool(on_surface == world.get_node_or_null(Global.player_id).on_surface)
 
-	input_vector = Vector2(
-		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
-		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-		).normalized() * int(bool(current_menu in ["None","ActionHUD"]))\
-		* int(bool(Transition.player.is_playing() == false))\
-		* int(bool(get_tree().paused == false))
+	input_vector = Input.get_vector(
+		"left","right","up","down").normalized()
+	if input_vector and current_menu not in ["None","ActionHUD"]:
+		close_menu()
+	input_vector *= \
+		int(bool(current_menu in ["None","ActionHUD"]))*\
+		int(bool(not Transition.animation_player.is_playing()))*\
+		int(bool(not get_tree().is_paused()))
 	
 	if ghost_effect:
-		create_ghost_effect()
-		if world.is_online:
-			create_ghost_effect.rpc()
-	if world.is_online:
-		input_vector *= int(bool(chat.chat_input.has_focus() == false))
+		if Time.get_ticks_msec() % 10 == 1:
+			create_ghost_effect()
+			if Multi.is_online:
+				create_ghost_effect.rpc()
+	if Multi.is_online:
+		input_vector *= int(bool(not chat.chat_input.has_focus()))
 	if mobile_ui.vector != Vector2.ZERO:
 		input_vector = mobile_ui.vector
-	if input_vector != Vector2.ZERO: #If moving, blend the position based on the input_vector and run!
-		animation_tree.set("parameters/Idle/blend_position", input_vector)
-		animation_tree.set("parameters/Run/blend_position", input_vector)
-		animation_tree.get("parameters/playback").travel("Run")
+	if input_vector: #If moving, blend the position based on the input_vector and run!
+		animation_tree["parameters/Idle/blend_position"] = input_vector
+		animation_tree["parameters/Run/blend_position"] = input_vector
+		animation_tree["parameters/playback"].travel("Run")
 	else:
 		animation_tree.get("parameters/playback").travel("Idle")
 	velocity = input_vector * speed
@@ -167,11 +159,11 @@ func _physics_process(_delta):
 @rpc("call_local")
 func create_ghost_effect() -> void:
 	var ghost : Sprite2D = sprite.duplicate()
-	ghost.modulate.a = 0.5
+	ghost.modulate.a = 0.3
 	ghost.global_position = sprite.global_position
 	world.add_child(ghost)
 	await create_tween()\
-	.tween_property(ghost,"modulate:a",0.0,0.2)\
+	.tween_property(ghost,"modulate:a",0.0,0.1)\
 	.set_trans(Tween.TRANS_CIRC)\
 	.finished
 	ghost.queue_free()
@@ -198,9 +190,9 @@ func close_menu():
 func _unhandled_key_input(_event) -> void:
 	if not is_multiplayer_authority():	return
 	
-	if Input.is_action_just_pressed("ui_cancel") and menu.get_child_count() and current_menu not in ["None","ActionHUD"]:
+	if Input.is_action_just_pressed("back") and menu.get_child_count() and current_menu not in ["None","ActionHUD"]:
 		close_menu()
-	elif Input.is_action_just_pressed("pause") and current_menu != "PauseMenu":
+	elif Input.is_action_just_pressed("back") and current_menu != "PauseMenu":
 		current_menu = "PauseMenu"
 		open_menu(pause_menu)
 	elif Input.is_action_just_pressed("inventory") and current_menu != "InventoryMenu":

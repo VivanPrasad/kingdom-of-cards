@@ -1,15 +1,9 @@
 extends Node2D
 class_name Game
 
-var port : int = 9999
 var ip : String
 
-const official_servers = {"kingdom.cards":"23.16.130.237"}
-
 var peer : ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-var udp : UDPServer = UDPServer.new()
-
-const player_scene : PackedScene = preload("res://Scenes/Game/Entities/Player.tscn")
 
 # Local Player
 @export var player_name : String
@@ -17,40 +11,32 @@ const player_scene : PackedScene = preload("res://Scenes/Game/Entities/Player.ts
 @export_enum("Normal","Rain","BloodMoon") var weather : String = "Normal"
 
 # Lobby
-@onready var multiplayer_menu := $Lobby/MultiplayerMenu
-@onready var host_button := $Lobby/MultiplayerMenu/TabContainer/Servers/VBoxContainer/HBoxContainer/Host
-@onready var join_button := $Lobby/MultiplayerMenu/TabContainer/Servers/VBoxContainer/HBoxContainer/Join
-
+@onready var multiplayer_menu := $Lobby/OnlineMenu
 ###
 @onready var time_cycle := $Shader/TimeCycle
 @onready var chat := $HUD/Chat
 @onready var player_list := $HUD/PlayerList
-@onready var connection_menu = $HUD/ConnectionMenu
+@onready var connection_menu := $HUD/ConnectionMenu
 @onready var rain: GPUParticles2D = $Weather/Rain
 
 @onready var surface: TileMap = $Surface
 @onready var dungeon: TileMap = $Dungeon
 @onready var dungeon_stair: Area2D = $DungeonStair
-@onready var mine_stair: Area2D = $MineStair
-@onready var stair: Area2D = $Stair
 
-@onready var hud: CanvasLayer = $HUD
-@onready var lobby: CanvasLayer = $Lobby
+@onready var hud : CanvasLayer = $HUD
+@onready var lobby : CanvasLayer = $Lobby
 
-@onready var shader: CanvasModulate = $Shader
+@onready var shader : CanvasModulate = $Shader
 
-const light : PackedScene = preload("res://Scenes/Game/Objects/Light.tscn")
+const PLAYER_SCENE : PackedScene = preload("res://Scenes/Game/Entities/Player.tscn")
+const LIGHT_SCENE : PackedScene = preload("res://Scenes/Game/Objects/Light.tscn")
 
-static var is_online : bool = true
 func _ready():
-	port = Config.config_data.port
 	surface.show()
 	hud.hide(); lobby.show()
-	host_button.pressed.connect(_on_host_pressed)
-	join_button.pressed.connect(_on_join_pressed)
 	get_tree().set_pause(true)
 	
-	if not is_online:
+	if not Multi.is_online:
 		multiplayer_menu.queue_free()
 		chat.queue_free()
 		_add_player(1)
@@ -60,7 +46,7 @@ func _on_host_pressed():
 	Audio.play_sfx(SFX.CONFIRM,0.5,-0.2)
 	var setup = await setup_server()
 	if not setup: return
-	peer.create_server(port)
+	peer.create_server(Multi.PORT)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
@@ -68,7 +54,7 @@ func _on_host_pressed():
 	transition_to_world("castle")
 
 func _add_player(id = 1):
-	var player = player_scene.instantiate()
+	var player = PLAYER_SCENE.instantiate()
 	player.name = str(id)
 	add_child(player)
 
@@ -79,14 +65,11 @@ func remove_player(peer_id):
 	
 func _on_join_pressed():
 	Audio.play_sfx(SFX.CONFIRM,0.5,-0.2)
-	transition_to_world("day")
-	var server_ip = Config.config_data.server_list[multiplayer_menu.server_selected-1].server_ip
-	if server_ip in official_servers:
-		ip = official_servers[server_ip]
-	else:
-		ip = server_ip
-	peer.create_client(ip,port)
-	multiplayer.multiplayer_peer = peer
+	#transition_to_world("day")
+	#var server_ip = Config.config_data.server_list[multiplayer_menu.town_selected]
+	#ip = server_ip
+	#peer.create_client(ip,Multi.PORT)
+	#multiplayer.multiplayer_peer = peer
 	
 func transition_to_world(music : String) -> void:
 	Transition.fade_out(0.5)
@@ -134,13 +117,14 @@ func handle_weather() -> void:
 		time_cycle.play(weather)
 
 func instance_lights():
-	var cell_data
-		#checks how many layers are there in the dungeon, and enables each of them
+	var cell_data : TileData
+	# checks how many layers are there in the dungeon, 
+	# and enables each of them
 	for layer in [surface,dungeon]:
 		for cell in layer.get_used_cells(2): #all the cells in decoration layer
 			cell_data = layer.get_cell_tile_data(2, cell) #get the TileData of the cell
 			if cell_data != null and cell_data.modulate != Color(1.0,1.0,1.0,1.0): #the lights do not have white modulate
-				var instance = light.instantiate()
+				var instance = LIGHT_SCENE.instantiate()
 				instance.position = cell * 8 #position on grid is 8x scale
 				instance.on_surface = bool(layer == $Surface)
 				layer.add_child(instance,true)
@@ -154,8 +138,7 @@ func descend_to_dungeon(body):
 func descend(body,music) -> void:
 	if body is Player and body.is_multiplayer_authority():
 		if body.on_surface:
-			Transition.fade_in(1.5)
-			await Transition.player.animation_finished
+			await Transition.fade_in(1.5)
 			body.on_surface = false
 			surface.tile_set.set_physics_layer_collision_layer(0,0)
 			surface.hide()
@@ -164,8 +147,8 @@ func descend(body,music) -> void:
 			Transition.fade_out(1.5)
 			Audio.change_music(music)
 		else:
-			Transition.fade_in(1.5)
-			await Transition.player.animation_finished
+			
+			await Transition.fade_in(1.5)
 			body.on_surface = true
 			surface.tile_set.set_physics_layer_collision_layer(0,2)
 			surface.show()
@@ -182,33 +165,15 @@ func _on_multiplayer_spawner_despawned(node):
 
 func setup_server() -> bool:
 	Transition.fade_in()
-	await Transition.player.animation_finished
-	udp.listen(port - 1,IP.get_local_addresses()[-1])
+	await Transition.faded
 	var upnp = UPNP.new()
 	
-	var result = upnp.discover(1000)
+	var result = upnp.discover()
+	
 	if result == 0:
 		print_rich("[color=aqua][b]<Host>[/b][/color] UPnP is Enabled")
 	else:
 		Transition.change_scene(Global.Scenes.WORLD_SCENE)
 		return false
-	upnp.add_port_mapping(port)
-	upnp.add_port_mapping(port - 1)
+	upnp.add_port_mapping(Multi.PORT)
 	return true
-
-func _process(_delta):
-	if not is_online: return
-	
-	udp.poll()
-	if udp.is_connection_available():
-		var udp_peer : PacketPeerUDP = udp.take_connection()
-		var packet = udp_peer.get_packet()
-		print("Recieved Packet: %s from %s:%s" % [
-			packet.get_string_from_ascii(),
-			udp_peer.get_packet_ip(),
-			udp_peer.get_packet_port()])
-		var players : int = 0
-		for child in get_children():
-			if child is Player:
-				players += 1
-		udp_peer.put_packet(str(players).to_ascii_buffer())

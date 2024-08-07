@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dmjmqu1d14ao3"]
 
 [ext_resource type="Texture2D" uid="uid://cjkysae687q5b" path="res://Assets/UI/Cards/cards.png" id="1_xy4u4"]
-[ext_resource type="Script" path="res://Scripts/UI/Menu/Instances/CardDisplay.gd" id="2_aeqnh"]
+[ext_resource type="Script" path="res://Scripts/UI/Instances/CardDisplay.gd" id="2_aeqnh"]
 [ext_resource type="FontVariation" uid="uid://diqtfxvgb4nnc" path="res://Assets/Fonts/royal-intonation.tres" id="3_hm33b"]
 [ext_resource type="Texture2D" uid="uid://dj078j0fnqq5" path="res://Assets/UI/Cards/items.png" id="4_vr4fj"]
 

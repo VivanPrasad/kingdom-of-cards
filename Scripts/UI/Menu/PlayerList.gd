@@ -5,7 +5,7 @@ extends CanvasLayer
 
 var mobile : bool = false
 func _input(_event):
-	if not mobile and Game.is_online:
+	if not mobile and Multi.is_online:
 		if Input.is_action_pressed("player_list"):
 			show()
 		else:

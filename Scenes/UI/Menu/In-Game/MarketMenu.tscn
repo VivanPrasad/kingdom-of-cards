@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://g0nn0ur2q0hs"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Menu/MarketMenu.gd" id="1_i1k1s"]
+[ext_resource type="Script" path="res://Scripts/UI/Menu/In-Game/MarketMenu.gd" id="1_i1k1s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ni3aj"]
 font_size = 64

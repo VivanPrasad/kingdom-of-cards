@@ -26,9 +26,8 @@ func _init(file : AudioStream,volume_offset:float = 0.0, pitch_offset : float = 
 	self.pitch_scale = PITCH_DATA[stream_name] + pitch_offset
 	
 	if fade_in:
-		volume_db = -80.0
 		create_tween()\
-		.tween_property(self, "volume_db",
+		.tween_method(set_volume_db, -80.0,
 			VOLUME_DATA[stream_name]+volume_offset,fade_time)
 	else:
 		volume_db = VOLUME_DATA[stream_name] + volume_offset

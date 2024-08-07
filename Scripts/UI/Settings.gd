@@ -1,109 +1,83 @@
 extends Control
 
-var config_data = Config.config_data
+@onready var tab_container: TabContainer = $TabContainer
 
-@onready var master_slider = $TabContainer/Audio/Container/Master/MasterSlider
-@onready var music_slider = $TabContainer/Audio/Container/Music/MusicSlider
-@onready var sfx_slider = $TabContainer/Audio/Container/SFX/SFXSlider
-
+@onready var audio_sliders: VBoxContainer = $TabContainer/Audio/Sliders
 @onready var fullscreen_button = $TabContainer/Display/Container/Fullscreen/CheckButton
 
-@onready var local_ip_line = $TabContainer/Online/Container/LocalIP/LineEdit
-@onready var public_ip_line = $TabContainer/Online/Container/PublicIP/VBoxContainer/HBoxContainer/LineEdit
-@onready var copy_ip_button = $TabContainer/Online/Container/PublicIP/VBoxContainer/CopyIP
+@onready var keys_row1 = $TabContainer/Controls/VBoxContainer/Keys/Row1
+@onready var keys_row2 = $TabContainer/Controls/VBoxContainer/Keys/Row2
 
-@onready var keys_row1 = $TabContainer/Controls/Keys/Row1
-@onready var keys_row2 = $TabContainer/Controls/Keys/Row2
-@onready var keybind = preload("res://Scenes/UI/Instances/Keybind.tscn")
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+const KEYBIND_SCENE : PackedScene = preload("res://Scenes/UI/Instances/Keybind.tscn")
 
 func _ready() -> void:
-	load_config()
+	connect_ui()
 	instance_keybinds()
-	update_values()
-	
-	update_online() #update online stuff
 
 func instance_keybinds() -> void:
-	for key in config_data.keybinds.keys():
-		var key_node = keybind.instantiate()
+	var keys : Array = ["up","left","down","right","interact","back","inventory","emote","chat","player_list"]
+	for key in keys:
+		var key_node = KEYBIND_SCENE.instantiate()
 		key_node.key = key
-		key_node.value = config_data.keybinds[key]
-		if keys_row1.get_child_count() <= 4:
+		key_node.value = Config.save.keybinds[key][Config.save.input]
+		if keys_row1.get_child_count() <= 5:
 			keys_row1.add_child(key_node)
 		else:
 			keys_row2.add_child(key_node)
 
-func update_online() -> void:
-	local_ip_line.text = IP.get_local_addresses()[-1]
-	var http = HTTPRequest.new()
-	add_child(http)
-	http.request_completed.connect(_update_public_ip)
-	http.request("https://api.ipify.org")
-
-func _update_public_ip(_result, _response_code, _headers, body):
-	public_ip_line.text = body.get_string_from_utf8()
+func connect_ui() -> void:
+	# Tab Buttons
+	tab_container.tab_changed.connect(
+		_on_tab_switched)
+	# Audio Tab
+	for box:HBoxContainer in audio_sliders.get_children():
+		var slider : HSlider = box.get_child(1)
+		var bus : int = box.get_index()
+		slider.value_changed.connect(
+			_on_audio_update.bind(bus))
+		slider.rounded = true
+		slider.step = 5
+		slider.value = Config.save.audio[bus]
 	
-func load_config() -> void:
-	if ConfigData.save_exists():
-		config_data = ConfigData.load_save() as ConfigData
-	else:
-		config_data = Config.config_data
-func update_values():
-	master_slider.value = config_data.master
-	music_slider.value = config_data.music
-	sfx_slider.value = config_data.sfx
-	fullscreen_button.button_pressed = config_data.fullscreen
-	$TabContainer/Online/Container/Port/LineEdit.text = str(config_data.port)
+	# Display Tab
+	fullscreen_button.button_pressed = Config.save.fullscreen
+	
+	# Data Tab
+func close_settings() -> void:
+	animation_player.play_backwards("FadeIn")
+	Audio.play_sfx(SFX.BACK)
+	await animation_player.animation_finished
+	$"/root/Title".buttons.get_child(0).grab_focus()
+	queue_free()
 
-func _on_tab_container_tab_clicked(tab):
-	if tab == 5:
-		$AnimationPlayer.play_backwards("FadeIn")
-		Audio.play_sfx(SFX.BACK)
-		await $AnimationPlayer.animation_finished
-		queue_free()
+func _on_tab_switched(tab : int) -> void:
+	if tab == 4:
+		close_settings()
 	else:
 		Audio.play_sfx(SFX.SELECT,0.0,1.0)
-
-func _on_master_slider_value_changed(value):
-	config_data.master = value
-	#AudioServer.set_bus_volume_db(0,((0.8*float(value))-80.0))
-	config_data.write_save()
-
-func _on_music_slider_value_changed(value):
-	config_data.music = value
-	config_data.write_save()
-
-func _on_sfx_slider_value_changed(value):
-	config_data.sfx = value
-	config_data.write_save()
+func _on_audio_update(value : int, bus : int) -> void:
+	Config.save.audio[bus] = value
 
 func _on_check_button_toggled(button_pressed):
-	config_data.fullscreen = button_pressed
-	config_data.write_save()
+	Config.save.fullscreen = button_pressed
 
-func _on_local_visible_toggled(button_pressed):
-	local_ip_line.secret = !button_pressed
+func _on_button_pressed(button : Button):
+	match str(button.name):
+		"Open Data Folder":
+			OS.shell_show_in_file_manager(
+				ProjectSettings.globalize_path(Save.DATA_FOLDER))
+		"Delete Save Data":
+			if Save.save_exists():
+				var dir = DirAccess.open(Save.DATA_FOLDER)
+				dir.remove("save.tres")
+				Config.load_default()
 
-func _on_public_visible_toggled(button_pressed):
-	public_ip_line.secret = !button_pressed
-
-func _on_copy_ip_pressed():
-	DisplayServer.clipboard_set(public_ip_line.text)
-	copy_ip_button.text = "Copied to Clipboard"
-	copy_ip_button.set_disabled(true)
-	await get_tree().create_timer(8.0).timeout
-	copy_ip_button.text = "Copy Public IP to Clipboard"
-	copy_ip_button.set_disabled(false)
-
-func _on_button_pressed():
-	OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://data"))
-
-func _on_button_2_pressed():
-	var dir = DirAccess.open("user://data")
-	dir.remove("config.tres")
-
-
-func _on_line_edit_text_changed(new_text):
-	if new_text.is_valid_int():
-		config_data.port = int(new_text)
-		config_data.write_save()
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_released("tab_left") and tab_container.current_tab > 0:
+		tab_container.current_tab = (tab_container.current_tab - 1)
+	elif Input.is_action_just_released("tab_right"):
+		tab_container.current_tab = (tab_container.current_tab + 1)
+	elif Input.is_action_just_pressed("back"):
+		close_settings()
